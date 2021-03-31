@@ -1,0 +1,15 @@
+# Table of content
+# Learn more at https://jupyterbook.org/customize/toc.html
+#
+- file: intro
+- file: content
+  sections:
+    - file: markdown
+    - file: notebooks
+- file: ./features/preparation
+  sections:
+    - file: ./features/explore
+    - file: ./features/missingData
+    - file: ./features/exercisePreparation
+- file: ./features/transformation
+- file: ./features/featureEngineering
