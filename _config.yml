@@ -32,11 +32,9 @@ html:
   use_issues_button: true
   use_repository_button: true
   
-sphinx:
-  config:
-    html_extra_path: ['data']
-  extra_extensions:
-    - sphinx_thebe
+#sphinx:
+#  config:
+#    html_extra_path: ['data']
 
 parse:
   myst_enable_extensions:
