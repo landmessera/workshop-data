@@ -1,3 +1,7 @@
 jupyter-book
+ghp-import
+sphinx-thebe
 matplotlib
 numpy
+pandas
+plotly
