@@ -1,0 +1,1015 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Übung: Aufbereitung &#8212; Data Workshop</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Transformation" href="transformation.html" />
+    <link rel="prev" title="Umgang mit fehlenden Daten" href="missingData.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/modul2single.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Data Workshop</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Willkommen zum Daten Workshop
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="content.html">
+   Content in Jupyter Book
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="markdown.html">
+     Markdown Files
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="preparation.html">
+   Aufbereitung
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="explore.html">
+     Überblick verschaffen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="missingData.html">
+     Umgang mit fehlenden Daten
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Übung: Aufbereitung
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformation.html">
+   Transformation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="featureEngineering.html">
+   Feature Engineering
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/exercisePreparation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/landmessera/workshop-data/master?urlpath=tree/exercisePreparation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#uberblick-verschaffen">
+   Überblick verschaffen
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-packete-importieren-und-daten-laden">
+     Python Packete importieren und Daten laden
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-1-anzeigen-der-ersten-datensatze">
+     Task 1: Anzeigen der ersten Datensätze
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-2-beobachtungen-aus-den-ersten-7-datensatzen">
+     Task 2: Beobachtungen aus den ersten 7 Datensätzen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-3-datenset-beschreiben">
+     Task 3: Datenset beschreiben
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beschreibung-der-merkmale">
+     Beschreibung der Merkmale:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-4-datentypen-bestimmen">
+     Task 4: Datentypen bestimmen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-5-deskriptive-statistiken-erstellen">
+     Task 5: Deskriptive Statistiken erstellen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-6-beobachtungen-notieren">
+       Task 6: Beobachtungen notieren
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fehlende-werte-korrigieren">
+   Fehlende Werte korrigieren
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-7-fehlende-werte-ermitteln-absolut">
+     Task 7: Fehlende Werte ermitteln (absolut)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-8-fehlende-werte-ermitteln-absolut-und-prozentual">
+     Task 8: Fehlende Werte ermitteln (absolut und prozentual)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-9-notieren-sie-ihre-beobachtungen">
+     Task 9: Notieren Sie Ihre Beobachtungen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-10-fehlende-werte-ersetzen-entfernen">
+     Task 10: Fehlende Werte ersetzen/entfernen
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-gender">
+       a) Gender
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#b-cars">
+       b) Cars
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#c-age">
+       c) Age
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#d-children">
+       d) Children
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#e-marital-status">
+       e) Marital Status
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#f-income">
+       f) Income
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#g-home-owner">
+       g) Home Owner
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-11-uberprufen-der-fehlenden-werte">
+     Task 11: Überprüfen der fehlenden Werte
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#task-12-ergebnis-speichern">
+     Task 12: Ergebnis speichern
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="ubung-aufbereitung">
+<h1>Übung: Aufbereitung<a class="headerlink" href="#ubung-aufbereitung" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="uberblick-verschaffen">
+<span id="start"></span><h2>Überblick verschaffen<a class="headerlink" href="#uberblick-verschaffen" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="python-packete-importieren-und-daten-laden">
+<h3>Python Packete importieren und Daten laden<a class="headerlink" href="#python-packete-importieren-und-daten-laden" title="Permalink to this headline">¶</a></h3>
+<p>Python Packete importieren</p>
+<div class="cell tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Packete importieren</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Daten von CSV in Pandas Dataframe laden</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/bikebuyers/bike_buyers.csv&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span><span class="s1">&#39; Datensätze geladen&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1000 Datensätze geladen
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="task-1-anzeigen-der-ersten-datensatze">
+<h3>Task 1: Anzeigen der ersten Datensätze<a class="headerlink" href="#task-1-anzeigen-der-ersten-datensatze" title="Permalink to this headline">¶</a></h3>
+<p>In der Variable data liegen die Daten in Form eines Panda Dataframe vor. Geben Sie die ersten 7 Datensätze dieses Pandas Datenframe aus.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enter your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Die <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html">head-Methode</a> liefert die ersten Zeilen eines Pandas Datenframe.</p>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 1<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+<div class="section" id="task-2-beobachtungen-aus-den-ersten-7-datensatzen">
+<h3>Task 2: Beobachtungen aus den ersten 7 Datensätzen<a class="headerlink" href="#task-2-beobachtungen-aus-den-ersten-7-datensatzen" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Die Merkmale Gender und Home Owner enthalten <mark> [?] </mark></p></li>
+<li><p>Die meisten Merkmale enthalten <mark> [?] </mark></p></li>
+<li><p>Die numerischen Merkmale unterscheiden sich stark in <mark> [?] </mark></p></li>
+</ul>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 2<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<ul class="simple">
+<li><p class="card-text">Die Merkmale Gender und Home Owner enthalten fehlende Werte</p></li>
+<li><p class="card-text">Die meisten Merkmale enthalten nicht-numerische Daten</p></li>
+<li><p class="card-text">Die numerischen Merkmale unterscheiden sich stark in den Wertebereichen</p></li>
+</ul>
+</div>
+</details></div>
+<div class="section" id="task-3-datenset-beschreiben">
+<h3>Task 3: Datenset beschreiben<a class="headerlink" href="#task-3-datenset-beschreiben" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Geben Sie hier den Code ein, </span>
+<span class="c1"># um die Informationen über die Daten zu erhalten.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das Datenset besteht aus<br />
+<mark> [?] </mark> Datensätzen<br />
+<mark> [?] </mark> Merkmalen</p>
+<p>Die Zielvariable ist: <mark> [?] </mark></p>
+<p><mark> [?] </mark> Merkmale sind vom Typ Float<br />
+<mark> [?] </mark> Merkmale sind vom Typ Integer<br />
+<mark> [?] </mark> Merkmale sind Objekte</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Die <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html">Info-Methode</a> liefert eine Zusammenfassung des Pandas Datenframe.</p>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 3<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Informationen erhalten über den Aufruf der Info-Methode</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="card-text">Das Datenset besteht aus<br />
+1000 Datensätzen<br />
+12 Merkmalen</p>
+<p class="card-text">Die Zielvariable ist: Purchased Bike</p>
+<p class="card-text">4 Merkmale sind vom Typ Float<br />
+1 Merkmal vom Typ Integer<br />
+7 Merkmale sind Objekte</p>
+</div>
+</details></div>
+<div class="section" id="beschreibung-der-merkmale">
+<h3>Beschreibung der Merkmale:<a class="headerlink" href="#beschreibung-der-merkmale" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>ID</strong>: Eindeutige Id des Kunden</p></li>
+<li><p><strong>Marital Status</strong>: Familienstand [Verheirated, Single]</p></li>
+<li><p><strong>Gender</strong>: Geschlecht [Male, Female]</p></li>
+<li><p><strong>Income</strong>: Jahreseinkommen</p></li>
+<li><p><strong>Children</strong>: Anzahl an Kinder</p></li>
+<li><p><strong>Education</strong>: Bildungsstand<br />
+[Bachelor, Partial College, High School, Graduate Degree, Partial High School]</p></li>
+<li><p><strong>Occupation</strong>: Berufsstand<br />
+[Professional, Skilled Manual, Clerical, Management, Manual]</p></li>
+<li><p><strong>Home Owner</strong>: Hausbesitzer  [True, False]</p></li>
+<li><p><strong>Cars</strong>: Anzahl an Autos</p></li>
+<li><p><strong>Commute Distance</strong>: Pendeldistanz</p></li>
+<li><p><strong>Region</strong>: Region [North America, Europe, Pacific]</p></li>
+<li><p><strong>Age</strong>: Alter</p></li>
+<li><p><strong>Fahrrad gekauft</strong> [True, False]</p></li>
+</ul>
+</div>
+<div class="section" id="task-4-datentypen-bestimmen">
+<h3>Task 4: Datentypen bestimmen<a class="headerlink" href="#task-4-datentypen-bestimmen" title="Permalink to this headline">¶</a></h3>
+<p>Numerische Daten:</p>
+<ul class="simple">
+<li><p>Diskret</p>
+<ul>
+<li><p><mark> [?] </mark></p></li>
+<li><p><mark> […] </mark></p></li>
+</ul>
+</li>
+<li><p>Kontinuierlich</p>
+<ul>
+<li><p><mark> [?] </mark></p></li>
+<li><p><mark> […] </mark></p></li>
+</ul>
+</li>
+</ul>
+<p>Kategorische Daten:</p>
+<ul class="simple">
+<li><p>Nominal</p>
+<ul>
+<li><p><mark> [?] </mark></p></li>
+<li><p><mark> […] </mark></p></li>
+</ul>
+</li>
+<li><p>Ordinal</p>
+<ul>
+<li><p><mark> [?] </mark></p></li>
+<li><p><mark> […] </mark></p></li>
+</ul>
+</li>
+</ul>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 4<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Numerische Daten:</p>
+<ul class="simple">
+<li><p class="card-text">Diskret</p>
+<ul>
+<li><p class="card-text">Cars</p></li>
+<li><p class="card-text">Children</p></li>
+</ul>
+</li>
+<li><p class="card-text">Kontinuierlich</p>
+<ul>
+<li><p class="card-text">Income</p></li>
+<li><p class="card-text">Age</p></li>
+</ul>
+</li>
+</ul>
+<p class="card-text">Kategorische Daten:</p>
+<ul class="simple">
+<li><p class="card-text">Nominal</p>
+<ul>
+<li><p class="card-text">ID</p></li>
+<li><p class="card-text">Marital Status</p></li>
+<li><p class="card-text">Gender</p></li>
+<li><p class="card-text">Occupation</p></li>
+<li><p class="card-text">Home Owner</p></li>
+<li><p class="card-text">Region</p></li>
+</ul>
+</li>
+<li><p class="card-text">Ordinal</p>
+<ul>
+<li><p class="card-text">Education</p></li>
+<li><p class="card-text">Commute Distance</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details></div>
+<div class="section" id="task-5-deskriptive-statistiken-erstellen">
+<h3>Task 5: Deskriptive Statistiken erstellen<a class="headerlink" href="#task-5-deskriptive-statistiken-erstellen" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enter your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Die <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html">Describe-Methode</a>  liefert deskriptive Statistiken des Pandas Datenframe.</p>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 5<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details><div class="section" id="task-6-beobachtungen-notieren">
+<h4>Task 6: Beobachtungen notieren<a class="headerlink" href="#task-6-beobachtungen-notieren" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Das Einkommen der meisten Kunden (75%) liegt unter <mark> [?] </mark>.</p></li>
+<li><p>Die Standardabweichung des Einkommen beträgt <mark> [?] </mark>.</p></li>
+<li><p>50% der Kunden haben mehr als <mark> [?] </mark> Kinder.</p></li>
+<li><p>Die Kunden besitzen im Durchschnitt <mark> [?] </mark> Autos.</p></li>
+<li><p>Das Alter der Kunden variiert zwischen <mark> [?] </mark> und <mark> [?] </mark>.</p></li>
+<li><p>25% der Kunden sind älter als <mark> [?] </mark>.</p></li>
+</ul>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 6<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<ul class="simple">
+<li><p class="card-text">Das Einkommen der meisten Kunden (75%) liegt unter <mark> 24470,75 </mark>.</p></li>
+<li><p class="card-text">Die Standardabweichung des Einkommen beträgt <mark> 31067,82 </mark>.</p></li>
+<li><p class="card-text">50% der Kunden haben mehr als <mark> 2 </mark> Kinder.</p></li>
+<li><p class="card-text">Die Kunden besitzen im Durchschnitt <mark> 1,46 </mark> Autos.</p></li>
+<li><p class="card-text">Das Alter der Kunden variiert zwischen <mark> 25 </mark> und <mark> 89 </mark>.</p></li>
+<li><p class="card-text">25% der Kunden sind älter als <mark> 35 </mark>.</p></li>
+</ul>
+</div>
+</details></div>
+</div>
+</div>
+<div class="section" id="fehlende-werte-korrigieren">
+<h2>Fehlende Werte korrigieren<a class="headerlink" href="#fehlende-werte-korrigieren" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="task-7-fehlende-werte-ermitteln-absolut">
+<h3>Task 7: Fehlende Werte ermitteln (absolut)<a class="headerlink" href="#task-7-fehlende-werte-ermitteln-absolut" title="Permalink to this headline">¶</a></h3>
+<p>Ermitteln Sie die absoulte Zahl der fehlenden Werte pro Spalte und speichern Sie diese in einer Variablen namens “missingValuesCount”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enter your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Die <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.isnull.html">isnull-Methode</a>  liefert für jeden Wert des Pandas Datenframe einen Boolean-Wert, true oder false. True bedeutet, es handelt sich um einen fehlenden Wert.</p>
+<p>Die <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sum.html">sum-Methode</a> liefert die Anzahl der True Werte pro Spalte in einer Pandas Series (bei Default-Einstellung)</p>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 7<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">missingValuesCount</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">missingValuesCount</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+<div class="section" id="task-8-fehlende-werte-ermitteln-absolut-und-prozentual">
+<h3>Task 8: Fehlende Werte ermitteln (absolut und prozentual)<a class="headerlink" href="#task-8-fehlende-werte-ermitteln-absolut-und-prozentual" title="Permalink to this headline">¶</a></h3>
+<p>Geben Sie den absoluten und prozentualen-Wert pro Spalte an. Implementieren Sie folgende Schritte</p>
+<ul class="simple">
+<li><p>Sortieren Sie das zuvor gespeicherte Ergebnis (missingValuesCount) in absteigender Reihenfolge und speichern Sie das Ergebnis in einer neuen Variable namens “total”.</p></li>
+<li><p>Berechnen Sie den prozentualen Anteil der fehlenden Werte an der Gesamtzahl der der Datensätze, sortieren Sie das Ergebnis absteigend und speichern es in einer neuen Variable namens “percentage”.</p></li>
+<li><p>Erstellen Sie einen Pandas Datenframe mit 2 Spalten. Die erste Spalte mit der Bezeichnung “Gesamt” und den Daten der Variable total und die zweite Spalte mit der Bezeichnung “Prozentual” und den Daten der Variable percentage.</p></li>
+<li><p>Speichern Sie den Pandas Datenframe in einer neuen Variable namens “missingData”.</p></li>
+<li><p>Geben Sie den erstellten Pandas Datenframe aus.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enter your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Die <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html">sort_values-Methode</a> sortiert die Pandas Series anhand der enthaltenen Werte.</p>
+<p>Die <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.shape.html">shape-Methode</a> liefert die Dimensionen eines Pandas Datenframe in einem Tuple, wobei der erste Wert, der Anzahl der Zeilen entspricht und der zweite Wert, der Anzahl der Spalten.</p>
+<p>Unter Verwendung der <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">DataFrame-Methode</a> und der Übergabe eines Dictionaries, wobei die Keys der Spaltenbezeichnung und die Values der Pandas Series entsprechen, lassen sich Pandas Dataframes erstellen.</p>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 7<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">total</span> <span class="o">=</span> <span class="n">missingValuesCount</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">percentage</span> <span class="o">=</span> <span class="p">(</span><span class="n">missingValuesCount</span><span class="o">/</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">missingData</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Gesamt&#39;</span><span class="p">:</span><span class="n">total</span><span class="p">,</span> <span class="s1">&#39;Prozentual&#39;</span><span class="p">:</span><span class="n">percentage</span><span class="p">})</span>
+<span class="n">missingData</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+<div class="section" id="task-9-notieren-sie-ihre-beobachtungen">
+<h3>Task 9: Notieren Sie Ihre Beobachtungen<a class="headerlink" href="#task-9-notieren-sie-ihre-beobachtungen" title="Permalink to this headline">¶</a></h3>
+<p>Was fällt Ihnen bei den ermittelten Werten aus Task 8 auf? Ist die Anzahl der fehlenden Werte groß oder klein? Was ist könnte die Ursache für die fehlenden Werte sein? Existieren die Werte und wurden nicht erfasst?</p>
+<p>Beobachtungen:</p>
+<ul class="simple">
+<li><p><mark> [?] </mark></p></li>
+<li><p><mark> [?] </mark></p></li>
+</ul>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 9<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<ul class="simple">
+<li><p class="card-text">Die fehlenden Werte pro Spalte sind sehr gering und liegen zwischen 0.4 und 1.1 Prozent.</p></li>
+<li><p class="card-text">Alle fehlende Werte (Cars, Age, Children, Marital Status, Income, Home Owner) existieren vermutlich, wurden jedoch nicht erfasst.</p></li>
+</ul>
+</div>
+</details></div>
+<div class="section" id="task-10-fehlende-werte-ersetzen-entfernen">
+<h3>Task 10: Fehlende Werte ersetzen/entfernen<a class="headerlink" href="#task-10-fehlende-werte-ersetzen-entfernen" title="Permalink to this headline">¶</a></h3>
+<p>Entscheiden Sie sich bei jedem Merkmal für eine Methode und wenden diese auf die Datensätze, welche fehlende Werte enthalten an.</p>
+<p><a class="reference internal" href="intro.html"><span class="doc">Willkommen zum Daten Workshop</span></a></p>
+<div class="admonition-wiederholung admonition">
+<p class="admonition-title">Wiederholung</p>
+<p>Möglicher Umgang mit fehlenden Werten:</p>
+<ol class="simple">
+<li><p>Datensätze entfernen</p></li>
+<li><p>Ersetzen durch Median/Mittelwert/Mode</p></li>
+<li><p>Eine eigene Kategorie zuweisen</p></li>
+<li><p>Fehlende Werte schätzen</p></li>
+</ol>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Die <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.hist.html">hist-Methode</a>  kann auf eine Spalte des Datenframes angewendet werden um die Verteilung der Daten zu erhalten.</p>
+</div>
+<div class="section" id="a-gender">
+<h4>a) Gender<a class="headerlink" href="#a-gender" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enter your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 10a<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Beim Gender Merkmal handelt es sich um kategorische Daten. Aufgrund der geringen Anzahl an fehlenden Werten in Bezug auf die Gesamtanzahl des Datensets, macht es Sinn die fehlenden Datensätze zu entfernen oder die fehlenden Werte mit dem häufigsten vorkommenden Wert zu ersetzen.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+<div class="section" id="b-cars">
+<h4>b) Cars<a class="headerlink" href="#b-cars" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enter your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 10b<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Beim Cars Merkmal handelt es sich um numerisch diskrete Daten. Aufgrund der geringen Anzahl an fehlenden Werten in Bezug auf die Gesamtanzahl des Datensets, macht es Sinn die fehlenden Datensätze zu entfernen oder die fehlenden Werte mit dem häufigsten vorkommenden Wert zu ersetzen.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Cars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Cars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Cars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+<div class="section" id="c-age">
+<h4>c) Age<a class="headerlink" href="#c-age" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enter your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 10c<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Beim Age Merkmal handelt es sich um numerische Daten. Aufgrund der geringen Anzahl an fehlenden Werten in Bezug auf die Gesamtanzahl des Datensets, macht es Sinn die fehlenden Datensätze zu entfernen oder die fehlenden Werte zu ersetzen. Aufgrund der rechtsschiefen Verteilung der Daten bietet sich der Median als Ersatzwert an.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+<div class="section" id="d-children">
+<h4>d) Children<a class="headerlink" href="#d-children" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enter your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 10d<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Beim Merkmal Children handelt es sich um diskrete Daten. Aufgrund der geringen Anzahl an fehlenden Werten in Bezug auf die Gesamtanzahl des Datensets, macht es Sinn die fehlenden Datensätze zu entfernen oder die fehlenden Werte mit dem häufigsten vorkommenden Wert zu ersetzen.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Children&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Children&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Children&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+<div class="section" id="e-marital-status">
+<h4>e) Marital Status<a class="headerlink" href="#e-marital-status" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enter your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 10e<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Beim Merkmal Marital Status handelt es sich um nominale Daten. Aufgrund der geringen Anzahl an fehlenden Werten in Bezug auf die Gesamtanzahl des Datensets, macht es Sinn die fehlenden Datensätze zu entfernen oder die fehlenden Werte mit dem häufigsten vorkommenden Wert zu ersetzen.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+<div class="section" id="f-income">
+<h4>f) Income<a class="headerlink" href="#f-income" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enter your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 10f<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Beim Merkmal Income handelt es sich um kontinuierliche Daten. Aufgrund der geringen Anzahl an fehlenden Werten in Bezug auf die Gesamtanzahl des Datensets, macht es Sinn die fehlenden Datensätze zu entfernen oder die fehlenden Werte mit dem Mittelwert zu ersetzen.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+<div class="section" id="g-home-owner">
+<h4>g) Home Owner<a class="headerlink" href="#g-home-owner" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enter your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 10g<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">Beim Merkmal Owner handelt es sich um nominale Daten. Aufgrund der geringen Anzahl an fehlenden Werten in Bezug auf die Gesamtanzahl des Datensets, macht es Sinn die fehlenden Datensätze zu entfernen oder die fehlenden Werte mit dem häufigsten vorkommenden Wert zu ersetzen.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Home Owner&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Home Owner&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Home Owner&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+</div>
+<div class="section" id="task-11-uberprufen-der-fehlenden-werte">
+<h3>Task 11: Überprüfen der fehlenden Werte<a class="headerlink" href="#task-11-uberprufen-der-fehlenden-werte" title="Permalink to this headline">¶</a></h3>
+<p>Geben Sie erneut die Anzahl der fehlenden Werte aus. Es sollten jetzt keine fehlende Werte existieren.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enter your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 11<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">missingValuesCount</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">missingValuesCount</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+<div class="section" id="task-12-ergebnis-speichern">
+<h3>Task 12: Ergebnis speichern<a class="headerlink" href="#task-12-ergebnis-speichern" title="Permalink to this headline">¶</a></h3>
+<p>Speichern Sie die aufbereiteten Daten als Pickle-Datei unter ‘../output/preparedData.pkl’ ab.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enter your code here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Die <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_pickle.html">to_pickle-Methode</a> ermöglicht eine einfache Speicherung des Pandas Datenframe im .pkl-Format</p>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 11<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">&#39;../output/preparedData.pkl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "landmessera/workshop-data",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="missingData.html" title="previous page">Umgang mit fehlenden Daten</a>
+    <a class='right-next' id="next-link" href="transformation.html" title="next page">Transformation</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Annette Landmesser<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
