@@ -7,6 +7,8 @@
 
 Python Packete importieren
 
+!pip install sklearn
+
 # Packete importieren
 import pandas as pd
 import numpy as np
