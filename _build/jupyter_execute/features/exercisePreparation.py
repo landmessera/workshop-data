@@ -10,6 +10,9 @@ Python Packete importieren
 # Packete importieren
 import pandas as pd
 import numpy as np
+import sklearn as sklearn
+import pickle
+from sklearn.model_selection import train_test_split
 
 # Daten von CSV in Pandas Dataframe laden
 data = pd.read_csv("../data/bikebuyers/bike_buyers.csv")
@@ -19,7 +22,7 @@ print(str(data.shape[0]) +' Datensätze geladen')
 
 In der Variable data liegen die Daten in Form eines Panda Dataframe vor. Geben Sie die ersten 7 Datensätze dieses Pandas Datenframe aus. 
 
-# Enter your code here
+# Geben Sie Ihren Code hier ein.
 
 ```{tip}
 Die [head-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html) liefert die ersten Zeilen eines Pandas Datenframe.
@@ -138,7 +141,7 @@ Kategorische Daten:
 
 ###  Task 5: Deskriptive Statistiken erstellen
 
-# Enter your code here
+# Geben Sie Ihren Code hier ein.
 
 ```{tip}
 Die [Describe-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html)  liefert deskriptive Statistiken des Pandas Datenframe.
@@ -175,7 +178,7 @@ Die [Describe-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataF
 
 Ermitteln Sie die absoulte Zahl der fehlenden Werte pro Spalte und speichern Sie diese in einer Variablen namens "missingValuesCount".
 
-# Enter your code here
+# Geben Sie Ihren Code hier ein.
 
 ```{tip}
 Die [isnull-Methode](https://pandas.pydata.org/docs/reference/api/pandas.isnull.html)  liefert für jeden Wert des Pandas Datenframe einen Boolean-Wert, true oder false. True bedeutet, es handelt sich um einen fehlenden Wert.
@@ -200,7 +203,7 @@ Geben Sie den absoluten und prozentualen-Wert pro Spalte an. Implementieren Sie 
 * Speichern Sie den Pandas Datenframe in einer neuen Variable namens "missingData".
 * Geben Sie den erstellten Pandas Datenframe aus.
 
-# Enter your code here
+# Geben Sie Ihren Code hier ein.
 
 ```{tip}
 Die [sort_values-Methode](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html) sortiert die Pandas Series anhand der enthaltenen Werte.
@@ -255,7 +258,7 @@ Die [hist-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame
 
 #### a) Gender
 
-# Enter your code here
+# Geben Sie Ihren Code hier ein.
 
 ````{Dropdown} Lösung Task 10a
 
@@ -270,7 +273,7 @@ Beim Gender Merkmal handelt es sich um kategorische Daten. Aufgrund der geringen
 
 #### b) Cars
 
-# Enter your code here
+# Geben Sie Ihren Code hier ein.
 
 ````{Dropdown} Lösung Task 10b
 
@@ -285,7 +288,7 @@ Beim Cars Merkmal handelt es sich um numerisch diskrete Daten. Aufgrund der geri
 
 #### c) Age
 
-# Enter your code here
+# Geben Sie Ihren Code hier ein.
 
 ````{Dropdown} Lösung Task 10c
 
@@ -300,7 +303,7 @@ Beim Age Merkmal handelt es sich um numerische Daten. Aufgrund der geringen Anza
 
 #### d) Children
 
-# Enter your code here
+# Geben Sie Ihren Code hier ein.
 
 ````{Dropdown} Lösung Task 10d
 
@@ -315,7 +318,7 @@ Beim Merkmal Children handelt es sich um diskrete Daten. Aufgrund der geringen A
 
 #### e) Marital Status
 
-# Enter your code here
+# Geben Sie Ihren Code hier ein.
 
 ````{Dropdown} Lösung Task 10e
 
@@ -330,7 +333,7 @@ Beim Merkmal Marital Status handelt es sich um nominale Daten. Aufgrund der geri
 
 #### f) Income
 
-# Enter your code here
+# Geben Sie Ihren Code hier ein.
 
 ````{Dropdown} Lösung Task 10f
 
@@ -345,7 +348,7 @@ Beim Merkmal Income handelt es sich um kontinuierliche Daten. Aufgrund der gerin
 
 #### g) Home Owner
 
-# Enter your code here
+# Geben Sie Ihren Code hier ein.
 
 ````{Dropdown} Lösung Task 10g
 
@@ -362,7 +365,7 @@ Beim Merkmal Owner handelt es sich um nominale Daten. Aufgrund der geringen Anza
 
 Geben Sie erneut die Anzahl der fehlenden Werte aus. Es sollten jetzt keine fehlende Werte existieren.
 
-# Enter your code here
+# Geben Sie Ihren Code hier ein.
 
 ````{Dropdown} Lösung Task 11
 
@@ -372,18 +375,136 @@ Geben Sie erneut die Anzahl der fehlenden Werte aus. Es sollten jetzt keine fehl
   ```
 ````
 
-### Task 12: Ergebnis speichern
+## Datensets erstellen
 
-Speichern Sie die aufbereiteten Daten als Pickle-Datei unter '../output/preparedData.pkl' ab.
+### Task 12: Prüfen ob das Datenset balanciert ist
 
-# Enter your code here
+Geben Sie das Histogram der Labels aus und prüfen Sie ob das Datenset balanciert ist.
 
-```{Tip}
-Die [to_pickle-Methode](https://pandas.pydata.org/docs/reference/api/pandas.read_pickle.html) ermöglicht eine einfache Speicherung des Pandas Datenframe im .pkl-Format
+# Geben Sie Ihren Code hier ein.
+
+````{Dropdown} Lösung Task 12
+
+  ```{code-block} python
+  data['Purchased Bike'].hist()
+  ```
+  
+  Die Anzahl der Datensätze pro Klasse sind nahezu gleichverteilt.
+````
+
+### Task 13: Erstellen der Datensets
+
+Erstellen Sie die Datensets für Training, Validierung und Test mit Hilfe der Methode train_test_split aus der Scikit-Learn-Bibliothek. Folgende Eigenschaften sollen die Datensets besitzen:
+* disjunkt
+* 60% Trainingsdaten, 20% Validierungsdaten, 20% Testdaten
+* reproduzierbar
+* gleiche Verteilung der Datensätze pro Klasse in jedem Datenset
+
+# Geben Sie Ihren Code hier ein.
+
+```{tip}
+Der bestehende Pandas Datenframe muss vor dem Aufruf der train_test_split-Methode in Merkmale und Label zerlegt werden. Mit der [Drop-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop.html) lassen sich einzelne Spalten aus einem Datenframe entfernen.
 ```
 
-````{Dropdown} Lösung Task 11
+````{Dropdown} Lösung Task 12
+
   ```{code-block} python
-  data.to_pickle('../output/preparedData.pkl')
+    X = data.drop(['Purchased Bike'], axis=1)
+    y = data['Purchased Bike']
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1, stratify=y)
+    X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25, random_state=1, stratify=y_train)
+  ```
+````
+
+### Task 14: Anzahl der Datensätze pro Datensets ausgeben
+
+Geben Sie die Gesamtanzahl der Datensätze und die Anzahl der Datensätze pro Datenset aus.
+
+# Geben Sie Ihren Code hier ein.
+
+````{Dropdown} Lösung Task 14
+
+  ```{code-block} python
+    print('Anzahl der Datensätze')
+    print('* Gesamt: ', X.shape[0])   
+    print('* Trainingsdatenset:', X_train.shape[0])
+    print('* Validierungsdatenset:', X_val.shape[0])
+    print('* Testdatenset:', X_test.shape[0])
+  ```
+````
+
+### Task 15: Verteilung der Daten pro Klasse
+
+Geben Sie die Anzahl der Daten pro Klasse in Prozent für die  
+* gesamten Daten (Datenbasis vor der Splittung in die Datensets)  
+* Trainingsdaten   
+an.
+
+# Geben Sie Ihren Code hier ein.
+
+````{Dropdown} Lösung Task 15
+
+  ```{code-block} python
+    print('Gesamte Datenbasis')
+    print(y.value_counts()/y.shape[0])
+    print()
+    print('Trainingsdaten')
+    print(y_train.value_counts()/y_train.shape[0])
+  ```
+````
+
+### Task 16: Ergebnis speichern
+
+Erstellen Sie ein Python Dictionary mit den Keys
+* X_train
+* y_train
+* X_val
+* y_val
+* X_test
+* y_test
+
+in einer neuen Variable namens "dataset" und speichern das Dictionary unter '../output/datasets.pkl' ab.
+
+# Geben Sie Ihren Code hier ein.
+
+```{Tip}
+Die [dump-Methode](https://docs.python.org/3/library/pickle.html) ermöglicht eine einfache Speicherung von Python Objekten im .pkl-Format
+```
+
+````{Dropdown} Lösung Task 15
+
+  ```{code-block} python
+        datasets = {
+        'X_train': X_train,
+        'y_train': y_train,
+        'X_val': X_val,
+        'y_val': y_val,
+        'X_test': X_test,
+        'y_test': y_test
+    }
+
+    with open('../output/datasets.pkl', 'wb') as handle:
+        pickle.dump(datasets, handle)
+  ```
+````
+
+### Task 17: Einlesen und Ausgabe der Validierungsmerkmale
+
+Lesen Sie das gespeicherte Datenset aus der pickle-Datei aus und geben Sie die ersten 5 Zeilen der Validierungsmerkmale aus.
+
+# Geben Sie Ihren Code hier ein.
+
+```{Tip}
+Die [load-Methode](https://docs.python.org/3/library/pickle.html) ermöglicht das Auslesen von Inhalten aus .pkl-Dateien
+```
+
+````{Dropdown} Lösung Task 15
+
+  ```{code-block} python
+    with open('datasets.pickle', 'rb') as handle:
+    datasets = pickle.load(handle)
+
+    datasets['X_val'].head()
   ```
 ````

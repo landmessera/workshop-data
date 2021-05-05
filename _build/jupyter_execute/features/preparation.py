@@ -6,6 +6,7 @@ Ziele:
 * Grundlegende Statistiken erheben und visualisieren
 * Fehlende Daten ermitteln
 * Umgang mit fehlenden Daten
+* Datensets erstellen
 
 ## Das Datenset Titanic
 Um die Techniken zu erklären wird das Datenset "Titanic" verwendet.
@@ -37,6 +38,8 @@ erläutert. Im Anschluss werden die gelernten Methoden anhand des Datenset "Bike
 </div>
 
 
+
+
 ```{toctree}
 :hidden:
 :titlesonly:
@@ -44,5 +47,6 @@ erläutert. Im Anschluss werden die gelernten Methoden anhand des Datenset "Bike
 
 explore
 missingData
+splitData
 exercisePreparation
 ```

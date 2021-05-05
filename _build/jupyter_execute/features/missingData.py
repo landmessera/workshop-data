@@ -1,5 +1,3 @@
-
-
 (missing-data)=
 # Umgang mit fehlenden Daten
 
@@ -143,7 +141,7 @@ Aufgrund der sehr hohen Anzahl an fehlendenen Kabinen-Werten (77,1%) und der Ann
 drop_column = ['Cabin']
 data.drop(drop_column, axis=1, inplace = True)
 
-#### Entfernen von nicht relevanten Merkmalen
+### Entfernen von nicht relevanten Merkmalen
 
 Bei den Merkmalen PassengerId, Name und Ticket wird angenommen, das es sich um zufällige eindeutige Identifikatoren handelt, die keinen Einfluss auf die Ergebnisvariable haben. Daher werden sie von der Analyse ausgeschlossen.
 

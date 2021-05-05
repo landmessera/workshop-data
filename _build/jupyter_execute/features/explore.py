@@ -77,21 +77,21 @@ Kategorische Daten:
 * Ordinal
     * Pclass
 
-### Wissen testen
+### Wissen prüfen
 
 Die Variablen Land (Deutschland, Frankreich, Schweden) und Fläche (in Quadratkilometer) sind
 
 ```{dropdown} beide kategorisch
-Falsch.
+<font color='red'>Falsch.</font>
 ```
 ```{dropdown} beide numerisch
-Falsch.
+<font color='red'>Falsch.</font>
 ```
 ```{dropdown} numerisch und kategorisch
-Falsch.
+<font color='red'>Falsch.</font>
 ```
 ```{dropdown} kategorisch und numerisch
-Richtig.
+<font color='green'>Richtig.</font>
 ```
 
 Die Variablen Monat (Januar, Februar, März) und monatlicher Umsatz (in Euro) sind
@@ -151,7 +151,7 @@ Fakten aus den einfachen deskriptiven Statistiken:
 * der durchschnittliche Ticketpreis beträgt 32
 
 
-### Wissen testen
+### Wissen prüfen
 
 Welche Aussage trifft zu?
 

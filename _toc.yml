@@ -1,15 +1,16 @@
 # Table of content
 # Learn more at https://jupyterbook.org/customize/toc.html
 #
-- file: ./features/intro
-- file: ./features/content
-  sections:
-    - file: ./features/markdown
-    - file: ./features/notebooks
+- file: intro
 - file: ./features/preparation
   sections:
     - file: ./features/explore
     - file: ./features/missingData
+    - file: ./features/splitData
     - file: ./features/exercisePreparation
 - file: ./features/transformation
+  sections:
+    - file: ./features/transformationNumerical
+    - file: ./features/transformationCategorical
+    - file: ./features/exerciseTranformation
 - file: ./features/featureEngineering
