@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Überblick verschaffen &#8212; Data Workshop</title>
+    <title>Überblick verschaffen &#8212; Daten Workshop</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -78,7 +78,7 @@
   <img src="../_static/modul2single.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">Data Workshop</h1>
+  <h1 class="site-logo" id="site-title">Daten Workshop</h1>
   
 </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -88,26 +88,12 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
+  <a class="reference internal" href="../intro.html">
    Willkommen zum Daten Workshop
   </a>
  </li>
 </ul>
 <ul class="current nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
-  <a class="reference internal" href="content.html">
-   Content in Jupyter Book
-  </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="markdown.html">
-     Markdown Files
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
- </li>
  <li class="toctree-l1 current active collapsible-parent">
   <a class="reference internal" href="preparation.html">
    Aufbereitung
@@ -124,6 +110,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="splitData.html">
+     Datensets erstellen
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="exercisePreparation.html">
      Übung: Aufbereitung
     </a>
@@ -132,14 +123,33 @@
   <i class="fas fa-chevron-down">
   </i>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="transformation.html">
    Transformation
   </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="transformationNumerical.html">
+     Numerische Daten
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="transformationCategorical.html">
+     Kategorische Daten
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="exerciseTranformation.html">
+     Pipeline erstellen
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="featureEngineering.html">
-   Feature Engineering
+   Feature Engineering &amp; Daten verstehen
   </a>
  </li>
 </ul>
@@ -264,8 +274,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#wissen-testen">
-     Wissen testen
+    <a class="reference internal nav-link" href="#wissen-prufen">
+     Wissen prüfen
     </a>
    </li>
   </ul>
@@ -277,7 +287,7 @@
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
-     Wissen testen
+     Wissen prüfen
     </a>
    </li>
   </ul>
@@ -580,8 +590,8 @@ memory usage: 83.7+ KB
 </li>
 </ul>
 </div>
-<div class="section" id="wissen-testen">
-<h3>Wissen testen<a class="headerlink" href="#wissen-testen" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="wissen-prufen">
+<h3>Wissen prüfen<a class="headerlink" href="#wissen-prufen" title="Permalink to this headline">¶</a></h3>
 <p>Die Variablen Land (Deutschland, Frankreich, Schweden) und Fläche (in Quadratkilometer) sind</p>
 <details class="sphinx-bs dropdown card mb-3">
 <summary class="summary-title card-header">
@@ -590,7 +600,7 @@ beide kategorisch<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">Falsch.</p>
+<p class="card-text"><font color='red'>Falsch.</font></p>
 </div>
 </details><details class="sphinx-bs dropdown card mb-3">
 <summary class="summary-title card-header">
@@ -599,7 +609,7 @@ beide numerisch<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">Falsch.</p>
+<p class="card-text"><font color='red'>Falsch.</font></p>
 </div>
 </details><details class="sphinx-bs dropdown card mb-3">
 <summary class="summary-title card-header">
@@ -608,7 +618,7 @@ numerisch und kategorisch<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">Falsch.</p>
+<p class="card-text"><font color='red'>Falsch.</font></p>
 </div>
 </details><details class="sphinx-bs dropdown card mb-3">
 <summary class="summary-title card-header">
@@ -617,7 +627,7 @@ kategorisch und numerisch<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">Richtig.</p>
+<p class="card-text"><font color='green'>Richtig.</font></p>
 </div>
 </details><p>Die Variablen Monat (Januar, Februar, März) und monatlicher Umsatz (in Euro) sind</p>
 <details class="sphinx-bs dropdown card mb-3">
@@ -862,7 +872,7 @@ numerisch und kategorisch<div class="summary-down docutils">
 <li><p>der durchschnittliche Ticketpreis beträgt 32</p></li>
 </ul>
 <div class="section" id="id1">
-<h3>Wissen testen<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h3>Wissen prüfen<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Welche Aussage trifft zu?</p>
 <details class="sphinx-bs dropdown card mb-3">
 <summary class="summary-title card-header">

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Umgang mit fehlenden Daten &#8212; Data Workshop</title>
+    <title>Umgang mit fehlenden Daten &#8212; Daten Workshop</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -55,7 +55,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Übung: Aufbereitung" href="exercisePreparation.html" />
+    <link rel="next" title="Datensets erstellen" href="splitData.html" />
     <link rel="prev" title="Überblick verschaffen" href="explore.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -78,7 +78,7 @@
   <img src="../_static/modul2single.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">Data Workshop</h1>
+  <h1 class="site-logo" id="site-title">Daten Workshop</h1>
   
 </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -88,26 +88,12 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
+  <a class="reference internal" href="../intro.html">
    Willkommen zum Daten Workshop
   </a>
  </li>
 </ul>
 <ul class="current nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
-  <a class="reference internal" href="content.html">
-   Content in Jupyter Book
-  </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="markdown.html">
-     Markdown Files
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
- </li>
  <li class="toctree-l1 current active collapsible-parent">
   <a class="reference internal" href="preparation.html">
    Aufbereitung
@@ -124,6 +110,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="splitData.html">
+     Datensets erstellen
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="exercisePreparation.html">
      Übung: Aufbereitung
     </a>
@@ -132,14 +123,33 @@
   <i class="fas fa-chevron-down">
   </i>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="transformation.html">
    Transformation
   </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="transformationNumerical.html">
+     Numerische Daten
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="transformationCategorical.html">
+     Kategorische Daten
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="exerciseTranformation.html">
+     Pipeline erstellen
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="featureEngineering.html">
-   Feature Engineering
+   Feature Engineering &amp; Daten verstehen
   </a>
  </li>
 </ul>
@@ -807,10 +817,10 @@ Jeder Passagier hat ein Alter. Die fehlenden Werte existieren, wurden jedoch nic
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7ff4fda552d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7ffdcb995510&gt;
 </pre></div>
 </div>
-<img alt="../_images/missingData_34_1.png" src="../_images/missingData_34_1.png" />
+<img alt="../_images/missingData_33_1.png" src="../_images/missingData_33_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1459,7 +1469,7 @@ dtype: int64
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="explore.html" title="previous page">Überblick verschaffen</a>
-    <a class='right-next' id="next-link" href="exercisePreparation.html" title="next page">Übung: Aufbereitung</a>
+    <a class='right-next' id="next-link" href="splitData.html" title="next page">Datensets erstellen</a>
 
         </div>
         
