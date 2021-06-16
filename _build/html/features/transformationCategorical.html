@@ -55,7 +55,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Pipeline erstellen" href="exerciseTranformation.html" />
+    <link rel="next" title="Tranformationen koordinieren" href="pipeline.html" />
     <link rel="prev" title="Numerische Daten" href="transformationNumerical.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -139,8 +139,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="exerciseTranformation.html">
-     Pipeline erstellen
+    <a class="reference internal" href="pipeline.html">
+     Tranformationen koordinieren
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="exerciseTransformation.html">
+     Übung: Tranformation
     </a>
    </li>
   </ul>
@@ -244,9 +249,43 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#one-hot-encoding">
-   One-Hot Encoding
+  <a class="reference internal nav-link" href="#nominale-daten">
+   Nominale Daten
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#one-hot-encoding">
+     One-Hot-Encoding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ordinale-daten">
+   Ordinale Daten
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformation-kategorischer-merkmale-am-beispiel-titanic">
+   Transformation kategorischer Merkmale am Beispiel Titanic
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ticketklasse">
+     Ticketklasse
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gechlecht">
+     Gechlecht
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zustiegsort">
+     Zustiegsort
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -262,18 +301,224 @@
                 
   <div class="section" id="kategorische-daten">
 <h1>Kategorische Daten<a class="headerlink" href="#kategorische-daten" title="Permalink to this headline">¶</a></h1>
-<p>Packete importieren</p>
-<div class="cell docutils container">
+<p>Der meisten Machine Learning Algorithmen können nur mit numerischen Daten umgehen. Bei Kategorischen Daten handelt es sich jedoch häufig um Text. Ein Merkmal “Tierart” enthält z.B. “Hund”, “Maus” und “Katze”. Ein Merkmal, den Gemütszustand beschreibt, kann Werte wie z.B. “traurig”, “neutral” und “glücklich” enthalten. In beiden Fällen ist eine Umwandlung in numerische Daten notwendig. Beim Merkmal “Tierart” handelt es sich um nominale kategorische Daten. Bedeutet, die Werte lassen sich nicht ordnen. Im Gegenteil dazu ist das Merkmal “Gemütszustand” ordinal. Die Werte lassen sich ordnen. Aufsteigend: traurig, neutral, glücklich.</p>
+<div class="figure align-left" id="fig-nominalordinal">
+<a class="reference internal image-reference" href="../_images/nominalOrdinal.png"><img alt="../_images/nominalOrdinal.png" src="../_images/nominalOrdinal.png" style="height: 200px;" /></a>
+</div>
+<p>Bei einer Transformation der Merkmalswerte in numerische Daten muss diese Eigenschaft berücksichtigt werden. Im folgenden werden die Transformationsmethoden für nominale und ordinale Daten behandelt.</p>
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">sklearn</span> <span class="k">as</span> <span class="nn">sklearn</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="section" id="nominale-daten">
+<h2>Nominale Daten<a class="headerlink" href="#nominale-daten" title="Permalink to this headline">¶</a></h2>
+<p>Die einfachste Transformation um von textbasierten zu numerischen kategorischen Merkmalen ist das Ersetzen einer Kategorie mit einer bestimmten Zahl. Zum Beispiel für “Hund” die 1, für “Maus” die 2 und für “Katze” die 3. Einige ML-Algorithmen gehen jedoch davon aus, dass sich zwei benachbarte Werte ähnlicher sind als weiter entfernte Werte. Bei nominalen Daten trifft diese Annahme nicht zu. Es muss sicher gestellt werden, dass der Algorithmus hier keine Fehlinterpretation vornimmt. Lösung ist das sogenannte One-Hot-Encoding.</p>
+<div class="section" id="one-hot-encoding">
+<h3>One-Hot-Encoding<a class="headerlink" href="#one-hot-encoding" title="Permalink to this headline">¶</a></h3>
+<p>Beim One-Hot-Encoding wird für jeden möglichen Wert eine Spalte mit binären Werten erstellt. 1 bedeutet, der Wert liegt vor, 0 bedeutet der Wert liegt nicht vor. Das Merkmal Tierart mit den drei möglichen Kategorien “Hund”, “Maus” und “Katze” wird mit dem One-Hot-Encoding in drei Spalten transformiert. Für die Umsetzung bietet sich die get_dummies Methode von Pandas an.</p>
+<p>Erstellen der Beispieldaten:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Tierart&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Hund&#39;</span><span class="p">,</span> <span class="s1">&#39;Maus&#39;</span><span class="p">,</span> <span class="s1">&#39;Maus&#39;</span><span class="p">,</span> <span class="s1">&#39;Hund&#39;</span><span class="p">,</span> <span class="s1">&#39;Katze&#39;</span><span class="p">,</span> <span class="s1">&#39;Hund&#39;</span><span class="p">],</span> 
+    <span class="s1">&#39;Gemütszustand&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;glücklich&#39;</span><span class="p">,</span> <span class="s1">&#39;traurig&#39;</span><span class="p">,</span> <span class="s1">&#39;neutral&#39;</span><span class="p">,</span> <span class="s1">&#39;traurig&#39;</span><span class="p">,</span> <span class="s1">&#39;glücklich&#39;</span><span class="p">,</span> <span class="s1">&#39;glücklich&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Tierart</th>
+      <th>Gemütszustand</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Hund</td>
+      <td>glücklich</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Maus</td>
+      <td>traurig</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Maus</td>
+      <td>neutral</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Hund</td>
+      <td>traurig</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Katze</td>
+      <td>glücklich</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Hund</td>
+      <td>glücklich</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>One Hot Encoding des nominalen Merkmal “Tierart”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Tierart&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Hund</th>
+      <th>Katze</th>
+      <th>Maus</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="ordinale-daten">
+<h2>Ordinale Daten<a class="headerlink" href="#ordinale-daten" title="Permalink to this headline">¶</a></h2>
+<p>Für ordinale kategorische Daten kann die Transformation durch Ersetzen der Texte mit einer Zahl erfolgen. Eine Möglichkeit der Umsetzung ist der Aufruf der Factorize-Methode von Pandas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Gemütszustand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">factorize</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([0, 1, 2, 1, 0, 0]),
+ Index([&#39;glücklich&#39;, &#39;traurig&#39;, &#39;neutral&#39;], dtype=&#39;object&#39;))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Liste der Kategorien gibt an wie das Mapping stattgefunden hat. “glücklich” wurde mit der Zahl 0 ersetzt, “traurig” mit der Zahl 1 und “neutral” mit der Zahl 2. Jetzt würden die meisten Machine Learning Algorithmen interpretieren dass glücklich ähnlicher traurig ist als neutral. Die einfach anzuwendene Factorize-Methode kann funktionieren, muss aber nicht. Kontrollieren Sie nach der Anwendung ob die Zahlenwerte auch der Reihenfolge der Ordnung entsprechen. Alternativ kann die Replace-Methode verwendet und das Mapping explizit bestimmt werden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;glücklich&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;neutral&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;traurig&quot;</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Gemütszustand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">mapping</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0
+1    2
+2    1
+3    2
+4    0
+5    0
+Name: Gemütszustand, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Die Ordnung muss sich in den zugewiesenen Zahlen wiederfinden.</p>
+</div>
+</div>
+<div class="section" id="transformation-kategorischer-merkmale-am-beispiel-titanic">
+<h2>Transformation kategorischer Merkmale am Beispiel Titanic<a class="headerlink" href="#transformation-kategorischer-merkmale-am-beispiel-titanic" title="Permalink to this headline">¶</a></h2>
 <p>Laden der Datensets aus Pickle File</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -283,8 +528,328 @@
 </div>
 </div>
 </div>
-<div class="section" id="one-hot-encoding">
-<h2>One-Hot Encoding<a class="headerlink" href="#one-hot-encoding" title="Permalink to this headline">¶</a></h2>
+<p>Die verbleibenden kategorischen Merkmale des Titanic Datensets sind die Ticketklasse (Pclass), das Geschlecht (Sex) und der Zustiegsort (Embarked).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">X_train</span><span class="p">[[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Embarked&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Pclass</th>
+      <th>Sex</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>109</th>
+      <td>3</td>
+      <td>female</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>391</th>
+      <td>3</td>
+      <td>male</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1</td>
+      <td>male</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>405</th>
+      <td>2</td>
+      <td>male</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>291</th>
+      <td>1</td>
+      <td>female</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>3</td>
+      <td>female</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>527</th>
+      <td>1</td>
+      <td>male</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>536</th>
+      <td>1</td>
+      <td>male</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>742</th>
+      <td>1</td>
+      <td>female</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>144</th>
+      <td>2</td>
+      <td>male</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+<p>534 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="section" id="ticketklasse">
+<h3>Ticketklasse<a class="headerlink" href="#ticketklasse" title="Permalink to this headline">¶</a></h3>
+<p>Bei der Ticketklasse handelt es sich um ordinale Daten: 1 ist die höchste Klasse, 2 die mittlere und 3 die niedrigste Klasse. Über das Attribut dtype kann der Datentyp abgefragt werden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dtype(&#39;int64&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Es handelt sich ausserdem bereits um Integer Werte. In diesem Fall muss keine Transformation vorgenommen werden.</p>
+</div>
+<div class="section" id="gechlecht">
+<h3>Gechlecht<a class="headerlink" href="#gechlecht" title="Permalink to this headline">¶</a></h3>
+<p>Das Merkmal Geschlecht enthält nominale Kategorien. Es wird das One-Hot Encoding angewendet.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>female</th>
+      <th>male</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>109</th>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>391</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>405</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>291</th>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>527</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>536</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>742</th>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>144</th>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>534 rows × 2 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="zustiegsort">
+<h3>Zustiegsort<a class="headerlink" href="#zustiegsort" title="Permalink to this headline">¶</a></h3>
+<p>Der Zustiegsort enthält ebenso nominale Kategorien. Es wird das One-Hot Encoding angewendet</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;Embarked&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>C</th>
+      <th>Q</th>
+      <th>S</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>109</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>391</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>405</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>291</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>527</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>536</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>742</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>144</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>534 rows × 3 columns</p>
+</div></div></div>
+</div>
+<p>Sie kennen nun die wichtigsten Methoden um numerische und kategorische Daten für Machine Learning Algorithmen aufzubereiten. Im nächsten Abschnitt wird gezeigt, wie die Transformationen angewendet werden.</p>
+</div>
 </div>
 </div>
 
@@ -314,7 +879,7 @@
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="transformationNumerical.html" title="previous page">Numerische Daten</a>
-    <a class='right-next' id="next-link" href="exerciseTranformation.html" title="next page">Pipeline erstellen</a>
+    <a class='right-next' id="next-link" href="pipeline.html" title="next page">Tranformationen koordinieren</a>
 
         </div>
         

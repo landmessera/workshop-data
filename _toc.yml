@@ -12,5 +12,6 @@
   sections:
     - file: ./features/transformationNumerical
     - file: ./features/transformationCategorical
-    - file: ./features/exerciseTranformation
+    - file: ./features/pipeline
+    - file: ./features/exerciseTransformation
 - file: ./features/featureEngineering

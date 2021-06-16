@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Übung: Tranformation &#8212; Daten Workshop</title>
+    <title>Tranformationen koordinieren &#8212; Daten Workshop</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -55,6 +55,8 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Übung: Tranformation" href="exerciseTransformation.html" />
+    <link rel="prev" title="Kategorische Daten" href="transformationCategorical.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -91,7 +93,7 @@
   </a>
  </li>
 </ul>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="preparation.html">
    Aufbereitung
@@ -121,11 +123,11 @@
   <i class="fas fa-chevron-down">
   </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 current active collapsible-parent">
   <a class="reference internal" href="transformation.html">
    Transformation
   </a>
-  <ul class="collapse-ul">
+  <ul class="current collapse-ul">
    <li class="toctree-l2">
     <a class="reference internal" href="transformationNumerical.html">
      Numerische Daten
@@ -136,9 +138,14 @@
      Kategorische Daten
     </a>
    </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Tranformationen koordinieren
+    </a>
+   </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="exerciseTranformation.html">
-     Pipeline erstellen
+    <a class="reference internal" href="exerciseTransformation.html">
+     Übung: Tranformation
     </a>
    </li>
   </ul>
@@ -235,6 +242,75 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#crash-kurs-scikit-learn">
+   Crash Kurs Scikit Learn
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimatoren-pradiktoren-und-transformer">
+     Estimatoren, Prädiktoren und Transformer
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eigene-transformer-erstellen">
+     Eigene Transformer erstellen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#transformer-anwenden">
+     Transformer anwenden
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pipelines-erstellen">
+     Pipelines erstellen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pipeline-fur-transformationen-am-beispiel-titanic">
+   Pipeline für Transformationen am Beispiel Titanic
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pipeline-erstellen">
+     Pipeline erstellen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#umgang-mit-weiteren-datensets">
+     Umgang mit weiteren Datensets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#machine-learning-verfahren-anwenden">
+     Machine Learning Verfahren anwenden
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#klassifikator-in-eine-pipeline-integrieren">
+     Klassifikator in eine Pipeline integrieren
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grid-search-anwenden">
+     Grid Search anwenden
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
         </div>
     </div>
 </div>
@@ -243,21 +319,629 @@
         
               <div>
                 
-  <div class="section" id="ubung-tranformation">
-<h1>Übung: Tranformation<a class="headerlink" href="#ubung-tranformation" title="Permalink to this headline">¶</a></h1>
-<p>Datasets erstellen (Splitten) evtl. in Aufbereitung?!</p>
-<p>Packete importieren</p>
-<div class="cell docutils container">
+  <div class="section" id="tranformationen-koordinieren">
+<h1>Tranformationen koordinieren<a class="headerlink" href="#tranformationen-koordinieren" title="Permalink to this headline">¶</a></h1>
+<p>In den bisherigen Kapiteln wurden die wichtigsten Transformationen für numerische und kategorische Daten vorgestellt und am Beispiel des Titanic Datensets auf den Trainingsdaten angewendet. In der Praxis werden die Transformationen in bestimmter Reihenfolge benötigt und mit unterschiedlichen Einstellungen erprobt. Außerdem müssen die Transformationen nicht nur auf den Trainingsdaten erfolgen, sondern auch auf den Validierungs- und Testdaten.</p>
+<p>Wichtig ist, dass die Bearbeitung der Trainings-, Validierungs-, und Testdaten stets getrennt erfolgt. Denn einer der größten Fehler die in der Anwendung von Machine Learning passieren ist die Durchmischung oder Beeinflussung der Datensets. Wenn zum Beispiel die Anpassung des Skalierungsverfahren nicht nur mit den Trainingsdaten, sondern mit den gesamten Daten stattfindet, haben auch die Testdaten Einfluss auf die Skalierung.</p>
+<p>Um derartige Fehler zu vermeiden ist es hilfreich etwas Zeit in die Koordiniation der Transformationen zu investieren. Häufig wird dieser Teil vernachlässigt, da man möglichst schnell zur Anwendung der Machine Learning Modelle gelangen möchte und unterschiedliche Algorithmen testen. Doch meist liegt der Schlüssel zum Erfolg nicht in der Erprobung möglichst zahlreicher Algorithmen, sondern in der Vorverarbeitung der Daten. Ein solides Fundament in der Vorverarbeitung ermöglicht später eine qualitativ hochwertige Erprobung und führt meist zu besseren Ergebnissen.</p>
+<div class="section" id="crash-kurs-scikit-learn">
+<h2>Crash Kurs Scikit Learn<a class="headerlink" href="#crash-kurs-scikit-learn" title="Permalink to this headline">¶</a></h2>
+<p>Es wurden bereits an mehreren Stellen dieses Workshops Scikit Learn verwendet. Bisher wurden einzelne Methoden aufgerufen ohne den Aufbau und die Konzeption von Scikit Learn zu verstehen. Das genügt in den meisten Fällen auch. Um Transformationen zu koordinieren bietet Scikit Learn die Erstellung sogenannter Pipelines an. Eine Pipeline ist eine Klasse. Bei der Instanziierung werden die Transformationsschritte in Form einer Liste von Tuples übergeben. Ein Tuple enthält den Namen (frei wählbar) und ein Transformer oder Estimator. Was sind Transfomer und Estimatoren? An dieser Stelle ist es hilfreich etwas mehr über den Aufbau und das durchdachte Designkonzept von Scikit Learn zu erfahren.</p>
+<p>Alle Objekte besitzen eine konsistente Schnittstelle. Es existieren drei Arten von Schnittstellen: Estimatoren, um Modelle zu erstellen und anzupassen, Prädiktoren, um Vorhersagen zu treffen und  Transformer, um Daten zu transformieren.<a class="footnote-reference brackets" href="#footnote1" id="id1">1</a></p>
+<div class="section" id="estimatoren-pradiktoren-und-transformer">
+<h3>Estimatoren, Prädiktoren und Transformer<a class="headerlink" href="#estimatoren-pradiktoren-und-transformer" title="Permalink to this headline">¶</a></h3>
+<p><strong>Estimator</strong>: Die  Estimator-Schnittstelle ist der Kern von Scikit Learn. Sie definiert die Art der Instanzieerung von Objekten und bietet eine Fit-Methode für das Lernen eines Modells.</p>
+<div class="figure align-center" id="fig-estimator">
+<a class="reference internal image-reference" href="../_images/estimator.png"><img alt="../_images/estimator.png" src="../_images/estimator.png" style="height: 400px;" /></a>
+</div>
+<p>Ein Estimator, der ein Modell für die Lebensmittel Eier, Tomaten und Kartoffeln lernen soll, kann als Eingabe Eigenschaften der Lebensmittel wie z.B. Größe, Form und Farbe und die zugehörige Bezeichnung “Ei”, “Tomate” oder “Kartoffel” über den Aufruf der Fit-Methode erhalten. Gelernt wird ein Modell, dass Eingaben auf die Zielgröße abbildet. Das gelernte Modell lautet dann: Ist das Objekt weiß handelt es sich um ein Ei, ist das Objekt rot handelt es sich um eine Tomate, ist das Objekt braun ist es eine Kartoffel. (Beispiel 1)</p>
+<p>Ein Estimator kann auch lernen wie Daten verarbeitet werden sollen. Man kann sich das ähnlich wie bei einem Koch-Lehrling vorstellen, der Lebensmittel und Rezepte zur Verarbeitung erhält. Der ausgebildete Koch weiß, mit welchen Lebensmittel bestimmte Gerichte erstellt werden. (Beispiel 2)</p>
+<p>Prädiktor- und Transformer-Schnittstellen sind Erweiterungen der Estimator Schnittstellen.</p>
+<div class="figure align-center" id="fig-estimatorextended">
+<a class="reference internal image-reference" href="../_images/estimatorExtended.png"><img alt="../_images/estimatorExtended.png" src="../_images/estimatorExtended.png" style="height: 400px;" /></a>
+</div>
+<p><strong>Prädiktor</strong>: Ein Prädikator ist definiert durch die Erweiterung um die Predict-Methode, die Vorhersagen auf Basis des gelernten Modells treffen kann. Ein Prädiktor der Beispiel 1 erweitert, kann durch Eingabe der Eigenschaften eines neuen Objekts, z.B. Farbe “braun”, Größe “5 cm” und Form “oval” über den Aufruf der Predict-Methode, die Aussage treffen, dass es sich um eine Kartoffel handelt.</p>
+<p><strong>Transformer</strong>: Die Erweiterung ist in diesem Fall die Transform-Methode. Sie nimmt Eingabedaten entgegen und liefert die transformierten Daten zurück. Ein Transformer der Beispiel 2 erweitert, kann durch Eingabe einer Kartoffel über die Transform-Methode das Gericht Pommes liefern.</p>
+<div class="figure align-center" id="fig-transformerpredictor">
+<a class="reference internal image-reference" href="../_images/transformerPredictor.png"><img alt="../_images/transformerPredictor.png" src="../_images/transformerPredictor.png" style="height: 200px;" /></a>
+</div>
+<p>Scikit-Learn stellt eine ganze Reihe von Transformer bereit. Im Abschnitt zur Transformation von numerischen Daten wurden bereits die Transformer MinMaxScaler, StandardScaler und der KBinsDiscretizer verwendet. Trotz des großen Angebots an Transformer zur Datenvorverarbeitung von Scikit Learn<a class="footnote-reference brackets" href="#footnote2" id="id2">2</a> kommt es häufig vor, dass man weitere oder auf den Anwendungsfall spezifische Transformationen benötigt. In diesem Fall lassen sich einfach eigene Transformer erstellen.</p>
+</div>
+<div class="section" id="eigene-transformer-erstellen">
+<h3>Eigene Transformer erstellen<a class="headerlink" href="#eigene-transformer-erstellen" title="Permalink to this headline">¶</a></h3>
+<p>Wie bereits erwähnt benötigt ein Transformer eine fit()- und transform()-Methode. Außerdem wird eine fit_transform()-Methode benötigt, die beide Methoden kombiniert. Als Beispiel wird die Ausreißererkennung und -entfernung wie sie im Abschnitt zur Transformation von numerischen Daten gezeigt wurde als Transformer implementiert. Man erstellt zunächst eine Klasse die von den Klassen BaseEstimator und TransformerMixin erben. Der BaseEstimator liefert die Möglichkeit die Methoden get_params() und set_params() zu nutzen, die TransformerMixin Klasse erstellt automatisch bei gegebenen fit()- und transform()-Methoden, die fit_transform()-Methode.</p>
+<p>Die fit()-Methode muss im Fall Ausreißererkennung und -entfernung keine Aufgabe erfüllen. Der Inhalt der Methode bleibt leer. Der Rückgabewert entspricht dem Instanz selbst unverändert.</p>
+<p>Die transform()-Methode enthält die in Abschnitt “Transformation &gt; Numerische Daten &gt; Ausreißer erkennen” beschriebenen Zeilen Code, um Ausreißer mit der IQR-Methode zu erkennen und mit dem Median-Wert zu ersetzen. Der Faktor wird in der <strong>init</strong>() Methode über den Parameter “factor” übergeben und gesetzt. Der Default-Wert beträgt 1.5.</p>
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">sklearn</span> <span class="k">as</span> <span class="nn">sklearn</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 </pre></div>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
+<span class="k">class</span> <span class="nc">OutlierRemover</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">=</span> <span class="n">factor</span>
+        
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">X_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">q1</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">q3</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+        <span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
+        <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
+        <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
+        <span class="n">X_</span><span class="p">[((</span><span class="n">X_</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">X_</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">))]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="n">X_</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">X_</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="transformer-anwenden">
+<h3>Transformer anwenden<a class="headerlink" href="#transformer-anwenden" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-center" id="fig-transformeroutlier">
+<a class="reference internal image-reference" href="../_images/transformerOutlier.png"><img alt="../_images/transformerOutlier.png" src="../_images/transformerOutlier.png" style="height: 200px;" /></a>
+</div>
+<p>Es wird ein Datenframe erstellt und mit Beispieldaten befüllt. Das Merkmal ‘Größe’ enthält einen Ausreißer 999 in der dritten Zeile, das Merkmal ‘Gewicht’ enthält keinen Ausreißer und das Merkmal ‘Alter’ enthält einen Ausreißer in der zweiten Zeile mit dem Wert ‘-16’.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Größe&#39;</span><span class="p">:[</span><span class="mi">60</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">999</span><span class="p">,</span><span class="mi">54</span><span class="p">],</span><span class="s1">&#39;Gewicht&#39;</span><span class="p">:[</span><span class="mi">30</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">25</span><span class="p">],</span><span class="s1">&#39;Alter&#39;</span><span class="p">:[</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">16</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Größe</th>
+      <th>Gewicht</th>
+      <th>Alter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>60</td>
+      <td>30</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>23</td>
+      <td>3</td>
+      <td>-16</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>999</td>
+      <td>5</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>54</td>
+      <td>25</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Es wird eine Instanz der Klasse erstellen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outlier_transformer</span> <span class="o">=</span> <span class="n">OutlierRemover</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aufrufen der fit()-Methode.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outlier_transformer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OutlierRemover(factor=1.5)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aufrufen der transform()-Methode.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">outlier_transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Größe</th>
+      <th>Gewicht</th>
+      <th>Alter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>60.0</td>
+      <td>30.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>23.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>54.0</td>
+      <td>5.0</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>54.0</td>
+      <td>25.0</td>
+      <td>4.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Alternativ kann die fit_transform()-Methode aufgerufen werden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">outlier_transformer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Größe</th>
+      <th>Gewicht</th>
+      <th>Alter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>60.0</td>
+      <td>30.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>23.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>54.0</td>
+      <td>5.0</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>54.0</td>
+      <td>25.0</td>
+      <td>4.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Die Ausreißer wurden erkannt und mit dem NaN-Wert ersetzt. Sie wissen jetzt, wie man Transformer von Scikit Learn anwendet und wie man eigene Transformer erstellt. Im nächsten Schritt wird gezeigt wie diese Transformer in einer Pipeline verwendet werden können.</p>
+</div>
+<div class="section" id="pipelines-erstellen">
+<h3>Pipelines erstellen<a class="headerlink" href="#pipelines-erstellen" title="Permalink to this headline">¶</a></h3>
+<p>Die Klasse Pipeline aus Scikit-Learn unterstützen die Organisation von Transformationen. Bei der Instanziierung werden die Transformationsschritte in einer Liste von Tuples übergeben. Ein Tuple enthält den Namen (frei wählbar) und ein Transformer. Das letzte Element der Liste kann ein Tuple sein, dass anstatt eines Transformers einen Estimator enthält.</p>
+<div class="figure align-center" id="fig-pipelinegeneral">
+<a class="reference internal image-reference" href="../_images/pipelineGeneral.png"><img alt="../_images/pipelineGeneral.png" src="../_images/pipelineGeneral.png" style="height: 250px;" /></a>
+</div>
+<p>Packete importieren</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Erstellen einer einfachen Pipeline, die den eigenen Transformer zur Ausreißerentfernung aufruft und anschließend eine Standardisierung vornimmt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline_numerical</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;outlier_remover&#39;</span><span class="p">,</span> <span class="n">OutlierRemover</span><span class="p">()),</span>
+    <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline_numerical</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.84495318,  1.19715145, -1.        ],
+       [-1.70715031, -1.07113551, -0.33333333],
+       [ 0.43109856, -0.90311425,  1.66666667],
+       [ 0.43109856,  0.77709831, -0.33333333]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Werte der bisherigen Daten waren ausschließlich numerisch. Wie bereits aus den vorigen Kapiteln bekannt ist, sind bestimmte Transformationen für entsprechende Datentypen notwendig. Für dieses Handling kann der ColumnTransformer zum Einsatz kommen. Beim Instanziieren des ColumnTransformers werden dem Parameter “transformers” eine Liste von Tuples (name, transformer, columns) übergeben, wobei der Name frei wählbar ist, ‘transformer’ ein einzelner Transformer oder eine Pipeline sein kann und ‘columns’ eine Liste der Merkmale darstellt, die transformiert werden sollen.</p>
+<p>Erweitern der Beispieldaten um kategorische Daten:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Tierart&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Hund&#39;</span><span class="p">,</span> <span class="s1">&#39;Maus&#39;</span><span class="p">,</span> <span class="s1">&#39;Maus&#39;</span><span class="p">,</span> <span class="s1">&#39;Hund&#39;</span><span class="p">]</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;Gemütszustand&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;glücklich&#39;</span><span class="p">,</span> <span class="s1">&#39;traurig&#39;</span><span class="p">,</span> <span class="s1">&#39;neutral&#39;</span><span class="p">,</span> <span class="s1">&#39;traurig&#39;</span><span class="p">]</span>
+<span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Größe</th>
+      <th>Gewicht</th>
+      <th>Alter</th>
+      <th>Tierart</th>
+      <th>Gemütszustand</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>60</td>
+      <td>30</td>
+      <td>2</td>
+      <td>Hund</td>
+      <td>glücklich</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>23</td>
+      <td>3</td>
+      <td>-16</td>
+      <td>Maus</td>
+      <td>traurig</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>999</td>
+      <td>5</td>
+      <td>10</td>
+      <td>Maus</td>
+      <td>neutral</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>54</td>
+      <td>25</td>
+      <td>4</td>
+      <td>Hund</td>
+      <td>traurig</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Eine Pipeline für kategorische Daten erstellen.</p>
+<div class="figure align-center" id="fig-transformeronehot">
+<a class="reference internal image-reference" href="../_images/transformerOneHot.png"><img alt="../_images/transformerOneHot.png" src="../_images/transformerOneHot.png" style="height: 180px;" /></a>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline_categorical</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;onehot&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">))</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Erstellen einer Instanz des ColumnTransformer, wobei die erste Pipeline für numerische Daten und die zweite erstellte Pipeline für kategorische Daten verwendet werden soll.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_numerical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Größe&#39;</span><span class="p">,</span> <span class="s1">&#39;Gewicht&#39;</span><span class="p">,</span> <span class="s1">&#39;Alter&#39;</span><span class="p">]</span>
+<span class="n">features_categorical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Tierart&#39;</span><span class="p">,</span> <span class="s1">&#39;Gemütszustand&#39;</span><span class="p">]</span>
+
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span>
+            <span class="s1">&#39;numeric&#39;</span><span class="p">,</span> 
+            <span class="n">pipeline_numerical</span><span class="p">,</span>
+            <span class="n">features_numerical</span>
+        <span class="p">),</span>
+        <span class="p">(</span>
+            <span class="s1">&#39;categorical&#39;</span><span class="p">,</span> 
+            <span class="n">pipeline_categorical</span><span class="p">,</span>
+            <span class="n">features_categorical</span>
+        <span class="p">)</span>
+    <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.844953</td>
+      <td>1.197151</td>
+      <td>-1.000000</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-1.707150</td>
+      <td>-1.071136</td>
+      <td>-0.333333</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.431099</td>
+      <td>-0.903114</td>
+      <td>1.666667</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.431099</td>
+      <td>0.777098</td>
+      <td>-0.333333</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Ermitteln der neuen Spaltenbezeichnungen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_categorical_onehot</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">transformers_</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;onehot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">features_categorical</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Tierart_Hund&#39;,
+ &#39;Tierart_Maus&#39;,
+ &#39;Gemütszustand_glücklich&#39;,
+ &#39;Gemütszustand_neutral&#39;,
+ &#39;Gemütszustand_traurig&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Spaltenbezeichnungen einfügen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Größe</th>
+      <th>Gewicht</th>
+      <th>Alter</th>
+      <th>Tierart_Hund</th>
+      <th>Tierart_Maus</th>
+      <th>Gemütszustand_glücklich</th>
+      <th>Gemütszustand_neutral</th>
+      <th>Gemütszustand_traurig</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.844953</td>
+      <td>1.197151</td>
+      <td>-1.000000</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-1.707150</td>
+      <td>-1.071136</td>
+      <td>-0.333333</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.431099</td>
+      <td>-0.903114</td>
+      <td>1.666667</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.431099</td>
+      <td>0.777098</td>
+      <td>-0.333333</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="pipeline-fur-transformationen-am-beispiel-titanic">
+<h2>Pipeline für Transformationen am Beispiel Titanic<a class="headerlink" href="#pipeline-fur-transformationen-am-beispiel-titanic" title="Permalink to this headline">¶</a></h2>
 <p>Laden der Datensets aus Pickle File</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -265,6 +949,970 @@
     <span class="n">datasets</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+<p>Speichern des Trainingsdatenset in der Variable X_train und Anzeigen der ersten Zeilen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">]</span>
+<span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Pclass</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Fare</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>109</th>
+      <td>3</td>
+      <td>female</td>
+      <td>28.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>24.1500</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>391</th>
+      <td>3</td>
+      <td>male</td>
+      <td>21.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.7958</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1</td>
+      <td>male</td>
+      <td>54.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>51.8625</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>405</th>
+      <td>2</td>
+      <td>male</td>
+      <td>34.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>21.0000</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>291</th>
+      <td>1</td>
+      <td>female</td>
+      <td>19.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>91.0792</td>
+      <td>C</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="section" id="pipeline-erstellen">
+<h3>Pipeline erstellen<a class="headerlink" href="#pipeline-erstellen" title="Permalink to this headline">¶</a></h3>
+<p>Erstellen des Column Transformer unter Verwendung der bereits erstellten Pipelines für numerische und kategorsiche Daten.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_numerical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;SibSp&#39;</span><span class="p">,</span> <span class="s1">&#39;Parch&#39;</span><span class="p">,</span> <span class="s1">&#39;Fare&#39;</span><span class="p">]</span>
+<span class="n">features_categorical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Embarked&#39;</span><span class="p">]</span>
+
+<span class="n">transformer_pipeline</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span>
+            <span class="s1">&#39;num&#39;</span><span class="p">,</span> 
+            <span class="n">pipeline_numerical</span><span class="p">,</span>
+            <span class="n">features_numerical</span>
+        <span class="p">),</span>
+        <span class="p">(</span>
+            <span class="s1">&#39;cat&#39;</span><span class="p">,</span>
+            <span class="n">pipeline_categorical</span><span class="p">,</span>
+            <span class="n">features_categorical</span>
+        <span class="p">)</span>
+    <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Transformationen anwenden.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Neue Spaltenbezeichnungen aufrufen und in der Variable features_categorcial_onehot speichern.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_categorical_onehot</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">transformers_</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;onehot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">features_categorical</span><span class="p">)</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Pclass_1&#39;,
+ &#39;Pclass_2&#39;,
+ &#39;Pclass_3&#39;,
+ &#39;Sex_female&#39;,
+ &#39;Sex_male&#39;,
+ &#39;Embarked_C&#39;,
+ &#39;Embarked_Q&#39;,
+ &#39;Embarked_S&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ergebnis anzeigen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Fare</th>
+      <th>Pclass_1</th>
+      <th>Pclass_2</th>
+      <th>Pclass_3</th>
+      <th>Sex_female</th>
+      <th>Sex_male</th>
+      <th>Embarked_C</th>
+      <th>Embarked_Q</th>
+      <th>Embarked_S</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.041667</td>
+      <td>1.415251</td>
+      <td>0.0</td>
+      <td>0.617511</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.762739</td>
+      <td>-0.552832</td>
+      <td>0.0</td>
+      <td>-0.738446</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2.636599</td>
+      <td>-0.552832</td>
+      <td>0.0</td>
+      <td>2.915204</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.576394</td>
+      <td>1.415251</td>
+      <td>0.0</td>
+      <td>0.356338</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.968759</td>
+      <td>1.415251</td>
+      <td>0.0</td>
+      <td>-0.346339</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>529</th>
+      <td>0.164353</td>
+      <td>-0.552832</td>
+      <td>0.0</td>
+      <td>-0.350485</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>530</th>
+      <td>-0.041667</td>
+      <td>-0.552832</td>
+      <td>0.0</td>
+      <td>-0.346339</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>531</th>
+      <td>1.709507</td>
+      <td>-0.552832</td>
+      <td>0.0</td>
+      <td>0.816499</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>532</th>
+      <td>-0.762739</td>
+      <td>3.383333</td>
+      <td>0.0</td>
+      <td>-0.346339</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>533</th>
+      <td>-1.071769</td>
+      <td>-0.552832</td>
+      <td>0.0</td>
+      <td>-0.431324</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>534 rows × 12 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="umgang-mit-weiteren-datensets">
+<h3>Umgang mit weiteren Datensets<a class="headerlink" href="#umgang-mit-weiteren-datensets" title="Permalink to this headline">¶</a></h3>
+<p>Bisher wurde nur das Trainingsdatenset transformiert. Validierungs- und Testset müssen ebenfalls transformiert werden. Wichtig ist dabei, dass nur transformiert und nicht trainiert wird. Das scheint selbstverständlich, ist jedoch eine häufige Fehlerquelle. Training im Kontext von Machine Learning bedeutet, dass etwas aus Daten gelernt wird. Im Fall der Transformationen findet zum Beispiel ein Training statt, wenn man eine Standardisierung vornimmt. Es wird gelernt auf welchen Bereich die Daten skaliert werden sollen. Das Training darf ausschließlich mit den Trainingsdaten stattfinden. Die Skalierung selbst, also die Transformation der Daten findet auf den Trainings-, Validierungs- und Testdaten statt.</p>
+<p>Wie wendet man jetzt die Pipeline korrekt auf die anderen Datensets an?</p>
+<ul class="simple">
+<li><p>Trainingsdatenset:</p>
+<ul>
+<li><p>fit_transform() Methode aufrufen</p></li>
+</ul>
+</li>
+<li><p>Validierungsdatenset:</p>
+<ul>
+<li><p>transform()-Methode aufrufen</p></li>
+</ul>
+</li>
+<li><p>Testdatenset:</p>
+<ul>
+<li><p>transform()-Methode aufrufen</p></li>
+</ul>
+</li>
+</ul>
+<p>Datensets in Variablen speichern.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_train&#39;</span><span class="p">]</span>
+<span class="n">X_val</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_val&#39;</span><span class="p">]</span>
+<span class="n">y_val</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_val&#39;</span><span class="p">]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_test&#39;</span><span class="p">]</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_test&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_transformed</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_val_transformed</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span>
+<span class="n">X_test_transformed</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_categorical_onehot</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">transformers_</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;onehot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">features_categorical</span><span class="p">)</span>
+<span class="n">X_train_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
+<span class="n">X_val_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_val_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
+<span class="n">X_test_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_test_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_transformed</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Fare</th>
+      <th>Pclass_1</th>
+      <th>Pclass_2</th>
+      <th>Pclass_3</th>
+      <th>Sex_female</th>
+      <th>Sex_male</th>
+      <th>Embarked_C</th>
+      <th>Embarked_Q</th>
+      <th>Embarked_S</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.041667</td>
+      <td>1.415251</td>
+      <td>0.0</td>
+      <td>0.617511</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.762739</td>
+      <td>-0.552832</td>
+      <td>0.0</td>
+      <td>-0.738446</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2.636599</td>
+      <td>-0.552832</td>
+      <td>0.0</td>
+      <td>2.915204</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.576394</td>
+      <td>1.415251</td>
+      <td>0.0</td>
+      <td>0.356338</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.968759</td>
+      <td>1.415251</td>
+      <td>0.0</td>
+      <td>-0.346339</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_val_transformed</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Fare</th>
+      <th>Pclass_1</th>
+      <th>Pclass_2</th>
+      <th>Pclass_3</th>
+      <th>Sex_female</th>
+      <th>Sex_male</th>
+      <th>Embarked_C</th>
+      <th>Embarked_Q</th>
+      <th>Embarked_S</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.988435</td>
+      <td>1.415251</td>
+      <td>0.0</td>
+      <td>4.525418</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.453708</td>
+      <td>-0.552832</td>
+      <td>0.0</td>
+      <td>-0.651040</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.041667</td>
+      <td>-0.552832</td>
+      <td>0.0</td>
+      <td>-0.186046</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-1.998861</td>
+      <td>3.383333</td>
+      <td>0.0</td>
+      <td>1.465284</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.370374</td>
+      <td>-0.552832</td>
+      <td>0.0</td>
+      <td>-0.727734</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_test_transformed</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Fare</th>
+      <th>Pclass_1</th>
+      <th>Pclass_2</th>
+      <th>Pclass_3</th>
+      <th>Sex_female</th>
+      <th>Sex_male</th>
+      <th>Embarked_C</th>
+      <th>Embarked_Q</th>
+      <th>Embarked_S</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.041667</td>
+      <td>-0.552832</td>
+      <td>0.0</td>
+      <td>-0.265500</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.041667</td>
+      <td>-0.552832</td>
+      <td>0.0</td>
+      <td>-0.514236</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.041667</td>
+      <td>-0.552832</td>
+      <td>0.0</td>
+      <td>-1.384810</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-1.071769</td>
+      <td>-0.552832</td>
+      <td>0.0</td>
+      <td>-0.514236</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.350698</td>
+      <td>-0.552832</td>
+      <td>0.0</td>
+      <td>-0.750534</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Die erste Pipeline ist erstellt und die Transformationen auf alle Datensets angewendet. Man kann an dieser Stelle die transformierten Datensets für Machine Learning Verfahren verwenden.</p>
+</div>
+<div class="section" id="machine-learning-verfahren-anwenden">
+<h3>Machine Learning Verfahren anwenden<a class="headerlink" href="#machine-learning-verfahren-anwenden" title="Permalink to this headline">¶</a></h3>
+<p>Beim Anwendungsbeispiel Titanic handelt es sich um eine Klassifikationsaufgabe. Die Anwendung eines K-Nearest Neighbors Klassifikators sieht dann wie folgt aus:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_transformed</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KNeighborsClassifier(algorithm=&#39;auto&#39;, leaf_size=30, metric=&#39;minkowski&#39;,
+                     metric_params=None, n_jobs=None, n_neighbors=3, p=2,
+                     weights=&#39;uniform&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_val_transformed</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7415730337078652
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das übliche Vorgehen beim Machine Learning ist experimentell. Man entwickelt zunächst eine Variante und erhält ein Ergebnis. In unserem Fall ein Accuracy Score von 0.74, bedeutet 74% der vorgehergesagten Werte sind richtig. Dieser Score dient als Basis für weitere Optimierungen. Es werden Veränderungen unterschiedlichster Art vorgenommen wie zum Beispiel</p>
+<ul class="simple">
+<li><p>Anwendung weiterer Transformationsschritte</p></li>
+<li><p>Entfernen von Transformationsschritte</p></li>
+<li><p>Änderung der Transformationseinstellungen</p></li>
+<li><p>Hinzufügen von Merkmalen</p></li>
+<li><p>Entfernen von Merkmalen</p></li>
+<li><p>Modifizieren von Merkmalen</p></li>
+<li><p>Ändern des Machine Learning Algorithmus</p></li>
+<li><p>Ändern der Hyperparameter</p></li>
+</ul>
+<p>Nach jeder Änderung wird geprüft ob sich das Ergebnis, der Score, verbessert oder verschlechtert hat und entprechend die Änderung beibehalten oder verworfen. Häufig sind es sehr viele Experimente die durchgeführt werden müssen. Es fällt schwer den Überblick zu behalten und ist aufwendig manuell durchzuführen. Für die Automatisierung der Experimente für Hyperparameter kann die sogenannte Grid-Search<a class="footnote-reference brackets" href="#footnote3" id="id3">3</a> eingesetzt werden. Man gibt für jeden Hyperparamter eine begrenzte Menge von möglichen Werten die getestet werden soll. Grid-Search testet alle Kombinationen und gibt die Wertekombination mit den besten Ergebnisen aus.</p>
+<p>Wie bereits zu Beginn dieses Abschnitts erwähnt, ist es möglich am Ende der Pipeline einen beliebigen Estimator einzusetzen anstatt ein Transformer. Ein beliebiger Estimator kann auch ein Predictor sein. So kann beim Anwendungsbeispiel Titanic einfach der Klassifikator am Ende der Pipeline eingefügt werden. Einer der Vorteile, wenn man die Vorverarbeitungsschritte und den Prediktor in einer Pipeline integriert ist, dass Grid-Search auch für die Vorverarbeitungsschritte eingesetzt werden kann.</p>
+</div>
+<div class="section" id="klassifikator-in-eine-pipeline-integrieren">
+<h3>Klassifikator in eine Pipeline integrieren<a class="headerlink" href="#klassifikator-in-eine-pipeline-integrieren" title="Permalink to this headline">¶</a></h3>
+<p>Erstellt wird eine Pipeline, die im ersten Schritt die bereits erstellte Transformer-Pipeline enthält und im Anschluss den Klassifikator.</p>
+<div class="figure align-center" id="fig-pipelinefull">
+<a class="reference internal image-reference" href="../_images/pipelineFull.png"><img alt="../_images/pipelineFull.png" src="../_images/pipelineFull.png" style="height: 180px;" /></a>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;transformers&#39;</span><span class="p">,</span> <span class="n">transformer_pipeline</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;predictor&#39;</span><span class="p">,</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Pipeline wird mit dem Trainingsdatenset trainiert und dem Validierungsset validiert.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">full_pipeline</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7415730337078652
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das Ergebnis ist wie erwartet unverändert. Die Accuracy beträgt 0.74. Nun können mit der Grid Search Methode optimale Einstellungen gefunden werden.</p>
+</div>
+<div class="section" id="grid-search-anwenden">
+<h3>Grid Search anwenden<a class="headerlink" href="#grid-search-anwenden" title="Permalink to this headline">¶</a></h3>
+<p>Für jeden beliebigen Schritt in der Pipeline können Wertebereiche für die Parameter angegeben werden. Für das Anwendungsbeispiel werden folgende Wertebereiche gesetzt:</p>
+<ul class="simple">
+<li><p>der Faktor, der bei der IQR-Methode zur Ausreißererkennung verwendet wird, mit einem Wertebereich von [1.0, 1.5, 2.0, 3.0]</p></li>
+<li><p>der n_neighbors Parameter, der beim K-Nearest-Neighbor-Algorithmus bestimmt wie viele Nachbarn berücksichtigt werden, mit einem Wertebereich von [2,3,4,5,6,7,8]</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;transformers__num__outlier_remover__factor&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span>
+    <span class="s1">&#39;predictor__n_neighbors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span>
+<span class="p">}</span>
+
+<span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">full_pipeline</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Fit()-Methode testet alle Kombinationsmöglichkeiten und liefert die beste Parameterkombination.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best params:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best params:
+{&#39;predictor__n_neighbors&#39;: 5, &#39;transformers__num__outlier_remover__factor&#39;: 3.0}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Über das Attribut best_score_ wird die Accuracy abgefragt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ergebnis mit der besten Parametereinstellung auf den Trainingsdaten: </span><span class="si">{grid_search.best_score_:.3f}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ergebnis mit der besten Parametereinstellung auf den Trainingsdaten: 0.813
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">((</span><span class="s2">&quot;Ergebnis auf den Validierungsdaten: </span><span class="si">%.3f</span><span class="s2">&quot;</span>
+       <span class="o">%</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ergebnis auf den Validierungsdaten: 0.803
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das Ergebnis hat sich im Vergleich zur vorherigen Einstellung um 6% verbessert.</p>
+<div class="figure align-center" id="fig-gridsearch">
+<a class="reference internal image-reference" href="../_images/gridSearch.png"><img alt="../_images/gridSearch.png" src="../_images/gridSearch.png" style="height: 250px;" /></a>
+</div>
+<p>Ausgabe der besten Parameter über das Attribut best_params_.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;predictor__n_neighbors&#39;: 5,
+ &#39;transformers__num__outlier_remover__factor&#39;: 3.0}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ersetzten der Pipeline mit den besten Parametern.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_pipeline</span> <span class="o">=</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">best_estimator_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Zum Abschluss: Validieren der Pipeline mit dem Validierungsset. Das Ergebnis liefert wie erwartet den Accuracy Score von 0.803</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_pipeline</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8033707865168539
+</pre></div>
+</div>
+</div>
+</div>
+<p>In diesem Abschnitt haben Sie die Kernelemente von Scikit Learn kennengelernt, wie man eigene Transformer erstellt und anwendet, wie Pipelines erstellt und genutzt werden können und wie die Suche nach optimalen Parametern für alle Schritte der Pipeline automatisiert werden kann. Nun sind Sie gefragt: Festigen Sie ihr Wissen durch die Anwendung von Transformationen am Datenset “Bike Buyers”.</p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="footnote1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>“API design for machine learning software: experiences from the scikit-learn project”, L Buitinck, G Louppe, M Blondel, et. al.</p>
+</dd>
+<dt class="label" id="footnote2"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>siehe https://scikit-learn.org/stable/modules/classes.html#module-sklearn.preprocessing</p>
+</dd>
+<dt class="label" id="footnote3"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>siehe https://scikit-learn.org/stable/modules/grid_search.html</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -294,6 +1942,8 @@
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="transformationCategorical.html" title="previous page">Kategorische Daten</a>
+    <a class='right-next' id="next-link" href="exerciseTransformation.html" title="next page">Übung: Tranformation</a>
 
         </div>
         

@@ -36,5 +36,6 @@ Kategorische Daten
 
 transformationNumerical
 transformationCategorical
-exerciseTranformation
+pipeline
+exerciseTransformation
 ```

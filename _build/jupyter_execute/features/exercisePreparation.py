@@ -474,7 +474,7 @@ in einer neuen Variable namens "dataset" und speichern das Dictionary unter '../
 Die [dump-Methode](https://docs.python.org/3/library/pickle.html) ermöglicht eine einfache Speicherung von Python Objekten im .pkl-Format
 ```
 
-````{Dropdown} Lösung Task 15
+````{Dropdown} Lösung Task 16
 
   ```{code-block} python
         datasets = {
@@ -486,14 +486,14 @@ Die [dump-Methode](https://docs.python.org/3/library/pickle.html) ermöglicht ei
         'y_test': y_test
     }
 
-    with open('../output/datasets.pkl', 'wb') as handle:
+    with open('../output/bikebuyers/datasets.pkl', 'wb') as handle:
         pickle.dump(datasets, handle)
   ```
 ````
 
 ### Task 17: Einlesen und Ausgabe der Validierungsmerkmale
 
-Lesen Sie das gespeicherte Datenset aus der pickle-Datei aus und geben Sie die ersten 5 Zeilen der Validierungsmerkmale aus.
+Lesen Sie die gespeicherte Datensets aus der pickle-Datei aus und geben Sie die ersten 5 Zeilen der Validierungsmerkmale aus.
 
 # Geben Sie Ihren Code hier ein.
 
@@ -501,11 +501,11 @@ Lesen Sie das gespeicherte Datenset aus der pickle-Datei aus und geben Sie die e
 Die [load-Methode](https://docs.python.org/3/library/pickle.html) ermöglicht das Auslesen von Inhalten aus .pkl-Dateien
 ```
 
-````{Dropdown} Lösung Task 15
+````{Dropdown} Lösung Task 17
 
   ```{code-block} python
-    with open('datasets.pickle', 'rb') as handle:
-    datasets = pickle.load(handle)
+    f = open('../data/bikebuyers/datasets.pkl', 'rb')
+    datasets = pickle.load(f)
 
     datasets['X_val'].head()
   ```

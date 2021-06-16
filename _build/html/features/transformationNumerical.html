@@ -139,8 +139,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="exerciseTranformation.html">
-     Pipeline erstellen
+    <a class="reference internal" href="pipeline.html">
+     Tranformationen koordinieren
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="exerciseTransformation.html">
+     Übung: Tranformation
     </a>
    </li>
   </ul>
@@ -348,7 +353,7 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.datasets.samples_generator</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
 
 <span class="c1"># Settings</span>
 <span class="c1">#colors = [&quot;#D0755E&quot;, &quot;#B35097&quot;, &quot;#68349A&quot;, &quot;#E54E78&quot;, &quot;#F66F6F&quot;]</span>
@@ -356,12 +361,6 @@
 <span class="c1"># Laden der Datensets aus Pickle File</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;datasets.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
     <span class="n">datasets</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/utils/deprecation.py:144: FutureWarning: The sklearn.datasets.samples_generator module is  deprecated in version 0.22 and will be removed in version 0.24. The corresponding classes / functions should instead be imported from sklearn.datasets. Anything that cannot be imported from sklearn.datasets is now part of the private API.
-  warnings.warn(message, FutureWarning)
 </pre></div>
 </div>
 </div>
@@ -413,10 +412,10 @@
 <p>In der linken Grafik sind eine Menge von Daten dargestellt. Jeder Punkt stellt ein Datensatz dar, der aus einem x- und einem y-Wert besteht. Auf der rechten Seite wurde eine Ausreißererkennung durchgeführt. Ausreißer sind mit lilaner Farbe gekennzeichnet.</p>
 <p>Ursachen für Ausreißer:</p>
 <ul class="simple">
-<li><p>Eingabefehler: wenn z.B. Menschen ein Fehler bei der Eingebe von Hand gemacht haben)</p></li>
-<li><p>Messfehler: beim Aufzeichnen von Daten ensteht ein Fehler</p></li>
-<li><p>Beschädigung: Nachdem die Daten erfasst wurden, sind Fehler aufgetreteten, zum Beispiel während der Verarbeitung</p></li>
-<li><p>Natürlich: in diesem Fall handelt sich um keinen Fehler</p></li>
+<li><p>Eingabefehler: Wenn z.B. Menschen Fehler bei der Eingabe von Hand gemacht haben.</p></li>
+<li><p>Messfehler: Beim Aufzeichnen von Daten sind Fehler entstanden.</p></li>
+<li><p>Beschädigung: Nachdem die Daten erfasst wurden, sind Fehler aufgetreteten, zum Beispiel während der Verarbeitung.</p></li>
+<li><p>Natürlich: In diesem Fall handelt sich um keinen Fehler.</p></li>
 </ul>
 <p><strong>Warum möchte man Ausreißer finden?</strong><br />
 Im Machine Learning Kontext können Ausreißer das Training eines Modells negativ beeinflussen. Dies kann sich in einem verzerrten Modell äußern. Infolge dessen liefert das Modell nicht die gewünschten Ergebnisse. Nicht alle Ausreißer bringen eine negative Auswirkung mit sich. Wenn die Ursache der Ausreißer natürlich ist, also kein Fehler, spiegeln die Ausreißer die Realität wieder und sollten nicht entfernt werden. Bei Anwendungsfällen wie z.B. der Katzenklappe, sind Momente, in denen eine Katze mit Beute vor der Klappe steht wesentlich seltener als Momente, in denen die Katze ohne Beute oder keine Katze vor der Klappe sichtbar ist. Die Zustände “Katze mit Beute” könnten als Ausreißer erkannt werden. In diesem Fall sind jedoch gerade diese Ausreißer von Bedeutung. Der Zustand “Katze mit Beute” ist kein Fehler und sollte nicht aus den Daten entfernt werden.</p>
@@ -427,8 +426,8 @@ Im Machine Learning Kontext können Ausreißer das Training eines Modells negati
 Ja -&gt; Ausreißer entfernen<br />
 Nein -&gt; Ausreißer im Datenset belassen</p>
 </div>
-<p>Beispiel: Das Merkmal Alter im Titanic Datenset
-Für das Merkmal Alter eines Menschen erwarten man einen Wert zwischen 0 und 122. Diesen Wertebereich kennt man aufgrund von “Fachwissen”: Der älteste Mensch wurde bisher 122 Jahre alt. Außerdem kann man den den Wertebereich weiter eingrenzen, wenn man annimmt, dass es sehr unwahrscheinlich ist, dass ein Mensch der älter als 100 Jahre ist, eine Reise über den Atlantik antritt. Alle Werte die außerhalb des Wertebereichs von 0 und 100 liegen, bezeichnet man in diesem Fall als Fehler.</p>
+<p>Beispiel: Das Merkmal Alter im Titanic Datenset<br />
+Für das Merkmal Alter eines Menschen erwartet man einen Wert zwischen 0 und 122. Diesen Wertebereich kennt man aufgrund von “Fachwissen”: Der älteste Mensch wurde bisher 122 Jahre alt. Außerdem kann man den den Wertebereich weiter eingrenzen, wenn man annimmt, dass es sehr unwahrscheinlich ist, dass ein Mensch der älter als 100 Jahre ist, eine Reise über den Atlantik antritt. Alle Werte die außerhalb des Wertebereichs von 0 und 100 liegen, bezeichnet man in diesem Fall als Fehler.</p>
 <p>Die Verteilung und Ausreißer von numerischen Daten lassen sich sehr gut aus einem Boxplot ablesen. Ein Boxplot ist eine Methode zur grafischen Darstellung numerischen Daten durch ihre Quartile. Die Box erstreckt sich von den Q1- bis Q3-Quartilwerten der Daten, mit einer Linie am Median (Q2). Die Whisker erstrecken sich von den Rändern der Box, um den Bereich der Daten anzuzeigen. Standardmäßig erstrecken sie sich nicht weiter als 1,5 * IQR (IQR = Q3 - Q1) von den Rändern der Box und enden beim am weitesten entfernten Datenpunkt innerhalb dieses Intervalls. Ausreißer werden als separate Punkte gezeichnet.</p>
 <p>todo: Bild mit Boxplot erklärung</p>
 <p>vgl: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.boxplot.html</p>
@@ -458,7 +457,7 @@ Für das Merkmal Alter eines Menschen erwarten man einen Wert zwischen 0 und 122
 <li><p>Die untere Grenze berechnen durch Q1 - (Faktor * iqr)</p></li>
 <li><p>Die obere Grenze berechnen durch Q3 - (Faktor * iqr)</p></li>
 </ol>
-<p>Wobei der Faktor variabel ist. Standardeinstellung beträgt 1,5.</p>
+<p>Wobei der Faktor variabel ist. Die Standardeinstellung beträgt 1,5.</p>
 <p>Mit folgenden Codezeilen lassen sich die Ausreißer von den Daten des Merkmals “Alter” erkennen und anzeigen:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -549,14 +548,14 @@ Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehep
 <li><p>DBScan Clustering</p></li>
 <li><p>Isolation Forest</p></li>
 </ul>
-<p>Die Isolation Forest Methode und das DBScn Clustering können angewendet werden, wenn die Ausreißererkunng auf mehrdimensionalen Daten durchgeführt werden soll. Im Fall des Titanic Datenset werden die einzelnen Merkmale getrennt betrachtet, daher handelt es sich nicht um multivariate sondern um univariate Daten.</p>
+<p>Die Isolation Forest Methode und das DBScan Clustering können angewendet werden, wenn die Ausreißererkunng auf mehrdimensionalen Daten durchgeführt werden soll. Im Fall des Titanic Datenset werden die einzelnen Merkmale getrennt betrachtet, daher handelt es sich nicht um multivariate sondern um univariate Daten.</p>
 </div>
 <div class="section" id="skalierung">
 <h2>Skalierung<a class="headerlink" href="#skalierung" title="Permalink to this headline">¶</a></h2>
 <p>Die Skalierung ist eine der wichtigsten Transformationen. Die meisten Machine Learning Algorithmen funktionieren nicht gut, wenn sich die Wertebereiche der Merkmale unterscheiden. Das ist bei den numerischen Merkmalen des Titanic Datenset der Fall:</p>
 <ul class="simple">
 <li><p>Das Alter der Passagiere liegt zwischen 0,67 und 80</p></li>
-<li><p>Die Anzahl der Geschwister oder Ehepartner reicht von 0 und 8</p></li>
+<li><p>Die Anzahl der Geschwister oder Ehepartner reicht von 0 bis 8</p></li>
 </ul>
 <p>Um die numerischen Merkmale auf die gleiche Skala zu bringen gibt es zwei übliche Verfahren:</p>
 <ol class="simple">
@@ -565,8 +564,8 @@ Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehep
 </ol>
 <div class="section" id="min-max-skalierung">
 <h3>Min-Max-Skalierung<a class="headerlink" href="#min-max-skalierung" title="Permalink to this headline">¶</a></h3>
-<p>Die Min-Max-Skalierung, auch Normalisierung genannt, ist eine Verschiebung der Werte in den Wertebereich von 0 und 1. Hierzu wird zuerst der Minimalwert von allen Werten subtrahiert und anschließend alle Werte durch die Differenz von dem Maximal- und Minimalwert geteilt.</p>
-<p>Erzeugen von Beispieldaten, wobei der Minimalwert 10 beträgt und der Maximalwert 19:</p>
+<p>Die Min-Max-Skalierung, auch Normalisierung genannt, ist eine Verschiebung der Werte in den Wertebereich von 0 und 1. Hierzu wird zuerst der Minimalwert von allen Werten subtrahiert und anschließend alle Werte durch die Differenz von Maximal- und Minimalwert geteilt.</p>
+<p>Erzeugen von Beispieldaten, wobei der Minimalwert 10 und der Maximalwert 19 beträgt:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
@@ -640,9 +639,9 @@ Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehep
 </div>
 <p>Scikit-learn bietet einen MinMaxScaler an, mit dem sich die Min-Max-Skalierung einfach auf die Merkmale in einem Pandas Dataframe anwenden lassen. Als Rückgabe erhält man ein numpy-Array mit den skalierten Werten. Die Anwendung:</p>
 <ul class="simple">
-<li><p>MinMaxScale importieren</p></li>
+<li><p>MinMaxScaler importieren</p></li>
 <li><p>MinMaxScaler-Objekt erstellen</p></li>
-<li><p>fit_transform Methode die Daten übergeben</p></li>
+<li><p>der fit_transform Methode die Daten übergeben</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -801,16 +800,16 @@ Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehep
 </div>
 <div class="section" id="standardisierung-oder-min-max-skalierung">
 <h3>Standardisierung oder Min-Max-Skalierung?<a class="headerlink" href="#standardisierung-oder-min-max-skalierung" title="Permalink to this headline">¶</a></h3>
-<p>Die Standardabweichung hat im Vergleich zur Min-Max-Skalierung den Vorteil, dass Sie besser mit Ausreißer umgehen kann. Angenommen von 1000 Passagieren ist ein Passagier 110 Jahre alt, der Rest zwischen 20 und 30. Bei der Min-Max-Skalierung werden alle Werte zwischen 20 und 30 in den Bereich von 0-0.1 gequetscht. Bei der Standardisierung ändert sich durch den variablen Wertebereich nicht viel. Einige Algorithmen können nur mit Werten zwischen 0 und 1 umgehen, wie z.B. Neuronale Netze.</p>
+<p>Die Standardabweichung hat im Vergleich zur Min-Max-Skalierung den Vorteil, dass Sie besser mit Ausreißer umgehen kann. Angenommen von 1000 Passagieren ist ein Passagier 110 Jahre alt, der Rest zwischen 20 und 30. Bei der Min-Max-Skalierung werden alle Werte zwischen 20 und 30 in den Bereich von 0-0.1 gequetscht. Bei der Standardisierung ändert sich durch den variablen Wertebereich nicht viel. Einige Algorithmen können nur mit Werten zwischen 0 und 1 umgehen, wie z.B. Neuronale Netze. In diesem Fall ist die Min-Max-Skalierung vorteilhaft.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Die meisten Machine Learning Verfahren funktionieren besser, wenn eine Skalierung der Daten vorgenommen wird. Welches Skalierungsverfahren eingesetzt werden sollte hängt von den Daten und den Anforderungen des Algorithmus ab.</p>
+<p>Die meisten Machine Learning Verfahren funktionieren besser , wenn eine Skalierung der Daten vorgenommen wird. Welches Skalierungsverfahren eingesetzt werden sollte hängt von den Daten und den Anforderungen des Algorithmus ab.</p>
 </div>
 </div>
 </div>
 <div class="section" id="diskretisierung">
 <h2>Diskretisierung<a class="headerlink" href="#diskretisierung" title="Permalink to this headline">¶</a></h2>
-<p>Die Diskretisierung, auch Binning genannt, transformiert kontinuierliche in diskrete Werte. Hierzu wird ein Set von zusammenhängenden Intervallen definiert, sogenannte Bins (Behälter). Jeder Behälter erhälte einen Namen oder eine Regel wie die Elemente dieser Behälter benannt werden, z.B. der Mittelwert der enthaltenen Elemente. Anschließend wird jeder kontinuierliche Wert einem der Intervalle bzw. Bins zugewiesen und mit der Bezeichnung ersetzt.</p>
+<p>Die Diskretisierung, auch Binning genannt, transformiert kontinuierliche in diskrete Werte. Hierzu wird ein Set von zusammenhängenden Intervallen definiert, sogenannte Bins (Behälter). Jeder Behälter erhält einen Namen oder eine Regel wie die Elemente dieser Behälter benannt werden. Das kann zum Beispiel der Mittelwert der enthaltenen Elemente sein. Anschließend wird jeder kontinuierliche Wert einem der Behälter zugewiesen und mit der Bezeichnung ersetzt.</p>
 <p>Erstellen von Beispieldaten:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -847,7 +846,13 @@ Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehep
         <span class="n">bin3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
         
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bins: &#39;</span><span class="p">,</span> <span class="n">bin1</span><span class="p">,</span> <span class="n">bin2</span><span class="p">,</span> <span class="n">bin3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mittelwert der Elemente der Bins: &#39;</span><span class="p">,</span> <span class="n">statistics</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bin1</span><span class="p">),</span> <span class="n">statistics</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bin2</span><span class="p">),</span> <span class="n">statistics</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bin3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mittelwert der Elemente der Bins: &#39;</span><span class="p">,</span> 
+      <span class="n">statistics</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bin1</span><span class="p">),</span> 
+      <span class="s1">&#39;,&#39;</span><span class="p">,</span>
+      <span class="n">statistics</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bin2</span><span class="p">),</span> 
+      <span class="s1">&#39;,&#39;</span><span class="p">,</span>
+      <span class="n">statistics</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bin3</span><span class="p">)</span>
+<span class="p">)</span>
 
 <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
@@ -863,7 +868,7 @@ Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehep
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bins:  [2, 6, 7] [12, 15, 18, 19] [34, 35, 40, 50]
-Mittelwert der Elemente der Bins:  5 16 39.75
+Mittelwert der Elemente der Bins:  5 , 16 , 39.75
 Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 </pre></div>
 </div>
@@ -918,9 +923,9 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 </ol>
 <p>Die Scikit-Learn Bibliothek liefert eine Methode namens KBinsDiscretizer, die eine Diskretisierung durchführt. Über den Parameter “strategy” bestimmt man die Art wie die Bins erstellt werden. Mögliche Werte:</p>
 <ul class="simple">
-<li><p>“uniform”: 1.Art, gleiche Breite</p></li>
-<li><p>“quantile”: 2.Art, gleiche Anzahl</p></li>
-<li><p>“clustering”: 3.Art, Clustering</p></li>
+<li><p>“uniform”: 1. Art, gleiche Breite</p></li>
+<li><p>“quantile”: 2. Art, gleiche Anzahl</p></li>
+<li><p>“kmeans”: 3. Art, Clustering</p></li>
 </ul>
 </div>
 <div class="section" id="diskretisierung-am-beispiel-titanic">
@@ -955,7 +960,7 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 </div>
 </div>
 </div>
-<p>Die letzten fünf Zeilen der skalierten Werte:</p>
+<p>Ausgabe der letzten fünf Zeilen der skalierten Werte:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_scaled</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
@@ -1030,7 +1035,7 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fd44dca1e50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fcf6e19fc10&gt;
 </pre></div>
 </div>
 <img alt="../_images/transformationNumerical_78_1.png" src="../_images/transformationNumerical_78_1.png" />
@@ -1057,7 +1062,7 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fd44dc9a610&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fcf6df6b410&gt;
 </pre></div>
 </div>
 <img alt="../_images/transformationNumerical_81_1.png" src="../_images/transformationNumerical_81_1.png" />
@@ -1069,7 +1074,7 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">KBinsDiscretizer</span>
-<span class="n">discretizer</span> <span class="o">=</span> <span class="n">KBinsDiscretizer</span><span class="p">(</span><span class="n">n_bins</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="s1">&#39;ordinal&#39;</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;quantile&#39;</span><span class="p">)</span>
+<span class="n">discretizer</span> <span class="o">=</span> <span class="n">KBinsDiscretizer</span><span class="p">(</span><span class="n">n_bins</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">encode</span><span class="o">=</span><span class="s1">&#39;ordinal&#39;</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;kmeans&#39;</span><span class="p">)</span>
 
 <span class="n">X_train_fare_scaled</span> <span class="o">=</span> <span class="n">discretizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">[[</span><span class="s1">&#39;Fare&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="n">df_scaled</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_fare_scaled</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X_train</span><span class="p">[[</span><span class="s1">&#39;Fare&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
@@ -1102,7 +1107,7 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
   <tbody>
     <tr>
       <th>0</th>
-      <td>2.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1</th>
@@ -1110,15 +1115,15 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
     </tr>
     <tr>
       <th>2</th>
-      <td>3.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>3.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1126,23 +1131,23 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
     </tr>
     <tr>
       <th>529</th>
-      <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>530</th>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>531</th>
       <td>2.0</td>
     </tr>
     <tr>
+      <th>531</th>
+      <td>0.0</td>
+    </tr>
+    <tr>
       <th>532</th>
-      <td>3.0</td>
+      <td>2.0</td>
     </tr>
     <tr>
       <th>533</th>
-      <td>1.0</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
@@ -1156,13 +1161,14 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fd454c85850&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fcf6df777d0&gt;
 </pre></div>
 </div>
 <img alt="../_images/transformationNumerical_84_1.png" src="../_images/transformationNumerical_84_1.png" />
 </div>
 </div>
-<p>Bei der Anwendung einer Diskretisierung ist zu beachten, dass Informationen verloren gehen. Das kann von Vorteil sein, wenn die verlorenen Informationen für den Anwendungsfall relevant sind, bzw. im Gegenteil, störend sind. Ist das der Fall, bewirkt man mit der Diskretisierung ein Smoothing-Effekt. Rauschen wird entfernt. Außerdem kann eine Diskretisierung eine vereinfachte Interpretation der Daten bewirken. Bewirkt eine Diskretisierung jedoch einen Verlust von relevanten Informationen, wirkt sich das negativ auf das Endergebnis aus. Mit Domänenwissen kann zunächst abgeschätzt werden, ob eine Diskretisierung erfolgsversprechend ist. Am Ende muss jedoch immer eine Erprobung stattfinden um sicher gehen zu können, dass eine Diskretisierung die Performance des Algorithmus steigert. Hierzu führt man Experimente mit unterschiedlichen Transformationsmöglichkeiten durch und analysiert das Ergebnis. Mehr dazu im Abschnitt “Feature Engineering”.</p>
+<p>Bei der Anwendung einer Diskretisierung ist zu beachten, dass Informationen verloren gehen. Das kann von Vorteil sein, wenn die verlorenen Informationen für den Anwendungsfall nicht relevant sind. Außerdem kann eine Diskretisierung eine vereinfachte Interpretation der Daten ermöglichen. Bewirkt eine Diskretisierung jedoch einen Verlust von relevanten Informationen, wirkt sich das negativ auf das Endergebnis aus.</p>
+<p>Mit Domänenwissen kann zunächst abgeschätzt werden, ob eine Diskretisierung erfolgsversprechend ist. Am Ende muss jedoch immer eine Erprobung stattfinden um sicher gehen zu können, dass eine Diskretisierung die Performance des Algorithmus steigert. Hierzu führt man Experimente mit unterschiedlichen Transformationsmöglichkeiten durch und analysiert das Ergebnis. Mehr dazu im Abschnitt “Feature Engineering”.</p>
 <p>Im nächsten Abschnitt werden Transformationen für kategorische Daten behandelt.</p>
 </div>
 </div>
