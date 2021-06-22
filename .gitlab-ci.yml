@@ -1,0 +1,12 @@
+pages:
+  stage: deploy
+  script:
+  - pip install -U jupyter-book
+  - jupyter-book build .
+  - mkdir -p public
+  - cp -r _build/html/* public/
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
