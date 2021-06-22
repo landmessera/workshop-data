@@ -510,3 +510,47 @@ Die [load-Methode](https://docs.python.org/3/library/pickle.html) ermöglicht da
     datasets['X_val'].head()
   ```
 ````
+
+
+# Fehlende Werte ermitteln
+missingValuesCount = data.isnull().sum()
+print(missingValuesCount)
+
+# Fehlende Werte in Prozent
+total = missingValuesCount.sort_values(ascending=False)
+percentage = (missingValuesCount/data.shape[0]*100).sort_values(ascending=False)
+missingData = pd.DataFrame({'Gesamt':total, 'Prozentual':percentage})
+print(missingData)
+
+# Fehlende Werte ersetzen
+data['Gender'].fillna(data['Gender'].mode()[0], inplace=True)
+data['Cars'].fillna(data['Cars'].mode()[0], inplace=True)
+data['Age'].fillna(data['Age'].median(), inplace=True)
+data['Children'].fillna(data['Children'].mode()[0], inplace=True)
+data['Marital Status'].fillna(data['Marital Status'].mode()[0], inplace=True)
+data['Income'].fillna(data['Income'].mean(), inplace=True)
+data['Home Owner'].fillna(data['Home Owner'].mode()[0], inplace=True)
+
+# Fehlende Werte ermitteln/prüfen
+missingValuesCount = data.isnull().sum()
+print(missingValuesCount)
+
+# Datensets erstellen
+X = data.drop(['Purchased Bike'], axis=1)
+y = data['Purchased Bike']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1, stratify=y)
+X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25, random_state=1, stratify=y_train)
+
+# Datensets speichern
+datasets = {
+    'X_train': X_train,
+    'y_train': y_train,
+    'X_val': X_val,
+    'y_val': y_val,
+    'X_test': X_test,
+    'y_test': y_test
+}
+
+with open('../output/bikebuyers/datasets.pkl', 'wb') as handle:
+    pickle.dump(datasets, handle)

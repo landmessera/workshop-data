@@ -94,6 +94,8 @@ Die fit()-Methode soll zwei numpy-Arrays als Parameter (X und y), keine Funktion
 ````{Dropdown} Lösung Task 3
 
   ```{code-block} python
+    %%writefile transformer.py
+    
     from sklearn.base import BaseEstimator, TransformerMixin
     class OutlierRemoverExtended(BaseEstimator, TransformerMixin):
         def __init__(self, factor=1.5, strategy='median'):
@@ -295,90 +297,9 @@ Geben Sie die ersten Zeilen des Pandas Dataframe X_train_transformed aus:
   ```
 ````
 
-### Task 11: Pipeline mit Klassifikator erstellen
+### Task x: Transformierte Daten speichern
 
-Erstellen Sie die finale Pipeline, bestehend aus der Transformer Pipeline und anschließendem Predictor in Form eines K-Nearest-Neighbor Klassifikator. Speichern Sie die Pipeline in einer Variable namens 'full_pipeline'.
-
-# Hier den Code eingeben.
-
-````{Dropdown} Lösung Task 11
-
-  ```{code-block} python
-    from sklearn.neighbors import KNeighborsClassifier
-    full_pipeline = Pipeline(steps=[
-        ('transformers', transformer_pipeline),
-        ('predictor', KNeighborsClassifier(n_neighbors=2))
-    ])
-
-  ```
-````
-
-### Task 12: Pipeline verwenden
-
-* Trainieren Sie die Pipeline mit dem Trainingsdatenset durch aufrufen der fit()-Methode. 
-* Evaluieren Sie das Modell mit dem Validierungsdatenset durch aufrufen der score()-Methode.
-
-Welches Ergebnis erhalten Sie?
-
-# Hier den Code eingeben.
-
-````{Dropdown} Lösung Task 12
-
-  ```{code-block} python
-    full_pipeline.fit(datasets['X_train'], datasets['y_train'])
-    full_pipeline.score(datasets['X_val'], datasets['y_val'])
-
-  ```
-````
-
-### Task 13: Grid Search vorbereiten
-
-Erstellen Sie eine Instanz der Klasse [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html) aus Scikit Learn. Verwenden folgende Paramter-Einstellungen:
-* estimator:full_pipeline
-* param_grid: 
-    * factor values [1.0, 1.5, 2.0, 3.0]
-    * n_neighbors: [2,3,4,5,6]
-* cv: 10
-
-# Hier den Code eingeben.
-
-````{Dropdown} Lösung Task 12
-
-  ```{code-block} python
-    from sklearn.model_selection import GridSearchCV
-
-    param_grid = {
-        'transformers__num__outlier_remover__factor': [1.0, 1.5, 2.0, 3.0],
-        'predictor__n_neighbors': [2,3,4,5,6],
-    }
-
-    grid_search = GridSearchCV(full_pipeline, param_grid, cv=10)
-
-  ```
-````
-
-### Task 13: Grid Search anwenden
-
-* Rufen Sie die fit-Methode unter Verwendung der Trainingsdatensets auf.
-* Geben Sie die beste Parameterkombination aus.
-* Geben Sie das Ergebnis der besten Parameterkombination aus.
-
-# Hier den Code eingeben
-
-````{Dropdown} Lösung Task 13
-
-  ```{code-block} python
-    grid_search.fit(datasets['X_train'], datasets['y_train'])
-
-    print("Best params:")
-    print(grid_search.best_params_)
-    
-    print("Ergebnis mit der besten Parametereinstellung auf den Trainingsdaten:")
-    print(f"{grid_search.best_score_:.3f}")
-  ```
-````
-
-### Task 14: Beste Pipeline speichern
+### Task 14: Pipeline speichern
 
 Speichern Sie die Pipeline mit der besten Parametereinstellung in einer Pickle-Datei.
 
@@ -387,9 +308,8 @@ Speichern Sie die Pipeline mit der besten Parametereinstellung in einer Pickle-D
 ````{Dropdown} Lösung Task 14
 
   ```{code-block} python
-    best_pipeline = grid_search.best_estimator_
-    with open('../output/bikebuyers/pipeline.pkl', 'wb') as handle:
-            pickle.dump(best_pipeline, handle)
+    with open('../output/bikebuyers/transformer_pipeline.pkl', 'wb') as handle:
+            pickle.dump(transformer_pipeline, handle)
   ```
 ````
 
@@ -398,17 +318,20 @@ import numpy as np
 import sklearn as sklearn
 import pickle
 
-from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.model_selection import GridSearchCV
 
 # Load data
 with open('../output/bikebuyers/datasets.pkl', 'rb') as handle:
     datasets = pickle.load(handle)
+
+%%writefile transformer_extended.py
+
+import pandas as pd
+import numpy as np
+from sklearn.base import BaseEstimator, TransformerMixin
 
 # Create custom transformer
 class OutlierRemoverExtended(BaseEstimator, TransformerMixin):
@@ -436,6 +359,8 @@ class OutlierRemoverExtended(BaseEstimator, TransformerMixin):
             raise ValueError('Invalid value for strategy paramter. Valid values are median or mean.')
 
         return X_.values
+
+from transformer_extended import OutlierRemoverExtended
 
 # Numerical Pipeline
 pipeline_numerical = Pipeline(steps=[
@@ -490,26 +415,8 @@ X_test_transformed = pd.DataFrame(X_test_transformed, columns=features_numerical
 
 print(X_train_transformed.head())
 
-full_pipeline = Pipeline(steps=[
-    ('transformers', transformer_pipeline),
-    ('predictor', KNeighborsClassifier(n_neighbors=2))
-])
+with open('../output/bikebuyers/transformer_pipeline.pkl', 'wb') as handle:
+    pickle.dump(transformer_pipeline, handle)
 
-param_grid = {
-    'transformers__num__outlier_remover__factor': [1.0, 1.5, 2.0, 3.0],
-    'predictor__n_neighbors': [2,3,4,5,6],
-}
 
-grid_search = GridSearchCV(full_pipeline, param_grid, cv=10)
-grid_search.fit(datasets['X_train'], datasets['y_train'])
 
-print("Best params:")
-print(grid_search.best_params_)
-
-print("Ergebnis mit der besten Parametereinstellung auf den Trainingsdaten:")
-print(f"{grid_search.best_score_:.3f}")
-
-best_pipeline = grid_search.best_estimator_
-
-with open('../output/bikebuyers/pipeline.pkl', 'wb') as handle:
-        pickle.dump(best_pipeline, handle)

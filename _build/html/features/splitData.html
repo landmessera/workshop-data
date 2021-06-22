@@ -152,10 +152,39 @@
   <i class="fas fa-chevron-down">
   </i>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="featureEngineering.html">
-   Feature Engineering &amp; Daten verstehen
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="optimization.html">
+   Optimierung
   </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html">
+     Baseline erstellen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html#parameter-optimieren">
+     Parameter optimieren
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html#merkmale-optimieren">
+     Merkmale optimieren
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html#pipeline-speichern">
+     Pipeline speichern
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="exerciseOptimization.html">
+     Übung: Optimization
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
  </li>
 </ul>
 
@@ -529,7 +558,7 @@ Schauen wir uns noch einmal das Katzenklappen-Beispiel an. Es handelt sich bei d
 <p>Daten laden</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;../output/preparedData.pkl&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;../output/titanic/preparedData.pkl&#39;</span><span class="p">)</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -698,7 +727,7 @@ Schauen wir uns noch einmal das Katzenklappen-Beispiel an. Es handelt sich bei d
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f961be0ffd0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fd445951b10&gt;
 </pre></div>
 </div>
 <img alt="../_images/splitData_30_1.png" src="../_images/splitData_30_1.png" />
@@ -1003,7 +1032,7 @@ Name: Survived, dtype: float64
 <p>Das Pickle Modul ermöglicht eine einfache und effiziente Speicherung der Daten. Im Vergleich zu anderen Formaten wie z.B. dem Excel-Format, lassen sich Pickle Formate schneller speichern und auslesen. Das Speichern des Python Dictionary erfolgt über folgende zwei Zeilen Code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;datasets.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/titanic/datasets.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
     <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1012,7 +1041,7 @@ Name: Survived, dtype: float64
 <p>Über folgende Befehle lässt sich das Dictionary wieder auslesen:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;datasets.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/titanic/datasets.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
     <span class="n">datasets</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1182,7 +1211,7 @@ Name: Survived, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f961d08add0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fd445fe8ed0&gt;
 </pre></div>
 </div>
 <img alt="../_images/splitData_55_1.png" src="../_images/splitData_55_1.png" />
@@ -1240,6 +1269,18 @@ Name: Survived, dtype: float64
           By Annette Landmesser<br/>
         
             &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <script type="text/x-thebe-config">
+{
+    binderOptions: {
+        repo: "https://github.com/landmessera/workshop-data",
+        binderUrl: "https://ada.mi.hdm-stuttgart.de/binder/",
+        ref: "master",
+    }
+}
+</script>
+
+          </div>
       </p>
     </div>
   </footer>

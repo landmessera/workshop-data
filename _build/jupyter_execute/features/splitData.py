@@ -201,7 +201,7 @@ from sklearn.model_selection import train_test_split
 
 Daten laden
 
-df = pd.read_pickle('../output/preparedData.pkl')
+df = pd.read_pickle('../output/titanic/preparedData.pkl')
 df
 
 Sind die Daten ungleich verteilt in Bezug auf die Anzahl der Klassen?
@@ -269,12 +269,12 @@ datasets = {
 
 Das Pickle Modul ermöglicht eine einfache und effiziente Speicherung der Daten. Im Vergleich zu anderen Formaten wie z.B. dem Excel-Format, lassen sich Pickle Formate schneller speichern und auslesen. Das Speichern des Python Dictionary erfolgt über folgende zwei Zeilen Code:
 
-with open('datasets.pickle', 'wb') as handle:
+with open('../output/titanic/datasets.pkl', 'wb') as handle:
     pickle.dump(datasets, handle)
 
 Über folgende Befehle lässt sich das Dictionary wieder auslesen:
 
-with open('datasets.pickle', 'rb') as handle:
+with open('../output/titanic/datasets.pkl', 'rb') as handle:
     datasets = pickle.load(handle)
 
 Die Ausgabe der Merkmale des Trainingsdatenset erfolgt über den Key "X_train" des eingelesenen Dictionaries.
@@ -303,3 +303,10 @@ Für die Trainings- und Testphase werden also Daten benötigt. Wichtig ist, dass
 In der Praxis wird häufig noch eine Validierungsphase durchlaufen. Eine Validierungsphase ist dann notwendig, wenn es viele Hyperparamter gibt, die angepasst werden müssen. Im Gegensatz zu Parameter eines Modells, die während der Trainingsphase gelernt werden, sind Hyperparameter, Parameter, die Einstellungen am Algorithmus selbst erlauben. Wird das Ergebnis der Testphase verwendet um Hyperparameter anzupassen, ist es sinnvoll eine Validierungsphase vor der Testphase einzubauen. Die Validierungsphase wird dann verwendet um die optimale Einstellung der Hyperparamter zu finden. Sind die Einstellungen nach mehrmaligem Durchlauf gefunden, wird ein abschließender Test in der Testphase durchgeführt. In diesem Fall werden drei disjunkte Datensets benötigt. 
 
 Da in diesem Workshop, der Fokus auf die Datenaufbereitung, -transformation und -verständnis liegen, und nicht auf der Optimierung der Hyperparameter eines Machine Learning Modells, werden aus Komplexitätsgründen nur ein Trainings- und Testdatenset verwendet.
+
+
+
+
+
+
+

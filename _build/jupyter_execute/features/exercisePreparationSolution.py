@@ -521,7 +521,7 @@ Die [dump-Methode](https://docs.python.org/3/library/pickle.html) ermöglicht ei
 
 Lesen Sie das gespeicherte Datenset aus der pickle-Datei aus und geben Sie die ersten 5 Zeilen der Validierungsmerkmale aus.
 
-with open('../output/datasets.pkl', 'rb') as handle:
+with open('../output/bikebuyers/datasets.pkl', 'rb') as handle:
     datasets = pickle.load(handle)
 
 datasets['X_val'].head()

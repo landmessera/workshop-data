@@ -50,7 +50,17 @@ parse:
 #######################################################################################
 # HTML-specific settings
 html:
-    favicon: images/favicon.ico  
+  favicon: images/favicon.ico  
+  extra_footer: |
+    <script type="text/x-thebe-config">
+    {
+        binderOptions: {
+            repo: "https://github.com/landmessera/workshop-data",
+            binderUrl: "https://ada.mi.hdm-stuttgart.de/binder/",
+            ref: "master",
+        }
+    }
+    </script>
     
 #######################################################################################
 # Interactivity settings

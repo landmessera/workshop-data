@@ -14,4 +14,7 @@
     - file: ./features/transformationCategorical
     - file: ./features/pipeline
     - file: ./features/exerciseTransformation
-- file: ./features/featureEngineering
+- file: ./features/optimization
+  sections:
+    - file: ./features/optimizationSaved
+    - file: ./features/exerciseOptimization

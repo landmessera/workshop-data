@@ -152,10 +152,39 @@
   <i class="fas fa-chevron-down">
   </i>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="featureEngineering.html">
-   Feature Engineering &amp; Daten verstehen
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="optimization.html">
+   Optimierung
   </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html">
+     Baseline erstellen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html#parameter-optimieren">
+     Parameter optimieren
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html#merkmale-optimieren">
+     Merkmale optimieren
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html#pipeline-speichern">
+     Pipeline speichern
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="exerciseOptimization.html">
+     Übung: Optimization
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
  </li>
 </ul>
 
@@ -432,8 +461,8 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: sklearn in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (0.0)
 Requirement already satisfied: scikit-learn in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from sklearn) (0.22.1)
 Requirement already satisfied: numpy&gt;=1.11.0 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.18.1)
-Requirement already satisfied: scipy&gt;=0.17.0 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.4.1)
 Requirement already satisfied: joblib&gt;=0.11 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (0.14.1)
+Requirement already satisfied: scipy&gt;=0.17.0 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.4.1)
 </pre></div>
 </div>
 </div>
@@ -1187,7 +1216,101 @@ Lösung Task 17<div class="summary-down docutils">
 </pre></div>
 </div>
 </div>
-</details></div>
+</details><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fehlende Werte ermitteln</span>
+<span class="n">missingValuesCount</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">missingValuesCount</span><span class="p">)</span>
+
+<span class="c1"># Fehlende Werte in Prozent</span>
+<span class="n">total</span> <span class="o">=</span> <span class="n">missingValuesCount</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">percentage</span> <span class="o">=</span> <span class="p">(</span><span class="n">missingValuesCount</span><span class="o">/</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">missingData</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Gesamt&#39;</span><span class="p">:</span><span class="n">total</span><span class="p">,</span> <span class="s1">&#39;Prozentual&#39;</span><span class="p">:</span><span class="n">percentage</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">missingData</span><span class="p">)</span>
+
+<span class="c1"># Fehlende Werte ersetzen</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Cars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Cars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Children&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Children&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Marital Status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;Home Owner&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Home Owner&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Fehlende Werte ermitteln/prüfen</span>
+<span class="n">missingValuesCount</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">missingValuesCount</span><span class="p">)</span>
+
+<span class="c1"># Datensets erstellen</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Purchased Bike&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Purchased Bike&#39;</span><span class="p">]</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_val</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Datensets speichern</span>
+<span class="n">datasets</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;X_train&#39;</span><span class="p">:</span> <span class="n">X_train</span><span class="p">,</span>
+    <span class="s1">&#39;y_train&#39;</span><span class="p">:</span> <span class="n">y_train</span><span class="p">,</span>
+    <span class="s1">&#39;X_val&#39;</span><span class="p">:</span> <span class="n">X_val</span><span class="p">,</span>
+    <span class="s1">&#39;y_val&#39;</span><span class="p">:</span> <span class="n">y_val</span><span class="p">,</span>
+    <span class="s1">&#39;X_test&#39;</span><span class="p">:</span> <span class="n">X_test</span><span class="p">,</span>
+    <span class="s1">&#39;y_test&#39;</span><span class="p">:</span> <span class="n">y_test</span>
+<span class="p">}</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/bikebuyers/datasets.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ID                   0
+Marital Status       7
+Gender              11
+Income               6
+Children             8
+Education            0
+Occupation           0
+Home Owner           4
+Cars                 9
+Commute Distance     0
+Region               0
+Age                  8
+Purchased Bike       0
+dtype: int64
+                  Gesamt  Prozentual
+Gender                11         1.1
+Cars                   9         0.9
+Age                    8         0.8
+Children               8         0.8
+Marital Status         7         0.7
+Income                 6         0.6
+Home Owner             4         0.4
+Purchased Bike         0         0.0
+Region                 0         0.0
+Commute Distance       0         0.0
+Occupation             0         0.0
+Education              0         0.0
+ID                     0         0.0
+ID                  0
+Marital Status      0
+Gender              0
+Income              0
+Children            0
+Education           0
+Occupation          0
+Home Owner          0
+Cars                0
+Commute Distance    0
+Region              0
+Age                 0
+Purchased Bike      0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
@@ -1230,6 +1353,18 @@ Lösung Task 17<div class="summary-down docutils">
           By Annette Landmesser<br/>
         
             &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <script type="text/x-thebe-config">
+{
+    binderOptions: {
+        repo: "https://github.com/landmessera/workshop-data",
+        binderUrl: "https://ada.mi.hdm-stuttgart.de/binder/",
+        ref: "master",
+    }
+}
+</script>
+
+          </div>
       </p>
     </div>
   </footer>

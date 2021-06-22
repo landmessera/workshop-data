@@ -17,26 +17,74 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-X_ = datasets['X_train']
-factor = 1.5
-q1 = X_.quantile(0.25)
-q3 = X_.quantile(0.75)
-iqr = q3 - q1
-lower_bound = q1 - (factor * iqr)
-upper_bound = q3 + (factor * iqr)
-X_[((X_ < lower_bound) | (X_ > upper_bound))] = np.nan
-X_.isna().sum()
+from transformer import OutlierRemoverExtended
+
+# Numerical Pipeline
+pipeline_numerical = Pipeline(steps=[
+    ('outlier_remover', OutlierRemoverExtended()),
+    ('scaler', StandardScaler())
+])
+
+# Categorical Pipeline
+pipeline_categorical = Pipeline(steps=[
+    ('onehot', OneHotEncoder(handle_unknown='ignore'))
+])
+
+# Column Transformer
+features_numerical = ['Income', 'Age', 'Cars', 'Children']
+features_categorical = [
+    'Marital Status', 
+    'Gender', 
+    'Education', 
+    'Occupation', 
+    'Home Owner', 
+    'Commute Distance',
+    'Region'
+]
+
+transformer_pipeline = ColumnTransformer(
+    transformers = [
+        (
+            'num', 
+            pipeline_numerical,
+            features_numerical
+        ),
+        (
+            'cat', 
+            pipeline_categorical,
+            features_categorical
+        )
+    ])
+
+# transform datsets
+X_train_transformed = transformer_pipeline.fit_transform(datasets['X_train'])
+X_val_transformed = transformer_pipeline.transform(datasets['X_val'])
+X_test_transformed = transformer_pipeline.transform(datasets['X_test'])
+
+feature_categorical_onehot = transformer_pipeline\
+    .transformers_[1][1]['onehot']\
+    .get_feature_names(features_categorical)
+
+# Zweite Code-Zelle
+X_train_transformed = pd.DataFrame(X_train_transformed, columns=features_numerical+list(feature_categorical_onehot))
+X_val_transformed = pd.DataFrame(X_val_transformed, columns=features_numerical+list(feature_categorical_onehot))
+X_test_transformed = pd.DataFrame(X_test_transformed, columns=features_numerical+list(feature_categorical_onehot))
+
+print(X_train_transformed.head())
+
+with open('../output/bikebuyers/transformer_pipeline.pkl', 'wb') as handle:
+    pickle.dump(transformer_pipeline, handle)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m<ipython-input-4-0d05dd7e7ba3>[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0mX_[0m [0;34m=[0m [0mdatasets[0m[0;34m[[0m[0;34m'X_train'[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0mfactor[0m [0;34m=[0m [0;36m1.5[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      3[0m [0mq1[0m [0;34m=[0m [0mX_[0m[0;34m.[0m[0mquantile[0m[0;34m([0m[0;36m0.25[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      4[0m [0mq3[0m [0;34m=[0m [0mX_[0m[0;34m.[0m[0mquantile[0m[0;34m([0m[0;36m0.75[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m [0miqr[0m [0;34m=[0m [0mq3[0m [0;34m-[0m [0mq1[0m[0;34m[0m[0;34m[0m[0m
+[0;31mImportError[0m                               Traceback (most recent call last)
+[0;32m<ipython-input-19-17ab24b6cb73>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mfrom[0m [0mtransformer[0m [0;32mimport[0m [0mOutlierRemoverExtended[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;34m[0m[0m
+[1;32m      3[0m [0;31m# Numerical Pipeline[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m pipeline_numerical = Pipeline(steps=[
+[1;32m      5[0m     [0;34m([0m[0;34m'outlier_remover'[0m[0;34m,[0m [0mOutlierRemoverExtended[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mNameError[0m: name 'datasets' is not defined
-NameError: name 'datasets' is not defined
+[0;31mImportError[0m: cannot import name 'OutlierRemoverExtended' from 'transformer' (/Users/alandmesser/git/books/workshop-data/features/transformer.py)
+ImportError: cannot import name 'OutlierRemoverExtended' from 'transformer' (/Users/alandmesser/git/books/workshop-data/features/transformer.py)
 

@@ -152,10 +152,39 @@
   <i class="fas fa-chevron-down">
   </i>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="featureEngineering.html">
-   Feature Engineering &amp; Daten verstehen
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="optimization.html">
+   Optimierung
   </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html">
+     Baseline erstellen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html#parameter-optimieren">
+     Parameter optimieren
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html#merkmale-optimieren">
+     Merkmale optimieren
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html#pipeline-speichern">
+     Pipeline speichern
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="exerciseOptimization.html">
+     Übung: Optimization
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
  </li>
 </ul>
 
@@ -291,18 +320,13 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#machine-learning-verfahren-anwenden">
-     Machine Learning Verfahren anwenden
+    <a class="reference internal nav-link" href="#transformierte-daten-speichern">
+     Transformierte Daten speichern
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#klassifikator-in-eine-pipeline-integrieren">
-     Klassifikator in eine Pipeline integrieren
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#grid-search-anwenden">
-     Grid Search anwenden
+    <a class="reference internal nav-link" href="#pipeline-speichern">
+     Pipeline speichern
     </a>
    </li>
   </ul>
@@ -363,7 +387,12 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> transformer.py
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
+
 <span class="k">class</span> <span class="nc">OutlierRemover</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">=</span> <span class="n">factor</span>
@@ -384,10 +413,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting transformer.py
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="transformer-anwenden">
 <h3>Transformer anwenden<a class="headerlink" href="#transformer-anwenden" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformer</span> <span class="kn">import</span> <span class="n">OutlierRemover</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="figure align-center" id="fig-transformeroutlier">
 <a class="reference internal image-reference" href="../_images/transformerOutlier.png"><img alt="../_images/transformerOutlier.png" src="../_images/transformerOutlier.png" style="height: 200px;" /></a>
 </div>
@@ -606,10 +647,8 @@
 <p>Packete importieren</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
 <span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
 <span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
 </pre></div>
 </div>
@@ -1718,189 +1757,43 @@
 </table>
 </div></div></div>
 </div>
-<p>Die erste Pipeline ist erstellt und die Transformationen auf alle Datensets angewendet. Man kann an dieser Stelle die transformierten Datensets für Machine Learning Verfahren verwenden.</p>
 </div>
-<div class="section" id="machine-learning-verfahren-anwenden">
-<h3>Machine Learning Verfahren anwenden<a class="headerlink" href="#machine-learning-verfahren-anwenden" title="Permalink to this headline">¶</a></h3>
-<p>Beim Anwendungsbeispiel Titanic handelt es sich um eine Klassifikationsaufgabe. Die Anwendung eines K-Nearest Neighbors Klassifikators sieht dann wie folgt aus:</p>
+<div class="section" id="transformierte-daten-speichern">
+<h3>Transformierte Daten speichern<a class="headerlink" href="#transformierte-daten-speichern" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
-<span class="n">classifier</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_transformed</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KNeighborsClassifier(algorithm=&#39;auto&#39;, leaf_size=30, metric=&#39;minkowski&#39;,
-                     metric_params=None, n_jobs=None, n_neighbors=3, p=2,
-                     weights=&#39;uniform&#39;)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_val_transformed</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7415730337078652
-</pre></div>
-</div>
-</div>
-</div>
-<p>Das übliche Vorgehen beim Machine Learning ist experimentell. Man entwickelt zunächst eine Variante und erhält ein Ergebnis. In unserem Fall ein Accuracy Score von 0.74, bedeutet 74% der vorgehergesagten Werte sind richtig. Dieser Score dient als Basis für weitere Optimierungen. Es werden Veränderungen unterschiedlichster Art vorgenommen wie zum Beispiel</p>
-<ul class="simple">
-<li><p>Anwendung weiterer Transformationsschritte</p></li>
-<li><p>Entfernen von Transformationsschritte</p></li>
-<li><p>Änderung der Transformationseinstellungen</p></li>
-<li><p>Hinzufügen von Merkmalen</p></li>
-<li><p>Entfernen von Merkmalen</p></li>
-<li><p>Modifizieren von Merkmalen</p></li>
-<li><p>Ändern des Machine Learning Algorithmus</p></li>
-<li><p>Ändern der Hyperparameter</p></li>
-</ul>
-<p>Nach jeder Änderung wird geprüft ob sich das Ergebnis, der Score, verbessert oder verschlechtert hat und entprechend die Änderung beibehalten oder verworfen. Häufig sind es sehr viele Experimente die durchgeführt werden müssen. Es fällt schwer den Überblick zu behalten und ist aufwendig manuell durchzuführen. Für die Automatisierung der Experimente für Hyperparameter kann die sogenannte Grid-Search<a class="footnote-reference brackets" href="#footnote3" id="id3">3</a> eingesetzt werden. Man gibt für jeden Hyperparamter eine begrenzte Menge von möglichen Werten die getestet werden soll. Grid-Search testet alle Kombinationen und gibt die Wertekombination mit den besten Ergebnisen aus.</p>
-<p>Wie bereits zu Beginn dieses Abschnitts erwähnt, ist es möglich am Ende der Pipeline einen beliebigen Estimator einzusetzen anstatt ein Transformer. Ein beliebiger Estimator kann auch ein Predictor sein. So kann beim Anwendungsbeispiel Titanic einfach der Klassifikator am Ende der Pipeline eingefügt werden. Einer der Vorteile, wenn man die Vorverarbeitungsschritte und den Prediktor in einer Pipeline integriert ist, dass Grid-Search auch für die Vorverarbeitungsschritte eingesetzt werden kann.</p>
-</div>
-<div class="section" id="klassifikator-in-eine-pipeline-integrieren">
-<h3>Klassifikator in eine Pipeline integrieren<a class="headerlink" href="#klassifikator-in-eine-pipeline-integrieren" title="Permalink to this headline">¶</a></h3>
-<p>Erstellt wird eine Pipeline, die im ersten Schritt die bereits erstellte Transformer-Pipeline enthält und im Anschluss den Klassifikator.</p>
-<div class="figure align-center" id="fig-pipelinefull">
-<a class="reference internal image-reference" href="../_images/pipelineFull.png"><img alt="../_images/pipelineFull.png" src="../_images/pipelineFull.png" style="height: 180px;" /></a>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
-    <span class="p">(</span><span class="s1">&#39;transformers&#39;</span><span class="p">,</span> <span class="n">transformer_pipeline</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;predictor&#39;</span><span class="p">,</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
-<span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Die Pipeline wird mit dem Trainingsdatenset trainiert und dem Validierungsset validiert.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">full_pipeline</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7415730337078652
-</pre></div>
-</div>
-</div>
-</div>
-<p>Das Ergebnis ist wie erwartet unverändert. Die Accuracy beträgt 0.74. Nun können mit der Grid Search Methode optimale Einstellungen gefunden werden.</p>
-</div>
-<div class="section" id="grid-search-anwenden">
-<h3>Grid Search anwenden<a class="headerlink" href="#grid-search-anwenden" title="Permalink to this headline">¶</a></h3>
-<p>Für jeden beliebigen Schritt in der Pipeline können Wertebereiche für die Parameter angegeben werden. Für das Anwendungsbeispiel werden folgende Wertebereiche gesetzt:</p>
-<ul class="simple">
-<li><p>der Faktor, der bei der IQR-Methode zur Ausreißererkennung verwendet wird, mit einem Wertebereich von [1.0, 1.5, 2.0, 3.0]</p></li>
-<li><p>der n_neighbors Parameter, der beim K-Nearest-Neighbor-Algorithmus bestimmt wie viele Nachbarn berücksichtigt werden, mit einem Wertebereich von [2,3,4,5,6,7,8]</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
-
-<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;transformers__num__outlier_remover__factor&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span>
-    <span class="s1">&#39;predictor__n_neighbors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datasets_transformed</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;X_train&#39;</span><span class="p">:</span> <span class="n">X_train_transformed</span><span class="p">,</span>
+    <span class="s1">&#39;y_train&#39;</span><span class="p">:</span> <span class="n">y_train</span><span class="p">,</span>
+    <span class="s1">&#39;X_val&#39;</span><span class="p">:</span> <span class="n">X_val_transformed</span><span class="p">,</span>
+    <span class="s1">&#39;y_val&#39;</span><span class="p">:</span> <span class="n">y_val</span><span class="p">,</span>
+    <span class="s1">&#39;X_test&#39;</span><span class="p">:</span> <span class="n">X_test_transformed</span><span class="p">,</span>
+    <span class="s1">&#39;y_test&#39;</span><span class="p">:</span> <span class="n">y_test</span>
 <span class="p">}</span>
-
-<span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">full_pipeline</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Die Fit()-Methode testet alle Kombinationsmöglichkeiten und liefert die beste Parameterkombination.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best params:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best params:
-{&#39;predictor__n_neighbors&#39;: 5, &#39;transformers__num__outlier_remover__factor&#39;: 3.0}
-</pre></div>
-</div>
-</div>
-</div>
-<p>Über das Attribut best_score_ wird die Accuracy abgefragt.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ergebnis mit der besten Parametereinstellung auf den Trainingsdaten: </span><span class="si">{grid_search.best_score_:.3f}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ergebnis mit der besten Parametereinstellung auf den Trainingsdaten: 0.813
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">((</span><span class="s2">&quot;Ergebnis auf den Validierungsdaten: </span><span class="si">%.3f</span><span class="s2">&quot;</span>
-       <span class="o">%</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ergebnis auf den Validierungsdaten: 0.803
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/titanic/datasets_transformed.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">datasets_transformed</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Das Ergebnis hat sich im Vergleich zur vorherigen Einstellung um 6% verbessert.</p>
-<div class="figure align-center" id="fig-gridsearch">
-<a class="reference internal image-reference" href="../_images/gridSearch.png"><img alt="../_images/gridSearch.png" src="../_images/gridSearch.png" style="height: 250px;" /></a>
 </div>
-<p>Ausgabe der besten Parameter über das Attribut best_params_.</p>
+<div class="section" id="pipeline-speichern">
+<h3>Pipeline speichern<a class="headerlink" href="#pipeline-speichern" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;predictor__n_neighbors&#39;: 5,
- &#39;transformers__num__outlier_remover__factor&#39;: 3.0}
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/titanic/transformer_pipeline.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">transformer_pipeline</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Ersetzten der Pipeline mit den besten Parametern.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_pipeline</span> <span class="o">=</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">best_estimator_</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Zum Abschluss: Validieren der Pipeline mit dem Validierungsset. Das Ergebnis liefert wie erwartet den Accuracy Score von 0.803</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_pipeline</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8033707865168539
-</pre></div>
-</div>
-</div>
-</div>
-<p>In diesem Abschnitt haben Sie die Kernelemente von Scikit Learn kennengelernt, wie man eigene Transformer erstellt und anwendet, wie Pipelines erstellt und genutzt werden können und wie die Suche nach optimalen Parametern für alle Schritte der Pipeline automatisiert werden kann. Nun sind Sie gefragt: Festigen Sie ihr Wissen durch die Anwendung von Transformationen am Datenset “Bike Buyers”.</p>
+<p>Die erste Pipeline ist erstellt und die Transformationen auf alle Datensets angewendet. Man kann an dieser Stelle die transformierten Datensets für Machine Learning Verfahren verwenden.</p>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="footnote1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
@@ -1908,9 +1801,6 @@
 </dd>
 <dt class="label" id="footnote2"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>siehe https://scikit-learn.org/stable/modules/classes.html#module-sklearn.preprocessing</p>
-</dd>
-<dt class="label" id="footnote3"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
-<dd><p>siehe https://scikit-learn.org/stable/modules/grid_search.html</p>
 </dd>
 </dl>
 </div>
@@ -1956,6 +1846,18 @@
           By Annette Landmesser<br/>
         
             &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <script type="text/x-thebe-config">
+{
+    binderOptions: {
+        repo: "https://github.com/landmessera/workshop-data",
+        binderUrl: "https://ada.mi.hdm-stuttgart.de/binder/",
+        ref: "master",
+    }
+}
+</script>
+
+          </div>
       </p>
     </div>
   </footer>

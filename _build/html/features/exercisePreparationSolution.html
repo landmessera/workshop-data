@@ -150,10 +150,39 @@
   <i class="fas fa-chevron-down">
   </i>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="featureEngineering.html">
-   Feature Engineering &amp; Daten verstehen
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="optimization.html">
+   Optimierung
   </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html">
+     Baseline erstellen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html#parameter-optimieren">
+     Parameter optimieren
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html#merkmale-optimieren">
+     Merkmale optimieren
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html#pipeline-speichern">
+     Pipeline speichern
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="exerciseOptimization.html">
+     Übung: Optimization
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
  </li>
 </ul>
 
@@ -429,9 +458,9 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: sklearn in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (0.0)
 Requirement already satisfied: scikit-learn in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from sklearn) (0.22.1)
-Requirement already satisfied: joblib&gt;=0.11 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (0.14.1)
-Requirement already satisfied: scipy&gt;=0.17.0 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.4.1)
 Requirement already satisfied: numpy&gt;=1.11.0 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.18.1)
+Requirement already satisfied: scipy&gt;=0.17.0 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.4.1)
+Requirement already satisfied: joblib&gt;=0.11 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (0.14.1)
 </pre></div>
 </div>
 </div>
@@ -1406,7 +1435,7 @@ Lösung Task 11<div class="summary-down docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f8d80b7ea90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f9d12282d50&gt;
 </pre></div>
 </div>
 <img alt="../_images/exercisePreparationSolution_74_1.png" src="../_images/exercisePreparationSolution_74_1.png" />
@@ -1612,7 +1641,7 @@ Lösung Task 15<div class="summary-down docutils">
 <p>Lesen Sie das gespeicherte Datenset aus der pickle-Datei aus und geben Sie die ersten 5 Zeilen der Validierungsmerkmale aus.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/datasets.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/bikebuyers/datasets.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
     <span class="n">datasets</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
 
 <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_val&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -1791,6 +1820,18 @@ Lösung Task 15<div class="summary-down docutils">
           By Annette Landmesser<br/>
         
             &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <script type="text/x-thebe-config">
+{
+    binderOptions: {
+        repo: "https://github.com/landmessera/workshop-data",
+        binderUrl: "https://ada.mi.hdm-stuttgart.de/binder/",
+        ref: "master",
+    }
+}
+</script>
+
+          </div>
       </p>
     </div>
   </footer>
