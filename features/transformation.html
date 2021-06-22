@@ -139,18 +139,52 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="exerciseTranformation.html">
-     Pipeline erstellen
+    <a class="reference internal" href="pipeline.html">
+     Tranformationen koordinieren
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="exerciseTransformation.html">
+     Übung: Tranformation
     </a>
    </li>
   </ul>
   <i class="fas fa-chevron-down">
   </i>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="featureEngineering.html">
-   Feature Engineering &amp; Daten verstehen
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="optimization.html">
+   Optimierung
   </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html">
+     Baseline erstellen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html#parameter-optimieren">
+     Parameter optimieren
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html#merkmale-optimieren">
+     Merkmale optimieren
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="optimizationSaved.html#pipeline-speichern">
+     Pipeline speichern
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="exerciseOptimization.html">
+     Übung: Optimization
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
  </li>
 </ul>
 
@@ -247,30 +281,19 @@
                 
   <div class="section" id="transformation">
 <h1>Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">¶</a></h1>
-<p>Mit Tranformationen werden in diesem Abschnitt gängige Methoden genannt, die nach der Aufbereitung der Daten und vor dem Trainieren eines Machine Learning Modells Verwendung finden. Im Abschnitt Aufbereitung der Daten wurden</p>
+<p>In diesem Abschnitt werden gängige Methoden gezeigt, die nach der Aufbereitung der Daten und vor dem Trainieren eines Machine Learning Modells Verwendung finden. Im Abschnitt Aufbereitung wurde ein Überblick der Daten geschaffen, fehlende Daten behandelt und die Daten in Datensets aufgeteilt. Theoretisch könnte jetzt mit dem Trainieren eines Modells gestartet werden. Praktisch macht es meist Sinn weitere Schritte durchzuführen bevor ein erstes Training stattfindet. Es gibt eine Vielzahl von Möglichkeiten. Einige gängige Methoden eignen sich in zahlreichen Anwendungsfällen. In diesem Abschnitt werden eine Auswahl von gängigen Tranformationen beschrieben und jeweils an einem Beispiel angewendet.</p>
+<p>Transformationen für numerische Daten</p>
 <ul class="simple">
-<li><p>überblick</p></li>
-<li><p>fehlende Daten</p></li>
-<li><p>Datensets erstellt</p></li>
-<li><p>Theoretisch könnte jetzt mit dem Trainieren des Modells gestartet werden</p></li>
-<li><p>Praktisch macht es Sinn weitere Schritte durchzuführen, bevor ein erstes Training stattfindet</p></li>
-<li><p>Gängige Methoden - eigenen sich meist / relativ unabh. vom Anwendungsfall</p></li>
-<li><p>Numerische daten: Outlier entfernen, Normalisierung, Diskretisierung</p></li>
-<li><p>Kategorische Daten: One-Hot Encoding</p></li>
-<li><p>zu Prüfen: ist One-Hot notwendig oder optional, ist Diskretisierung notwendig oder optional?</p></li>
-</ul>
-<p>Am Beispieldatenset Titanic werden die Methoden veranschaulicht. Darauf folgt eine Übung in der Sie selbst die Transformationsmethoden am Beispiel-Datenset Bike durchführen.</p>
-<p>In diesem Abschnitt werden eine Auswahl von gängige Tranformationen beschrieben und jeweils an einem Beispiel angewendet.</p>
-<p>Numerische Daten</p>
-<ul class="simple">
-<li><p>Removing Outliers</p></li>
-<li><p>Normalisierung</p></li>
+<li><p>Ausreißer erkennen und entfernen</p></li>
+<li><p>Min-Max-Skalierung</p></li>
+<li><p>Standardisierung</p></li>
 <li><p>Diskretisierung</p></li>
 </ul>
-<p>Kategorische Daten</p>
+<p>Transformation für kategorische Daten</p>
 <ul class="simple">
 <li><p>One-Hot Encoding</p></li>
 </ul>
+<p>Am Beispieldatenset Titanic werden die Methoden veranschaulicht. Darauf folgt eine Übung in der Sie selbst die Transformationsmethoden am Beispiel-Datenset Bike durchführen.</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -314,6 +337,18 @@
           By Annette Landmesser<br/>
         
             &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <script type="text/x-thebe-config">
+{
+    binderOptions: {
+        repo: "https://github.com/landmessera/workshop-data",
+        binderUrl: "https://ada.mi.hdm-stuttgart.de/binder/",
+        ref: "master",
+    }
+}
+</script>
+
+          </div>
       </p>
     </div>
   </footer>
