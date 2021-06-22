@@ -1,7 +1,7 @@
 pages:
   stage: deploy
   script:
-  - pip install -U jupyter-book
+  - pip install -U jupyter-book==0.10.2
   - jupyter-book build .
   - mkdir -p public
   - cp -r _build/html/* public/
