@@ -3,10 +3,7 @@ pages:
   script:
   - pip install -U jupyter-book==0.10.2
   - jupyter-book build .
-#  - mkdir -p public
-  - cp -r _build/html/* .
-  artifacts:
-    paths:
-    - .
+  - mkdir -p /srv/gitlab/pages/kitrainer/workshop-data
+  - cp -r _build/html/* /srv/gitlab/pages/kitrainer/workshop-data
   only:
   - master
