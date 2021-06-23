@@ -6,8 +6,8 @@ deploy:
   
   - jupyter-book build .
   
-  - rm -rf /srv/gitlab/pages/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
-  - mkdir -p /srv/gitlab/pages/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
-  - cp -r _build/html/* /srv/gitlab/pages/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+  - rm -rf /srv/gitlab/pages/$CI_PROJECT_NAME
+  - mkdir -p /srv/gitlab/pages/$CI_PROJECT_NAME
+  - cp -r _build/html/* /srv/gitlab/pages/$CI_PROJECT_NAME
   only:
   - master
