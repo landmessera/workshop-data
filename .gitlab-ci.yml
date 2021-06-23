@@ -1,11 +1,13 @@
 deploy:
   stage: deploy
   script:
-  - apt update && apt install -y python3-pip
+  - apt update && apt install -y python3-pip  
   - pip3 install jupyter-book==0.10.2
-  - /home/gitlab-runner/.local/bin/jupyter-book build .
-  - rm -rf /srv/gitlab/pages/kitrainer/workshop-data
-  - mkdir -p /srv/gitlab/pages/kitrainer/workshop-data
-  - cp -r _build/html/* /srv/gitlab/pages/kitrainer/workshop-data
+  
+  - jupyter-book build .
+  
+  - rm -rf /srv/gitlab/pages/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+  - mkdir -p /srv/gitlab/pages/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+  - cp -r _build/html/* /srv/gitlab/pages/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
   only:
   - master
