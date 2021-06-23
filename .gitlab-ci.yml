@@ -3,6 +3,7 @@ deploy:
   script:
   - pip install -U jupyter-book==0.10.2
   - jupyter-book build .
+  - rm -rf /srv/gitlab/pages/kitrainer/workshop-data
   - mkdir -p /srv/gitlab/pages/kitrainer/workshop-data
   - cp -r _build/html/* /srv/gitlab/pages/kitrainer/workshop-data
   only:
