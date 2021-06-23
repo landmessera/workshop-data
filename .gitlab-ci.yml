@@ -2,7 +2,7 @@ deploy:
   stage: deploy
   script:
   - apt update && apt install -y python3-pip
-  - pip3 install -U jupyter-book==0.10.2
+  - pip3 install jupyter-book==0.10.2
   - jupyter-book build .
   - rm -rf /srv/gitlab/pages/kitrainer/workshop-data
   - mkdir -p /srv/gitlab/pages/kitrainer/workshop-data
