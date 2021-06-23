@@ -3,10 +3,10 @@ pages:
   script:
   - pip install -U jupyter-book==0.10.2
   - jupyter-book build .
-  - mkdir -p public
-  - cp -r _build/html/* public/
+#  - mkdir -p public
+  - cp -r _build/html/* .
   artifacts:
     paths:
-    - public
+    - .
   only:
   - master
