@@ -22,7 +22,7 @@ bibtex_bibfiles:
 
 # Information about where the book exists on the web
 repository:
-  url: https://ada.mi.hdm-stuttgart.de/gitlab/kitrainer/workshop-data  # Online location of your book
+  #url: https://ada.mi.hdm-stuttgart.de/gitlab/kitrainer/workshop-data  # Online location of your book
   #path_to_book: docs  # Optional path to your book, relative to the repository root
   branch: master  # Which branch of the repository should be used when creating links (optional)
 
@@ -55,6 +55,7 @@ html:
     <script type="text/x-thebe-config">
     {
         binderOptions: {
+            repoProvider: "git",
             repo: "https://ada.mi.hdm-stuttgart.de/gitlab/kitrainer/workshop-data",
             binderUrl: "https://ada.mi.hdm-stuttgart.de/binder/",
             ref: "master",
