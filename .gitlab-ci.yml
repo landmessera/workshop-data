@@ -11,3 +11,4 @@ deploy:
   - cp -r _build/html/* /srv/gitlab/pages/$CI_PROJECT_NAME
   only:
   - master
+

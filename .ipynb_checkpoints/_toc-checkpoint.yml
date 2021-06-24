@@ -12,5 +12,9 @@
   sections:
     - file: ./features/transformationNumerical
     - file: ./features/transformationCategorical
-    - file: ./features/exerciseTranformation
-- file: ./features/featureEngineering
+    - file: ./features/pipeline
+    - file: ./features/exerciseTransformation
+- file: ./features/optimization
+  sections:
+    - file: ./features/optimizationContent
+    - file: ./features/exerciseOptimization

@@ -16,5 +16,5 @@
     - file: ./features/exerciseTransformation
 - file: ./features/optimization
   sections:
-    - file: ./features/optimizationSaved
+    - file: ./features/optimizationContent
     - file: ./features/exerciseOptimization
