@@ -2,7 +2,7 @@ deploy:
   stage: deploy
   script:
   - apt update && apt install -y python3-pip  
-  - pip3 install jupyter-book==0.10.2
+  - pip3 install jupyter-book==0.10.2 numpy pandas sklearn
   
   - jupyter-book build .
   
