@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Übung: Aufbereitung &#8212; Daten Workshop</title>
+    <title>Übung: Aufbereitung &#8212; Daten für Machine Learning</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -76,7 +76,7 @@
   <img src="../_static/modul2single.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">Daten Workshop</h1>
+  <h1 class="site-logo" id="site-title">Daten für Machine Learning</h1>
   
 </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -86,12 +86,17 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Willkommen zum Daten Workshop
+  <a class="reference internal" href="welcome.html">
+   Willkommen beim Onlinekurs
   </a>
  </li>
 </ul>
 <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="datasets.html">
+   Datensets
+  </a>
+ </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="preparation.html">
    Aufbereitung
@@ -157,7 +162,7 @@
   <ul class="collapse-ul">
    <li class="toctree-l2">
     <a class="reference internal" href="optimizationContent.html">
-     Baseline erstellen
+     Baseline definieren
     </a>
    </li>
    <li class="toctree-l2">
@@ -249,7 +254,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/landmessera/workshop-data/master?urlpath=tree/features/exercisePreparationSolution.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/features/exercisePreparationSolution.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -457,12 +462,11 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: sklearn in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (0.0)
-Requirement already satisfied: scikit-learn in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from sklearn) (0.22.1)
-Requirement already satisfied: numpy&gt;=1.11.0 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.18.1)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: joblib&gt;=0.11 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (0.14.1)
-Requirement already satisfied: scipy&gt;=0.17.0 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.4.1)
+Requirement already satisfied: scikit-learn in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from sklearn) (0.24.2)
+Requirement already satisfied: joblib&gt;=0.11 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (0.14.1)
+Requirement already satisfied: numpy&gt;=1.13.3 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.18.1)
+Requirement already satisfied: scipy&gt;=0.19.1 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.4.1)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (2.1.0)
 </pre></div>
 </div>
 </div>
@@ -1437,7 +1441,7 @@ Lösung Task 11<div class="summary-down docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fd090264250&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fed690ad9d0&gt;
 </pre></div>
 </div>
 <img alt="../_images/exercisePreparationSolution_74_1.png" src="../_images/exercisePreparationSolution_74_1.png" />
@@ -1789,7 +1793,7 @@ Lösung Task 15<div class="summary-down docutils">
     {
         requestKernel: true,
         binderOptions: {
-            repo: "landmessera/workshop-data",
+            repo: "executablebooks/jupyter-book",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -1826,7 +1830,8 @@ Lösung Task 15<div class="summary-down docutils">
             <script type="text/x-thebe-config">
 {
     binderOptions: {
-        repo: "https://github.com/landmessera/workshop-data",
+        repoProvider: "git",
+        repo: "https://ada.mi.hdm-stuttgart.de/gitlab/kitrainer/workshop-data",
         binderUrl: "https://ada.mi.hdm-stuttgart.de/binder/",
         ref: "master",
     }

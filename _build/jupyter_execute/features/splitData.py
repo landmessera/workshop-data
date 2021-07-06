@@ -267,6 +267,75 @@ datasets = {
     'y_test': y_test
 }
 
+import random
+random.seed(52)
+
+# Sex
+sex_values = ['female', 'male']
+
+# Pclass
+pclass_values = [1, 2, 3]
+
+# Embarked
+embarked_values = ['Q','S','C']
+# Survived
+survived_values = [0,1]
+
+outlier_xtrain_count = int(datasets['X_train'].shape[0]*0.02)
+outlier_xval_count = int(datasets['X_val'].shape[0]*0.02)
+outlier_xtest_count = int(datasets['X_test'].shape[0]*0.02)
+
+outlier = {
+    'X_train': {
+        'age': random.sample(range(200,300), outlier_xtrain_count),
+        'parch': random.sample(range(20,40), outlier_xtrain_count),
+        'sibsp': random.sample(range(21,50), outlier_xtrain_count),
+        'fare': [2630]*outlier_xtrain_count
+    },
+    'X_val': {
+        'age': random.sample(range(200,300), outlier_xval_count),
+        'parch': random.sample(range(20,40), outlier_xval_count),
+        'sibsp': random.sample(range(21,50), outlier_xval_count),
+        'fare': [2630]*outlier_xval_count
+    },
+    'X_test': {
+        'age': random.sample(range(200,300), outlier_xtest_count),
+        'parch': random.sample(range(20,40), outlier_xtest_count),
+        'sibsp': random.sample(range(21,50), outlier_xtest_count),
+        'fare': [2630]*outlier_xtest_count
+    }
+}
+
+print(outlier['X_train']['age'])
+print(outlier['X_val']['age'])
+
+for key, dataset in datasets.items():
+    print(key, dataset.shape)
+
+for key, dataset in datasets.items():
+    y_train_new = []
+    if 'X' in key:
+        for (age, sibsp, parch, fare) in zip(outlier[key]['age'], outlier[key]['sibsp'], outlier[key]['parch'], outlier[key]['fare']):
+            dataset = dataset.append(
+                {
+                    'Sex': random.choice(sex_values),
+                    'Pclass': random.choice(pclass_values),
+                    'Age': age,
+                    'Parch': parch,
+                    'SibSp': sibsp,
+                    'Fare': fare,
+                    'Embarked': random.choice(embarked_values)
+                }, ignore_index=True
+            )
+            y_train_new.append(random.choice(survived_values))
+
+        y_set = 'y_'+key.split('_')[1]
+        datasets[y_set] = datasets[y_set].append(pd.Series(y_train_new))
+        datasets[key] = dataset
+
+for key, dataset in datasets.items():
+    print(key, dataset.shape)
+
 Das Pickle Modul ermöglicht eine einfache und effiziente Speicherung der Daten. Im Vergleich zu anderen Formaten wie z.B. dem Excel-Format, lassen sich Pickle Formate schneller speichern und auslesen. Das Speichern des Python Dictionary erfolgt über folgende zwei Zeilen Code:
 
 with open('../output/titanic/datasets.pkl', 'wb') as handle:

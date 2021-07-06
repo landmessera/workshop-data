@@ -1,12 +1,14 @@
 # Aufbereitung
 
-Ziele:
+## Ziele
 * Einen ersten Eindruck von den Daten gewinnen  
 * Grundlegendes Verständnis der Daten 
 * Grundlegende Statistiken erheben und visualisieren
 * Fehlende Daten ermitteln
 * Umgang mit fehlenden Daten
 * Datensets erstellen
+
+## Inhalt
 
 ## Das Datenset Titanic
 Um die Techniken zu erklären wird das Datenset "Titanic" verwendet.
@@ -32,7 +34,7 @@ Erstellen Sie ein Vorhersagemodell, das die Frage beantwortet: "Welche Arten von
 Um ein Vorhersagemodell erstellen zu können, müssen die Daten aufbereitet und tranformiert werden. Außerdem können Feature Engineering Methoden zu einem besseren Ergebnis führen. Anhand des Beispiel-Datenset Titanic werden Methoden zur
 * Aufbereitung
 * Transformierung
-* und Feature Engineering  
+* und Optimierung 
 
 erläutert. Im Anschluss werden die gelernten Methoden anhand des Datenset "Bike Buyers" erprobt.
 </div>

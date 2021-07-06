@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Daten Workshop
+title: Daten für Machine Learning
 author: Annette Landmesser
 logo: images/modul2single.png
 copyright: "2021"

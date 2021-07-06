@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Baseline erstellen &#8212; Daten Workshop</title>
+    <title>Baseline definieren &#8212; Daten für Machine Learning</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -78,7 +78,7 @@
   <img src="../_static/modul2single.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">Daten Workshop</h1>
+  <h1 class="site-logo" id="site-title">Daten für Machine Learning</h1>
   
 </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -88,12 +88,17 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Willkommen zum Daten Workshop
+  <a class="reference internal" href="welcome.html">
+   Willkommen beim Onlinekurs
   </a>
  </li>
 </ul>
 <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="datasets.html">
+   Datensets
+  </a>
+ </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="preparation.html">
    Aufbereitung
@@ -159,7 +164,7 @@
   <ul class="current collapse-ul">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Baseline erstellen
+     Baseline definieren
     </a>
    </li>
    <li class="toctree-l2">
@@ -251,7 +256,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/landmessera/workshop-data/master?urlpath=tree/features/optimizationContent.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/features/optimizationContent.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -279,17 +284,17 @@
             <ul class="nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Baseline erstellen
+   Baseline definieren
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#machine-learning-verfahren-anwenden">
-     Machine Learning Verfahren anwenden
+    <a class="reference internal nav-link" href="#klassifikator-erstellen">
+     Klassifikator erstellen
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#klassifikator-in-eine-pipeline-integrieren">
-     Klassifikator in eine Pipeline integrieren
+    <a class="reference internal nav-link" href="#klassifikator-in-pipeline-integrieren">
+     Klassifikator in Pipeline integrieren
     </a>
    </li>
   </ul>
@@ -317,8 +322,28 @@
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#neue-merkmale-hinzufugen">
-     Neue Merkmale hinzufügen
+    <a class="reference internal nav-link" href="#neue-merkmale-erstellen">
+     Neue Merkmale erstellen
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#neue-merkmale-prufen">
+     Neue Merkmale prüfen
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#weitere-transformation-hinzufugen">
+     Weitere Transformation hinzufügen
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finaler-test-mit-dem-testdatenset">
+     Finaler Test mit dem Testdatenset
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#welche-merkmale-sind-entscheidend">
+     Welche Merkmale sind entscheidend?
     </a>
    </li>
   </ul>
@@ -340,8 +365,8 @@
         
               <div>
                 
-  <div class="section" id="baseline-erstellen">
-<h1>Baseline erstellen<a class="headerlink" href="#baseline-erstellen" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="baseline-definieren">
+<h1>Baseline definieren<a class="headerlink" href="#baseline-definieren" title="Permalink to this headline">¶</a></h1>
 <p>Für die Erstellung einer Baseline wird ein Klassifikator für die Klassifikationsaufgabe des Beispiel Titanic erstellt, mit dem transformierten Trainingsdatenset trainiert und dem transformierten Validierungsdatenset validiert.</p>
 <p>Pakete importieren</p>
 <div class="cell docutils container">
@@ -349,7 +374,10 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">treeinterpreter</span> <span class="kn">import</span> <span class="n">treeinterpreter</span>
 </pre></div>
 </div>
 </div>
@@ -363,26 +391,24 @@
 </div>
 </div>
 </div>
-<div class="section" id="machine-learning-verfahren-anwenden">
-<h2>Machine Learning Verfahren anwenden<a class="headerlink" href="#machine-learning-verfahren-anwenden" title="Permalink to this headline">¶</a></h2>
-<p>Als Klassifikator wird der K-Nearest Neighbors Algorithmus verwendet. Die Implementierung ist wie folgt:</p>
+<div class="section" id="klassifikator-erstellen">
+<h2>Klassifikator erstellen<a class="headerlink" href="#klassifikator-erstellen" title="Permalink to this headline">¶</a></h2>
+<p>Als Klassifikator wird ein Entscheidungsbaum verwendet. Scikit Learn liefert den DecisionTreeClassifier. Es handelt sich um einen Prädiktor. Die Fit()-Methode wird mit den transformierten Trainingsdaten aufgerufen um den Entscheidungsbaum zu erstellen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
-<span class="n">classifier</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">datasets_transformed</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">],</span> <span class="n">datasets_transformed</span><span class="p">[</span><span class="s1">&#39;y_train&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KNeighborsClassifier(algorithm=&#39;auto&#39;, leaf_size=30, metric=&#39;minkowski&#39;,
-                     metric_params=None, n_jobs=None, n_neighbors=3, p=2,
-                     weights=&#39;uniform&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DecisionTreeClassifier(random_state=0)
 </pre></div>
 </div>
 </div>
 </div>
-<p>Nach importieren der KNeighborsClassifier-Klasse, wird eine Instanz erstellt und der Klassifikator mit den transformierten Daten trainiert.</p>
+<p>Über den Aufruf der score()-Methode erhält man den Accuracy-Score des Validierungsdatensets.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">datasets_transformed</span><span class="p">[</span><span class="s1">&#39;X_val&#39;</span><span class="p">],</span> <span class="n">datasets_transformed</span><span class="p">[</span><span class="s1">&#39;y_val&#39;</span><span class="p">])</span>
@@ -390,12 +416,11 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7415730337078652
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7513812154696132
 </pre></div>
 </div>
 </div>
 </div>
-<p>Validiert wird durch aufrufen der score()-Methode und übergeben des Validierungsdatenset.</p>
 <p>Das übliche Vorgehen beim Machine Learning ist <strong>experimentell</strong>. Man entwickelt zunächst eine Variante und erhält ein Ergebnis. In unserem Fall ein Accuracy Score von 0.74, bedeutet 74% der vorgehergesagten Werte sind richtig. Dieser Score dient als Basis für weitere Optimierungen. Es werden Veränderungen unterschiedlichster Art vorgenommen wie zum Beispiel</p>
 <ul class="simple">
 <li><p>Anwendung weiterer Transformationsschritte</p></li>
@@ -428,8 +453,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="klassifikator-in-eine-pipeline-integrieren">
-<h2>Klassifikator in eine Pipeline integrieren<a class="headerlink" href="#klassifikator-in-eine-pipeline-integrieren" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="klassifikator-in-pipeline-integrieren">
+<h2>Klassifikator in Pipeline integrieren<a class="headerlink" href="#klassifikator-in-pipeline-integrieren" title="Permalink to this headline">¶</a></h2>
 <p>Erstellt wird eine Pipeline, die im ersten Schritt die bereits erstellte Transformer-Pipeline enthält und im Anschluss den Klassifikator.</p>
 <div class="figure align-center" id="fig-pipelinefull">
 <a class="reference internal image-reference" href="../_images/pipelineFull.png"><img alt="../_images/pipelineFull.png" src="../_images/pipelineFull.png" style="height: 180px;" /></a>
@@ -438,7 +463,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
     <span class="p">(</span><span class="s1">&#39;transformers&#39;</span><span class="p">,</span> <span class="n">transformer_pipeline</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;predictor&#39;</span><span class="p">,</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+    <span class="p">(</span><span class="s1">&#39;predictor&#39;</span><span class="p">,</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 <span class="p">])</span>
 </pre></div>
 </div>
@@ -453,7 +478,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7415730337078652
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7513812154696132
 </pre></div>
 </div>
 </div>
@@ -468,15 +493,22 @@
 <p>Für jeden beliebigen Schritt in der Pipeline können Wertebereiche für die Parameter angegeben werden. Für das Anwendungsbeispiel werden folgende Wertebereiche gesetzt:</p>
 <ul class="simple">
 <li><p>der Faktor, der bei der IQR-Methode zur Ausreißererkennung verwendet wird, mit einem Wertebereich von [1.0, 1.5, 2.0, 3.0]</p></li>
-<li><p>der n_neighbors Parameter, der beim K-Nearest-Neighbor-Algorithmus bestimmt wie viele Nachbarn berücksichtigt werden, mit einem Wertebereich von [2, 3, 4, 5, 6, 7, 8]</p></li>
+<li><p>der min_samples_split Parameter, der beim DecisionTreeClassifier-Algorithmus bestimmt wie viele Daten notwendig sind, um eine weitere Verzweigung zu erstellen, mit einem Wertebereich von [2, 3, 4, 5, 6]</p></li>
 </ul>
+<p>Die Bezeichnung der Parameter folgt einer Regel: Vor die eigentliche Parameterbezeichnung wie z.B. “factor” werden die Pipeline-Namen mit doppeltem Unterstrich getrennt gestellt.</p>
+<p>Der Aufbau der Pipeline:</p>
+<div class="figure align-center" id="fig-pipelinestructure">
+<a class="reference internal image-reference" href="../_images/pipelineStructure.png"><img alt="../_images/pipelineStructure.png" src="../_images/pipelineStructure.png" style="height: 250px;" /></a>
+</div>
+<p>Die Vollständige Bezeichnung lautet: “transformers__num__outlier_remover__factor”</p>
+<p>Der Parameter param_grid stellt der GridSearchCV Klasse ein Dictionary bereit. Die Keys entsprechen den Bezeichnungen und die Values einer Liste von Werten, die getestet werden sollen.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 
 <span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;transformers__num__outlier_remover__factor&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span>
-    <span class="s1">&#39;predictor__n_neighbors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span>
+    <span class="s1">&#39;predictor__min_samples_split&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
 <span class="p">}</span>
 
 <span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">full_pipeline</span><span class="p">,</span> <span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -493,21 +525,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;predictor__n_neighbors&#39;: 5,
- &#39;transformers__num__outlier_remover__factor&#39;: 3.0}
-</pre></div>
-</div>
-</div>
-</div>
-<p>Die beste Parameterkombination kann nach dem Trainieren über das Atrribut ‘best_params_’ abgefragt werden.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;predictor__n_neighbors&#39;: 5,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;predictor__min_samples_split&#39;: 6,
  &#39;transformers__num__outlier_remover__factor&#39;: 3.0}
 </pre></div>
 </div>
@@ -521,12 +539,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8126135569531796
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7682828282828283
 </pre></div>
 </div>
 </div>
 </div>
-<p>Das Ergebnis auf den Validierungsdaten:</p>
+<p>Das Ergebnis auf den Validierungsdaten lautet:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_val&#39;</span><span class="p">],</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_val&#39;</span><span class="p">])</span>
@@ -534,32 +552,32 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8033707865168539
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7624309392265194
 </pre></div>
 </div>
 </div>
 </div>
-<p>Das Ergebnis hat sich im Vergleich zur vorherigen Einstellung, der Baseline, um 6% verbessert.</p>
-<div class="figure align-center" id="fig-gridsearch">
-<a class="reference internal image-reference" href="../_images/gridSearch.png"><img alt="../_images/gridSearch.png" src="../_images/gridSearch.png" style="height: 250px;" /></a>
+<p>Im Vergleich zur vorherigen Einstellung, der Baseline, hat sich das Ergebnis um 1% verbessert.</p>
+<div class="figure align-center" id="fig-gridsearchdct">
+<a class="reference internal image-reference" href="../_images/gridsearchDct.png"><img alt="../_images/gridsearchDct.png" src="../_images/gridsearchDct.png" style="height: 250px;" /></a>
 </div>
 <p>Ersetzten der bisherigen Pipeline mit der besten Pipeline aus Grid Search.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_pipeline</span> <span class="o">=</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">best_estimator_</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_pipeline_gridsearch</span> <span class="o">=</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">best_estimator_</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Zum Abschluss: Validieren der Pipeline mit dem Validierungsset. Das Ergebnis liefert wie erwartet den Accuracy Score von 0.803</p>
+<p>Zum Abschluss: Validieren der Pipeline mit dem Validierungsset. Das Ergebnis liefert wie erwartet den Accuracy Score von 0.752</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_pipeline</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_val&#39;</span><span class="p">],</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_val&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_pipeline_gridsearch</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_val&#39;</span><span class="p">],</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_val&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8033707865168539
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7624309392265194
 </pre></div>
 </div>
 </div>
@@ -568,11 +586,561 @@
 </div>
 <div class="section" id="merkmale-optimieren">
 <h1>Merkmale optimieren<a class="headerlink" href="#merkmale-optimieren" title="Permalink to this headline">¶</a></h1>
+<p>Eine weitere Möglichkeit Optimierungen durchzuführen ist die Bearbeitung der Merkmale. Hierbei wird Domänenwissen eingebracht um z.B. neue Merkmale aus Kombinationen von mehreren Merkmalen zu erstellen oder eine Diskretisierung der Werte durchzuführen. Das Domänenwissen kann über Experten aus dem Anwendungsbereich eingeholt werden oder bzw. meist in Kombination durch Einarbeiten in den Anwenungsbereich.</p>
+<p>Zunächst versucht man die Daten besser zu verstehen zum Beispiel durch Visualisierungen oder Statistiken. Im ersten Schritt versucht man zu erkennen welche Merkmale wichtig sind?</p>
 <div class="section" id="wichtige-merkmale-erkennen">
 <h2>Wichtige Merkmale erkennen<a class="headerlink" href="#wichtige-merkmale-erkennen" title="Permalink to this headline">¶</a></h2>
+<p>Eine Korrelationsmatrix, zeigt wie stark Merkmale korrelieren. Fügt man die Zielwerte, im Beispiel Titanic die Spalte “Survived” hinzu, kann nicht nur die Korrelation zwischen Merkmalen, sondern auch die Korrelation der Merkmale mit dem Zielwert abgefragt werden.</p>
+<p>Erstellen eines temporären Datenframe und hinzufügen der Zielwerte in eine Spalte namens “Survived”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datasets_transformed</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
 </div>
-<div class="section" id="neue-merkmale-hinzufugen">
-<h2>Neue Merkmale hinzufügen<a class="headerlink" href="#neue-merkmale-hinzufugen" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(544, 11)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(544,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_temp</span> <span class="o">=</span> <span class="n">datasets_transformed</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datasets_transformed</span><span class="p">[</span><span class="s1">&#39;y_train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pandas liefert die corr()-Methode um eine Korrelationsmatrix zu erstellen. Visualisiert wird die Matrix mit Hilfe der <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.heatmap.html">heatmap()-Methode der Bibliothek Seaborn</a> und Matplotlib.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">df_temp</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span><span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span> <span class="o">=</span> <span class="s2">&quot;.2f&quot;</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;coolwarm&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fd65d157990&gt;
+</pre></div>
+</div>
+<img alt="../_images/optimizationContent_51_1.png" src="../_images/optimizationContent_51_1.png" />
+</div>
+</div>
+<ul class="simple">
+<li><p>Signifikante Korrelationen mit der Zielgröße “Survived”</p></li>
+</ul>
+<ul class="simple">
+<li><p>Sex_female(-0.55) und Sex_male (0.55)</p></li>
+<li><p>Pclass_3 (0.32) und Pclass_1(0.28)</p></li>
+<li><p>Fare (0.23)</p></li>
+</ul>
+<ul class="simple">
+<li><p>Sex_male und Sex_female -&gt; 1.0 da Merkmale aus einem kategorischen Merkmal mit zwei Klassen erstellt worden sind</p></li>
+<li><p>Pclass_1 und Fare -&gt; 0.61 da für die erste Klasse sehr hohe Ticketpreise bezahlt wurden</p></li>
+<li><p>Parch und SibSp -&gt; Geschwister oder Ehepartner an Bord oft mit Familie, daher Korrelation mit Eltern oder/und Kinder</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Explore SibSp feature vs Survived</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;SibSp&quot;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;Survived&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df_temp</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">palette</span> <span class="o">=</span> <span class="s2">&quot;muted&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;Wahrscheinlichkeit zu überleben&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/optimizationContent_54_0.png" src="../_images/optimizationContent_54_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Explore SibSp feature vs Survived</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Pclass_3&quot;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;Survived&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df_temp</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">palette</span> <span class="o">=</span> <span class="s2">&quot;muted&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;Wahrscheinlichkeit zu überleben&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/optimizationContent_55_0.png" src="../_images/optimizationContent_55_0.png" />
+</div>
+</div>
+<p>-&gt; hohe Werte (viele Geschwister oder/und Ehepartner an Bord) führen zu einer geringeren Wahrscheinlichkeit zu überleben. Niedrige Werte -&gt; geringe Überlebenswahrscheinlichkeit
+-&gt; Was ist hier der Hintergrund? Es liegt nahe, dass Passagiere nur gemeinsam mit den Familienangehörigen das Schiff verlassen wollten. Annahme: Je größer die Familie umso schwieriger ein Rettungsboot zu finden. Ist eine Person allein an Bord, war es zwar einfacher einen Platz im Rettungsboot zu finden, jedoch der Weg dorthin musste allein ohne Hilfe erfolgen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Explore SibSp feature vs Survived</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Parch&quot;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;Survived&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df_temp</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">palette</span> <span class="o">=</span> <span class="s2">&quot;muted&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;Wahrscheinlichkeit zu überleben&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/optimizationContent_57_0.png" src="../_images/optimizationContent_57_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fd65efe2b50&gt;
+</pre></div>
+</div>
+<img alt="../_images/optimizationContent_58_1.png" src="../_images/optimizationContent_58_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bins</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;Age_binned&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Explore SibSp feature vs Survived</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Age_binned&quot;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;Survived&quot;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df_temp</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">palette</span> <span class="o">=</span> <span class="s2">&quot;muted&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;Wahrscheinlichkeit zu überleben&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/optimizationContent_60_0.png" src="../_images/optimizationContent_60_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_temp</span><span class="o">.</span><span class="n">corr</span><span class="p">()[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Age          -0.126931
+SibSp         0.023467
+Parch         0.104473
+Fare          0.275055
+Pclass_1      0.265286
+Pclass_2      0.098088
+Pclass_3     -0.309815
+Sex_male     -0.544783
+Embarked_C    0.154458
+Embarked_Q    0.027205
+Embarked_S   -0.150641
+Survived      1.000000
+Name: Survived, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="neue-merkmale-erstellen">
+<h2>Neue Merkmale erstellen<a class="headerlink" href="#neue-merkmale-erstellen" title="Permalink to this headline">¶</a></h2>
+<p>Erstellen eines Family Size und Age Transformer</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%writefile transformer_family.py</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
+
+<span class="n">age_ix</span><span class="p">,</span> <span class="n">sibsp_ix</span><span class="p">,</span> <span class="n">parch_ix</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+
+<span class="k">class</span> <span class="nc">FamilySize</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_names</span> <span class="o">=</span> <span class="n">feature_names</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_names_new</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">pass</span>
+    
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">X_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">X_</span><span class="p">[</span><span class="s2">&quot;FamilySize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="n">sibsp_ix</span><span class="p">]</span> <span class="o">+</span> <span class="n">X_</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="n">parch_ix</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">X_</span><span class="p">[</span><span class="s1">&#39;Single&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_</span><span class="p">[</span><span class="s1">&#39;FamilySize&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="c1">#X_[&#39;SmallF&#39;] = X_[&#39;FamilySize&#39;].map(lambda s: 1 if  s == 2  else 0)</span>
+        <span class="c1">#X_[&#39;MedF&#39;] = X_[&#39;FamilySize&#39;].map(lambda s: 1 if 3 &lt;= s &lt;= 4 else 0)</span>
+        <span class="c1">#X_[&#39;LargeF&#39;] = X_[&#39;FamilySize&#39;].map(lambda s: 1 if s &gt;= 5 else 0)</span>
+        <span class="c1">#self.feature_names_new = [&#39;FamilySize&#39;, &#39;Single&#39;, &#39;SmallF&#39;, &#39;MedF&#39;, &#39;LargeF&#39;]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_names_new</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;FamilySize&#39;</span><span class="p">,</span> <span class="s1">&#39;Single&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">X_</span><span class="o">.</span><span class="n">values</span>
+    
+    <span class="k">def</span> <span class="nf">get_feature_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_names</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_names_new</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#from transformer_family import FamilySize</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span> <span class="nn">transformer</span> <span class="kn">import</span> <span class="n">OutlierRemover</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="neue-merkmale-prufen">
+<h2>Neue Merkmale prüfen<a class="headerlink" href="#neue-merkmale-prufen" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_numerical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;SibSp&#39;</span><span class="p">,</span> <span class="s1">&#39;Parch&#39;</span><span class="p">,</span> <span class="s1">&#39;Fare&#39;</span><span class="p">]</span>
+<span class="n">features_categorical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Embarked&#39;</span><span class="p">]</span>
+
+<span class="n">pipe_numerical</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+    <span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;outlier_remover&#39;</span><span class="p">,</span> <span class="n">OutlierRemover</span><span class="p">(</span><span class="n">factor</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)),</span>
+        <span class="p">(</span><span class="s1">&#39;familysize&#39;</span><span class="p">,</span> <span class="n">FamilySize</span><span class="p">(</span><span class="n">feature_names</span><span class="o">=</span><span class="n">features_numerical</span><span class="p">)),</span>
+        <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())</span>
+    <span class="p">],</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="n">pipe_categorical</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+    <span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;onehot&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="s1">&#39;if_binary&#39;</span><span class="p">))</span>
+    <span class="p">],</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="n">transformer_pipe</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span>
+            <span class="s1">&#39;num&#39;</span><span class="p">,</span> 
+            <span class="n">pipe_numerical</span><span class="p">,</span>
+            <span class="n">features_numerical</span>
+        <span class="p">),</span>
+        <span class="p">(</span>
+            <span class="s1">&#39;cat&#39;</span><span class="p">,</span>
+            <span class="n">pipe_categorical</span><span class="p">,</span>
+            <span class="n">features_categorical</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">full_pipeline_fe1</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;transformers&#39;</span><span class="p">,</span> <span class="n">transformer_pipe</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;predictor&#39;</span><span class="p">,</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">5</span>
+    <span class="p">))]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_pipeline_fe1</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">],</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_train&#39;</span><span class="p">])</span>
+<span class="n">full_pipeline_fe1</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_val&#39;</span><span class="p">],</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_val&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Pipeline] ... (step 1 of 3) Processing outlier_remover, total=   0.0s
+[Pipeline] ........ (step 2 of 3) Processing familysize, total=   0.0s
+[Pipeline] ............ (step 3 of 3) Processing scaler, total=   0.0s
+[Pipeline] ............ (step 1 of 1) Processing onehot, total=   0.0s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7679558011049724
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transformer_pipe</span><span class="o">.</span><span class="n">transformers_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;familysize&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Age&#39;, &#39;SibSp&#39;, &#39;Parch&#39;, &#39;Fare&#39;, &#39;FamilySize&#39;, &#39;Single&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ergebnis hat sich um 0.006 verbessert.</p>
+</div>
+<div class="section" id="weitere-transformation-hinzufugen">
+<h2>Weitere Transformation hinzufügen<a class="headerlink" href="#weitere-transformation-hinzufugen" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%writefile transformer_age.py</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
+
+<span class="k">class</span> <span class="nc">AgeBinned</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+    
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">X_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">bins</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span><span class="mi">100</span><span class="p">]</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+        <span class="n">X_</span><span class="p">[</span><span class="n">age_ix</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">X_</span><span class="p">[</span><span class="n">age_ix</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">X_</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transformer_pipe</span><span class="o">.</span><span class="n">transformers_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;familysize&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Age&#39;, &#39;SibSp&#39;, &#39;Parch&#39;, &#39;Fare&#39;, &#39;FamilySize&#39;, &#39;Single&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_numerical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;SibSp&#39;</span><span class="p">,</span> <span class="s1">&#39;Parch&#39;</span><span class="p">,</span> <span class="s1">&#39;Fare&#39;</span><span class="p">]</span>
+<span class="n">features_categorical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Embarked&#39;</span><span class="p">]</span>
+
+<span class="n">pipe_numerical</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+    <span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;outlier_remover&#39;</span><span class="p">,</span> <span class="n">OutlierRemover</span><span class="p">(</span><span class="n">factor</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)),</span>
+        <span class="p">(</span><span class="s1">&#39;familysize&#39;</span><span class="p">,</span> <span class="n">FamilySize</span><span class="p">(</span><span class="n">feature_names</span><span class="o">=</span><span class="n">features_numerical</span><span class="p">)),</span>
+        <span class="p">(</span><span class="s1">&#39;agebinned&#39;</span><span class="p">,</span> <span class="n">AgeBinned</span><span class="p">()),</span>
+        <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())</span>
+    <span class="p">],</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="n">pipe_categorical</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+    <span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;onehot&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="s1">&#39;if_binary&#39;</span><span class="p">))</span>
+    <span class="p">],</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="n">transformer_pipe</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span>
+            <span class="s1">&#39;num&#39;</span><span class="p">,</span> 
+            <span class="n">pipe_numerical</span><span class="p">,</span>
+            <span class="n">features_numerical</span>
+        <span class="p">),</span>
+        <span class="p">(</span>
+            <span class="s1">&#39;cat&#39;</span><span class="p">,</span>
+            <span class="n">pipe_categorical</span><span class="p">,</span>
+            <span class="n">features_categorical</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">full_pipeline_fe2</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;transformers&#39;</span><span class="p">,</span> <span class="n">transformer_pipe</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;predictor&#39;</span><span class="p">,</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">5</span>
+    <span class="p">))]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_pipeline_fe2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">],</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_train&#39;</span><span class="p">])</span>
+<span class="n">full_pipeline_fe2</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_val&#39;</span><span class="p">],</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_val&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Pipeline] ... (step 1 of 4) Processing outlier_remover, total=   0.0s
+[Pipeline] ........ (step 2 of 4) Processing familysize, total=   0.0s
+[Pipeline] ......... (step 3 of 4) Processing agebinned, total=   0.0s
+[Pipeline] ............ (step 4 of 4) Processing scaler, total=   0.0s
+[Pipeline] ............ (step 1 of 1) Processing onehot, total=   0.0s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7845303867403315
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das Ergebnis hat sich um 0.03 verbessert.</p>
+</div>
+<div class="section" id="finaler-test-mit-dem-testdatenset">
+<h2>Finaler Test mit dem Testdatenset<a class="headerlink" href="#finaler-test-mit-dem-testdatenset" title="Permalink to this headline">¶</a></h2>
+<p>Ergebnis vor den Parameter- und Merklmalsoptimierungen auf dem Validierungsdatenset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_pipeline</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_val&#39;</span><span class="p">],</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_val&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7513812154696132
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ergebnis nach den Parameter- und Merklmalsoptimierungen auf dem Validierungsdatenset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_pipeline_fe2</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_val&#39;</span><span class="p">],</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_val&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7845303867403315
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ergebnis nach den Parameter- und Merkmalsoptimierungen auf dem Testdatenset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_pipeline</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_test&#39;</span><span class="p">],</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_test&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7527472527472527
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ergebnis nach den Parameter- und Merkmalsoptimierungen auf dem Testdatenset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">full_pipeline_fe2</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_test&#39;</span><span class="p">],</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_test&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7967032967032966
+</pre></div>
+</div>
+</div>
+</div>
+<p>-&gt; Ergebnis besser nach Optimierung<br />
+-&gt; Anhand des Testdatenset -&gt; verallgemeinert besser</p>
+</div>
+<div class="section" id="welche-merkmale-sind-entscheidend">
+<h2>Welche Merkmale sind entscheidend?<a class="headerlink" href="#welche-merkmale-sind-entscheidend" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">full_pipeline_fe2</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;predictor&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">importances</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">feature_importances_</span>
+<span class="n">importances</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.08063134, 0.01265419, 0.02608909, 0.26276264, 0.05523294,
+       0.01050243, 0.05065289, 0.00109644, 0.07582865, 0.3915929 ,
+       0.01408792, 0.00373668, 0.0151319 ])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_categorical_transformed</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">transformer_pipe</span><span class="o">.</span><span class="n">transformers_</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;onehot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">features_categorical</span><span class="p">))</span>
+
+<span class="n">features_numerical_transformed</span> <span class="o">=</span> <span class="n">transformer_pipe</span><span class="o">.</span><span class="n">transformers_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;familysize&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">features_numerical_transformed</span> <span class="o">+</span> <span class="n">features_categorical_transformed</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Age&#39;,
+ &#39;SibSp&#39;,
+ &#39;Parch&#39;,
+ &#39;Fare&#39;,
+ &#39;FamilySize&#39;,
+ &#39;Single&#39;,
+ &#39;Pclass_1&#39;,
+ &#39;Pclass_2&#39;,
+ &#39;Pclass_3&#39;,
+ &#39;Sex_male&#39;,
+ &#39;Embarked_C&#39;,
+ &#39;Embarked_Q&#39;,
+ &#39;Embarked_S&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">importances</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">importances</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="n">importances</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sex_male      0.391593
+Fare          0.262763
+Age           0.080631
+Pclass_3      0.075829
+FamilySize    0.055233
+Pclass_1      0.050653
+Parch         0.026089
+Embarked_S    0.015132
+Embarked_C    0.014088
+SibSp         0.012654
+Single        0.010502
+Embarked_Q    0.003737
+Pclass_2      0.001096
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="pipeline-speichern">
@@ -580,7 +1148,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/titanic/pipeline.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
-    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">full_pipeline</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">full_pipeline_fe2</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -598,7 +1166,7 @@
     {
         requestKernel: true,
         binderOptions: {
-            repo: "landmessera/workshop-data",
+            repo: "executablebooks/jupyter-book",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -637,7 +1205,8 @@
             <script type="text/x-thebe-config">
 {
     binderOptions: {
-        repo: "https://github.com/landmessera/workshop-data",
+        repoProvider: "git",
+        repo: "https://ada.mi.hdm-stuttgart.de/gitlab/kitrainer/workshop-data",
         binderUrl: "https://ada.mi.hdm-stuttgart.de/binder/",
         ref: "master",
     }

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Kategorische Daten &#8212; Daten Workshop</title>
+    <title>Kategorische Daten &#8212; Daten für Machine Learning</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -78,7 +78,7 @@
   <img src="../_static/modul2single.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">Daten Workshop</h1>
+  <h1 class="site-logo" id="site-title">Daten für Machine Learning</h1>
   
 </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -88,12 +88,17 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Willkommen zum Daten Workshop
+  <a class="reference internal" href="welcome.html">
+   Willkommen beim Onlinekurs
   </a>
  </li>
 </ul>
 <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="datasets.html">
+   Datensets
+  </a>
+ </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="preparation.html">
    Aufbereitung
@@ -159,7 +164,7 @@
   <ul class="collapse-ul">
    <li class="toctree-l2">
     <a class="reference internal" href="optimizationContent.html">
-     Baseline erstellen
+     Baseline definieren
     </a>
    </li>
    <li class="toctree-l2">
@@ -251,7 +256,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/landmessera/workshop-data/master?urlpath=tree/features/transformationCategorical.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/features/transformationCategorical.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -886,7 +891,7 @@ Name: Gemütszustand, dtype: int64
     {
         requestKernel: true,
         binderOptions: {
-            repo: "landmessera/workshop-data",
+            repo: "executablebooks/jupyter-book",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -925,7 +930,8 @@ Name: Gemütszustand, dtype: int64
             <script type="text/x-thebe-config">
 {
     binderOptions: {
-        repo: "https://github.com/landmessera/workshop-data",
+        repoProvider: "git",
+        repo: "https://ada.mi.hdm-stuttgart.de/gitlab/kitrainer/workshop-data",
         binderUrl: "https://ada.mi.hdm-stuttgart.de/binder/",
         ref: "master",
     }

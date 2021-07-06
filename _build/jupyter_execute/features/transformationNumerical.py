@@ -15,7 +15,7 @@ from sklearn.datasets import make_blobs
 #colors = ["#D0755E", "#B35097", "#68349A", "#E54E78", "#F66F6F"]
 
 # Laden der Datensets aus Pickle File
-with open('datasets.pickle', 'rb') as handle:
+with open('../output/titanic/datasets.pkl', 'rb') as handle:
     datasets = pickle.load(handle)
 
 ## Ausreißer erkennen

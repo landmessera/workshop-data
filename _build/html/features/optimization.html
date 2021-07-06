@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Optimierung &#8212; Daten Workshop</title>
+    <title>Optimierung &#8212; Daten für Machine Learning</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -55,7 +55,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Baseline erstellen" href="optimizationContent.html" />
+    <link rel="next" title="Baseline definieren" href="optimizationContent.html" />
     <link rel="prev" title="Übung: Tranformation" href="exerciseTransformation.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -78,7 +78,7 @@
   <img src="../_static/modul2single.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">Daten Workshop</h1>
+  <h1 class="site-logo" id="site-title">Daten für Machine Learning</h1>
   
 </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -88,12 +88,17 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Willkommen zum Daten Workshop
+  <a class="reference internal" href="welcome.html">
+   Willkommen beim Onlinekurs
   </a>
  </li>
 </ul>
 <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="datasets.html">
+   Datensets
+  </a>
+ </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="preparation.html">
    Aufbereitung
@@ -159,7 +164,7 @@
   <ul class="collapse-ul">
    <li class="toctree-l2">
     <a class="reference internal" href="optimizationContent.html">
-     Baseline erstellen
+     Baseline definieren
     </a>
    </li>
    <li class="toctree-l2">
@@ -251,7 +256,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/landmessera/workshop-data/master?urlpath=tree/features/optimization.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/features/optimization.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -271,6 +276,26 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ziele">
+   Ziele
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inhalt">
+   Inhalt
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
         </div>
     </div>
 </div>
@@ -281,6 +306,19 @@
                 
   <div class="section" id="optimierung">
 <h1>Optimierung<a class="headerlink" href="#optimierung" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="ziele">
+<h2>Ziele<a class="headerlink" href="#ziele" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Eine Baseline erstellen</p></li>
+<li><p>Eine Pipeline für die Organisation nutzen</p></li>
+<li><p>Optimale Parametereinstellungen finden</p></li>
+<li><p>Daten verstehen und kombinieren</p></li>
+<li><p>Wichtige Merkmale erkennen</p></li>
+<li><p>Auswahl geeigneter Transformationen</p></li>
+</ul>
+</div>
+<div class="section" id="inhalt">
+<h2>Inhalt<a class="headerlink" href="#inhalt" title="Permalink to this headline">¶</a></h2>
 <p>In den vorigen Abschnitten wurde eine Basis für die Anwendung von Machine Learning Verfahren geschaffen. Die Daten wurden aufbereitet und Transformationen angewendet. Doch woher weiß man ob die Transformationen gut waren? Und was bedeutet in diesem Kontext gut?</p>
 <p>Transformationen werden aus zwei Gründen angewendet, um</p>
 <ol class="simple">
@@ -297,12 +335,13 @@
 <div class="toctree-wrapper compound">
 </div>
 </div>
+</div>
 
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
         binderOptions: {
-            repo: "landmessera/workshop-data",
+            repo: "executablebooks/jupyter-book",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -324,7 +363,7 @@
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="exerciseTransformation.html" title="previous page">Übung: Tranformation</a>
-    <a class='right-next' id="next-link" href="optimizationContent.html" title="next page">Baseline erstellen</a>
+    <a class='right-next' id="next-link" href="optimizationContent.html" title="next page">Baseline definieren</a>
 
         </div>
         
@@ -341,7 +380,8 @@
             <script type="text/x-thebe-config">
 {
     binderOptions: {
-        repo: "https://github.com/landmessera/workshop-data",
+        repoProvider: "git",
+        repo: "https://ada.mi.hdm-stuttgart.de/gitlab/kitrainer/workshop-data",
         binderUrl: "https://ada.mi.hdm-stuttgart.de/binder/",
         ref: "master",
     }

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Numerische Daten &#8212; Daten Workshop</title>
+    <title>Numerische Daten &#8212; Daten für Machine Learning</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -78,7 +78,7 @@
   <img src="../_static/modul2single.png" class="logo" alt="logo">
   
   
-  <h1 class="site-logo" id="site-title">Daten Workshop</h1>
+  <h1 class="site-logo" id="site-title">Daten für Machine Learning</h1>
   
 </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -88,12 +88,17 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Willkommen zum Daten Workshop
+  <a class="reference internal" href="welcome.html">
+   Willkommen beim Onlinekurs
   </a>
  </li>
 </ul>
 <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="datasets.html">
+   Datensets
+  </a>
+ </li>
  <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="preparation.html">
    Aufbereitung
@@ -159,7 +164,7 @@
   <ul class="collapse-ul">
    <li class="toctree-l2">
     <a class="reference internal" href="optimizationContent.html">
-     Baseline erstellen
+     Baseline definieren
     </a>
    </li>
    <li class="toctree-l2">
@@ -251,7 +256,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/landmessera/workshop-data/master?urlpath=tree/features/transformationNumerical.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/features/transformationNumerical.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -388,7 +393,7 @@
 <span class="c1">#colors = [&quot;#D0755E&quot;, &quot;#B35097&quot;, &quot;#68349A&quot;, &quot;#E54E78&quot;, &quot;#F66F6F&quot;]</span>
 
 <span class="c1"># Laden der Datensets aus Pickle File</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;datasets.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/titanic/datasets.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
     <span class="n">datasets</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -512,51 +517,58 @@ Für das Merkmal Alter eines Menschen erwartet man einen Wert zwischen 0 und 122
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Q1-Quantil:  22.0
-Q3-Quantil:  35.0
-lower_bound:  2.5
-upper_bound:  54.5
-Anzahl der Ausreißer:  37
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Q1-Quantil:  22.75
+Q3-Quantil:  36.0
+lower_bound:  2.875
+upper_bound:  55.875
+Anzahl der Ausreißer:  44
 Ausreißer
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>755     0.67
-644     0.75
-831     0.83
-386     1.00
-183     1.00
-827     1.00
-530     2.00
-205     2.00
-16      2.00
-340     2.00
-479     2.00
-492    55.00
-15     55.00
-152    55.50
-174    56.00
-879    56.00
-467    56.00
-772    57.00
-626    57.00
-11     58.00
-487    58.00
-366    60.00
-694    60.00
-587    60.00
-326    61.00
-625    61.00
-555    62.00
-275    63.00
-438    64.00
-456    65.00
-280    65.00
-33     66.00
-672    70.00
-96     71.00
-493    71.00
-851    74.00
-630    80.00
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>480      0.67
+368      0.75
+522      0.83
+52       1.00
+345      1.00
+303      1.00
+67       2.00
+458      2.00
+122      2.00
+390      2.00
+253      2.00
+226     56.00
+334     56.00
+125     56.00
+213     57.00
+204     57.00
+230     58.00
+242     58.00
+430     60.00
+257     60.00
+212     60.00
+370     61.00
+256     61.00
+313     62.00
+150     63.00
+192     64.00
+324     65.00
+403     65.00
+483     66.00
+96      70.00
+526     71.00
+392     71.00
+75      74.00
+92      80.00
+541    204.00
+535    206.00
+542    217.00
+543    220.00
+534    234.00
+539    247.00
+540    252.00
+538    261.00
+537    265.00
+536    292.00
 Name: Age, dtype: float64
 </pre></div>
 </div>
@@ -660,10 +672,14 @@ Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehep
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages/seaborn/categorical.py:1296: UserWarning: 7.7% of the points cannot be placed; you may want to decrease the size of the markers or use stripplot.
+  warnings.warn(msg, UserWarning)
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0, 0.5, &#39;&#39;)]
 </pre></div>
 </div>
-<img alt="../_images/transformationNumerical_26_1.png" src="../_images/transformationNumerical_26_1.png" />
+<img alt="../_images/transformationNumerical_26_2.png" src="../_images/transformationNumerical_26_2.png" />
 </div>
 </div>
 <p>Scikit-learn bietet einen MinMaxScaler an, mit dem sich die Min-Max-Skalierung einfach auf die Merkmale in einem Pandas Dataframe anwenden lassen. Als Rückgabe erhält man ein numpy-Array mit den skalierten Werten. Die Anwendung:</p>
@@ -692,10 +708,14 @@ Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehep
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages/seaborn/categorical.py:1296: UserWarning: 7.7% of the points cannot be placed; you may want to decrease the size of the markers or use stripplot.
+  warnings.warn(msg, UserWarning)
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0, 0.5, &#39;&#39;)]
 </pre></div>
 </div>
-<img alt="../_images/transformationNumerical_30_1.png" src="../_images/transformationNumerical_30_1.png" />
+<img alt="../_images/transformationNumerical_30_2.png" src="../_images/transformationNumerical_30_2.png" />
 </div>
 </div>
 </div>
@@ -817,10 +837,14 @@ Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehep
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages/seaborn/categorical.py:1296: UserWarning: 7.7% of the points cannot be placed; you may want to decrease the size of the markers or use stripplot.
+  warnings.warn(msg, UserWarning)
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0, 0.5, &#39;&#39;)]
 </pre></div>
 </div>
-<img alt="../_images/transformationNumerical_49_1.png" src="../_images/transformationNumerical_49_1.png" />
+<img alt="../_images/transformationNumerical_49_2.png" src="../_images/transformationNumerical_49_2.png" />
 </div>
 </div>
 <p>Die Werte des Merkmals “Alter” wurden auf einen Wertebereich von -2,24 bis 3.92 skaliert. Der Mittelwert beträgt 0 und die Standardabweichung 1.</p>
@@ -969,10 +993,14 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages/seaborn/categorical.py:1296: UserWarning: 20.2% of the points cannot be placed; you may want to decrease the size of the markers or use stripplot.
+  warnings.warn(msg, UserWarning)
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0, 0.5, &#39;&#39;)]
 </pre></div>
 </div>
-<img alt="../_images/transformationNumerical_69_1.png" src="../_images/transformationNumerical_69_1.png" />
+<img alt="../_images/transformationNumerical_69_2.png" src="../_images/transformationNumerical_69_2.png" />
 </div>
 </div>
 <p>Der Violinplot zeigt, dass die Verteilung der Daten rechtsschief ist.</p>
@@ -1020,24 +1048,24 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
   </thead>
   <tbody>
     <tr>
-      <th>529</th>
-      <td>0.0</td>
+      <th>539</th>
+      <td>3.0</td>
     </tr>
     <tr>
-      <th>530</th>
-      <td>1.0</td>
+      <th>540</th>
+      <td>3.0</td>
     </tr>
     <tr>
-      <th>531</th>
-      <td>0.0</td>
+      <th>541</th>
+      <td>3.0</td>
     </tr>
     <tr>
-      <th>532</th>
-      <td>2.0</td>
+      <th>542</th>
+      <td>3.0</td>
     </tr>
     <tr>
-      <th>533</th>
-      <td>0.0</td>
+      <th>543</th>
+      <td>3.0</td>
     </tr>
   </tbody>
 </table>
@@ -1051,7 +1079,7 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0., 1., 2., 3.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0., 3.])
 </pre></div>
 </div>
 </div>
@@ -1064,7 +1092,7 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f8debb98090&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f820a490090&gt;
 </pre></div>
 </div>
 <img alt="../_images/transformationNumerical_78_1.png" src="../_images/transformationNumerical_78_1.png" />
@@ -1091,7 +1119,7 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f8debbba390&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f820a6b5d90&gt;
 </pre></div>
 </div>
 <img alt="../_images/transformationNumerical_81_1.png" src="../_images/transformationNumerical_81_1.png" />
@@ -1159,28 +1187,28 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
       <td>...</td>
     </tr>
     <tr>
-      <th>529</th>
-      <td>0.0</td>
+      <th>539</th>
+      <td>3.0</td>
     </tr>
     <tr>
-      <th>530</th>
-      <td>2.0</td>
+      <th>540</th>
+      <td>3.0</td>
     </tr>
     <tr>
-      <th>531</th>
-      <td>0.0</td>
+      <th>541</th>
+      <td>3.0</td>
     </tr>
     <tr>
-      <th>532</th>
-      <td>2.0</td>
+      <th>542</th>
+      <td>3.0</td>
     </tr>
     <tr>
-      <th>533</th>
-      <td>0.0</td>
+      <th>543</th>
+      <td>3.0</td>
     </tr>
   </tbody>
 </table>
-<p>534 rows × 1 columns</p>
+<p>544 rows × 1 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1190,7 +1218,7 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f8df1dc03d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f820ab66390&gt;
 </pre></div>
 </div>
 <img alt="../_images/transformationNumerical_84_1.png" src="../_images/transformationNumerical_84_1.png" />
@@ -1208,7 +1236,7 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
     {
         requestKernel: true,
         binderOptions: {
-            repo: "landmessera/workshop-data",
+            repo: "executablebooks/jupyter-book",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -1247,7 +1275,8 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
             <script type="text/x-thebe-config">
 {
     binderOptions: {
-        repo: "https://github.com/landmessera/workshop-data",
+        repoProvider: "git",
+        repo: "https://ada.mi.hdm-stuttgart.de/gitlab/kitrainer/workshop-data",
         binderUrl: "https://ada.mi.hdm-stuttgart.de/binder/",
         ref: "master",
     }

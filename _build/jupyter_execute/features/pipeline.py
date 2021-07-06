@@ -150,7 +150,7 @@ from sklearn.compose import ColumnTransformer
 Erstellen einer einfachen Pipeline, die den eigenen Transformer zur Ausreißerentfernung aufruft und anschließend eine Standardisierung vornimmt.
 
 pipeline_numerical = Pipeline(steps=[
-    ('outlier_remover', OutlierRemover()),
+    ('outlier_remover', OutlierRemover(5.0)),
     ('scaler', StandardScaler())
 ])
 
@@ -174,8 +174,11 @@ name: fig-transformerOneHot
 ---
 ```
 
+import sklearn
+sklearn.__version__
+
 pipeline_categorical = Pipeline(steps=[
-    ('onehot', OneHotEncoder(handle_unknown='ignore'))
+    ('onehot', OneHotEncoder(drop='if_binary'))
 ])
 
 Erstellen einer Instanz des ColumnTransformer, wobei die erste Pipeline für numerische Daten und die zweite erstellte Pipeline für kategorische Daten verwendet werden soll.
@@ -197,6 +200,8 @@ preprocessor = ColumnTransformer(
         )
     ])
 
+
+
 res = preprocessor.fit_transform(X)
 pd.DataFrame(res)
 
@@ -213,7 +218,7 @@ pd.DataFrame(res, columns=features_numerical+list(feature_categorical_onehot))
 
 Laden der Datensets aus Pickle File
 
-with open('datasets.pickle', 'rb') as handle:
+with open('../output/titanic/datasets.pkl', 'rb') as handle:
     datasets = pickle.load(handle)
 
 Speichern des Trainingsdatenset in der Variable X_train und Anzeigen der ersten Zeilen.
@@ -223,10 +228,19 @@ X_train.head()
 
 ### Pipeline erstellen
 
-Erstellen des Column Transformer unter Verwendung der bereits erstellten Pipelines für numerische und kategorsiche Daten.
+Erstellen der Pipelines für numerische und kategorische Daten, sowie eine Pipeline namens "transformer_pipeline", um die Zuordnung der Pipelines auf die Merkmale zu definieren. Da in diesem Datenset keine Ausreißer vorhanden sind, die entfernt werden müssen wird der Outlier Remover Transformer in diesem Fall nicht verwendet.
 
 features_numerical = ['Age', 'SibSp', 'Parch', 'Fare']
 features_categorical = ['Pclass', 'Sex', 'Embarked']
+
+pipeline_numerical = Pipeline(steps=[
+    ('outlier_remover', OutlierRemover(5.0))
+    #('scaler', StandardScaler())
+])
+
+pipeline_categorical = Pipeline(steps=[
+    ('onehot', OneHotEncoder(drop='if_binary'))
+])
 
 transformer_pipeline = ColumnTransformer(
     transformers = [
@@ -280,10 +294,14 @@ X_train_transformed = transformer_pipeline.fit_transform(X_train)
 X_val_transformed = transformer_pipeline.transform(X_val)
 X_test_transformed = transformer_pipeline.transform(X_test)
 
+X_train.head()
+
 feature_categorical_onehot = transformer_pipeline.transformers_[1][1]['onehot'].get_feature_names(features_categorical)
 X_train_transformed = pd.DataFrame(X_train_transformed, columns=features_numerical+list(feature_categorical_onehot))
 X_val_transformed = pd.DataFrame(X_val_transformed, columns=features_numerical+list(feature_categorical_onehot))
 X_test_transformed = pd.DataFrame(X_test_transformed, columns=features_numerical+list(feature_categorical_onehot))
+
+X_train_transformed.tail(-20)
 
 X_train_transformed.head()
 
@@ -317,3 +335,6 @@ Die erste Pipeline ist erstellt und die Transformationen auf alle Datensets ange
 [^footnote2]: siehe https://scikit-learn.org/stable/modules/classes.html#module-sklearn.preprocessing
 
 [^footnote3]: siehe https://scikit-learn.org/stable/modules/grid_search.html
+
+
+

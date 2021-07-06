@@ -1,7 +1,8 @@
 # Table of content
 # Learn more at https://jupyterbook.org/customize/toc.html
 #
-- file: intro
+- file: ./features/welcome
+- file: ./features/datasets
 - file: ./features/preparation
   sections:
     - file: ./features/explore

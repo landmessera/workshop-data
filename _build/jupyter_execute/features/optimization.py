@@ -1,5 +1,16 @@
 # Optimierung
 
+## Ziele
+
+* Eine Baseline erstellen
+* Eine Pipeline für die Organisation nutzen
+* Optimale Parametereinstellungen finden
+* Daten verstehen und kombinieren
+* Wichtige Merkmale erkennen
+* Auswahl geeigneter Transformationen 
+
+## Inhalt
+
 In den vorigen Abschnitten wurde eine Basis für die Anwendung von Machine Learning Verfahren geschaffen. Die Daten wurden aufbereitet und Transformationen angewendet. Doch woher weiß man ob die Transformationen gut waren? Und was bedeutet in diesem Kontext gut? 
 
 Transformationen werden aus zwei Gründen angewendet, um
