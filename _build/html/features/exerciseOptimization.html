@@ -1,12 +1,14 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Übung: Optimization &#8212; Daten für Machine Learning</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Übung &#8212; Daten für Machine Learning</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -18,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -33,20 +31,19 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
@@ -55,15 +52,15 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Baseline definieren" href="optimizationContent.html" />
-
+    <link rel="prev" title="Merkmale optimieren" href="optimizationFeature.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -72,126 +69,136 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/modul2single.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Daten für Machine Learning</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/modul2single.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Daten für Machine Learning</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Dieses Buch durchsuchen ..." aria-label="Dieses Buch durchsuchen ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="welcome.html">
+  <a class="reference internal" href="../welcome.html">
    Willkommen beim Onlinekurs
   </a>
  </li>
 </ul>
-<ul class="current nav sidenav_l1">
+<p class="caption">
+ <span class="caption-text">
+  Einleitung
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="datasets.html">
    Datensets
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 1 - Aufbereitung
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
   <a class="reference internal" href="preparation.html">
-   Aufbereitung
+   Ziele
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="explore.html">
-     Überblick verschaffen
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="missingData.html">
-     Umgang mit fehlenden Daten
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="splitData.html">
-     Datensets erstellen
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="exercisePreparation.html">
-     Übung: Aufbereitung
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1">
+  <a class="reference internal" href="explore.html">
+   Überblick verschaffen
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="missingData.html">
+   Umgang mit fehlenden Daten
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="splitData.html">
+   Datensets erstellen
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercisePreparation.html">
+   Übung
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 2 - Transformation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
   <a class="reference internal" href="transformation.html">
-   Transformation
+   Ziele
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="transformationNumerical.html">
-     Numerische Daten
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="transformationCategorical.html">
-     Kategorische Daten
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pipeline.html">
-     Tranformationen koordinieren
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="exerciseTransformation.html">
-     Übung: Tranformation
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 current active collapsible-parent">
-  <a class="reference internal" href="optimization.html">
-   Optimierung
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformationNumerical.html">
+   Numerische Daten
   </a>
-  <ul class="current collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="optimizationContent.html">
-     Baseline definieren
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="optimizationContent.html#parameter-optimieren">
-     Parameter optimieren
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="optimizationContent.html#merkmale-optimieren">
-     Merkmale optimieren
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="optimizationContent.html#pipeline-speichern">
-     Pipeline speichern
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Übung: Optimization
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformationCategorical.html">
+   Kategorische Daten
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pipeline.html">
+   Tranformationen koordinieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exerciseTransformation.html">
+   Übung
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 3 - Optimierung
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimization.html">
+   Ziele
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationBaseline.html">
+   Baseline definieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationParameter.html">
+   Parameter optimieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationFeature.html">
+   Merkmale optimieren
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Übung
+  </a>
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -214,8 +221,8 @@
             
             <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
                 data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                aria-expanded="true" aria-label="Navigation umschalten" aria-controls="site-navigation"
+                title="Navigation umschalten" data-toggle="tooltip" data-placement="left">
                 <i class="fas fa-bars"></i>
                 <i class="fas fa-arrow-left"></i>
                 <i class="fas fa-arrow-up"></i>
@@ -223,7 +230,7 @@
             
             
 <div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Laden Sie diese Seite herunter"><i
             class="fas fa-download"></i></button>
 
     <div class="dropdown-buttons">
@@ -231,22 +238,22 @@
         
         <!-- Download raw file -->
         <a class="dropdown-buttons" href="../_sources/features/exerciseOptimization.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                class="btn btn-secondary topbarbtn" title="Quelldatei herunterladen" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="In PDF drucken"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
             <!-- Source interaction buttons -->
 
-
             <!-- Full screen (wrap in <a> to have style consistency -->
-            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                    title="Fullscreen mode"><i
-                        class="fas fa-expand"></i></button></a>
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Vollbildmodus"
+        title="Vollbildmodus"><i
+            class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
 
@@ -256,7 +263,7 @@
     <div class="dropdown-buttons">
         
         <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/features/exerciseOptimization.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                class="btn btn-secondary topbarbtn" title="Starten Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
@@ -264,7 +271,7 @@
         
         
         <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+            onclick="initThebeSBT()" title="Starten Thebe" data-toggle="tooltip" data-placement="left"><i
                 class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
@@ -275,82 +282,87 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i>
-            Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Inhalt
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#baseline-erstellen">
-   Baseline erstellen
+  <a class="reference internal nav-link" href="#ubung-optimization">
+   Übung: Optimization
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-1-laden-transformer-pipeline">
-     Task 1: Laden Transformer Pipeline
+    <a class="reference internal nav-link" href="#baseline-erstellen">
+     Baseline erstellen
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-1-laden-transformer-pipeline">
+       Task 1: Laden Transformer Pipeline
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-2-pipeline-mit-klassifikator-erstellen">
+       Task 2: Pipeline mit Klassifikator erstellen
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-3-pipeline-verwenden">
+       Task 3: Pipeline verwenden
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-2-pipeline-mit-klassifikator-erstellen">
-     Task 2: Pipeline mit Klassifikator erstellen
+    <a class="reference internal nav-link" href="#parameter-optimieren">
+     Parameter optimieren
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-4-grid-search-vorbereiten">
+       Task 4: Grid Search vorbereiten
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-5-grid-search-anwenden">
+       Task 5: Grid Search anwenden
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-3-pipeline-verwenden">
-     Task 3: Pipeline verwenden
+    <a class="reference internal nav-link" href="#merkmale-optimieren">
+     Merkmale optimieren
     </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parameter-optimieren">
-   Parameter optimieren
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-4-grid-search-vorbereiten">
-     Task 4: Grid Search vorbereiten
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-5-grid-search-anwenden">
-     Task 5: Grid Search anwenden
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#merkmale-optimieren">
-   Merkmale optimieren
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-xx-xxx">
-     Task xx: xxx
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-6">
-     Task 6:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-7">
-     Task 7:
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-8-beste-pipeline-speichern">
-     Task 8: Beste Pipeline speichern
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-xx-xxx">
+       Task xx: xxx
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-6">
+       Task 6:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-7">
+       Task 7:
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#task-8-beste-pipeline-speichern">
+       Task 8: Beste Pipeline speichern
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
         </div>
     </div>
 </div>
@@ -359,8 +371,10 @@
         
               <div>
                 
-  <div class="section" id="ubung-optimization">
-<h1>Übung: Optimization<a class="headerlink" href="#ubung-optimization" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="ubung">
+<h1>Übung<a class="headerlink" href="#ubung" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="ubung-optimization">
+<h2>Übung: Optimization<a class="headerlink" href="#ubung-optimization" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_hide-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install sklearn
@@ -370,12 +384,10 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: sklearn in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (0.0)
 Requirement already satisfied: scikit-learn in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from sklearn) (0.24.2)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: joblib&gt;=0.11 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (0.14.1)
-Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (2.1.0)
-Requirement already satisfied: numpy&gt;=1.13.3 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.18.1)
 Requirement already satisfied: scipy&gt;=0.19.1 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.4.1)
+Requirement already satisfied: numpy&gt;=1.13.3 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.18.1)
+Requirement already satisfied: joblib&gt;=0.11 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (0.14.1)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (2.1.0)
 </pre></div>
 </div>
 </div>
@@ -408,9 +420,9 @@ Requirement already satisfied: scipy&gt;=0.19.1 in /Users/alandmesser/anaconda3/
 </div>
 </div>
 <div class="section" id="baseline-erstellen">
-<h2>Baseline erstellen<a class="headerlink" href="#baseline-erstellen" title="Permalink to this headline">¶</a></h2>
+<h3>Baseline erstellen<a class="headerlink" href="#baseline-erstellen" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="task-1-laden-transformer-pipeline">
-<h3>Task 1: Laden Transformer Pipeline<a class="headerlink" href="#task-1-laden-transformer-pipeline" title="Permalink to this headline">¶</a></h3>
+<h4>Task 1: Laden Transformer Pipeline<a class="headerlink" href="#task-1-laden-transformer-pipeline" title="Permalink to this headline">¶</a></h4>
 <p>Lesen Sie die gespeicherte Transformer Pipeline aus der pickle-Datei ‘../output/bikebuyers/transformer_pipeline.pkl’ und speichern die Pipeline in einer Variable namens transformer_pipeline.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -434,7 +446,7 @@ Lösung Task 1<div class="summary-down docutils">
 </div>
 </details></div>
 <div class="section" id="task-2-pipeline-mit-klassifikator-erstellen">
-<h3>Task 2: Pipeline mit Klassifikator erstellen<a class="headerlink" href="#task-2-pipeline-mit-klassifikator-erstellen" title="Permalink to this headline">¶</a></h3>
+<h4>Task 2: Pipeline mit Klassifikator erstellen<a class="headerlink" href="#task-2-pipeline-mit-klassifikator-erstellen" title="Permalink to this headline">¶</a></h4>
 <p>Erstellen Sie die finale Pipeline, bestehend aus der Transformer Pipeline und anschließendem Predictor in Form eines K-Nearest-Neighbor Klassifikator. Speichern Sie die Pipeline in einer Variable namens ‘full_pipeline’.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -460,7 +472,7 @@ Lösung Task 2<div class="summary-down docutils">
 </div>
 </details></div>
 <div class="section" id="task-3-pipeline-verwenden">
-<h3>Task 3: Pipeline verwenden<a class="headerlink" href="#task-3-pipeline-verwenden" title="Permalink to this headline">¶</a></h3>
+<h4>Task 3: Pipeline verwenden<a class="headerlink" href="#task-3-pipeline-verwenden" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Trainieren Sie die Pipeline mit dem Trainingsdatenset durch aufrufen der fit()-Methode.</p></li>
 <li><p>Evaluieren Sie das Modell mit dem Validierungsdatenset durch aufrufen der score()-Methode.</p></li>
@@ -488,9 +500,9 @@ Lösung Task 3<div class="summary-down docutils">
 </details></div>
 </div>
 <div class="section" id="parameter-optimieren">
-<h2>Parameter optimieren<a class="headerlink" href="#parameter-optimieren" title="Permalink to this headline">¶</a></h2>
+<h3>Parameter optimieren<a class="headerlink" href="#parameter-optimieren" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="task-4-grid-search-vorbereiten">
-<h3>Task 4: Grid Search vorbereiten<a class="headerlink" href="#task-4-grid-search-vorbereiten" title="Permalink to this headline">¶</a></h3>
+<h4>Task 4: Grid Search vorbereiten<a class="headerlink" href="#task-4-grid-search-vorbereiten" title="Permalink to this headline">¶</a></h4>
 <p>Erstellen Sie eine Instanz der Klasse <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html">GridSearchCV</a> aus Scikit Learn. Verwenden folgende Paramter-Einstellungen:</p>
 <ul class="simple">
 <li><p>estimator:full_pipeline</p></li>
@@ -529,7 +541,7 @@ Lösung Task 4<div class="summary-down docutils">
 </div>
 </details></div>
 <div class="section" id="task-5-grid-search-anwenden">
-<h3>Task 5: Grid Search anwenden<a class="headerlink" href="#task-5-grid-search-anwenden" title="Permalink to this headline">¶</a></h3>
+<h4>Task 5: Grid Search anwenden<a class="headerlink" href="#task-5-grid-search-anwenden" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Rufen Sie die fit-Methode unter Verwendung der Trainingsdatensets auf.</p></li>
 <li><p>Geben Sie die beste Parameterkombination aus.</p></li>
@@ -562,12 +574,12 @@ Lösung Task 5<div class="summary-down docutils">
 </details></div>
 </div>
 <div class="section" id="merkmale-optimieren">
-<h2>Merkmale optimieren<a class="headerlink" href="#merkmale-optimieren" title="Permalink to this headline">¶</a></h2>
+<h3>Merkmale optimieren<a class="headerlink" href="#merkmale-optimieren" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="task-xx-xxx">
-<h3>Task xx: xxx<a class="headerlink" href="#task-xx-xxx" title="Permalink to this headline">¶</a></h3>
+<h4>Task xx: xxx<a class="headerlink" href="#task-xx-xxx" title="Permalink to this headline">¶</a></h4>
 </div>
 <div class="section" id="task-6">
-<h3>Task 6:<a class="headerlink" href="#task-6" title="Permalink to this headline">¶</a></h3>
+<h4>Task 6:<a class="headerlink" href="#task-6" title="Permalink to this headline">¶</a></h4>
 <p>Speichern Sie die Pipeline mit der besten Parametereinstellung in einer Pickle-Datei.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -589,7 +601,7 @@ Lösung Task 6<div class="summary-down docutils">
 </div>
 </details></div>
 <div class="section" id="task-7">
-<h3>Task 7:<a class="headerlink" href="#task-7" title="Permalink to this headline">¶</a></h3>
+<h4>Task 7:<a class="headerlink" href="#task-7" title="Permalink to this headline">¶</a></h4>
 <p>Speichern Sie die Pipeline mit der besten Parametereinstellung in einer Pickle-Datei.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -611,7 +623,7 @@ Lösung Task 7<div class="summary-down docutils">
 </div>
 </details></div>
 <div class="section" id="task-8-beste-pipeline-speichern">
-<h3>Task 8: Beste Pipeline speichern<a class="headerlink" href="#task-8-beste-pipeline-speichern" title="Permalink to this headline">¶</a></h3>
+<h4>Task 8: Beste Pipeline speichern<a class="headerlink" href="#task-8-beste-pipeline-speichern" title="Permalink to this headline">¶</a></h4>
 <p>Speichern Sie die Pipeline mit der besten Parametereinstellung in einer Pickle-Datei.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -680,6 +692,7 @@ Ergebnis mit der besten Parametereinstellung auf den Trainingsdaten:
 </div>
 </div>
 </div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -706,7 +719,7 @@ Ergebnis mit der besten Parametereinstellung auf den Trainingsdaten:
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="optimizationContent.html" title="previous page">Baseline definieren</a>
+    <a class='left-prev' id="prev-link" href="optimizationFeature.html" title="previous page">Merkmale optimieren</a>
 
         </div>
         
@@ -716,9 +729,9 @@ Ergebnis mit der besten Parametereinstellung auf den Trainingsdaten:
     <div class="container">
       <p>
         
-          By Annette Landmesser<br/>
+          Durch Annette Landmesser<br/>
         
-            &copy; Copyright 2021.<br/>
+            &copy; Urheberrechte © 2021.<br/>
           <div class="extra_footer">
             <script type="text/x-thebe-config">
 {
@@ -740,11 +753,9 @@ Ergebnis mit der besten Parametereinstellung auf den Trainingsdaten:
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  
   </body>
 </html>

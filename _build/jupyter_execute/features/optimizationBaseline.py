@@ -1,26 +1,35 @@
-# Baseline erstellen
+# Baseline definieren
+
+Für die Erstellung einer Baseline wird ein Klassifikator für die Klassifikationsaufgabe des Beispiel Titanic erstellt, mit dem transformierten Trainingsdatenset trainiert und dem transformierten Validierungsdatenset validiert.
+
+Pakete importieren
 
 import pandas as pd
 import numpy as np
 import pickle
+import seaborn as sns
+import matplotlib.pyplot as plt
 from sklearn.pipeline import Pipeline
+from treeinterpreter import treeinterpreter
 
 Transformierte Daten laden
 
 with open('../output/titanic/datasets_transformed.pkl', 'rb') as handle:
     datasets_transformed = pickle.load(handle)
 
-### Machine Learning Verfahren anwenden
+## Klassifikator erstellen
 
-Beim Anwendungsbeispiel Titanic handelt es sich um eine Klassifikationsaufgabe. Die Anwendung eines K-Nearest Neighbors Klassifikators sieht dann wie folgt aus:
+Als Klassifikator wird ein Entscheidungsbaum verwendet. Scikit Learn liefert den DecisionTreeClassifier. Es handelt sich um einen Prädiktor. Die Fit()-Methode wird mit den transformierten Trainingsdaten aufgerufen um den Entscheidungsbaum zu erstellen. 
 
-from sklearn.neighbors import KNeighborsClassifier
-classifier = KNeighborsClassifier(n_neighbors=3)
+from sklearn.tree import DecisionTreeClassifier
+classifier = DecisionTreeClassifier(random_state=0)
 classifier.fit(datasets_transformed['X_train'], datasets_transformed['y_train'])
+
+Über den Aufruf der score()-Methode erhält man den Accuracy-Score des Validierungsdatensets.
 
 classifier.score(datasets_transformed['X_val'], datasets_transformed['y_val'])
 
-Das übliche Vorgehen beim Machine Learning ist experimentell. Man entwickelt zunächst eine Variante und erhält ein Ergebnis. In unserem Fall ein Accuracy Score von 0.74, bedeutet 74% der vorgehergesagten Werte sind richtig. Dieser Score dient als Basis für weitere Optimierungen. Es werden Veränderungen unterschiedlichster Art vorgenommen wie zum Beispiel 
+Das übliche Vorgehen beim Machine Learning ist **experimentell**. Man entwickelt zunächst eine Variante und erhält ein Ergebnis. In unserem Fall ein Accuracy Score von 0.74, bedeutet 74% der vorgehergesagten Werte sind richtig. Dieser Score dient als Basis für weitere Optimierungen. Es werden Veränderungen unterschiedlichster Art vorgenommen wie zum Beispiel 
 * Anwendung weiterer Transformationsschritte
 * Entfernen von Transformationsschritte
 * Änderung der Transformationseinstellungen
@@ -30,9 +39,9 @@ Das übliche Vorgehen beim Machine Learning ist experimentell. Man entwickelt zu
 * Ändern des Machine Learning Algorithmus 
 * Ändern der Hyperparameter
 
-Nach jeder Änderung wird geprüft ob sich das Ergebnis, der Score, verbessert oder verschlechtert hat und entprechend die Änderung beibehalten oder verworfen. Häufig sind es sehr viele Experimente die durchgeführt werden müssen. Es fällt schwer den Überblick zu behalten und ist aufwendig manuell durchzuführen. Für die Automatisierung der Experimente für Hyperparameter kann die sogenannte Grid-Search[^footnote3] eingesetzt werden. Man gibt für jeden Hyperparamter eine begrenzte Menge von möglichen Werten die getestet werden soll. Grid-Search testet alle Kombinationen und gibt die Wertekombination mit den besten Ergebnisen aus.
+Nach **jeder Änderung** wird **geprüft** ob sich das Ergebnis, der Score, **verbessert oder verschlechtert** hat und entprechend die Änderung beibehalten oder verworfen. Häufig sind es sehr viele Experimente die durchgeführt werden müssen. Es fällt schwer den Überblick zu behalten und es ist aufwendig die Experimente manuell durchzuführen. Für die Automatisierung der Experimente für Hyperparameter kann die sogenannte **Grid-Search**[^footnote3] eingesetzt werden. Man gibt für jeden Hyperparamter eine begrenzte Menge von möglichen Werten die getestet werden soll. Grid-Search **testet alle Kombinationen und gibt die Wertekombination mit den besten Ergebnisen aus**.
 
-Wie bereits zu Beginn dieses Abschnitts erwähnt, ist es möglich am Ende der Pipeline einen beliebigen Estimator einzusetzen anstatt ein Transformer. Ein beliebiger Estimator kann auch ein Predictor sein. So kann beim Anwendungsbeispiel Titanic einfach der Klassifikator am Ende der Pipeline eingefügt werden. Einer der Vorteile, wenn man die Vorverarbeitungsschritte und den Prediktor in einer Pipeline integriert ist, dass Grid-Search auch für die Vorverarbeitungsschritte eingesetzt werden kann.
+Wie bereits zu Beginn dieses Abschnitts erwähnt, ist es möglich am Ende der Pipeline einen beliebigen Estimator einzusetzen anstatt ein Transformer. Ein beliebiger Estimator kann auch ein Predictor sein. So kann beim Anwendungsbeispiel Titanic einfach der Klassifikator am Ende der Pipeline eingefügt werden. Einer der Vorteile, wenn man die Vorverarbeitungsschritte und den Prediktor in einer Pipeline integriert ist, dass **Grid-Search auch für die Vorverarbeitungsschritte** eingesetzt werden kann.
 
 Transformer Pipeline laden
 
@@ -44,7 +53,7 @@ Datensets laden
 with open('../output/titanic/datasets.pkl', 'rb') as handle:
     datasets = pickle.load(handle)
 
-### Klassifikator in eine Pipeline integrieren
+## Klassifikator in Pipeline integrieren
 
 Erstellt wird eine Pipeline, die im ersten Schritt die bereits erstellte Transformer-Pipeline enthält und im Anschluss den Klassifikator.
 
@@ -58,7 +67,7 @@ name: fig-pipelineFull
 
 full_pipeline = Pipeline(steps=[
     ('transformers', transformer_pipeline),
-    ('predictor', KNeighborsClassifier(n_neighbors=3))
+    ('predictor', DecisionTreeClassifier(random_state=0))
 ])
 
 Die Pipeline wird mit dem Trainingsdatenset trainiert und dem Validierungsset validiert.

@@ -1,4 +1,3 @@
-# Transformation
 ## Ziele
 * Grundlegende Transformationsmethoden
 * Grundlagen von Scikit Learn für Pipelines
@@ -18,16 +17,3 @@ Transformation für kategorische Daten
 
 Am Beispieldatenset Titanic werden die Methoden veranschaulicht. Darauf folgt eine Übung in der Sie selbst die Transformationsmethoden am Beispiel-Datenset Bike Buyers durchführen.
 
-
-
-
-```{toctree}
-:hidden:
-:titlesonly:
-
-
-transformationNumerical
-transformationCategorical
-pipeline
-exerciseTransformation
-```

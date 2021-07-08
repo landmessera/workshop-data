@@ -1,5 +1,3 @@
-# Optimierung
-
 ## Ziele
 
 * Eine Baseline erstellen
@@ -28,14 +26,3 @@ Das erste Ergebnis dient als Basis für Optimierungen, es ist die sogenannte **B
 
 In diesem Abschnitt wird am Beispiel Titanic gezeigt, wie man eine **Baseline erstellt, Optimierung der Parameter und Merkmale durchführt und diese validiert**.
 
-
-
-
-```{toctree}
-:hidden:
-:titlesonly:
-
-
-optimizationContent
-exerciseOptimization
-```

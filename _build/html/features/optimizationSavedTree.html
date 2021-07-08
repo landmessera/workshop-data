@@ -1,12 +1,14 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Baseline erstellen &#8212; Daten für Machine Learning</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -18,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -33,20 +31,19 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
@@ -55,14 +52,14 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -71,126 +68,136 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/modul2single.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Daten für Machine Learning</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/modul2single.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Daten für Machine Learning</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Dieses Buch durchsuchen ..." aria-label="Dieses Buch durchsuchen ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="welcome.html">
+  <a class="reference internal" href="../welcome.html">
    Willkommen beim Onlinekurs
   </a>
  </li>
 </ul>
-<ul class="nav sidenav_l1">
+<p class="caption">
+ <span class="caption-text">
+  Einleitung
+ </span>
+</p>
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="datasets.html">
    Datensets
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 1 - Aufbereitung
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
   <a class="reference internal" href="preparation.html">
-   Aufbereitung
+   Ziele
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="explore.html">
-     Überblick verschaffen
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="missingData.html">
-     Umgang mit fehlenden Daten
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="splitData.html">
-     Datensets erstellen
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="exercisePreparation.html">
-     Übung: Aufbereitung
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1">
+  <a class="reference internal" href="explore.html">
+   Überblick verschaffen
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="missingData.html">
+   Umgang mit fehlenden Daten
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="splitData.html">
+   Datensets erstellen
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercisePreparation.html">
+   Übung
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 2 - Transformation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
   <a class="reference internal" href="transformation.html">
-   Transformation
+   Ziele
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="transformationNumerical.html">
-     Numerische Daten
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="transformationCategorical.html">
-     Kategorische Daten
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pipeline.html">
-     Tranformationen koordinieren
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="exerciseTransformation.html">
-     Übung: Tranformation
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
-  <a class="reference internal" href="optimization.html">
-   Optimierung
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformationNumerical.html">
+   Numerische Daten
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="optimizationContent.html">
-     Baseline definieren
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="optimizationContent.html#parameter-optimieren">
-     Parameter optimieren
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="optimizationContent.html#merkmale-optimieren">
-     Merkmale optimieren
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="optimizationContent.html#pipeline-speichern">
-     Pipeline speichern
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="exerciseOptimization.html">
-     Übung: Optimization
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformationCategorical.html">
+   Kategorische Daten
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pipeline.html">
+   Tranformationen koordinieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exerciseTransformation.html">
+   Übung
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 3 - Optimierung
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimization.html">
+   Ziele
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationBaseline.html">
+   Baseline definieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationParameter.html">
+   Parameter optimieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationFeature.html">
+   Merkmale optimieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exerciseOptimization.html">
+   Übung
+  </a>
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -213,8 +220,8 @@
             
             <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
                 data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                aria-expanded="true" aria-label="Navigation umschalten" aria-controls="site-navigation"
+                title="Navigation umschalten" data-toggle="tooltip" data-placement="left">
                 <i class="fas fa-bars"></i>
                 <i class="fas fa-arrow-left"></i>
                 <i class="fas fa-arrow-up"></i>
@@ -222,7 +229,7 @@
             
             
 <div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Laden Sie diese Seite herunter"><i
             class="fas fa-download"></i></button>
 
     <div class="dropdown-buttons">
@@ -230,22 +237,22 @@
         
         <!-- Download raw file -->
         <a class="dropdown-buttons" href="../_sources/features/optimizationSavedTree.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                class="btn btn-secondary topbarbtn" title="Quelldatei herunterladen" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="In PDF drucken"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
             <!-- Source interaction buttons -->
 
-
             <!-- Full screen (wrap in <a> to have style consistency -->
-            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                    title="Fullscreen mode"><i
-                        class="fas fa-expand"></i></button></a>
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Vollbildmodus"
+        title="Vollbildmodus"><i
+            class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
 
@@ -255,7 +262,7 @@
     <div class="dropdown-buttons">
         
         <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/features/optimizationSavedTree.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                class="btn btn-secondary topbarbtn" title="Starten Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
@@ -263,7 +270,7 @@
         
         
         <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+            onclick="initThebeSBT()" title="Starten Thebe" data-toggle="tooltip" data-placement="left"><i
                 class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
@@ -274,17 +281,16 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i>
-            Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Inhalt
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
    Baseline erstellen
   </a>
-  <ul class="nav section-nav flex-column">
+  <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#machine-learning-verfahren-anwenden">
      Machine Learning Verfahren anwenden
@@ -301,7 +307,7 @@
   <a class="reference internal nav-link" href="#parameter-optimieren">
    Parameter optimieren
   </a>
-  <ul class="nav section-nav flex-column">
+  <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#grid-search-anwenden">
      Grid Search anwenden
@@ -313,7 +319,7 @@
   <a class="reference internal nav-link" href="#merkmale-optimieren">
    Merkmale optimieren
   </a>
-  <ul class="nav section-nav flex-column">
+  <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#wichtige-merkmale-erkennen">
      Wichtige Merkmale erkennen
@@ -333,8 +339,7 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
         </div>
     </div>
 </div>
@@ -398,7 +403,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7569060773480663
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7624309392265194
 </pre></div>
 </div>
 </div>
@@ -410,7 +415,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7527472527472527
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7362637362637363
 </pre></div>
 </div>
 </div>
@@ -473,7 +478,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7624309392265194
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7458563535911602
 </pre></div>
 </div>
 </div>
@@ -485,7 +490,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7692307692307693
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7747252747252747
 </pre></div>
 </div>
 </div>
@@ -527,8 +532,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">-------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span>Traceback (most recent call last)
 <span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="n">bef5df60d9db</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">],</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_train&#39;</span><span class="p">])</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">best_params_</span>
@@ -616,149 +621,198 @@
 <span class="ne">--&gt; </span><span class="mi">222</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/model_selection/_validation.py</span> in <span class="ni">_fit_and_score</span><span class="nt">(estimator, X, y, scorer, train, test, verbose, parameters, fit_params, return_train_score, return_parameters, return_n_test_samples, return_times, return_estimator, split_progress, candidate_progress, error_score)</span>
-<span class="g g-Whitespace">    </span><span class="mi">596</span>             <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">597</span>         <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">598</span>             <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">599</span> 
-<span class="g g-Whitespace">    </span><span class="mi">600</span>     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">623</span> 
+<span class="g g-Whitespace">    </span><span class="mi">624</span>         <span class="n">fit_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+<span class="ne">--&gt; </span><span class="mi">625</span>         <span class="n">test_scores</span> <span class="o">=</span> <span class="n">_score</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">scorer</span><span class="p">,</span> <span class="n">error_score</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">626</span>         <span class="n">score_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">-</span> <span class="n">fit_time</span>
+<span class="g g-Whitespace">    </span><span class="mi">627</span>         <span class="k">if</span> <span class="n">return_train_score</span><span class="p">:</span>
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/pipeline.py</span> in <span class="ni">fit</span><span class="nt">(self, X, y, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">339</span>         <span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">340</span><span class="sd">         fit_params_steps = self._check_fit_params(**fit_params)</span>
-<span class="ne">--&gt; </span><span class="mi">341</span><span class="sd">         Xt = self._fit(X, y, **fit_params_steps)</span>
-<span class="g g-Whitespace">    </span><span class="mi">342</span><span class="sd">         with _print_elapsed_time(&#39;Pipeline&#39;,</span>
-<span class="g g-Whitespace">    </span><span class="mi">343</span><span class="sd">                                  self._log_message(len(self.steps) - 1)):</span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/model_selection/_validation.py</span> in <span class="ni">_score</span><span class="nt">(estimator, X_test, y_test, scorer, error_score)</span>
+<span class="g g-Whitespace">    </span><span class="mi">685</span>             <span class="n">scores</span> <span class="o">=</span> <span class="n">scorer</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">686</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">687</span>             <span class="n">scores</span> <span class="o">=</span> <span class="n">scorer</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">688</span>     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">689</span>         <span class="k">if</span> <span class="n">error_score</span> <span class="o">==</span> <span class="s1">&#39;raise&#39;</span><span class="p">:</span>
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/pipeline.py</span> in <span class="ni">_fit</span><span class="nt">(self, X, y, **fit_params_steps)</span>
-<span class="g g-Whitespace">    </span><span class="mi">305</span><span class="sd">                 message_clsname=&#39;Pipeline&#39;,</span>
-<span class="g g-Whitespace">    </span><span class="mi">306</span><span class="sd">                 message=self._log_message(step_idx),</span>
-<span class="ne">--&gt; </span><span class="mi">307</span><span class="sd">                 **fit_params_steps[name])</span>
-<span class="g g-Whitespace">    </span><span class="mi">308</span><span class="sd">             # Replace the transformer of the step with the fitted</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span><span class="sd">             # transformer. This is necessary when loading the transformer</span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/metrics/_scorer.py</span> in <span class="ni">_passthrough_scorer</span><span class="nt">(estimator, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">395</span> <span class="k">def</span> <span class="nf">_passthrough_scorer</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">396</span>     <span class="sd">&quot;&quot;&quot;Function that wraps estimator.score&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">397</span>     <span class="k">return</span> <span class="n">estimator</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">398</span> 
+<span class="g g-Whitespace">    </span><span class="mi">399</span> 
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/joblib/memory.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">353</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">354</span><span class="sd">     def __call__(self, *args, **kwargs):</span>
-<span class="ne">--&gt; </span><span class="mi">355</span><span class="sd">         return self.func(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">356</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">357</span><span class="sd">     def call_and_shelve(self, *args, **kwargs):</span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/utils/metaestimators.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span> 
+<span class="g g-Whitespace">    </span><span class="mi">119</span>         <span class="c1"># lambda, but not partial, allows help() to work with update_wrapper</span>
+<span class="ne">--&gt; </span><span class="mi">120</span>         <span class="n">out</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">fn</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>         <span class="c1"># update the docstring of the returned function</span>
+<span class="g g-Whitespace">    </span><span class="mi">122</span>         <span class="n">update_wrapper</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fn</span><span class="p">)</span>
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/pipeline.py</span> in <span class="ni">_fit_transform_one</span><span class="nt">(transformer, X, y, weight, message_clsname, message, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">752</span><span class="sd">     with _print_elapsed_time(message_clsname, message):</span>
-<span class="g g-Whitespace">    </span><span class="mi">753</span><span class="sd">         if hasattr(transformer, &#39;fit_transform&#39;):</span>
-<span class="ne">--&gt; </span><span class="mi">754</span><span class="sd">             res = transformer.fit_transform(X, y, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">755</span><span class="sd">         else:</span>
-<span class="g g-Whitespace">    </span><span class="mi">756</span><span class="sd">             res = transformer.fit(X, y, **fit_params).transform(X)</span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/pipeline.py</span> in <span class="ni">score</span><span class="nt">(self, X, y, sample_weight)</span>
+<span class="g g-Whitespace">    </span><span class="mi">616</span>         <span class="n">Xt</span> <span class="o">=</span> <span class="n">X</span>
+<span class="g g-Whitespace">    </span><span class="mi">617</span>         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">transform</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iter</span><span class="p">(</span><span class="n">with_final</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">618</span>             <span class="n">Xt</span> <span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Xt</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span>         <span class="n">score_params</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="g g-Whitespace">    </span><span class="mi">620</span>         <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/compose/_column_transformer.py</span> in <span class="ni">fit_transform</span><span class="nt">(self, X, y)</span>
-<span class="g g-Whitespace">    </span><span class="mi">505</span><span class="sd">         self._validate_remainder(X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">506</span><span class="sd"> </span>
-<span class="ne">--&gt; </span><span class="mi">507</span><span class="sd">         result = self._fit_transform(X, y, _fit_transform_one)</span>
-<span class="g g-Whitespace">    </span><span class="mi">508</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">509</span><span class="sd">         if not result:</span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/compose/_column_transformer.py</span> in <span class="ni">transform</span><span class="nt">(self, X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">562</span>                 <span class="s2">&quot;data given during fit.&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">563</span>             <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">564</span>         <span class="n">Xs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">_transform_one</span><span class="p">,</span> <span class="n">fitted</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">565</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_output</span><span class="p">(</span><span class="n">Xs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">566</span> 
 
 <span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/compose/_column_transformer.py</span> in <span class="ni">_fit_transform</span><span class="nt">(self, X, y, func, fitted)</span>
-<span class="g g-Whitespace">    </span><span class="mi">441</span><span class="sd">                     message=self._log_message(name, idx, len(transformers)))</span>
-<span class="g g-Whitespace">    </span><span class="mi">442</span><span class="sd">                 for idx, (name, trans, column, weight) in enumerate(</span>
-<span class="ne">--&gt; </span><span class="mi">443</span><span class="sd">                         self._iter(fitted=fitted, replace_strings=True), 1))</span>
-<span class="g g-Whitespace">    </span><span class="mi">444</span><span class="sd">         except ValueError as e:</span>
-<span class="g g-Whitespace">    </span><span class="mi">445</span><span class="sd">             if &quot;Expected 2D array, got 1D array instead&quot; in str(e):</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span>                     <span class="n">message</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_message</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">transformers</span><span class="p">)))</span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span>                 <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
+<span class="ne">--&gt; </span><span class="mi">443</span>                         <span class="bp">self</span><span class="o">.</span><span class="n">_iter</span><span class="p">(</span><span class="n">fitted</span><span class="o">=</span><span class="n">fitted</span><span class="p">,</span> <span class="n">replace_strings</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">444</span>         <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">445</span>             <span class="k">if</span> <span class="s2">&quot;Expected 2D array, got 1D array instead&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
 
 <span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self, iterable)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1002</span><span class="sd">             # remaining jobs.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1003</span><span class="sd">             self._iterating = False</span>
-<span class="ne">-&gt; </span><span class="mi">1004</span><span class="sd">             if self.dispatch_one_batch(iterator):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1005</span><span class="sd">                 self._iterating = self._original_iterator is not None</span>
-<span class="g g-Whitespace">   </span><span class="mi">1006</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">1002</span>             <span class="c1"># remaining jobs.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1003</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="ne">-&gt; </span><span class="mi">1004</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_one_batch</span><span class="p">(</span><span class="n">iterator</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1005</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original_iterator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1006</span> 
 
 <span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/joblib/parallel.py</span> in <span class="ni">dispatch_one_batch</span><span class="nt">(self, iterator)</span>
-<span class="g g-Whitespace">    </span><span class="mi">833</span><span class="sd">                 return False</span>
-<span class="g g-Whitespace">    </span><span class="mi">834</span><span class="sd">             else:</span>
-<span class="ne">--&gt; </span><span class="mi">835</span><span class="sd">                 self._dispatch(tasks)</span>
-<span class="g g-Whitespace">    </span><span class="mi">836</span><span class="sd">                 return True</span>
-<span class="g g-Whitespace">    </span><span class="mi">837</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">833</span>                 <span class="k">return</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">834</span>             <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">835</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">836</span>                 <span class="k">return</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">837</span> 
 
 <span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/joblib/parallel.py</span> in <span class="ni">_dispatch</span><span class="nt">(self, batch)</span>
-<span class="g g-Whitespace">    </span><span class="mi">752</span><span class="sd">         with self._lock:</span>
-<span class="g g-Whitespace">    </span><span class="mi">753</span><span class="sd">             job_idx = len(self._jobs)</span>
-<span class="ne">--&gt; </span><span class="mi">754</span><span class="sd">             job = self._backend.apply_async(batch, callback=cb)</span>
-<span class="g g-Whitespace">    </span><span class="mi">755</span><span class="sd">             # A job can complete so quickly than its callback is</span>
-<span class="g g-Whitespace">    </span><span class="mi">756</span><span class="sd">             # called before we get here, causing self._jobs to</span>
+<span class="g g-Whitespace">    </span><span class="mi">752</span>         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">753</span>             <span class="n">job_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">754</span>             <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">755</span>             <span class="c1"># A job can complete so quickly than its callback is</span>
+<span class="g g-Whitespace">    </span><span class="mi">756</span>             <span class="c1"># called before we get here, causing self._jobs to</span>
 
 <span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">apply_async</span><span class="nt">(self, func, callback)</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span><span class="sd">     def apply_async(self, func, callback=None):</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span><span class="sd">         &quot;&quot;&quot;</span><span class="n">Schedule</span> <span class="n">a</span> <span class="n">func</span> <span class="n">to</span> <span class="n">be</span> <span class="n">run</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">209</span><span class="s2">         result = ImmediateResult(func)</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span><span class="s2">         if callback:</span>
-<span class="g g-Whitespace">    </span><span class="mi">211</span><span class="s2">             callback(result)</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>     <span class="k">def</span> <span class="nf">apply_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">208</span>         <span class="sd">&quot;&quot;&quot;Schedule a func to be run&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">209</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">ImmediateResult</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>         <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">211</span>             <span class="n">callback</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
 <span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">__init__</span><span class="nt">(self, batch)</span>
-<span class="g g-Whitespace">    </span><span class="mi">588</span><span class="s2">         # Don&#39;t delay the application, to avoid keeping the input</span>
-<span class="g g-Whitespace">    </span><span class="mi">589</span><span class="s2">         # arguments in memory</span>
-<span class="ne">--&gt; </span><span class="mi">590</span><span class="s2">         self.results = batch()</span>
-<span class="g g-Whitespace">    </span><span class="mi">591</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">592</span><span class="s2">     def get(self):</span>
+<span class="g g-Whitespace">    </span><span class="mi">588</span>         <span class="c1"># Don&#39;t delay the application, to avoid keeping the input</span>
+<span class="g g-Whitespace">    </span><span class="mi">589</span>         <span class="c1"># arguments in memory</span>
+<span class="ne">--&gt; </span><span class="mi">590</span>         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">batch</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">591</span> 
+<span class="g g-Whitespace">    </span><span class="mi">592</span>     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
 <span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">254</span><span class="s2">         with parallel_backend(self._backend, n_jobs=self._n_jobs):</span>
-<span class="g g-Whitespace">    </span><span class="mi">255</span><span class="s2">             return [func(*args, **kwargs)</span>
-<span class="ne">--&gt; </span><span class="mi">256</span><span class="s2">                     for func, args, kwargs in self.items]</span>
-<span class="g g-Whitespace">    </span><span class="mi">257</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">258</span><span class="s2">     def __len__(self):</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">256</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span> 
+<span class="g g-Whitespace">    </span><span class="mi">258</span>     <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
 <span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/joblib/parallel.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">254</span><span class="s2">         with parallel_backend(self._backend, n_jobs=self._n_jobs):</span>
-<span class="g g-Whitespace">    </span><span class="mi">255</span><span class="s2">             return [func(*args, **kwargs)</span>
-<span class="ne">--&gt; </span><span class="mi">256</span><span class="s2">                     for func, args, kwargs in self.items]</span>
-<span class="g g-Whitespace">    </span><span class="mi">257</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">258</span><span class="s2">     def __len__(self):</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">256</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span> 
+<span class="g g-Whitespace">    </span><span class="mi">258</span>     <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
 <span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/utils/fixes.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">220</span><span class="s2">     def __call__(self, *args, **kwargs):</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span><span class="s2">         with config_context(**self.config):</span>
-<span class="ne">--&gt; </span><span class="mi">222</span><span class="s2">             return self.function(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span>     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span>         <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">222</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/pipeline.py</span> in <span class="ni">_fit_transform_one</span><span class="nt">(transformer, X, y, weight, message_clsname, message, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">752</span><span class="s2">     with _print_elapsed_time(message_clsname, message):</span>
-<span class="g g-Whitespace">    </span><span class="mi">753</span><span class="s2">         if hasattr(transformer, &#39;fit_transform&#39;):</span>
-<span class="ne">--&gt; </span><span class="mi">754</span><span class="s2">             res = transformer.fit_transform(X, y, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">755</span><span class="s2">         else:</span>
-<span class="g g-Whitespace">    </span><span class="mi">756</span><span class="s2">             res = transformer.fit(X, y, **fit_params).transform(X)</span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/pipeline.py</span> in <span class="ni">_transform_one</span><span class="nt">(transformer, X, y, weight, **fit_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">731</span> 
+<span class="g g-Whitespace">    </span><span class="mi">732</span> <span class="k">def</span> <span class="nf">_transform_one</span><span class="p">(</span><span class="n">transformer</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">733</span>     <span class="n">res</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">734</span>     <span class="c1"># if we have a weight for this transformer, multiply output</span>
+<span class="g g-Whitespace">    </span><span class="mi">735</span>     <span class="k">if</span> <span class="n">weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/pipeline.py</span> in <span class="ni">fit_transform</span><span class="nt">(self, X, y, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">385</span><span class="s2">             fit_params_last_step = fit_params_steps[self.steps[-1][0]]</span>
-<span class="g g-Whitespace">    </span><span class="mi">386</span><span class="s2">             if hasattr(last_step, &#39;fit_transform&#39;):</span>
-<span class="ne">--&gt; </span><span class="mi">387</span><span class="s2">                 return last_step.fit_transform(Xt, y, **fit_params_last_step)</span>
-<span class="g g-Whitespace">    </span><span class="mi">388</span><span class="s2">             else:</span>
-<span class="g g-Whitespace">    </span><span class="mi">389</span><span class="s2">                 return last_step.fit(Xt, y,</span>
-
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/base.py</span> in <span class="ni">fit_transform</span><span class="nt">(self, X, y, **fit_params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">700</span><span class="s2">         else:</span>
-<span class="g g-Whitespace">    </span><span class="mi">701</span><span class="s2">             # fit method of arity 2 (supervised transformation)</span>
-<span class="ne">--&gt; </span><span class="mi">702</span><span class="s2">             return self.fit(X, y, **fit_params).transform(X)</span>
-<span class="g g-Whitespace">    </span><span class="mi">703</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">704</span><span class="s2"> </span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/pipeline.py</span> in <span class="ni">_transform</span><span class="nt">(self, X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">558</span>         <span class="n">Xt</span> <span class="o">=</span> <span class="n">X</span>
+<span class="g g-Whitespace">    </span><span class="mi">559</span>         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">transform</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iter</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">560</span>             <span class="n">Xt</span> <span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Xt</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">561</span>         <span class="k">return</span> <span class="n">Xt</span>
+<span class="g g-Whitespace">    </span><span class="mi">562</span> 
 
 <span class="nn">~/git/books/workshop-data/features/transformer.py</span> in <span class="ni">transform</span><span class="nt">(self, X, y)</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span><span class="s2">         lower_bound = q1 - (self.factor * iqr)</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span><span class="s2">         upper_bound = q3 + (self.factor * iqr)</span>
-<span class="ne">---&gt; </span><span class="mi">20</span><span class="s2">         X_[((X_ &lt; lower_bound) | (X_ &gt; upper_bound))] = np.nan</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span><span class="s2">         X_.fillna(X_.median(), inplace=True)</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span><span class="s2">         return X_.values</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>         <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span>         <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">20</span>         <span class="n">X_</span><span class="p">[((</span><span class="n">X_</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">X_</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">))]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span>         <span class="n">X_</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span>         <span class="k">return</span> <span class="n">X_</span><span class="o">.</span><span class="n">values</span>
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/ops/__init__.py</span> in <span class="ni">f</span><span class="nt">(self, other)</span>
-<span class="g g-Whitespace">    </span><span class="mi">780</span><span class="s2">         elif isinstance(other, ABCSeries):</span>
-<span class="g g-Whitespace">    </span><span class="mi">781</span><span class="s2">             return _combine_series_frame(</span>
-<span class="ne">--&gt; </span><span class="mi">782</span><span class="s2">                 self, other, op, fill_value=None, axis=None, level=None</span>
-<span class="g g-Whitespace">    </span><span class="mi">783</span><span class="s2">             )</span>
-<span class="g g-Whitespace">    </span><span class="mi">784</span><span class="s2">         else:</span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/ops/__init__.py</span> in <span class="ni">f</span><span class="nt">(self, other, axis, level, fill_value)</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span> 
+<span class="g g-Whitespace">    </span><span class="mi">702</span>             <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s2">&quot;outer&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">703</span>             <span class="n">new_data</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="n">_combine_frame</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">pass_op</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>             <span class="k">return</span> <span class="n">left</span><span class="o">.</span><span class="n">_construct_result</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">705</span> 
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/ops/__init__.py</span> in <span class="ni">_combine_series_frame</span><span class="nt">(self, other, func, fill_value, axis, level)</span>
-<span class="g g-Whitespace">    </span><span class="mi">610</span><span class="s2">         axis = 1</span>
-<span class="g g-Whitespace">    </span><span class="mi">611</span><span class="s2"> </span>
-<span class="ne">--&gt; </span><span class="mi">612</span><span class="s2">     axis = self._get_axis_number(axis)</span>
-<span class="g g-Whitespace">    </span><span class="mi">613</span><span class="s2">     left, right = self.align(other, join=&quot;outer&quot;, axis=axis, level=level, copy=False)</span>
-<span class="g g-Whitespace">    </span><span class="mi">614</span><span class="s2">     if axis == 0:</span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/frame.py</span> in <span class="ni">_combine_frame</span><span class="nt">(self, other, func, fill_value, level)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5298</span>         <span class="k">if</span> <span class="n">ops</span><span class="o">.</span><span class="n">should_series_dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">5299</span>             <span class="c1"># iterate over columns</span>
+<span class="ne">-&gt; </span><span class="mi">5300</span>             <span class="n">new_data</span> <span class="o">=</span> <span class="n">ops</span><span class="o">.</span><span class="n">dispatch_to_series</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">_arith_op</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">5301</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">5302</span>             <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="nb">all</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
+
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/ops/__init__.py</span> in <span class="ni">dispatch_to_series</span><span class="nt">(left, right, func, str_rep, axis)</span>
+<span class="g g-Whitespace">    </span><span class="mi">414</span>         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">415</span> 
+<span class="ne">--&gt; </span><span class="mi">416</span>     <span class="n">new_data</span> <span class="o">=</span> <span class="n">expressions</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">column_op</span><span class="p">,</span> <span class="n">str_rep</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">417</span>     <span class="k">return</span> <span class="n">new_data</span>
+<span class="g g-Whitespace">    </span><span class="mi">418</span> 
+
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/computation/expressions.py</span> in <span class="ni">evaluate</span><span class="nt">(op, op_str, a, b, use_numexpr)</span>
+<span class="g g-Whitespace">    </span><span class="mi">206</span>     <span class="n">use_numexpr</span> <span class="o">=</span> <span class="n">use_numexpr</span> <span class="ow">and</span> <span class="n">_bool_arith_check</span><span class="p">(</span><span class="n">op_str</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>     <span class="k">if</span> <span class="n">use_numexpr</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">208</span>         <span class="k">return</span> <span class="n">_evaluate</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">op_str</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">209</span>     <span class="k">return</span> <span class="n">_evaluate_standard</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">op_str</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span> 
+
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/computation/expressions.py</span> in <span class="ni">_evaluate_numexpr</span><span class="nt">(op, op_str, a, b)</span>
+<span class="g g-Whitespace">    </span><span class="mi">119</span> 
+<span class="g g-Whitespace">    </span><span class="mi">120</span>     <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">121</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">_evaluate_standard</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">op_str</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">122</span> 
+<span class="g g-Whitespace">    </span><span class="mi">123</span>     <span class="k">return</span> <span class="n">result</span>
+
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/computation/expressions.py</span> in <span class="ni">_evaluate_standard</span><span class="nt">(op, op_str, a, b)</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span>         <span class="n">_store_test_result</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span>     <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="nb">all</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">70</span>         <span class="k">return</span> <span class="n">op</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span> 
+<span class="g g-Whitespace">     </span><span class="mi">72</span> 
+
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/ops/__init__.py</span> in <span class="ni">column_op</span><span class="nt">(a, b)</span>
+<span class="g g-Whitespace">    </span><span class="mi">383</span> 
+<span class="g g-Whitespace">    </span><span class="mi">384</span>         <span class="k">def</span> <span class="nf">column_op</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">385</span>             <span class="k">return</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">b</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">columns</span><span class="p">))}</span>
+<span class="g g-Whitespace">    </span><span class="mi">386</span> 
+<span class="g g-Whitespace">    </span><span class="mi">387</span>     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">ABCSeries</span><span class="p">)</span> <span class="ow">and</span> <span class="n">axis</span> <span class="o">==</span> <span class="s2">&quot;columns&quot;</span><span class="p">:</span>
+
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/ops/__init__.py</span> in <span class="ni">&lt;dictcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">383</span> 
+<span class="g g-Whitespace">    </span><span class="mi">384</span>         <span class="k">def</span> <span class="nf">column_op</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">385</span>             <span class="k">return</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">b</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">columns</span><span class="p">))}</span>
+<span class="g g-Whitespace">    </span><span class="mi">386</span> 
+<span class="g g-Whitespace">    </span><span class="mi">387</span>     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">ABCSeries</span><span class="p">)</span> <span class="ow">and</span> <span class="n">axis</span> <span class="o">==</span> <span class="s2">&quot;columns&quot;</span><span class="p">:</span>
+
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/indexing.py</span> in <span class="ni">__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1759</span>                 <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="ne">IndexError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1760</span>                     <span class="k">pass</span>
+<span class="ne">-&gt; </span><span class="mi">1761</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_tuple</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1762</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1763</span>             <span class="c1"># we by definition only have the 0th axis</span>
+
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/indexing.py</span> in <span class="ni">_getitem_tuple</span><span class="nt">(self, tup)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2064</span>     <span class="k">def</span> <span class="nf">_getitem_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tup</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">2065</span> 
+<span class="ne">-&gt; </span><span class="mi">2066</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_has_valid_tuple</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2067</span>         <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2068</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_lowerdim</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -1845,9 +1899,9 @@ xxxxxxxxxxxx
     <div class="container">
       <p>
         
-          By Annette Landmesser<br/>
+          Durch Annette Landmesser<br/>
         
-            &copy; Copyright 2021.<br/>
+            &copy; Urheberrechte © 2021.<br/>
           <div class="extra_footer">
             <script type="text/x-thebe-config">
 {
@@ -1869,11 +1923,9 @@ xxxxxxxxxxxx
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  
   </body>
 </html>

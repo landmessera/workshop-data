@@ -1,6 +1,5 @@
-# Übung: Aufbereitung
+# Übung
 
-(start)=
 ## Überblick verschaffen
 
 ### Python Packete importieren und Daten laden

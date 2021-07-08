@@ -1,21 +1,30 @@
-# Table of content
-# Learn more at https://jupyterbook.org/customize/toc.html
-#
-- file: ./features/welcome
-- file: ./features/datasets
-- file: ./features/preparation
-  sections:
-    - file: ./features/explore
-    - file: ./features/missingData
-    - file: ./features/splitData
-    - file: ./features/exercisePreparation
-- file: ./features/transformation
-  sections:
-    - file: ./features/transformationNumerical
-    - file: ./features/transformationCategorical
-    - file: ./features/pipeline
-    - file: ./features/exerciseTransformation
-- file: ./features/optimization
-  sections:
-    - file: ./features/optimizationContent
-    - file: ./features/exerciseOptimization
+format: jb-book
+root: welcome
+defaults:
+  titlesonly: false
+parts:
+  - caption: Einleitung
+    chapters:
+    - file: features/datasets
+  - caption: Teil 1 - Aufbereitung
+    chapters:
+    - file: features/preparation
+      title: Ziele und Inhalte
+    - file: features/explore
+    - file: features/missingData
+    - file: features/splitData
+    - file: features/exercisePreparation
+  - caption: Teil 2 - Transformation
+    chapters:
+    - file: features/transformation
+    - file: features/transformationNumerical
+    - file: features/transformationCategorical
+    - file: features/pipeline
+    - file: features/exerciseTransformation
+  - caption: Teil 3 - Optimierung
+    chapters:
+    - file: features/optimization
+    - file: features/optimizationBaseline
+    - file: features/optimizationParameter
+    - file: features/optimizationFeature
+    - file: features/exerciseOptimization

@@ -1,4 +1,4 @@
-# Übung: Tranformation
+# Übung
 
 !pip install sklearn
 

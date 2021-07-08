@@ -24,8 +24,8 @@ g.set_xticklabels(rotation=90)
 g = g.set_ylabels("Wahrscheinlichkeit zu überleben")
 ------------------
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mValueError[0m                                Traceback (most recent call last)
+[0;31m-------------------------------------------[0m
+[0;31mValueError[0mTraceback (most recent call last)
 [0;32m<ipython-input-42-7d5a96225f37>[0m in [0;36m<module>[0;34m[0m
 [1;32m      1[0m [0;31m# Explore SibSp feature vs Survived[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
 [0;32m----> 2[0;31m [0mg[0m [0;34m=[0m [0msns[0m[0;34m.[0m[0mfactorplot[0m[0;34m([0m[0mx[0m[0;34m=[0m[0;34m"FamilySize"[0m[0;34m,[0m[0my[0m[0;34m=[0m[0;34m"Survived"[0m[0;34m,[0m[0mdata[0m[0;34m=[0m[0mdf_temp[0m[0;34m,[0m [0mkind[0m[0;34m=[0m[0;34m"bar"[0m[0;34m,[0m [0msize[0m[0;34m=[0m[0;36m6[0m[0;34m,[0m [0mpalette[0m [0;34m=[0m [0;34m"muted"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
