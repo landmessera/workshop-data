@@ -17,23 +17,46 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-from sklearn.model_selection import GridSearchCV
+# Pakete importieren
+import pandas as pd
+import numpy as np
+import pickle
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.pipeline import Pipeline
+from treeinterpreter import treeinterpreter
+from sklearn.tree import DecisionTreeClassifier
 
-param_grid = {
-    'transformers__num__outlier_remover__factor': [1.0, 1.5, 2.0, 3.0],
-    'predictor__n_neighbors': [2,3,4,5,6],
-}
+# Transformierte Daten laden
+with open('../output/titanic/datasets_transformed.pkl', 'rb') as handle:
+    datasets_transformed = pickle.load(handle)
 
-grid_search = GridSearchCV(full_pipeline, param_grid, cv=10)
+# Transformer laden
+with open('../output/titanic/transformer_pipeline.pkl', 'rb') as handle:
+    transformer_pipeline = pickle.load(handle)
+
+# Datensets laden
+with open('../output/titanic/datasets.pkl', 'rb') as handle:
+    datasets = pickle.load(handle)
+
+# Full Pipeline erstellen
+full_pipeline = Pipeline(steps=[
+    ('transformers', transformer_pipeline),
+    ('predictor', DecisionTreeClassifier(random_state=0))
+])
 ------------------
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m<ipython-input-1-e454c32a6b17>[0m in [0;36m<module>[0;34m[0m
-[1;32m      6[0m }
-[1;32m      7[0m [0;34m[0m[0m
-[0;32m----> 8[0;31m [0mgrid_search[0m [0;34m=[0m [0mGridSearchCV[0m[0;34m([0m[0mfull_pipeline[0m[0;34m,[0m [0mparam_grid[0m[0;34m,[0m [0mcv[0m[0;34m=[0m[0;36m10[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m
-[0;31mNameError[0m: name 'full_pipeline' is not defined
-NameError: name 'full_pipeline' is not defined
+[0;31m----------------------------------------------------------------[0m
+[0;31mTypeError[0m                      Traceback (most recent call last)
+[0;32m<ipython-input-1-0ea12d994b1a>[0m in [0;36m<module>[0;34m[0m
+[1;32m     11[0m [0;31m# Transformierte Daten laden[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     12[0m [0;32mwith[0m [0mopen[0m[0;34m([0m[0;34m'../output/titanic/datasets_transformed.pkl'[0m[0;34m,[0m [0;34m'rb'[0m[0;34m)[0m [0;32mas[0m [0mhandle[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 13[0;31m     [0mdatasets_transformed[0m [0;34m=[0m [0mpickle[0m[0;34m.[0m[0mload[0m[0;34m([0m[0mhandle[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     14[0m [0;34m[0m[0m
+[1;32m     15[0m [0;31m# Transformer laden[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/_libs/internals.pyx[0m in [0;36mpandas._libs.internals.BlockManager.__cinit__[0;34m()[0m
+
+[0;31mTypeError[0m: __cinit__() takes at least 2 positional arguments (0 given)
+TypeError: __cinit__() takes at least 2 positional arguments (0 given)
 

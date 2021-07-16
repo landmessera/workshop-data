@@ -1,0 +1,1243 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Datensets erstellen &#8212; Daten für Machine Learning</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Übung" href="exercisePreparation.html" />
+    <link rel="prev" title="Umgang mit fehlenden Daten" href="preparationMissingData.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/modul2single.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Daten für Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Dieses Buch durchsuchen ..." aria-label="Dieses Buch durchsuchen ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../welcome.html">
+   Willkommen beim Onlinekurs
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Einleitung
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="guide.html">
+   Start : der Wegweiser
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="datasets.html">
+   Datensets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pandas.html">
+   Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 1 - Aufbereitung
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preparation.html">
+   Ziele
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="preparationExplore.html">
+   Überblick verschaffen
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="preparationMissingData.html">
+   Umgang mit fehlenden Daten
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Datensets erstellen
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercisePreparation.html">
+   Übung
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 2 - Transformation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformation.html">
+   Ziele
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformationNumerical.html">
+   Numerische Daten
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformationCategorical.html">
+   Kategorische Daten
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pipeline.html">
+   Tranformationen koordinieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exerciseTransformation.html">
+   Übung
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 3 - Optimierung
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimization.html">
+   Ziele
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationBaseline.html">
+   Baseline definieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationParameter.html">
+   Parameter optimieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationFeature.html">
+   Merkmale optimieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exerciseOptimization.html">
+   Übung
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navigation umschalten" aria-controls="site-navigation"
+                title="Navigation umschalten" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Laden Sie diese Seite herunter"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/features/preparationSplitData.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Quelldatei herunterladen" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="In PDF drucken"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Vollbildmodus"
+        title="Vollbildmodus"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/features/preparationSplitData.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Starten Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Starten Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Inhalt
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#trainings-validierungs-und-testdatenset">
+   Trainings-, Validierungs- und Testdatenset
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#wissen-prufen">
+     Wissen prüfen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#was-sollte-bei-der-erstellung-der-datansets-beachtet-werden">
+   Was sollte bei der Erstellung der Datansets beachtet werden?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datensets-mussen-disjunkt-sein">
+     Datensets müssen disjunkt sein
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geeignete-grosze-der-datensets-wahlen">
+     Geeignete Größe der Datensets wählen
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datensets-sollten-wenn-moglich-balanciert-sein">
+     Datensets sollten wenn möglich balanciert sein
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ahnliche-charakteristiken-zu-daten-im-betrieb">
+     Ähnliche Charakteristiken zu Daten im Betrieb
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#beispiel-titanic-datensets-erstellen">
+   Beispiel Titanic: Datensets erstellen
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datensets-speichern">
+   Datensets speichern
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="datensets-erstellen">
+<h1>Datensets erstellen<a class="headerlink" href="#datensets-erstellen" title="Permalink to this headline">¶</a></h1>
+<p>Nachdem ein ersten Eindruck von den Daten verschafft und entschieden wurde, wie mit fehlenden Daten umgegangen wird, folgt nun die Aufsplittung der Daten in einzelne Datensets.</p>
+<p><strong>Warum ist eine Aufsplittung notwendig?</strong></p>
+<p>Beispiel:
+Familie Maier lebt mit Katze Felix in einem Haus. Die Katze bringt immer häufiger lebende Beute, meist Mäuse, mit ins Haus. Herr Maier ist ein Tierliebhaber, aber Mäuse möchte er nicht im Haus haben. Er hat eine Idee: Mit einem KI-System möchte er eine <strong>Katzenklappe</strong> entwickeln, <strong>die Katzen nur dann hinein lässt, wenn die Katze keine Beute mitbringt</strong>. Zunächst installiert er eine Kamera, sammelt 1000 Bilder und weist die Bilder manuell 4 Kategorien zu:</p>
+<ol class="simple">
+<li><p>keine Katze (350 Bilder)</p></li>
+<li><p>Felix ohne Beute von vorne (300 Bilder)</p></li>
+<li><p>Felix ohne Beute von hinten (300 Bilder)</p></li>
+<li><p>Felix mit Beute von vorne (50 Bilder)</p></li>
+</ol>
+<div class="figure align-left" id="fig-catflap">
+<a class="reference internal image-reference" href="../_images/catflap.jpg"><img alt="../_images/catflap.jpg" src="../_images/catflap.jpg" style="height: 350px;" /></a>
+</div>
+<div style="font-size: 8px;">Quelle: Andreas Göllner auf Pixabay</div><p>Im Standardfall (Kategorien 1-3) soll die Katzenklappe offen sein. Die Bilder der Kategorien 1-3 erhalten das Label “offen”. Wenn Felix mit einer Beute vor der Katzenklappe steht (Kategorie 4), soll diese verriegelt werden. Die Bilder der Kategorie 4 werden mit dem Label “gesperrt” versehen. Herr Maier trainiert ein Machine Learning-Modell mit den 1000 Bildern und entsprechenden Labeln. Anschließend prüft er das trainierte Modell mit ingesamt 80 von den 1000 Bildern (40 mit dem Label “offen” und 40 mit dem Label “gesperrt”). Alle 80 Bilder werden richtig erkannt. Herr Meier ist begeistert und nimmt das System in Betrieb. Am nächsten Morgen wird Herr Meier von einer Maus in der Küche begrüßt.</p>
+<p><strong>Was ist passiert?</strong></p>
+<p>Herr Maier hat mit den gleichen Bildern getestet, mit denen er auch das Modell trainiert hat. Das Modell hat die Bilder mit entsprechendem Label bereits gesehen und konnte so mit 100% Genauigkeit, alle Bilder richtig klassifizieren. Neue Bilder, der letzten Nacht, wurden falsch klassifiziert. Das Modell war also noch nicht gut genug, um im Praxiseinsatz den Erwartungen zu entsprechen.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Wichtig: Verwenden Sie nie Daten in der Testphase, die bereits für das Training verwendet wurden.</p>
+</div>
+<p>Herr Maier erstellt ein Testdatenset. Hierzu nimmt er neue Bilder auf und weißt manuell die Labels zu. Mit diesen neuen Bildern (50 mit dem Label “offen” und 50 mit dem Label “gesperrt”) wird getestet. Es stellt sich heraus, dass die Erkennungsrate lediglich bei 70% liegt. Eine Erkennungsrate von 70% bedeutet, dass 70 von 100 Bilder richtig erkannt werden. Herr Meier vermutet, dass die Anzahl der Bilder für das Training nicht ausreicht. Es werden weitere 1000 Beispiel-Bilder erstellt. Es liegen jetzt 2000 Bilder folgender Kategorien für das Training vor:</p>
+<ol class="simple">
+<li><p>keine Katze (600 Bilder), Label “offen”</p></li>
+<li><p>Felix von vorne (600 Bilder), Label “offen”</p></li>
+<li><p>Felix von hinten (600 Bilder), Label “offen”</p></li>
+<li><p>Felix mit Beute von vorne (200 Bilder), Label “gesperrt”</p></li>
+</ol>
+<p>Anschließend testet Herr Maier erneut mit dem erstellten Testdatenset. Das Ergebnis liegt jetzt bei einer Erkennungsrate von 90%. Damit ist Herr Maier zufrieden und nimmt das Modell erneut in Betrieb. Einige Wochen hat Herr Maier Ruhe vor ungewünschten Beutetieren in der Wohnung. Hin und wieder kommt es jedoch vor, dass eine Fehlentscheidung vom System getroffen wird, wie erwartet sind ca. 10% der Klassifikationen fehlerhaft. Herr Maier möchte das Modell weiter verbessern. Dieses Mal versucht er die <strong>Hyperparameter</strong> des Modells anzupassen. Im Gegensatz zu Parameter eines Modells, die während der Trainingsphase gelernt werden, sind Hyperparameter, Parameter, die Einstellungen am Algorithmus selbst erlauben. Im Fall des eingesetzten Neuronalen Netz, experimentiert Herr Maier mit der Netzarchitektur (Anzahl der Hidden Layer und die Lernrate werden variiert). Die Optimierungsversuche werden in mehreren hundert Versuchsläufen angepasst und mit dem Testdatenset getestet. Die Erkennungsrate beträgt nach der Optimierung 97%. Herr Maier ist zufrieden und nimmt das optimierte System in Betrieb. Die Enttäuschung ist groß, als in den folgenden Tagen wieder häufiger Mäuse in der Wohnung sind.</p>
+<p><strong>Wie kann es sein, dass die Erkennungsrate von 90% auf 97% gestiegen ist und das Modell wesentlich schlechter im Betrieb abschneidet?</strong></p>
+<p>Die Hyperparameter wurden für das Testset optimiert. Es handelt sich in diesem Fall um eine Überanpassung an das Testdatenset, auch <strong>Overfitting</strong> genannt. In jedem der Versuchsläufe wurde das gleiche Testdatenset verwendet und anschließend optimiert. Besser ist es, wenn ein weiteres Datenset erstellt wird, das für Optimierungsversuche der Hyperparameter verwendet wird. Dieses Datenset wird <strong>Validierungsdatenset</strong> genannt. Das Testdatenset wird nach Abschluss der Optimierungen einmalig verwendet um das Modell abschließend zu prüfen. So kann Overfitting rechtzeitig vor in Betrieb nahme erkannt werden.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Wichtig: Verwenden Sie ein Validierungsset, wenn Sie häufige Optimierungen auf Basis des Testergebnis vornehmen.</p>
+</div>
+<div class="section" id="trainings-validierungs-und-testdatenset">
+<h2>Trainings-, Validierungs- und Testdatenset<a class="headerlink" href="#trainings-validierungs-und-testdatenset" title="Permalink to this headline">¶</a></h2>
+<p>Für die Entwicklung von Machine Learning Verfahren werden drei Datensets erstellt:</p>
+<ul class="simple">
+<li><p>Trainigsdatenset</p></li>
+<li><p>Validierungsdatenset</p></li>
+<li><p>Testdatenset</p></li>
+</ul>
+<p>Das <strong>Trainingsdatenset</strong> wird zum trainieren des Modells verwendet. Trainieren bedeutet, dass die Parameter des Modells aus Erfahrung (Daten) gelernt wird.</p>
+<p>Das <strong>Validierungsdatenset</strong> wird verwendet, um das Modell während des Entwicklungsprozesses in mehreren Iterationen zu prüfen. Auf Basis des Ergebnisses werden Optimierungen wie z.B. die Anpassung von Hyperparameter vorgenommen und anschließend erneut mit dem Validierungsset geprüft.</p>
+<p>Bevor ein Modell in Betrieb genommen werden kann, findet abschließend eine Prüfung mit dem <strong>Testdatenset</strong> statt. Das Ergebnis des Testdatensets sollte nicht verwendet werden, um Optimierungen durchzuführen. Ist das Ergebnis des Validierungsdatensets signifikant besser als das Ergebnis des Trainingsdatensets liegt mit hoher Wahrscheinlichkeit eine Überanpassung (Overfitting) des Modells vor.</p>
+<div class="section" id="wissen-prufen">
+<h3>Wissen prüfen<a class="headerlink" href="#wissen-prufen" title="Permalink to this headline">¶</a></h3>
+<p>Eine Validierungsdatenset ist notwendig wenn …</p>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+… sehr wenige Daten vorliegen.<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><font color='red'>Falsch.</font></p>
+</div>
+</details><details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+… es viele Hyperparameter gibt, die angepasst werden müssen.<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><font color='green'>Richtig.</font></p>
+</div>
+</details><details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+… ein komplexes Modell gelernt werden soll, also viele Modellparameter gelernt werden müssen.<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><font color='red'>Falsch.</font></p>
+</div>
+</details><p>Testdaten dürfen …</p>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+… für die Optimierung der Hyperparameter und für das Training verwendet werden.<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><font color='red'>Falsch.</font></p>
+</div>
+</details><details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+… für das Training und das Testen verwendet werden.<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><font color='red'>Falsch.</font></p>
+</div>
+</details><details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+… ausschließlich für das Testen verwendet werden.<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><font color='green'>Richtig.</font></p>
+</div>
+</details><p>Was bedeutet Überanpassung (Overfitting)?</p>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Das Modell ist zu allgemein.<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><font color='red'>Falsch.</font></p>
+</div>
+</details><details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Das Modell wurde zu sehr für die Trainingsdaten optimiert.<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><font color='green'>Richtig.</font></p>
+</div>
+</details><details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Das Modell liefert im Betrieb bessere Ergebnisse als in der Testphase.<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><font color='red'>Falsch.</font></p>
+</div>
+</details></div>
+</div>
+<div class="section" id="was-sollte-bei-der-erstellung-der-datansets-beachtet-werden">
+<h2>Was sollte bei der Erstellung der Datansets beachtet werden?<a class="headerlink" href="#was-sollte-bei-der-erstellung-der-datansets-beachtet-werden" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Datensets müssen disjunkt sein</p></li>
+<li><p>Geeignete Größe der Datensets wählen</p></li>
+<li><p>Datensets sollten wenn möglich balanciert sein</p></li>
+<li><p>Ähnliche Charakteristiken zu Daten im Betrieb</p></li>
+</ul>
+<div class="section" id="datensets-mussen-disjunkt-sein">
+<h3>Datensets müssen disjunkt sein<a class="headerlink" href="#datensets-mussen-disjunkt-sein" title="Permalink to this headline">¶</a></h3>
+<p>Wie bereits ausführlich am Beispiel Katzenklappe erläutert, ist es enorm wichtig, dass sich die Datensets nicht überschneiden. Achten Sie besonders darauf, dass die Testdaten niemals zum trainieren des Modells verwenden.</p>
+<div class="figure align-left" id="fig-split-disjunkt">
+<a class="reference internal image-reference" href="../_images/datasplitDisjunkt.png"><img alt="../_images/datasplitDisjunkt.png" src="../_images/datasplitDisjunkt.png" style="width: 550px;" /></a>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Nicht disjunkte Datensets kommen in der Praxis häufiger vor als man annimmt. Meist sind es Flüchtigkeitsfehler. Die Auswirkung ist jedoch enorm.</p>
+</div>
+</div>
+<div class="section" id="geeignete-grosze-der-datensets-wahlen">
+<h3>Geeignete Größe der Datensets wählen<a class="headerlink" href="#geeignete-grosze-der-datensets-wahlen" title="Permalink to this headline">¶</a></h3>
+<p>Wieviel Prozent der Daten sollten als Trainings-, Validierungs- und Testdaten verwendet werden? Wie bei den meisten Entscheidungen im Machine Learning Bereich hängt auch in diesem Fall eine gute Entscheidung vom Anwendungsfall ab. Eine grobe Richtlinie und Empfehlung lautet:</p>
+<ul class="simple">
+<li><p>60% der Daten als Trainingsdaten</p></li>
+<li><p>20% der Daten als Validierungsdaten</p></li>
+<li><p>20% der Daten als Testdaten</p></li>
+</ul>
+<div class="figure align-left" id="fig-split-dist">
+<a class="reference internal image-reference" href="../_images/datasplitTvtDist.png"><img alt="../_images/datasplitTvtDist.png" src="../_images/datasplitTvtDist.png" style="height: 150px;" /></a>
+</div>
+<p>Zum Beispiel kann bei sehr vielen verfügbaren Datensätzen &gt; 100000 eine geringere Validierungs- und Trainingsmenge ausreichen. Eine Mögliche Verteilung kann 90% Training, 5% Validierung, 5% Test lauten. Wichtig ist, dass in den Validierungs- und Testdatensets möglichst alle Varianten enthalten sind und den in der Realität vorkommenden Daten ähnlich sind. Im Fall der Katzenklappen-Anwendung ist es von Bedeutung, dass möglichst unterschiedliche Bilder von den unterschiedlichen Situationen (Katze von vorne, Katze von hinten, keine Katze, Katze mit Beute) und unterschiedliche Belichtungen, wie z.B. in der Dämmerung, Nachts, bei Tag etc. in jedem Datenset enthalten sind.</p>
+</div>
+<div class="section" id="datensets-sollten-wenn-moglich-balanciert-sein">
+<h3>Datensets sollten wenn möglich balanciert sein<a class="headerlink" href="#datensets-sollten-wenn-moglich-balanciert-sein" title="Permalink to this headline">¶</a></h3>
+<p>Was bedeutet in Kontext von Machine Learning “balancierte Datensets”?
+Schauen wir uns noch einmal das Katzenklappen-Beispiel an. Es handelt sich bei diesem Anwendungsfall um eine Klassifikation. Es soll ein Modell gelernt werden, dass als Eingabe ein Bild erhält und als Ausgabe eine der beiden Klassen “offen” oder “gesperrt” ausgibt. Wobei “offen” und “gesperrt” die Zustände sind, die aufgrund der Klassifikation erfolgen sollen. Zu Beginn liegen 950 Bilder mit dem Label “offen” vor und nur 50 Bilder mit dem Label “gesperrt”. Es handelt sich in diesem Fall um eine Menge von Daten, die entsprechend der Anzahl der verfügbaren Bilder pro Klasse nicht “balanciert sind”.</p>
+<div class="figure align-left" id="fig-imbalanced">
+<a class="reference internal image-reference" href="../_images/datasplitImbalanced.png"><img alt="../_images/datasplitImbalanced.png" src="../_images/datasplitImbalanced.png" style="width: 350px;" /></a>
+</div>
+<p>Ein vollständig balancierte Datenmenge liegt vor, wenn von 1000 verfügbaren Bildern, 500 mit dem Label “offen” und 500 mit dem Label “gesperrt” versehen sind. Balanciert bedeutet also, es liegt eine Gleichverteilung vor.</p>
+<p>Balancierte Datensets führen meist zu einem besseren Ergebnis. Zunächst sollte man prüfen ob sich die Datenmenge aus der die Datensets erstellt werden balanciert ist. Handelt es sich um keine balancierte Datenmenge, sollte versucht werden eine balancierte Datenmenge zu erhalten. Wenn genug Daten vorliegen, können Teilmengen ausgewählt werden. Wenn wenig Daten vorliegen, kann eine weitere Datenerhebung sinnvoll sein. Im Fall der Katzenklappen-Anwendung könnte die Anzahl der “Katze mit Beute”-Bilder erhöht werden, durch weitere Aufzeichnungen.</p>
+<p>Nicht balancierte Datensets kommen in der Praxis sehr häufig vor. Lässt sich die Verteilung der Daten nicht ändern, kann mit nicht balancierten Datenset ein Testlauf gestartet werden. Bei der Bewertung des Ergebnisse muss diese Eigenschaft des Datensets berücksichtigt werden.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Achten Sie bei der Aufteilung der Datensets auf die Verteilung der Daten. Erstellen sie wenn möglich Datensets die balanciert sind.</p>
+</div>
+</div>
+<div class="section" id="ahnliche-charakteristiken-zu-daten-im-betrieb">
+<h3>Ähnliche Charakteristiken zu Daten im Betrieb<a class="headerlink" href="#ahnliche-charakteristiken-zu-daten-im-betrieb" title="Permalink to this headline">¶</a></h3>
+<p>Die Charakteristiken der Trainings-, Validierungs- und Testdatensets sollten möglichst ähnlich zu den Charakteristiken der Daten im Betrieb sein. Die Verteilung der Anzahl pro Klasse sind eine Charakteristik. Je nach Anwendungsfall gibt es weitere Charakteristiken.</p>
+<p><strong>Am Beispiel der Katzenklappe</strong>: Es existieren meherere Bilder mit der gleichen Beute in den Daten. Wenn man die Zuweisung der Datensätze in die jeweiligen Datensets beliebig erstellt, kann es sein, dass Bilder der gleichen Beute im Trainings- als auch im Testset enthalten sind. Das hat zur Folge, dass das Modell die Beute bereits im Training gesehen hat. Die Beute, die Felix in Zukunft mitbringen wird, hat das Modell noch nicht gesehen. Der Unterschied von der Test-Situation und der Realität (im Betrieb), weicht stark ab. Das Ergebnis unter Verwendung der Testdaten wird besser sein, als das Ergebnis im Betrieb.</p>
+<div class="figure align-left" id="fig-time-catflap">
+<a class="reference internal image-reference" href="../_images/datasplitTimeCatflap.png"><img alt="../_images/datasplitTimeCatflap.png" src="../_images/datasplitTimeCatflap.png" style="width: 650px;" /></a>
+</div>
+<p>Lösung: Die Daten werden nicht beliebig gesplittet, sondern nach Aufnahmedatum sortiert und anschließend gesplittet. So wird die Wahrscheinlichkeit, dass ein Beutebild auch im Testset existiert minimiert.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Denken Sie über das Szenario im Betrieb nach:</p>
+<ul class="simple">
+<li><p>Welche Daten stehen dem Modell zum Training zur Verfügung?</p></li>
+<li><p>Welche Daten werden im Betrieb erzeugt, bzw. als Anfrage an das Modell gestellt?</p></li>
+<li><p>Wie unterscheiden sich die Daten in Training und Betrieb?</p></li>
+<li><p>Spiegelt sich diese Unterscheidung auch im Trainings- und Testdatenset wieder?</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="beispiel-titanic-datensets-erstellen">
+<h2>Beispiel Titanic: Datensets erstellen<a class="headerlink" href="#beispiel-titanic-datensets-erstellen" title="Permalink to this headline">¶</a></h2>
+<p>Python Module importieren</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Aufbereitete Daten laden und anzeigen</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;../output/titanic/preparedData.pkl&#39;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Fare</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7.2500</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>71.2833</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.9250</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>53.1000</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8.0500</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>886</th>
+      <td>0</td>
+      <td>2</td>
+      <td>male</td>
+      <td>27.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>13.0000</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>887</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>19.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>30.0000</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>888</th>
+      <td>0</td>
+      <td>3</td>
+      <td>female</td>
+      <td>28.0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>23.4500</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>889</th>
+      <td>1</td>
+      <td>1</td>
+      <td>male</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>30.0000</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>890</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>32.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.7500</td>
+      <td>Q</td>
+    </tr>
+  </tbody>
+</table>
+<p>891 rows × 8 columns</p>
+</div></div></div>
+</div>
+<p>Sind die Daten ungleich verteilt in Bezug auf die Anzahl der Klassen? Prüfen durch Anzeigen der Verteilung mit Hilfe der <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.hist.html">hist()-Methode</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f853461a250&gt;
+</pre></div>
+</div>
+<img alt="../_images/preparationSplitData_30_1.png" src="../_images/preparationSplitData_30_1.png" />
+</div>
+</div>
+<p>Die Klasse “Überlebt” (Survived=1) enthält 342 Datensätze und die Klasse “Nicht Überlebt” (Survived=0) enthält 549 Datensätze. Es handelt sich nicht um ein balanciertes Datenset, jedoch sind einige Datensätze in der Klasse “Überlebt” vorhanden. Der Unterschied von 207 Datensätzen bei einer Gesamtzahl von 891 Datensätzen ist akzeptabel.</p>
+<p>Vorbereitung für die Erstellung der Datensets mit Scikit-Learn:</p>
+<ol class="simple">
+<li><p>Einen Pandas Dataframe erstellen der die Merkmale enthält</p></li>
+<li><p>Eine Pandas Dataframe (Series) erstellen der die Labels enthält</p></li>
+</ol>
+<p>(1) Enternen der Label-Spalte “Survived” um ein Pandas Datenframe zu erhalten, der nur die Merkmale enthält.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Survived&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Pclass</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Fare</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7.2500</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>71.2833</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.9250</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>53.1000</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8.0500</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>886</th>
+      <td>2</td>
+      <td>male</td>
+      <td>27.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>13.0000</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>887</th>
+      <td>1</td>
+      <td>female</td>
+      <td>19.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>30.0000</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>888</th>
+      <td>3</td>
+      <td>female</td>
+      <td>28.0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>23.4500</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>889</th>
+      <td>1</td>
+      <td>male</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>30.0000</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>890</th>
+      <td>3</td>
+      <td>male</td>
+      <td>32.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.7500</td>
+      <td>Q</td>
+    </tr>
+  </tbody>
+</table>
+<p>891 rows × 7 columns</p>
+</div></div></div>
+</div>
+<p>(2) Erstellen eines Pandas Dataframe Series durch Auswahl der Label-Spalte “Survived”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Survived&#39;</span><span class="p">]</span>
+<span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      0
+1      1
+2      1
+3      1
+4      0
+      ..
+886    0
+887    1
+888    0
+889    1
+890    0
+Name: Survived, Length: 891, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Estellen der Datensets unter Verwendung der <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html">train_test_split()-Methode von Scikit-Learn</a>. Ziel ist es, die Daten in 80% Trainingsdaten, 20% Validierungsdaten und 20% Testdaten zu teilen. Das erfolgt mit der train_test_split()-Methode in zwei Schritten:</p>
+<ol class="simple">
+<li><p>Die Daten werden im Verhältnis 80:20 gesplittet. 80% der Daten werden als Trainingsdaten bezeichnet, 20% der Daten als Testdaten.</p></li>
+<li><p>Die Trainingsdaten werden nochmals geteilt. 75% werden weiterhin als Trainingsdaten verwendet, 25% als Validierungsdaten.</p></li>
+</ol>
+<p>Der Parameter <strong>random_state</strong> wird auf einen beliebigen Wert (hier 1) festgelegt. Wird für diesen Parameter ein Wert gesetzt, erhält man bei jeder Ausführung des Codes die gleiche Aufteilung. Konkret bedeutet das, wenn der erste Datensatz bei einer Ausführung des Codes dem Testdatensatz zugewiesen wird, ist das auch bei der zweiten Ausführung der Fall. Diese Einstellung wird verwendet um das Ergebnis reproduzieren zu können.</p>
+<p>Dem Parameter <strong>stratify</strong> werden die Labels übergeben. Damit wird sichergestellt, dass die Datensets die gleiche Verteilung in Bezug auf die Klassen enthalten. In diesem Fall sind es 0.61% der Daten mit dem Label “nicht überlebt” und 0.39% der Daten mit dem Label “überlebt”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_val</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Trainingsdatenset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of X_train &#39;</span><span class="p">,</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of y_train &#39;</span><span class="p">,</span><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of X_train  (534, 7)
+Shape of y_train  (534,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Validierungsdatenset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of X_val &#39;</span><span class="p">,</span><span class="n">X_val</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of y_val &#39;</span><span class="p">,</span><span class="n">y_val</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of X_val  (178, 7)
+Shape of y_val  (178,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Testdatenset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of X_test &#39;</span><span class="p">,</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of y_test &#39;</span><span class="p">,</span><span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of X_test  (179, 7)
+Shape of y_test  (179,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Verteilung der Klassen im Trainingsdatenset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">/</span><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.616105
+1    0.383895
+Name: Survived, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Verteilung der Klassen im Validierungsdatenset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_val</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">/</span><span class="n">y_val</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.617978
+1    0.382022
+Name: Survived, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Verteilung der Klassen im Testdatenset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_test</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">/</span><span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    0.614525
+1    0.385475
+Name: Survived, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="datensets-speichern">
+<h2>Datensets speichern<a class="headerlink" href="#datensets-speichern" title="Permalink to this headline">¶</a></h2>
+<p>Die Datensets werden in einem Python Dictionary abgelegt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;X_train&#39;</span><span class="p">:</span> <span class="n">X_train</span><span class="p">,</span>
+    <span class="s1">&#39;y_train&#39;</span><span class="p">:</span> <span class="n">y_train</span><span class="p">,</span>
+    <span class="s1">&#39;X_val&#39;</span><span class="p">:</span> <span class="n">X_val</span><span class="p">,</span>
+    <span class="s1">&#39;y_val&#39;</span><span class="p">:</span> <span class="n">y_val</span><span class="p">,</span>
+    <span class="s1">&#39;X_test&#39;</span><span class="p">:</span> <span class="n">X_test</span><span class="p">,</span>
+    <span class="s1">&#39;y_test&#39;</span><span class="p">:</span> <span class="n">y_test</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Das Pickle Modul ermöglicht eine einfache und effiziente Speicherung der Daten. Im Vergleich zu anderen Formaten wie z.B. dem Excel-Format, lassen sich Pickle Formate schneller speichern und auslesen. Das Speichern des Python Dictionary erfolgt über folgende zwei Zeilen Code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/titanic/datasets.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Über folgende Befehle lässt sich das Dictionary wieder auslesen:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/titanic/datasets.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+    <span class="n">datasets</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Die Ausgabe der Merkmale des Trainingsdatenset erfolgt über den Key “X_train” des eingelesenen Dictionaries.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Pclass</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Fare</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3</td>
+      <td>female</td>
+      <td>28.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>24.1500</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3</td>
+      <td>male</td>
+      <td>21.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.7958</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>male</td>
+      <td>54.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>51.8625</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>male</td>
+      <td>34.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>21.0000</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>female</td>
+      <td>19.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>91.0792</td>
+      <td>C</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Die Datensets sind erstellt und gespeichert. Vertiefen Sie jetzt zum Abschluss von Teil 1 das Vorgehen am Beispiel des Datenset Bike Buyers anhand der Übungsaufgaben.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "executablebooks/jupyter-book",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./features"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="preparationMissingData.html" title="previous page">Umgang mit fehlenden Daten</a>
+    <a class='right-next' id="next-link" href="exercisePreparation.html" title="next page">Übung</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          Durch Annette Landmesser<br/>
+        
+            &copy; Urheberrechte © 2021.<br/>
+          <div class="extra_footer">
+            <script type="text/x-thebe-config">
+{
+    binderOptions: {
+        repoProvider: "git",
+        repo: "https://ada.mi.hdm-stuttgart.de/gitlab/kitrainer/workshop-data",
+        binderUrl: "https://ada.mi.hdm-stuttgart.de/binder/",
+        ref: "master",
+    }
+}
+</script>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -20,8 +20,8 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 full_pipeline.score(datasets['X_val'], datasets['y_val'])
 ------------------
 
-[0;31m-------------------------------------------[0m
-[0;31mNameError[0m Traceback (most recent call last)
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
 [0;32m<ipython-input-22-78b38d952485>[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0mfull_pipeline[0m[0;34m.[0m[0mscore[0m[0;34m([0m[0mdatasets[0m[0;34m[[0m[0;34m'X_val'[0m[0;34m][0m[0;34m,[0m [0mdatasets[0m[0;34m[[0m[0;34m'y_val'[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m

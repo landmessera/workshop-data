@@ -5,14 +5,16 @@ defaults:
 parts:
   - caption: Einleitung
     chapters:
+    - file: features/guide
     - file: features/datasets
+    - file: features/pandas
   - caption: Teil 1 - Aufbereitung
     chapters:
     - file: features/preparation
       title: Ziele und Inhalte
-    - file: features/explore
-    - file: features/missingData
-    - file: features/splitData
+    - file: features/preparationExplore
+    - file: features/preparationMissingData
+    - file: features/preparationSplitData
     - file: features/exercisePreparation
   - caption: Teil 2 - Transformation
     chapters:

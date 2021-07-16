@@ -4,8 +4,6 @@
 
 ### Python Packete importieren und Daten laden
 
-Python Packete importieren
-
 !pip install sklearn
 
 # Packete importieren
@@ -26,7 +24,7 @@ In der Variable data liegen die Daten in Form eines Panda Dataframe vor. Geben S
 # Geben Sie Ihren Code hier ein.
 
 ```{tip}
-Die [head-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html) liefert die ersten Zeilen eines Pandas Datenframe.
+Die [head()-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html) liefert die ersten Zeilen eines Pandas Datenframe.
 
 ```
 
@@ -63,7 +61,7 @@ Die Zielvariable ist: <mark> [?] </mark>
 <mark> [?] </mark> Merkmale sind Objekte  
 
 ```{tip}
-Die [Info-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html) liefert eine Zusammenfassung des Pandas Datenframe.
+Die [info()-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.info.html) liefert eine Zusammenfassung des Pandas Datenframe.
 
 ```
 
@@ -145,7 +143,7 @@ Kategorische Daten:
 # Geben Sie Ihren Code hier ein.
 
 ```{tip}
-Die [Describe-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html)  liefert deskriptive Statistiken des Pandas Datenframe.
+Die [describe()-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html)  liefert deskriptive Statistiken des Pandas Datenframe.
 
 ```
 
@@ -160,17 +158,17 @@ Die [Describe-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataF
 * Das Einkommen der meisten Kunden (75%) liegt unter <mark> [?] </mark>.
 * Die Standardabweichung des Einkommen beträgt <mark> [?] </mark>.    
 * 50% der Kunden haben mehr als <mark> [?] </mark> Kinder.  
-* Die Kunden besitzen im Durchschnitt <mark> [?] </mark> Autos.  
-* Das Alter der Kunden variiert zwischen <mark> [?] </mark> und <mark> [?] </mark>.  
-* 25% der Kunden sind älter als <mark> [?] </mark>.  
+* Das Alter der Kunden liegt im Durchschnitt bei <mark> [?] </mark> Autos.  
+* Die Anzahl der Autos pro Kunde variiert zwischen <mark> [?] </mark> und <mark> [?] </mark>.  
+* 25% der Kunden sind jünger als <mark> [?] </mark> Jahre.  
 
 ```{Dropdown} Lösung Task 6
-* Das Einkommen der meisten Kunden (75%) liegt unter <mark> 24470,75 </mark>.
+* Das Einkommen der meisten Kunden (75%) liegt unter <mark> 70000 </mark>.
 * Die Standardabweichung des Einkommen beträgt <mark> 31067,82 </mark>.
-* 50% der Kunden haben mehr als <mark> 2 </mark> Kinder.
-* Die Kunden besitzen im Durchschnitt <mark> 1,46 </mark> Autos.
-* Das Alter der Kunden variiert zwischen <mark> 25 </mark> und <mark> 89 </mark>.
-* 25% der Kunden sind älter als <mark> 35 </mark>.
+* 50% der Kunden haben mehr als <mark> ein </mark> Kind.
+* Das Alter der Kunden liegt im Durchschnitt bei <mark> 44,18 </mark> Jahren.
+* Die Anzahl der Autos pro Kunde variiert zwischen <mark> 0 </mark> und <mark> 4 </mark>.
+* 25% der Kunden sind jünger als <mark> 35 </mark> Jahre.
 ````
 
 ## Fehlende Werte korrigieren
@@ -182,9 +180,9 @@ Ermitteln Sie die absoulte Zahl der fehlenden Werte pro Spalte und speichern Sie
 # Geben Sie Ihren Code hier ein.
 
 ```{tip}
-Die [isnull-Methode](https://pandas.pydata.org/docs/reference/api/pandas.isnull.html)  liefert für jeden Wert des Pandas Datenframe einen Boolean-Wert, true oder false. True bedeutet, es handelt sich um einen fehlenden Wert.
+Die [isnull()-Methode](https://pandas.pydata.org/docs/reference/api/pandas.isnull.html)  liefert für jeden Wert des Pandas Datenframe einen Boolean-Wert, true oder false. True bedeutet, es handelt sich um einen fehlenden Wert.
 
-Die [sum-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sum.html) liefert die Anzahl der True Werte pro Spalte in einer Pandas Series (bei Default-Einstellung)
+Die [sum()-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sum.html) liefert die Anzahl der True Werte pro Spalte in einer Pandas Series (bei Default-Einstellung)
 
 ```
 
@@ -207,9 +205,9 @@ Geben Sie den absoluten und prozentualen-Wert pro Spalte an. Implementieren Sie 
 # Geben Sie Ihren Code hier ein.
 
 ```{tip}
-Die [sort_values-Methode](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html) sortiert die Pandas Series anhand der enthaltenen Werte.
+Die [sort_values()-Methode](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html) sortiert die Pandas Series anhand der enthaltenen Werte.
 
-Die [shape-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.shape.html) liefert die Dimensionen eines Pandas Datenframe in einem Tuple, wobei der erste Wert, der Anzahl der Zeilen entspricht und der zweite Wert, der Anzahl der Spalten.
+Die [shape()-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.shape.html) liefert die Dimensionen eines Pandas Datenframe in einem Tuple, wobei der erste Wert, der Anzahl der Zeilen entspricht und der zweite Wert, der Anzahl der Spalten.
 
 Unter Verwendung der [DataFrame-Methode](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html) und der Übergabe eines Dictionaries, wobei die Keys der Spaltenbezeichnung und die Values der Pandas Series entsprechen, lassen sich Pandas Dataframes erstellen.
 
@@ -233,8 +231,8 @@ Beobachtungen:
 * <mark> [?] </mark>
 
 ```{Dropdown} Lösung Task 9
-* Die fehlenden Werte pro Spalte sind sehr gering und liegen zwischen 0.4 und 1.1 Prozent.
-* Alle fehlende Werte (Cars, Age, Children, Marital Status, Income, Home Owner) existieren vermutlich, wurden jedoch nicht erfasst.
+* Die fehlenden Werte pro Spalte sind **sehr gering** und liegen zwischen 0.4 und 1.1 Prozent.
+* Alle fehlende Werte (Cars, Age, Children, Marital Status, Income, Home Owner) **existieren** vermutlich, wurden jedoch nicht erfasst.
 ```
 
 ### Task 10: Fehlende Werte ersetzen/entfernen
@@ -248,12 +246,10 @@ Möglicher Umgang mit fehlenden Werten:
 3. Eine eigene Kategorie zuweisen
 4. Fehlende Werte schätzen
 
-{doc}`missingData` anhand eines Beispiel-Datensets.
-
 ```
 
 ```{tip}
-Die [hist-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.hist.html)  kann auf eine Spalte des Datenframes angewendet werden um die Verteilung der Daten zu erhalten.
+Die [hist()-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.hist.html)  kann auf eine Spalte des Datenframes angewendet werden um die Verteilung der Daten zu erhalten.
 
 ```
 
@@ -404,17 +400,17 @@ Erstellen Sie die Datensets für Training, Validierung und Test mit Hilfe der Me
 # Geben Sie Ihren Code hier ein.
 
 ```{tip}
-Der bestehende Pandas Datenframe muss vor dem Aufruf der train_test_split-Methode in Merkmale und Label zerlegt werden. Mit der [Drop-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop.html) lassen sich einzelne Spalten aus einem Datenframe entfernen.
+Der bestehende Pandas Datenframe muss vor dem Aufruf der train_test_split-Methode in Merkmale und Label zerlegt werden. Mit der [drop()-Methode](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop.html) lassen sich einzelne Spalten aus einem Datenframe entfernen.
 ```
 
-````{Dropdown} Lösung Task 12
+````{Dropdown} Lösung Task 13
 
   ```{code-block} python
-    X = data.drop(['Purchased Bike'], axis=1)
-    y = data['Purchased Bike']
+  X = data.drop(['Purchased Bike'], axis=1)
+  y = data['Purchased Bike']
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1, stratify=y)
-    X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25, random_state=1, stratify=y_train)
+  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1, stratify=y)
+  X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25, random_state=1, stratify=y_train)
   ```
 ````
 
@@ -427,11 +423,11 @@ Geben Sie die Gesamtanzahl der Datensätze und die Anzahl der Datensätze pro Da
 ````{Dropdown} Lösung Task 14
 
   ```{code-block} python
-    print('Anzahl der Datensätze')
-    print('* Gesamt: ', X.shape[0])   
-    print('* Trainingsdatenset:', X_train.shape[0])
-    print('* Validierungsdatenset:', X_val.shape[0])
-    print('* Testdatenset:', X_test.shape[0])
+  print('Anzahl der Datensätze')
+  print('* Gesamt: ', X.shape[0])   
+  print('* Trainingsdatenset:', X_train.shape[0])
+  print('* Validierungsdatenset:', X_val.shape[0])
+  print('* Testdatenset:', X_test.shape[0])
   ```
 ````
 
@@ -447,11 +443,11 @@ an.
 ````{Dropdown} Lösung Task 15
 
   ```{code-block} python
-    print('Gesamte Datenbasis')
-    print(y.value_counts()/y.shape[0])
-    print()
-    print('Trainingsdaten')
-    print(y_train.value_counts()/y_train.shape[0])
+  print('Gesamte Datenbasis')
+  print(y.value_counts()/y.shape[0])
+  print()
+  print('Trainingsdaten')
+  print(y_train.value_counts()/y_train.shape[0])
   ```
 ````
 
@@ -470,23 +466,23 @@ in einer neuen Variable namens "dataset" und speichern das Dictionary unter '../
 # Geben Sie Ihren Code hier ein.
 
 ```{Tip}
-Die [dump-Methode](https://docs.python.org/3/library/pickle.html) ermöglicht eine einfache Speicherung von Python Objekten im .pkl-Format
+Die [dump()-Methode](https://docs.python.org/3/library/pickle.html) ermöglicht eine einfache Speicherung von Python Objekten im .pkl-Format
 ```
 
 ````{Dropdown} Lösung Task 16
 
   ```{code-block} python
-        datasets = {
-        'X_train': X_train,
-        'y_train': y_train,
-        'X_val': X_val,
-        'y_val': y_val,
-        'X_test': X_test,
-        'y_test': y_test
-    }
+  datasets = {
+      'X_train': X_train,
+      'y_train': y_train,
+      'X_val': X_val,
+      'y_val': y_val,
+      'X_test': X_test,
+      'y_test': y_test
+  }
 
-    with open('../output/bikebuyers/datasets.pkl', 'wb') as handle:
-        pickle.dump(datasets, handle)
+  with open('../output/bikebuyers/datasets.pkl', 'wb') as handle:
+      pickle.dump(datasets, handle)
   ```
 ````
 
@@ -497,59 +493,69 @@ Lesen Sie die gespeicherte Datensets aus der pickle-Datei aus und geben Sie die 
 # Geben Sie Ihren Code hier ein.
 
 ```{Tip}
-Die [load-Methode](https://docs.python.org/3/library/pickle.html) ermöglicht das Auslesen von Inhalten aus .pkl-Dateien
+Die [load()-Methode](https://docs.python.org/3/library/pickle.html) ermöglicht das Auslesen von Inhalten aus .pkl-Dateien
 ```
 
 ````{Dropdown} Lösung Task 17
 
   ```{code-block} python
-    f = open('../data/bikebuyers/datasets.pkl', 'rb')
-    datasets = pickle.load(f)
+  f = open('../data/bikebuyers/datasets.pkl', 'rb')
+  datasets = pickle.load(f)
 
-    datasets['X_val'].head()
+  datasets['X_val'].head()
   ```
 ````
 
 
-# Fehlende Werte ermitteln
-missingValuesCount = data.isnull().sum()
-print(missingValuesCount)
+### Lösungen Teil 1: Fehlende Werte ermitteln, ersetzen und speichern
 
-# Fehlende Werte in Prozent
-total = missingValuesCount.sort_values(ascending=False)
-percentage = (missingValuesCount/data.shape[0]*100).sort_values(ascending=False)
-missingData = pd.DataFrame({'Gesamt':total, 'Prozentual':percentage})
-print(missingData)
+# Code Zelle zum testen
 
-# Fehlende Werte ersetzen
-data['Gender'].fillna(data['Gender'].mode()[0], inplace=True)
-data['Cars'].fillna(data['Cars'].mode()[0], inplace=True)
-data['Age'].fillna(data['Age'].median(), inplace=True)
-data['Children'].fillna(data['Children'].mode()[0], inplace=True)
-data['Marital Status'].fillna(data['Marital Status'].mode()[0], inplace=True)
-data['Income'].fillna(data['Income'].mean(), inplace=True)
-data['Home Owner'].fillna(data['Home Owner'].mode()[0], inplace=True)
+````{Dropdown} Lösungen kompakt
 
-# Fehlende Werte ermitteln/prüfen
-missingValuesCount = data.isnull().sum()
-print(missingValuesCount)
+  ```{code-block} python
+  # Fehlende Werte ermitteln
+  missingValuesCount = data.isnull().sum()
+  print('|nFehlede Werte prüfen vor Aufbereitung')
+  print(missingValuesCount)
 
-# Datensets erstellen
-X = data.drop(['Purchased Bike'], axis=1)
-y = data['Purchased Bike']
+  # Fehlende Werte ersetzen
+  data['Gender'].fillna(data['Gender'].mode()[0], inplace=True)
+  data['Cars'].fillna(data['Cars'].mode()[0], inplace=True)
+  data['Age'].fillna(data['Age'].median(), inplace=True)
+  data['Children'].fillna(data['Children'].mode()[0], inplace=True)
+  data['Marital Status'].fillna(data['Marital Status'].mode()[0], inplace=True)
+  data['Income'].fillna(data['Income'].mean(), inplace=True)
+  data['Home Owner'].fillna(data['Home Owner'].mode()[0], inplace=True)
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1, stratify=y)
-X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25, random_state=1, stratify=y_train)
+  # Fehlende Werte ermitteln/prüfen
+  missingValuesCount = data.isnull().sum()
+  print('|nFehlede Werte prüfen nach Aufbereitung')
+  print(missingValuesCount)
 
-# Datensets speichern
-datasets = {
-    'X_train': X_train,
-    'y_train': y_train,
-    'X_val': X_val,
-    'y_val': y_val,
-    'X_test': X_test,
-    'y_test': y_test
-}
+  # Datensets erstellen
+  X = data.drop(['Purchased Bike'], axis=1)
+  y = data['Purchased Bike']
 
-with open('../output/bikebuyers/datasets.pkl', 'wb') as handle:
-    pickle.dump(datasets, handle)
+  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1, stratify=y)
+  X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25, random_state=1, stratify=y_train)
+
+  # Datensets speichern
+  datasets = {
+      'X_train': X_train,
+      'y_train': y_train,
+      'X_val': X_val,
+      'y_val': y_val,
+      'X_test': X_test,
+      'y_test': y_test
+  }
+
+  with open('../output/bikebuyers/datasets.pkl', 'wb') as handle:
+      pickle.dump(datasets, handle)
+
+  with open('../output/bikebuyers/datasets.pkl', 'rb') as handle:
+      ds = pickle.load(handle)
+      print('|nErste Zeilen des geladenen Trainingsdatenset:')
+      print(ds['X_train'].head())
+  ```
+````

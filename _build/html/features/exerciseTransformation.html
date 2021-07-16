@@ -97,8 +97,18 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="guide.html">
+   Start : der Wegweiser
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="datasets.html">
    Datensets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pandas.html">
+   Pandas
   </a>
  </li>
 </ul>
@@ -114,17 +124,17 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="explore.html">
+  <a class="reference internal" href="preparationExplore.html">
    Überblick verschaffen
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="missingData.html">
+  <a class="reference internal" href="preparationMissingData.html">
    Umgang mit fehlenden Daten
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="splitData.html">
+  <a class="reference internal" href="preparationSplitData.html">
    Datensets erstellen
   </a>
  </li>
@@ -390,11 +400,13 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: sklearn in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (0.0)
-Requirement already satisfied: scikit-learn in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from sklearn) (0.24.2)
-Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (2.1.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: scikit-learn in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from sklearn) (0.24.2)
 Requirement already satisfied: scipy&gt;=0.19.1 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.4.1)
-Requirement already satisfied: numpy&gt;=1.13.3 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.18.1)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (2.1.0)
 Requirement already satisfied: joblib&gt;=0.11 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (0.14.1)
+Requirement already satisfied: numpy&gt;=1.13.3 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.18.1)
 </pre></div>
 </div>
 </div>
@@ -426,208 +438,20 @@ Requirement already satisfied: joblib&gt;=0.11 in /Users/alandmesser/anaconda3/e
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="n">ef61b86f729d</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/bikebuyers/datasets.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">datasets</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">]</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/_libs/internals.pyx</span> in <span class="ni">pandas._libs.internals.BlockManager.__cinit__</span><span class="nt">()</span>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>ID</th>
-      <th>Marital Status</th>
-      <th>Gender</th>
-      <th>Income</th>
-      <th>Children</th>
-      <th>Education</th>
-      <th>Occupation</th>
-      <th>Home Owner</th>
-      <th>Cars</th>
-      <th>Commute Distance</th>
-      <th>Region</th>
-      <th>Age</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>518</th>
-      <td>23586</td>
-      <td>Married</td>
-      <td>Female</td>
-      <td>80000.0</td>
-      <td>0.0</td>
-      <td>Bachelors</td>
-      <td>Management</td>
-      <td>Yes</td>
-      <td>1.0</td>
-      <td>1-2 Miles</td>
-      <td>North America</td>
-      <td>34.0</td>
-    </tr>
-    <tr>
-      <th>66</th>
-      <td>29355</td>
-      <td>Married</td>
-      <td>Female</td>
-      <td>40000.0</td>
-      <td>0.0</td>
-      <td>Graduate Degree</td>
-      <td>Clerical</td>
-      <td>Yes</td>
-      <td>0.0</td>
-      <td>0-1 Miles</td>
-      <td>Europe</td>
-      <td>37.0</td>
-    </tr>
-    <tr>
-      <th>621</th>
-      <td>11200</td>
-      <td>Married</td>
-      <td>Male</td>
-      <td>70000.0</td>
-      <td>4.0</td>
-      <td>Bachelors</td>
-      <td>Management</td>
-      <td>Yes</td>
-      <td>1.0</td>
-      <td>1-2 Miles</td>
-      <td>North America</td>
-      <td>58.0</td>
-    </tr>
-    <tr>
-      <th>691</th>
-      <td>23144</td>
-      <td>Married</td>
-      <td>Male</td>
-      <td>50000.0</td>
-      <td>1.0</td>
-      <td>Bachelors</td>
-      <td>Skilled Manual</td>
-      <td>Yes</td>
-      <td>0.0</td>
-      <td>0-1 Miles</td>
-      <td>North America</td>
-      <td>34.0</td>
-    </tr>
-    <tr>
-      <th>850</th>
-      <td>12205</td>
-      <td>Single</td>
-      <td>Female</td>
-      <td>130000.0</td>
-      <td>2.0</td>
-      <td>Bachelors</td>
-      <td>Management</td>
-      <td>No</td>
-      <td>4.0</td>
-      <td>0-1 Miles</td>
-      <td>North America</td>
-      <td>67.0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>164</th>
-      <td>22402</td>
-      <td>Married</td>
-      <td>Male</td>
-      <td>10000.0</td>
-      <td>0.0</td>
-      <td>Partial College</td>
-      <td>Manual</td>
-      <td>Yes</td>
-      <td>1.0</td>
-      <td>2-5 Miles</td>
-      <td>Pacific</td>
-      <td>25.0</td>
-    </tr>
-    <tr>
-      <th>187</th>
-      <td>18151</td>
-      <td>Single</td>
-      <td>Male</td>
-      <td>80000.0</td>
-      <td>5.0</td>
-      <td>Partial College</td>
-      <td>Professional</td>
-      <td>No</td>
-      <td>2.0</td>
-      <td>10+ Miles</td>
-      <td>Europe</td>
-      <td>59.0</td>
-    </tr>
-    <tr>
-      <th>931</th>
-      <td>14914</td>
-      <td>Married</td>
-      <td>Female</td>
-      <td>40000.0</td>
-      <td>1.0</td>
-      <td>Partial College</td>
-      <td>Clerical</td>
-      <td>Yes</td>
-      <td>1.0</td>
-      <td>1-2 Miles</td>
-      <td>North America</td>
-      <td>49.0</td>
-    </tr>
-    <tr>
-      <th>100</th>
-      <td>12274</td>
-      <td>Single</td>
-      <td>Male</td>
-      <td>10000.0</td>
-      <td>2.0</td>
-      <td>High School</td>
-      <td>Manual</td>
-      <td>Yes</td>
-      <td>0.0</td>
-      <td>0-1 Miles</td>
-      <td>Europe</td>
-      <td>35.0</td>
-    </tr>
-    <tr>
-      <th>919</th>
-      <td>21451</td>
-      <td>Married</td>
-      <td>Female</td>
-      <td>40000.0</td>
-      <td>4.0</td>
-      <td>High School</td>
-      <td>Professional</td>
-      <td>Yes</td>
-      <td>2.0</td>
-      <td>10+ Miles</td>
-      <td>North America</td>
-      <td>61.0</td>
-    </tr>
-  </tbody>
-</table>
-<p>600 rows × 12 columns</p>
-</div></div></div>
+<span class="ne">TypeError</span>: __cinit__() takes at least 2 positional arguments (0 given)
+</pre></div>
+</div>
+</div>
 </div>
 <p>Geben Sie die ersten fünf Zeilen der Zielgrößen im Trainingsdatenset (y_train) aus.</p>
 <div class="cell docutils container">
@@ -735,34 +559,34 @@ Lösung Task 3<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="o">%%</span><span class="n">writefile</span> <span class="n">transformer</span><span class="o">.</span><span class="n">py</span>
-  
-  <span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
-  <span class="k">class</span> <span class="nc">OutlierRemoverExtended</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
-      <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">):</span>
-          <span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">=</span> <span class="n">factor</span>
-          <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">strategy</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">transformer</span><span class="o">.</span><span class="n">py</span>
 
-      <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-          <span class="k">return</span> <span class="bp">self</span>
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
+<span class="k">class</span> <span class="nc">OutlierRemoverExtended</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">=</span> <span class="n">factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">strategy</span>
 
-      <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-          <span class="n">X_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-          <span class="n">q1</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
-          <span class="n">q3</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
-          <span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
-          <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
-          <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
-          <span class="n">X_</span><span class="p">[((</span><span class="n">X_</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">X_</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">))]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
 
-          <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;median&#39;</span><span class="p">:</span>
-              <span class="n">X_</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-          <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;mean&#39;</span><span class="p">:</span>
-              <span class="n">X_</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-          <span class="k">else</span><span class="p">:</span>
-              <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid value for strategy paramter. Valid values are median or mean.&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">X_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">q1</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">q3</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+        <span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
+        <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
+        <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
+        <span class="n">X_</span><span class="p">[((</span><span class="n">X_</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">X_</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">))]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-          <span class="k">return</span> <span class="n">X_</span><span class="o">.</span><span class="n">values</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;median&#39;</span><span class="p">:</span>
+            <span class="n">X_</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;mean&#39;</span><span class="p">:</span>
+            <span class="n">X_</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid value for strategy paramter. Valid values are median or mean.&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">X_</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
 </div>
 </div>

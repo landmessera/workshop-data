@@ -17,74 +17,22 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-from transformer import OutlierRemoverExtended
+f = open('../data/bikebuyers/datasets.pkl', 'rb')
+datasets = pickle.load(f)
 
-# Numerical Pipeline
-pipeline_numerical = Pipeline(steps=[
-    ('outlier_remover', OutlierRemoverExtended()),
-    ('scaler', StandardScaler())
-])
-
-# Categorical Pipeline
-pipeline_categorical = Pipeline(steps=[
-    ('onehot', OneHotEncoder(handle_unknown='ignore'))
-])
-
-# Column Transformer
-features_numerical = ['Income', 'Age', 'Cars', 'Children']
-features_categorical = [
-    'Marital Status', 
-    'Gender', 
-    'Education', 
-    'Occupation', 
-    'Home Owner', 
-    'Commute Distance',
-    'Region'
-]
-
-transformer_pipeline = ColumnTransformer(
-    transformers = [
-        (
-            'num', 
-            pipeline_numerical,
-            features_numerical
-        ),
-        (
-            'cat', 
-            pipeline_categorical,
-            features_categorical
-        )
-    ])
-
-# transform datsets
-X_train_transformed = transformer_pipeline.fit_transform(datasets['X_train'])
-X_val_transformed = transformer_pipeline.transform(datasets['X_val'])
-X_test_transformed = transformer_pipeline.transform(datasets['X_test'])
-
-feature_categorical_onehot = transformer_pipeline\
-    .transformers_[1][1]['onehot']\
-    .get_feature_names(features_categorical)
-
-# Zweite Code-Zelle
-X_train_transformed = pd.DataFrame(X_train_transformed, columns=features_numerical+list(feature_categorical_onehot))
-X_val_transformed = pd.DataFrame(X_val_transformed, columns=features_numerical+list(feature_categorical_onehot))
-X_test_transformed = pd.DataFrame(X_test_transformed, columns=features_numerical+list(feature_categorical_onehot))
-
-print(X_train_transformed.head())
-
-with open('../output/bikebuyers/transformer_pipeline.pkl', 'wb') as handle:
-    pickle.dump(transformer_pipeline, handle)
+datasets['X_train']
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mImportError[0m                               Traceback (most recent call last)
-[0;32m<ipython-input-19-17ab24b6cb73>[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0;32mfrom[0m [0mtransformer[0m [0;32mimport[0m [0mOutlierRemoverExtended[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0;34m[0m[0m
-[1;32m      3[0m [0;31m# Numerical Pipeline[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      4[0m pipeline_numerical = Pipeline(steps=[
-[1;32m      5[0m     [0;34m([0m[0;34m'outlier_remover'[0m[0;34m,[0m [0mOutlierRemoverExtended[0m[0;34m([0m[0;34m)[0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+[0;32m<ipython-input-3-ef61b86f729d>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mf[0m [0;34m=[0m [0mopen[0m[0;34m([0m[0;34m'../data/bikebuyers/datasets.pkl'[0m[0;34m,[0m [0;34m'rb'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mdatasets[0m [0;34m=[0m [0mpickle[0m[0;34m.[0m[0mload[0m[0;34m([0m[0mf[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0;34m[0m[0m
+[1;32m      4[0m [0mdatasets[0m[0;34m[[0m[0;34m'X_train'[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mImportError[0m: cannot import name 'OutlierRemoverExtended' from 'transformer' (/Users/alandmesser/git/books/workshop-data/features/transformer.py)
-ImportError: cannot import name 'OutlierRemoverExtended' from 'transformer' (/Users/alandmesser/git/books/workshop-data/features/transformer.py)
+[0;32m~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/_libs/internals.pyx[0m in [0;36mpandas._libs.internals.BlockManager.__cinit__[0;34m()[0m
+
+[0;31mTypeError[0m: __cinit__() takes at least 2 positional arguments (0 given)
+TypeError: __cinit__() takes at least 2 positional arguments (0 given)
 

@@ -31,3 +31,30 @@ erläutert. Im Anschluss werden die gelernten Methoden anhand des Datenset "Bike
 
 ## Datenset Bike Buyers
 
+```{figure} ../images/bikeshop.jpeg
+---
+height: 350px
+align: left
+name: fig-bikeshop
+---
+````
+
+<div style="font-size: 8px;">Quelle: https://www.bikesnboards.de/media/wp-content/uploads/2019/05/bb_schorndorf_005.jpg</div>
+<div style="font-size: 14px;">
+
+Das Datenset enthält eine Reihe von Informationen über Personen und eine Aussage, ob sich die Person ein Fahrrad gekauft hat oder nicht. Zu den Informationen zählen 
+* ID
+* Familienstand
+* Alter
+* Geschlecht
+* Einkommen
+* Kinder
+* Bildung
+* Beruf
+* Eigenheimbesitzer
+* Autos
+* Pendeldistanz
+* Region
+
+**Die Aufgabe des Datensets**  
+Erstellen Sie ein Vorhersagemodell, das die Frage beantwortet: "Welche Personen kaufen mit größerer Wahrscheinlichkeit ein Fahrrad?" unter Verwendung der Informationen (d. h. Familienstand, Alter, Geschlecht, Einkommen, Kinder usw.).
