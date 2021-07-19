@@ -1,7 +1,9 @@
-jupyter-book
+jupyter-book==0.11.1
+sphinx-thebe==0.0.8
 ghp-import
-sphinx-thebe
-matplotlib
 numpy
+matplotlib
 pandas
+sklearn
 plotly
+seaborn
