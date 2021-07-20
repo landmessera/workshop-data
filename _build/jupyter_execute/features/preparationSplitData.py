@@ -271,6 +271,9 @@ datasets = {
     'y_test': y_test
 }
 
+with open('../output/titanic/datasets_or.pkl', 'wb') as handle:
+    pickle.dump(datasets, handle)
+
 import random
 random.seed(52)
 

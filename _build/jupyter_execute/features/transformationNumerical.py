@@ -18,6 +18,10 @@ from sklearn.datasets import make_blobs
 with open('../output/titanic/datasets.pkl', 'rb') as handle:
     datasets = pickle.load(handle)
 
+# Laden der Datensets aus Pickle File - ohne Ausreißer
+with open('../output/titanic/datasets_or.pkl', 'rb') as handle:
+    datasets_or = pickle.load(handle)
+
 ## Ausreißer erkennen
 
 ```{admonition} Was sind Ausreißer?
@@ -54,42 +58,48 @@ sns.scatterplot(data=df, x="x", y="y", hue="outlier", palette=d, ax=axes[1], leg
 fig.tight_layout()
 plt.show()
 
-In der linken Grafik sind eine Menge von Daten dargestellt. Jeder Punkt stellt ein Datensatz dar, der aus einem x- und einem y-Wert besteht. Auf der rechten Seite wurde eine Ausreißererkennung durchgeführt. Ausreißer sind mit lilaner Farbe gekennzeichnet.
+In der linken Grafik sind eine Menge von Daten dargestellt. Jeder Punkt stellt ein Datensatz dar, der aus einem x- und einem y-Wert besteht. Auf der rechten Seite wurde eine Ausreißererkennung durchgeführt. Ausreißer sind lilafarben gekennzeichnet.
 
 Ursachen für Ausreißer:
-* Eingabefehler: Wenn z.B. Menschen Fehler bei der Eingabe von Hand gemacht haben.
-* Messfehler: Beim Aufzeichnen von Daten sind Fehler entstanden.
-* Beschädigung: Nachdem die Daten erfasst wurden, sind Fehler aufgetreteten, zum Beispiel während der Verarbeitung.
-* Natürlich: In diesem Fall handelt sich um keinen Fehler.
+* **Eingabefehler**: Wenn z.B. Menschen Fehler bei der Eingabe von Hand gemacht haben.
+* **Messfehler**: Beim Aufzeichnen von Daten sind Fehler entstanden.
+* **Beschädigung**: Nachdem die Daten erfasst wurden, sind Fehler aufgetreteten. Zum Beispiel während der Verarbeitung.
+* **Natürlich**: In diesem Fall handelt sich um keinen Fehler.
 
-**Warum möchte man Ausreißer finden?**   
-Im Machine Learning Kontext können Ausreißer das Training eines Modells negativ beeinflussen. Dies kann sich in einem verzerrten Modell äußern. Infolge dessen liefert das Modell nicht die gewünschten Ergebnisse. Nicht alle Ausreißer bringen eine negative Auswirkung mit sich. Wenn die Ursache der Ausreißer natürlich ist, also kein Fehler, spiegeln die Ausreißer die Realität wieder und sollten nicht entfernt werden. Bei Anwendungsfällen wie z.B. der Katzenklappe, sind Momente, in denen eine Katze mit Beute vor der Klappe steht wesentlich seltener als Momente, in denen die Katze ohne Beute oder keine Katze vor der Klappe sichtbar ist. Die Zustände "Katze mit Beute" könnten als Ausreißer erkannt werden. In diesem Fall sind jedoch gerade diese Ausreißer von Bedeutung. Der Zustand "Katze mit Beute" ist kein Fehler und sollte nicht aus den Daten entfernt werden.
+### Warum möchte man Ausreißer finden? 
+Im Machine Learning Kontext können Ausreißer das **Training eines Modells negativ beeinflussen**. Dies kann sich in einem verzerrten Modell äußern. Infolge dessen liefert das Modell nicht die gewünschten Ergebnisse. **Nicht alle Ausreißer bringen eine negative Auswirkung mit sich**. Wenn die Ursache der Ausreißer natürlich ist, also kein Fehler, spiegeln die Ausreißer die Realität wieder und sollten nicht entfernt werden. Bei Anwendungsfällen wie z.B. der Katzenklappe, sind Momente, in denen eine Katze mit Beute vor der Klappe steht wesentlich seltener als Momente, in denen die Katze ohne Beute oder keine Katze vor der Klappe sichtbar ist. Die Zustände "Katze mit Beute" könnten als Ausreißer erkannt werden. In diesem Fall sind jedoch gerade diese Ausreißer von Bedeutung. Der Zustand "Katze mit Beute" ist kein Fehler und sollte nicht aus den Daten entfernt werden.
 
 ```{tip}
 Stellen Sie sich die Frage:
-**Sind die Outlier durch Fehler begründet?**   
+**Sind die Ausreißer durch Fehler begründet?**   
 Ja -> Ausreißer entfernen  
 Nein -> Ausreißer im Datenset belassen  
 ```
 
-Beispiel: Das Merkmal Alter im Titanic Datenset  
-Für das Merkmal Alter eines Menschen erwartet man einen Wert zwischen 0 und 122. Diesen Wertebereich kennt man aufgrund von "Fachwissen": Der älteste Mensch wurde bisher 122 Jahre alt. Außerdem kann man den den Wertebereich weiter eingrenzen, wenn man annimmt, dass es sehr unwahrscheinlich ist, dass ein Mensch der älter als 100 Jahre ist, eine Reise über den Atlantik antritt. Alle Werte die außerhalb des Wertebereichs von 0 und 100 liegen, bezeichnet man in diesem Fall als Fehler.
+### Am Beispiel des Titanic Datensets
+#### Merkmal Alter 
+Für das Merkmal "Alter" eines Menschen erwartet man einen Wert zwischen 0 und 122. Diesen Wertebereich kennt man aufgrund von Fachwissen: Der älteste Mensch wurde bisher 122 Jahre alt. Außerdem kann man den den Wertebereich weiter eingrenzen, wenn man annimmt, dass es sehr unwahrscheinlich ist, dass ein Mensch der älter als 100 Jahre ist, eine Reise über den Atlantik antritt. Alle Werte die **außerhalb des Wertebereichs von 0 und 100** liegen, bezeichnet man in diesem Fall als **Fehler**.
 
 Die Verteilung und Ausreißer von numerischen Daten lassen sich sehr gut aus einem Boxplot ablesen. Ein Boxplot ist eine Methode zur grafischen Darstellung numerischen Daten durch ihre Quartile. Die Box erstreckt sich von den Q1- bis Q3-Quartilwerten der Daten, mit einer Linie am Median (Q2). Die Whisker erstrecken sich von den Rändern der Box, um den Bereich der Daten anzuzeigen. Standardmäßig erstrecken sie sich nicht weiter als 1,5 * IQR (IQR = Q3 - Q1) von den Rändern der Box und enden beim am weitesten entfernten Datenpunkt innerhalb dieses Intervalls. Ausreißer werden als separate Punkte gezeichnet.
 
-todo: Bild mit Boxplot erklärung
 
-vgl: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.boxplot.html
+```{figure} ../images/boxplot.png
+---
+height: 350px
+align: left
+name: fig-boxplot
+---
+```
 
 Die Boxplots der numerischen Merkmale des Datensets Titanic, vermitteln einen ersten Eindruck der Verteilung der Daten.
 
-# define numeric features
+# Numerische Merkmale definieren
 numeric_features = ['Age', 'SibSp', 'Parch', 'Fare']
 
-# get train dataset and select numeric features
+# Eine Kopie des Trainingsdatenset erstellen und in einer Variable speichern 
 X_train = datasets['X_train'].copy()
 
-# Boxplot of numerical features
+# Boxplot der numerischen Merkmale erstellen
 X_train[numeric_features].plot(kind="box",subplots=True,figsize=(15,5),title="Boxplots der numerischen Merkmale");
 
 Boxplots verwenden in der Standardeinstellung wie wir sie in der Abbildung sehen die Interquartile Range (IQR) - Methode für die Ausreißererkennung. Die IQR-Methode funktioniert wie folgt:
@@ -103,38 +113,111 @@ Wobei der Faktor variabel ist. Die Standardeinstellung beträgt 1,5.
 
 Mit folgenden Codezeilen lassen sich die Ausreißer von den Daten des Merkmals "Alter" erkennen und anzeigen:
 
-feature = 'Age'
+def get_outliers(s, factor, strategy=''):
+  q1 = s.quantile(0.25)
+  q3 = s.quantile(0.75)
+  iqr = q3 - q1
+  lower_bound = q1 - (factor * iqr)
+  upper_bound = q3 + (factor * iqr)
+  outliers = s.loc[((s < lower_bound) | (s > upper_bound))].copy()
+  
+  if strategy=='remove':
+    s[((s < lower_bound) | (s > upper_bound))] = np.nan
+    s.dropna(inplace=True)
+    
+  return {
+    'q1': q1, 
+    'q3': q3,
+    'lower_bound': lower_bound,
+    'upper_bound': upper_bound,
+    'outliers': outliers,
+    'data':s 
+  }
+
+def print_outliers(res):
+  print('Q1-Quantil: ',res['q1'])
+  print('Q3-Quantil: ',res['q3'])
+  print('lower_bound: ',res['lower_bound'])
+  print('upper_bound: ',res['upper_bound'])
+
+  print('Anzahl der Ausreißer: ',res['outliers'].shape[0])
+  print('Ausreißer')
+  print(res['outliers'].sort_values())
+
+feature = 'Age'  
 factor = 1.5
+ser = pd.Series(X_train[feature]).copy()
+res = get_outliers(ser, factor) 
+print_outliers(res)
 
-s = pd.Series(X_train[feature]).copy()
-q1 = s.quantile(0.25)
-q3 = s.quantile(0.75)
-iqr = q3 - q1
-lower_bound = q1 - (factor * iqr)
-upper_bound = q3 + (factor * iqr)
-print('Q1-Quantil: ',q1)
-print('Q3-Quantil: ',q3)
-print('lower_bound: ',lower_bound)
-print('upper_bound: ',upper_bound)
+Unter Verwendung des Faktor 1,5 (Standardwert), werden 44 Ausreißer erkannt. Alle Wert kleiner als 2.875 und größer als 55,875 werden als Ausreißer bezeichnet. Die Ausgabe der Ausreißerwerte zeigt, dass einige Werte durchaus plausibel sind. In diesem Fall, alle Werte bis einschließlich 80 und die Werte zwischen 0 und 2,875. 
 
-outliers = s.loc[((s < lower_bound) | (s > upper_bound))].copy()
-print('Anzahl der Ausreißer: ',outliers.shape[0])
-print('Ausreißer')
-outliers.sort_values()
+> Es gibt wenige Menschen an Bord der Titanic, die jünger als 2,5 Jahre sind und wenige die zwischen 54,5 und 80 Jahre alt sind. Die Werte sind jedoch realistisch und sollten nicht entfernt werden.
 
-Schaut man sich die Werte der 37 Ausreißer an, stellt man fest, dass es sich ausschließlich um valide Werte handelt. Jeder Wert befindet sich innerhalb unseres erwarteten Wertebereichs zwischen 0 und 100. Die Ausreißer sind also natürlicher Art. Es gibt wenige Menschen an Bord der Titanic, die jünger als 2,5 Jahre sind und wenige die älter als 54,5 Jahre sind. Die Werte der Ausreißer sind jedoch realistisch und sollten nicht entfernt werden.
+Die letzten Werte von 204 bis 292 sind sicher Ausreißer. Fazit: **Lediglich die letzten 10 Werte sollten als Ausreißer erkannt werden**. In einem nächsten Schritt wird der **Faktorwert** entsprechend angepasst. Verwendet man einen Wert von **3,5 anstatt 1,5** liefert die Ausreißererkennung die erwarteten Werte.
+
+feature = 'Age'  
+factor = 3.5
+ser = pd.Series(X_train[feature]).copy()
+res = get_outliers(ser, factor) 
+print_outliers(res)
 
 **Wie verhält es sich mit den Ausreißern der restlichen numerischen Merkmale?**  
-Das Merkmal **SibSp** enthält die Anzahl der Geschwister oder Ehepartner, die mit an Bord der Titanic sind. Die Werte der Ausreißer betragen 3,4,5 und 8. 
 
-Beim Merkmal **Parch** handelt es sich um die Anzahl der Eltern oder Kinder, die mit an Bord sind. Die Werte der Ausreißer betragen 1-6. 
+#### Merkmal SibSp
+Das Merkmal **SibSp** enthält die Anzahl der Geschwister oder Ehepartner, die mit an Bord der Titanic sind. Die Werte der Ausreißer liegen bei einem Faktor von 3.5 zwischen 5 und 49.
 
-Der Wertebereich der Ausreißer des **Ticketpreis** beträgt 65 - 512. Der höchste Wert 512 liegt weit über dem zweithöchsten Wert von 263. Der einzelne sehr hohe Betrag von 512 könnte der Preis für eine Luxuskabine sein.
+feature = 'SibSp'  
+factor = 3.5
+ser = pd.Series(X_train[feature]).copy()
+res = get_outliers(ser, factor) 
+print_outliers(res)
 
-```{admonition} Umgang mit Ausreißer im Titanic Datenset
-Es handelt sich bei allen Ausreißern der numerischen Merkmalen um realistische Werte und sollten daher nicht entfernt werden.
-````
+Werte bis 8 erscheinen noch realistisch, nur Werte von 23 oder größer sollten als Ausreißer erkannt werden. Mit einem Faktor von 8 wird dieses Ziel erreicht.
 
+feature = 'SibSp'  
+factor = 8
+ser = pd.Series(X_train[feature]).copy()
+res = get_outliers(ser, factor) 
+print_outliers(res)
+
+#### Merkmal Parch
+
+Beim Merkmal **Parch** handelt es sich um die Anzahl der Eltern oder Kinder, die mit an Bord sind. Die Werte der Ausreißer betragen 3-66. 
+
+feature = 'Parch'  
+factor = 3.5
+ser = pd.Series(X_train[feature]).copy()
+res = get_outliers(ser, factor) 
+print_outliers(res)
+
+4 von den 14 erkannten Ausreißern besitzen die Werte 5 und 6. Diese Werte erscheinen realistisch. Die restlichen Werte liegen zwischen 20 und 36. Es handelt sich dabei höchst wahrscheinlich um Ausreißer. Mit einem Faktor von 8 werden die Ausreißer den entsprechenden Erwartungen erkannt.
+
+feature = 'Parch'  
+factor = 8
+ser = pd.Series(X_train[feature]).copy()
+res = get_outliers(ser, factor) 
+print_outliers(res)
+
+#### Merkmal Ticketpreis
+
+Der Wertebereich der Ausreißer des **Ticketpreis** bei einem Faktor von 3.5 beträgt 113 bis 2630. 
+
+feature = 'Fare'  
+factor = 3.5
+ser = pd.Series(X_train[feature]).copy()
+res = get_outliers(ser, factor) 
+print_outliers(res)
+
+Der Wert von 2630 erscheint sehr hoch und unrealistisch. Vermutlich handelt es sich hier um ein Eingabefehler. Der Wert 512 liegt weit über dem nächsten niedrigeren Wert von 263. Der einzelne sehr hohe Betrag von 512 könnte der Preis für eine Luxuskabine sein. Wird der Faktor auf 21 gesetzt, werden nur die unrealistischen Werte als Ausreißer erkannt.
+
+feature = 'Fare'  
+factor = 21
+ser = pd.Series(X_train[feature]).copy()
+res = get_outliers(ser, factor) 
+print_outliers(res)
+
+### Methoden
 Häufig verwendete Methoden zum Entfernen von Outlier:
 * IQR-Methode
 * DBScan Clustering
@@ -144,16 +227,16 @@ Die Isolation Forest Methode und das DBScan Clustering können angewendet werden
 
 ## Skalierung
 
-Die Skalierung ist eine der wichtigsten Transformationen. Die meisten Machine Learning Algorithmen funktionieren nicht gut, wenn sich die Wertebereiche der Merkmale unterscheiden. Das ist bei den numerischen Merkmalen des Titanic Datenset der Fall: 
-* Das Alter der Passagiere liegt zwischen 0,67 und 80
-* Die Anzahl der Geschwister oder Ehepartner reicht von 0 bis 8
+Die Skalierung ist eine der wichtigsten Transformationen. Die meisten Machine Learning Algorithmen funktionieren nicht gut, wenn sich die Wertebereiche der Merkmale unterscheiden. Das ist bei den numerischen Merkmalen des Titanic Datenset[^footnote1] der Fall: 
+* Das Alter der Passagiere liegt zwischen 0,67 und 80  
+* Die Anzahl der Geschwister oder Ehepartner reicht von 0 bis 8  
 
 Um die numerischen Merkmale auf die gleiche Skala zu bringen gibt es zwei übliche Verfahren:
 1. Min-Max-Skalierung
 2. Standardisierung
 
 ### Min-Max-Skalierung
-Die Min-Max-Skalierung, auch Normalisierung genannt, ist eine Verschiebung der Werte in den Wertebereich von 0 und 1. Hierzu wird zuerst der Minimalwert von allen Werten subtrahiert und anschließend alle Werte durch die Differenz von Maximal- und Minimalwert geteilt. 
+Die Min-Max-Skalierung, auch Normalisierung genannt, ist eine Verschiebung der Werte in den Wertebereich von **0 und 1**. Hierzu wird zuerst der Minimalwert von allen Werten subtrahiert und anschließend alle Werte durch die Differenz von Maximal- und Minimalwert geteilt. 
 
 Erzeugen von Beispieldaten, wobei der Minimalwert 10 und der Maximalwert 19 beträgt:
 
@@ -171,13 +254,19 @@ x_scaled.min()
 
 x_scaled.max()
 
-#### Min-Max Skalierung am Beispiel Titanic 
+**Min-Max Skalierung am Beispiel Titanic** 
 
-In der folgenden Abbildung sieht man die Werte des Merkmals "Alter" in einem Violin- und Swarmplot dargestellt. Ein Violinplot ist ähnlich wie ein Boxplot und stellt die Verteilung der Daten dar. Im Vergleich zum Boxplot wird die Verteilung nicht mit den Median-Werten dargestellt, sondern mit einem gespiegelten Kernel-Dichtediagramm. Der Swarmplot zeigt alle Datenpunkte einer Datenmenge. Daten mit dem gleichen Wert, werden nicht überlappt dargestellt sondern so gestapelt, dass jeder Datenpunkt sichtbar ist. Der Wertebereich liegt zwischen 0 und 80.
+In der folgenden Abbildung sieht man die Werte des Merkmals Alter in einem Violin- und Swarmplot dargestellt. Ein **Violinplot** ist ähnlich wie ein Boxplot und stellt die **Verteilung der Daten** dar. Im Vergleich zum Boxplot wird die Verteilung nicht mit den Quartil-Werten dargestellt, sondern mit einem gespiegelten Kernel-Dichtediagramm. Der **Swarmplot** zeigt **alle Datenpunkte** einer Datenmenge. Daten mit dem gleichen Wert, werden **nicht überlappt dargestellt** sondern so gestapelt, dass jeder Datenpunkt sichtbar ist. Der Wertebereich liegt zwischen 0 und 80.
 
-ax = sns.violinplot(data=X_train, x="Age", inner=None, color='#D0755E')
-ax = sns.swarmplot(data=X_train, x="Age", size=1.8, orient="h", color="white")
-ax.set(ylabel="")
+# Eine Kopie des Trainingsdatenset ohne Ausreißer erstellen und in einer Variable speichern 
+X_train = datasets_or['X_train'].copy()
+
+ax = sns.violinplot(data=X_train, x='Age', inner=None, color='#D0755E')
+ax = sns.swarmplot(data=X_train, x='Age', size=1.8, orient="h", color="white")
+
+```{hint} 
+Die Plots werden mit Seaborn erstellt. [Seaborn](https://seaborn.pydata.org/) ist eine Python Bibliothek, die aufbauend auf Matplotlib, eine Vielzahl von Funktionen zur Visualisierung bereitstellt. Die verwendeten Funktionen sind [violinplot()](https://seaborn.pydata.org/generated/seaborn.violinplot.html) und [swarmplot()](https://seaborn.pydata.org/generated/seaborn.swarmplot.html).
+```
 
 Scikit-learn bietet einen MinMaxScaler an, mit dem sich die Min-Max-Skalierung einfach auf die Merkmale in einem Pandas Dataframe anwenden lassen. Als Rückgabe erhält man ein numpy-Array mit den skalierten Werten. Die Anwendung:
 * MinMaxScaler importieren
@@ -194,7 +283,6 @@ Violoin- und Swarmplot zeigt, dass die Verteilung der sklalierten Werte gleich g
 
 ax = sns.violinplot(data=df_scaled, x="Age", inner=None, color='#D0755E')
 ax = sns.swarmplot(data=df_scaled, x="Age", size=1.8, orient="h", color="white")
-ax.set(ylabel="")
 
 ### Standardisierung
 
@@ -231,7 +319,7 @@ Neue Standardabweichung:
 
 round(x_scaled.std(),2)
 
-#### Standardisierung am Beispiel Titanic
+**Standardisierung am Beispiel Titanic**
 
 Die StandardScaler-Methode von Scikit-Learn kann auf einen Pandas Dataframe angewendet werden. Als Rückgabe erhält man ein numpy-Array mit den skalierten Werten. Die Anwendung:
 * StandardScaler importieren
@@ -245,11 +333,10 @@ df_scaled = pd.DataFrame(X_train_scaled, columns=X_train[numeric_features].colum
 
 ax = sns.violinplot(data=df_scaled, x="Age", inner=None, color='#D0755E')
 ax = sns.swarmplot(data=df_scaled, x="Age", size=1.8, orient="h", color="white")
-ax.set(ylabel="")
 
 Die Werte des Merkmals "Alter" wurden auf einen Wertebereich von -2,24 bis 3.92 skaliert. Der Mittelwert beträgt 0 und die Standardabweichung 1.
 
-Das [Preprocessing Modul](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.preprocessing) der Scikit-learn Bibliothek bietet eine Reihe weiterere Transformationen an. Die Verwendung ist meist sehr ähnlich. Im wesentlichen sind lediglich die drei Schritte "Importieren", "Objekt erzeugen" und "fit_transform-Methode aufrufen" notwendig um die Preprocessing-Methoden anzuwenden.
+Das [Preprocessing Modul](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.preprocessing) der Scikit-learn Bibliothek bietet eine Reihe weiterere Transformationen an. Die Verwendung ist meist sehr ähnlich. Im Wesentlichen sind lediglich die drei Schritte "Importieren", "Objekt erzeugen" und "fit_transform-Methode aufrufen" notwendig um die Preprocessing-Methoden anzuwenden.
 
 ### Standardisierung oder Min-Max-Skalierung?
 
@@ -261,7 +348,7 @@ Die meisten Machine Learning Verfahren funktionieren besser , wenn eine Skalieru
 
 ## Diskretisierung
 
-Die Diskretisierung, auch Binning genannt, transformiert kontinuierliche in diskrete Werte. Hierzu wird ein Set von zusammenhängenden Intervallen definiert, sogenannte Bins (Behälter). Jeder Behälter erhält einen Namen oder eine Regel wie die Elemente dieser Behälter benannt werden. Das kann zum Beispiel der Mittelwert der enthaltenen Elemente sein. Anschließend wird jeder kontinuierliche Wert einem der Behälter zugewiesen und mit der Bezeichnung ersetzt.
+Die Diskretisierung, auch Binning genannt, **transformiert kontinuierliche in diskrete Werte**. Hierzu wird ein Set von zusammenhängenden Intervallen definiert, sogenannte **Bins** (Behälter). Jeder Behälter erhält einen Namen oder eine Regel wie die Elemente dieser Behälter benannt werden. Das kann zum Beispiel der Mittelwert der enthaltenen Elemente sein. Anschließend wird jeder kontinuierliche Wert **einem der Behälter zugewiesen und mit der Bezeichnung ersetzt**.
 
 Erstellen von Beispieldaten:
 
@@ -333,14 +420,14 @@ for value in x:
 x_discretized
 
 Es gibt verschiedene Arten um die Bins zu definieren. Über
-1. die gleiche Breite: z.B. Werte von 0-10, 10-20, 30-40 usw.
-2. die gleiche Anzahl von Elementen: z.B. Quantile
-3. ein Clustering: z.B. Durchführen eines kmeans-Clustering
+1. die **gleiche Breite**: z.B. Werte von 0-10, 10-20, 30-40 usw.
+2. die **gleiche Anzahl** von Elementen: z.B. Quantile
+3. ein **Clustering**: z.B. Durchführen eines kmeans-Clustering
  
-Die Scikit-Learn Bibliothek liefert eine Methode namens KBinsDiscretizer, die eine Diskretisierung durchführt. Über den Parameter "strategy" bestimmt man die Art wie die Bins erstellt werden. Mögliche Werte:
-* "uniform": 1. Art, gleiche Breite
-* "quantile": 2. Art, gleiche Anzahl
-* "kmeans": 3. Art, Clustering
+Die Scikit-Learn Bibliothek liefert eine Methode namens [KBinsDiscretizer](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.KBinsDiscretizer.html), die eine Diskretisierung durchführt. Über den Parameter **strategy** bestimmt man die Art wie die Bins erstellt werden. Mögliche Werte:
+* **uniform**: 1. Art, gleiche Breite
+* **quantile**: 2. Art, gleiche Anzahl
+* **kmeans**: 3. Art, Clustering
 
 
 ### Diskretisierung am Beispiel Titanic
@@ -349,7 +436,6 @@ Die Diskretisierung wird am Merkmal "Fare", dem Ticketpreis veranschaulicht. Mit
 
 ax = sns.violinplot(data=X_train, x="Fare", inner=None, color='#68349A')
 ax = sns.swarmplot(data=X_train, x="Fare", size=1, orient="h", color="white")
-ax.set(ylabel="")
 
 Der Violinplot zeigt, dass die Verteilung der Daten rechtsschief ist.
 
@@ -390,12 +476,15 @@ discretizer = KBinsDiscretizer(n_bins=4, encode='ordinal', strategy='kmeans')
 
 X_train_fare_scaled = discretizer.fit_transform(X_train[['Fare']].values)
 df_scaled = pd.DataFrame(X_train_fare_scaled, columns=X_train[['Fare']].columns)
-df_scaled
 
 df_scaled['Fare'].value_counts().plot(kind='bar')
 
-Bei der Anwendung einer Diskretisierung ist zu beachten, dass Informationen verloren gehen. Das kann von Vorteil sein, wenn die verlorenen Informationen für den Anwendungsfall nicht relevant sind. Außerdem kann eine Diskretisierung eine vereinfachte Interpretation der Daten ermöglichen. Bewirkt eine Diskretisierung jedoch einen Verlust von relevanten Informationen, wirkt sich das negativ auf das Endergebnis aus.  
+```{attention} 
+Bei der Anwendung einer Diskretisierung ist zu beachten, dass **Informationen verloren** gehen. Das kann von Vorteil sein, wenn die verlorenen Informationen für den Anwendungsfall **nicht relevant** sind. Außerdem kann eine Diskretisierung eine vereinfachte Interpretation der Daten ermöglichen. Bewirkt eine Diskretisierung jedoch einen **Verlust von relevanten Informationen**, wirkt sich das negativ auf das Endergebnis aus.  
+```
 
-Mit Domänenwissen kann zunächst abgeschätzt werden, ob eine Diskretisierung erfolgsversprechend ist. Am Ende muss jedoch immer eine Erprobung stattfinden um sicher gehen zu können, dass eine Diskretisierung die Performance des Algorithmus steigert. Hierzu führt man Experimente mit unterschiedlichen Transformationsmöglichkeiten durch und analysiert das Ergebnis. Mehr dazu im Abschnitt "Feature Engineering". 
+Mit Domänenwissen kann zunächst abgeschätzt werden, ob eine Diskretisierung erfolgsversprechend ist. Am Ende muss jedoch immer eine Erprobung stattfinden um sicher gehen zu können, dass eine Diskretisierung die Performance des Algorithmus steigert. Hierzu führt man **Experimente** mit unterschiedlichen **Transformationsmöglichkeiten** durch und **analysiert** das Ergebnis. Mehr dazu im Abschnitt "Optimierung". 
 
-Im nächsten Abschnitt werden Transformationen für kategorische Daten behandelt.
+Im nächsten Abschnitt werden Transformationen für **kategorische Daten** behandelt.
+
+[^footnote1]: Nach Entfernung der Ausreißer

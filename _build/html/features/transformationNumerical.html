@@ -166,7 +166,7 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="pipeline.html">
+  <a class="reference internal" href="transformationPipeline.html">
    Tranformationen koordinieren
   </a>
  </li>
@@ -302,6 +302,45 @@
   <a class="reference internal nav-link" href="#ausreiszer-erkennen">
    Ausreißer erkennen
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#warum-mochte-man-ausreiszer-finden">
+     Warum möchte man Ausreißer finden?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#am-beispiel-des-titanic-datensets">
+     Am Beispiel des Titanic Datensets
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#merkmal-alter">
+       Merkmal Alter
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#merkmal-sibsp">
+       Merkmal SibSp
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#merkmal-parch">
+       Merkmal Parch
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#merkmal-ticketpreis">
+       Merkmal Ticketpreis
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#methoden">
+     Methoden
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#skalierung">
@@ -312,25 +351,11 @@
     <a class="reference internal nav-link" href="#min-max-skalierung">
      Min-Max-Skalierung
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#min-max-skalierung-am-beispiel-titanic">
-       Min-Max Skalierung am Beispiel Titanic
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#standardisierung">
      Standardisierung
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#standardisierung-am-beispiel-titanic">
-       Standardisierung am Beispiel Titanic
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#standardisierung-oder-min-max-skalierung">
@@ -410,6 +435,10 @@
 <span class="c1"># Laden der Datensets aus Pickle File</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/titanic/datasets.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
     <span class="n">datasets</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+
+<span class="c1"># Laden der Datensets aus Pickle File - ohne Ausreißer</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/titanic/datasets_or.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+    <span class="n">datasets_or</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -458,38 +487,44 @@
 <img alt="../_images/transformationNumerical_4_0.png" src="../_images/transformationNumerical_4_0.png" />
 </div>
 </div>
-<p>In der linken Grafik sind eine Menge von Daten dargestellt. Jeder Punkt stellt ein Datensatz dar, der aus einem x- und einem y-Wert besteht. Auf der rechten Seite wurde eine Ausreißererkennung durchgeführt. Ausreißer sind mit lilaner Farbe gekennzeichnet.</p>
+<p>In der linken Grafik sind eine Menge von Daten dargestellt. Jeder Punkt stellt ein Datensatz dar, der aus einem x- und einem y-Wert besteht. Auf der rechten Seite wurde eine Ausreißererkennung durchgeführt. Ausreißer sind lilafarben gekennzeichnet.</p>
 <p>Ursachen für Ausreißer:</p>
 <ul class="simple">
-<li><p>Eingabefehler: Wenn z.B. Menschen Fehler bei der Eingabe von Hand gemacht haben.</p></li>
-<li><p>Messfehler: Beim Aufzeichnen von Daten sind Fehler entstanden.</p></li>
-<li><p>Beschädigung: Nachdem die Daten erfasst wurden, sind Fehler aufgetreteten, zum Beispiel während der Verarbeitung.</p></li>
-<li><p>Natürlich: In diesem Fall handelt sich um keinen Fehler.</p></li>
+<li><p><strong>Eingabefehler</strong>: Wenn z.B. Menschen Fehler bei der Eingabe von Hand gemacht haben.</p></li>
+<li><p><strong>Messfehler</strong>: Beim Aufzeichnen von Daten sind Fehler entstanden.</p></li>
+<li><p><strong>Beschädigung</strong>: Nachdem die Daten erfasst wurden, sind Fehler aufgetreteten. Zum Beispiel während der Verarbeitung.</p></li>
+<li><p><strong>Natürlich</strong>: In diesem Fall handelt sich um keinen Fehler.</p></li>
 </ul>
-<p><strong>Warum möchte man Ausreißer finden?</strong><br />
-Im Machine Learning Kontext können Ausreißer das Training eines Modells negativ beeinflussen. Dies kann sich in einem verzerrten Modell äußern. Infolge dessen liefert das Modell nicht die gewünschten Ergebnisse. Nicht alle Ausreißer bringen eine negative Auswirkung mit sich. Wenn die Ursache der Ausreißer natürlich ist, also kein Fehler, spiegeln die Ausreißer die Realität wieder und sollten nicht entfernt werden. Bei Anwendungsfällen wie z.B. der Katzenklappe, sind Momente, in denen eine Katze mit Beute vor der Klappe steht wesentlich seltener als Momente, in denen die Katze ohne Beute oder keine Katze vor der Klappe sichtbar ist. Die Zustände “Katze mit Beute” könnten als Ausreißer erkannt werden. In diesem Fall sind jedoch gerade diese Ausreißer von Bedeutung. Der Zustand “Katze mit Beute” ist kein Fehler und sollte nicht aus den Daten entfernt werden.</p>
+<div class="section" id="warum-mochte-man-ausreiszer-finden">
+<h3>Warum möchte man Ausreißer finden?<a class="headerlink" href="#warum-mochte-man-ausreiszer-finden" title="Permalink to this headline">¶</a></h3>
+<p>Im Machine Learning Kontext können Ausreißer das <strong>Training eines Modells negativ beeinflussen</strong>. Dies kann sich in einem verzerrten Modell äußern. Infolge dessen liefert das Modell nicht die gewünschten Ergebnisse. <strong>Nicht alle Ausreißer bringen eine negative Auswirkung mit sich</strong>. Wenn die Ursache der Ausreißer natürlich ist, also kein Fehler, spiegeln die Ausreißer die Realität wieder und sollten nicht entfernt werden. Bei Anwendungsfällen wie z.B. der Katzenklappe, sind Momente, in denen eine Katze mit Beute vor der Klappe steht wesentlich seltener als Momente, in denen die Katze ohne Beute oder keine Katze vor der Klappe sichtbar ist. Die Zustände “Katze mit Beute” könnten als Ausreißer erkannt werden. In diesem Fall sind jedoch gerade diese Ausreißer von Bedeutung. Der Zustand “Katze mit Beute” ist kein Fehler und sollte nicht aus den Daten entfernt werden.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Stellen Sie sich die Frage:
-<strong>Sind die Outlier durch Fehler begründet?</strong><br />
+<strong>Sind die Ausreißer durch Fehler begründet?</strong><br />
 Ja -&gt; Ausreißer entfernen<br />
 Nein -&gt; Ausreißer im Datenset belassen</p>
 </div>
-<p>Beispiel: Das Merkmal Alter im Titanic Datenset<br />
-Für das Merkmal Alter eines Menschen erwartet man einen Wert zwischen 0 und 122. Diesen Wertebereich kennt man aufgrund von “Fachwissen”: Der älteste Mensch wurde bisher 122 Jahre alt. Außerdem kann man den den Wertebereich weiter eingrenzen, wenn man annimmt, dass es sehr unwahrscheinlich ist, dass ein Mensch der älter als 100 Jahre ist, eine Reise über den Atlantik antritt. Alle Werte die außerhalb des Wertebereichs von 0 und 100 liegen, bezeichnet man in diesem Fall als Fehler.</p>
+</div>
+<div class="section" id="am-beispiel-des-titanic-datensets">
+<h3>Am Beispiel des Titanic Datensets<a class="headerlink" href="#am-beispiel-des-titanic-datensets" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="merkmal-alter">
+<h4>Merkmal Alter<a class="headerlink" href="#merkmal-alter" title="Permalink to this headline">¶</a></h4>
+<p>Für das Merkmal “Alter” eines Menschen erwartet man einen Wert zwischen 0 und 122. Diesen Wertebereich kennt man aufgrund von Fachwissen: Der älteste Mensch wurde bisher 122 Jahre alt. Außerdem kann man den den Wertebereich weiter eingrenzen, wenn man annimmt, dass es sehr unwahrscheinlich ist, dass ein Mensch der älter als 100 Jahre ist, eine Reise über den Atlantik antritt. Alle Werte die <strong>außerhalb des Wertebereichs von 0 und 100</strong> liegen, bezeichnet man in diesem Fall als <strong>Fehler</strong>.</p>
 <p>Die Verteilung und Ausreißer von numerischen Daten lassen sich sehr gut aus einem Boxplot ablesen. Ein Boxplot ist eine Methode zur grafischen Darstellung numerischen Daten durch ihre Quartile. Die Box erstreckt sich von den Q1- bis Q3-Quartilwerten der Daten, mit einer Linie am Median (Q2). Die Whisker erstrecken sich von den Rändern der Box, um den Bereich der Daten anzuzeigen. Standardmäßig erstrecken sie sich nicht weiter als 1,5 * IQR (IQR = Q3 - Q1) von den Rändern der Box und enden beim am weitesten entfernten Datenpunkt innerhalb dieses Intervalls. Ausreißer werden als separate Punkte gezeichnet.</p>
-<p>todo: Bild mit Boxplot erklärung</p>
-<p>vgl: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.boxplot.html</p>
+<div class="figure align-left" id="fig-boxplot">
+<a class="reference internal image-reference" href="../_images/boxplot.png"><img alt="../_images/boxplot.png" src="../_images/boxplot.png" style="height: 350px;" /></a>
+</div>
 <p>Die Boxplots der numerischen Merkmale des Datensets Titanic, vermitteln einen ersten Eindruck der Verteilung der Daten.</p>
 <div class="cell tag_hide_input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define numeric features</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Numerische Merkmale definieren</span>
 <span class="n">numeric_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;SibSp&#39;</span><span class="p">,</span> <span class="s1">&#39;Parch&#39;</span><span class="p">,</span> <span class="s1">&#39;Fare&#39;</span><span class="p">]</span>
 
-<span class="c1"># get train dataset and select numeric features</span>
+<span class="c1"># Eine Kopie des Trainingsdatenset erstellen und in einer Variable speichern </span>
 <span class="n">X_train</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-<span class="c1"># Boxplot of numerical features</span>
+<span class="c1"># Boxplot der numerischen Merkmale erstellen</span>
 <span class="n">X_train</span><span class="p">[</span><span class="n">numeric_features</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;box&quot;</span><span class="p">,</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Boxplots der numerischen Merkmale&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -510,24 +545,42 @@ Für das Merkmal Alter eines Menschen erwartet man einen Wert zwischen 0 und 122
 <p>Mit folgenden Codezeilen lassen sich die Ausreißer von den Daten des Merkmals “Alter” erkennen und anzeigen:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature</span> <span class="o">=</span> <span class="s1">&#39;Age&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_outliers</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">factor</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+  <span class="n">q1</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+  <span class="n">q3</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+  <span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
+  <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="p">(</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
+  <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">+</span> <span class="p">(</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
+  <span class="n">outliers</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[((</span><span class="n">s</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">s</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">))]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+  
+  <span class="k">if</span> <span class="n">strategy</span><span class="o">==</span><span class="s1">&#39;remove&#39;</span><span class="p">:</span>
+    <span class="n">s</span><span class="p">[((</span><span class="n">s</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">s</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">))]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="s1">&#39;q1&#39;</span><span class="p">:</span> <span class="n">q1</span><span class="p">,</span> 
+    <span class="s1">&#39;q3&#39;</span><span class="p">:</span> <span class="n">q3</span><span class="p">,</span>
+    <span class="s1">&#39;lower_bound&#39;</span><span class="p">:</span> <span class="n">lower_bound</span><span class="p">,</span>
+    <span class="s1">&#39;upper_bound&#39;</span><span class="p">:</span> <span class="n">upper_bound</span><span class="p">,</span>
+    <span class="s1">&#39;outliers&#39;</span><span class="p">:</span> <span class="n">outliers</span><span class="p">,</span>
+    <span class="s1">&#39;data&#39;</span><span class="p">:</span><span class="n">s</span> 
+  <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">print_outliers</span><span class="p">(</span><span class="n">res</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Q1-Quantil: &#39;</span><span class="p">,</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;q1&#39;</span><span class="p">])</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Q3-Quantil: &#39;</span><span class="p">,</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;q3&#39;</span><span class="p">])</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lower_bound: &#39;</span><span class="p">,</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;lower_bound&#39;</span><span class="p">])</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;upper_bound: &#39;</span><span class="p">,</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;upper_bound&#39;</span><span class="p">])</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Anzahl der Ausreißer: &#39;</span><span class="p">,</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;outliers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ausreißer&#39;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;outliers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">())</span>
+
+<span class="n">feature</span> <span class="o">=</span> <span class="s1">&#39;Age&#39;</span>  
 <span class="n">factor</span> <span class="o">=</span> <span class="mf">1.5</span>
-
-<span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">feature</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">q1</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
-<span class="n">q3</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
-<span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
-<span class="n">lower_bound</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="p">(</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
-<span class="n">upper_bound</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">+</span> <span class="p">(</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Q1-Quantil: &#39;</span><span class="p">,</span><span class="n">q1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Q3-Quantil: &#39;</span><span class="p">,</span><span class="n">q3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lower_bound: &#39;</span><span class="p">,</span><span class="n">lower_bound</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;upper_bound: &#39;</span><span class="p">,</span><span class="n">upper_bound</span><span class="p">)</span>
-
-<span class="n">outliers</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">loc</span><span class="p">[((</span><span class="n">s</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">s</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">))]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Anzahl der Ausreißer: &#39;</span><span class="p">,</span><span class="n">outliers</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Ausreißer&#39;</span><span class="p">)</span>
-<span class="n">outliers</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+<span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">feature</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">get_outliers</span><span class="p">(</span><span class="n">ser</span><span class="p">,</span> <span class="n">factor</span><span class="p">)</span> 
+<span class="n">print_outliers</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -538,9 +591,7 @@ lower_bound:  2.875
 upper_bound:  55.875
 Anzahl der Ausreißer:  44
 Ausreißer
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>480      0.67
+480      0.67
 368      0.75
 522      0.83
 52       1.00
@@ -589,15 +640,291 @@ Name: Age, dtype: float64
 </div>
 </div>
 </div>
-<p>Schaut man sich die Werte der 37 Ausreißer an, stellt man fest, dass es sich ausschließlich um valide Werte handelt. Jeder Wert befindet sich innerhalb unseres erwarteten Wertebereichs zwischen 0 und 100. Die Ausreißer sind also natürlicher Art. Es gibt wenige Menschen an Bord der Titanic, die jünger als 2,5 Jahre sind und wenige die älter als 54,5 Jahre sind. Die Werte der Ausreißer sind jedoch realistisch und sollten nicht entfernt werden.</p>
-<p><strong>Wie verhält es sich mit den Ausreißern der restlichen numerischen Merkmale?</strong><br />
-Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehepartner, die mit an Bord der Titanic sind. Die Werte der Ausreißer betragen 3,4,5 und 8.</p>
-<p>Beim Merkmal <strong>Parch</strong> handelt es sich um die Anzahl der Eltern oder Kinder, die mit an Bord sind. Die Werte der Ausreißer betragen 1-6.</p>
-<p>Der Wertebereich der Ausreißer des <strong>Ticketpreis</strong> beträgt 65 - 512. Der höchste Wert 512 liegt weit über dem zweithöchsten Wert von 263. Der einzelne sehr hohe Betrag von 512 könnte der Preis für eine Luxuskabine sein.</p>
-<div class="admonition-umgang-mit-ausreiszer-im-titanic-datenset admonition">
-<p class="admonition-title">Umgang mit Ausreißer im Titanic Datenset</p>
-<p>Es handelt sich bei allen Ausreißern der numerischen Merkmalen um realistische Werte und sollten daher nicht entfernt werden.</p>
+<p>Unter Verwendung des Faktor 1,5 (Standardwert), werden 44 Ausreißer erkannt. Alle Wert kleiner als 2.875 und größer als 55,875 werden als Ausreißer bezeichnet. Die Ausgabe der Ausreißerwerte zeigt, dass einige Werte durchaus plausibel sind. In diesem Fall, alle Werte bis einschließlich 80 und die Werte zwischen 0 und 2,875.</p>
+<blockquote>
+<div><p>Es gibt wenige Menschen an Bord der Titanic, die jünger als 2,5 Jahre sind und wenige die zwischen 54,5 und 80 Jahre alt sind. Die Werte sind jedoch realistisch und sollten nicht entfernt werden.</p>
+</div></blockquote>
+<p>Die letzten Werte von 204 bis 292 sind sicher Ausreißer. Fazit: <strong>Lediglich die letzten 10 Werte sollten als Ausreißer erkannt werden</strong>. In einem nächsten Schritt wird der <strong>Faktorwert</strong> entsprechend angepasst. Verwendet man einen Wert von <strong>3,5 anstatt 1,5</strong> liefert die Ausreißererkennung die erwarteten Werte.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature</span> <span class="o">=</span> <span class="s1">&#39;Age&#39;</span>  
+<span class="n">factor</span> <span class="o">=</span> <span class="mf">3.5</span>
+<span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">feature</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">get_outliers</span><span class="p">(</span><span class="n">ser</span><span class="p">,</span> <span class="n">factor</span><span class="p">)</span> 
+<span class="n">print_outliers</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Q1-Quantil:  22.75
+Q3-Quantil:  36.0
+lower_bound:  -23.625
+upper_bound:  82.375
+Anzahl der Ausreißer:  10
+Ausreißer
+541    204.0
+535    206.0
+542    217.0
+543    220.0
+534    234.0
+539    247.0
+540    252.0
+538    261.0
+537    265.0
+536    292.0
+Name: Age, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Wie verhält es sich mit den Ausreißern der restlichen numerischen Merkmale?</strong></p>
+</div>
+<div class="section" id="merkmal-sibsp">
+<h4>Merkmal SibSp<a class="headerlink" href="#merkmal-sibsp" title="Permalink to this headline">¶</a></h4>
+<p>Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehepartner, die mit an Bord der Titanic sind. Die Werte der Ausreißer liegen bei einem Faktor von 3.5 zwischen 5 und 49.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature</span> <span class="o">=</span> <span class="s1">&#39;SibSp&#39;</span>  
+<span class="n">factor</span> <span class="o">=</span> <span class="mf">3.5</span>
+<span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">feature</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">get_outliers</span><span class="p">(</span><span class="n">ser</span><span class="p">,</span> <span class="n">factor</span><span class="p">)</span> 
+<span class="n">print_outliers</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Q1-Quantil:  0.0
+Q3-Quantil:  1.0
+lower_bound:  -3.5
+upper_bound:  4.5
+Anzahl der Ausreißer:  17
+Ausreißer
+52      5
+445     5
+11      8
+353     8
+441     8
+443     8
+472     8
+535    23
+536    26
+534    28
+541    29
+538    36
+540    41
+543    43
+542    45
+537    47
+539    49
+Name: SibSp, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Werte bis 8 erscheinen noch realistisch, nur Werte von 23 oder größer sollten als Ausreißer erkannt werden. Mit einem Faktor von 8 wird dieses Ziel erreicht.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature</span> <span class="o">=</span> <span class="s1">&#39;SibSp&#39;</span>  
+<span class="n">factor</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">feature</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">get_outliers</span><span class="p">(</span><span class="n">ser</span><span class="p">,</span> <span class="n">factor</span><span class="p">)</span> 
+<span class="n">print_outliers</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Q1-Quantil:  0.0
+Q3-Quantil:  1.0
+lower_bound:  -8.0
+upper_bound:  9.0
+Anzahl der Ausreißer:  10
+Ausreißer
+535    23
+536    26
+534    28
+541    29
+538    36
+540    41
+543    43
+542    45
+537    47
+539    49
+Name: SibSp, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="merkmal-parch">
+<h4>Merkmal Parch<a class="headerlink" href="#merkmal-parch" title="Permalink to this headline">¶</a></h4>
+<p>Beim Merkmal <strong>Parch</strong> handelt es sich um die Anzahl der Eltern oder Kinder, die mit an Bord sind. Die Werte der Ausreißer betragen 3-66.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature</span> <span class="o">=</span> <span class="s1">&#39;Parch&#39;</span>  
+<span class="n">factor</span> <span class="o">=</span> <span class="mf">3.5</span>
+<span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">feature</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">get_outliers</span><span class="p">(</span><span class="n">ser</span><span class="p">,</span> <span class="n">factor</span><span class="p">)</span> 
+<span class="n">print_outliers</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Q1-Quantil:  0.0
+Q3-Quantil:  1.0
+lower_bound:  -3.5
+upper_bound:  4.5
+Anzahl der Ausreißer:  14
+Ausreißer
+195     5
+421     5
+455     5
+219     6
+538    20
+535    25
+541    26
+542    27
+540    28
+536    31
+534    33
+537    34
+539    35
+543    36
+Name: Parch, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>4 von den 14 erkannten Ausreißern besitzen die Werte 5 und 6. Diese Werte erscheinen realistisch. Die restlichen Werte liegen zwischen 20 und 36. Es handelt sich dabei höchst wahrscheinlich um Ausreißer. Mit einem Faktor von 8 werden die Ausreißer den entsprechenden Erwartungen erkannt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature</span> <span class="o">=</span> <span class="s1">&#39;Parch&#39;</span>  
+<span class="n">factor</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">feature</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">get_outliers</span><span class="p">(</span><span class="n">ser</span><span class="p">,</span> <span class="n">factor</span><span class="p">)</span> 
+<span class="n">print_outliers</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Q1-Quantil:  0.0
+Q3-Quantil:  1.0
+lower_bound:  -8.0
+upper_bound:  9.0
+Anzahl der Ausreißer:  10
+Ausreißer
+538    20
+535    25
+541    26
+542    27
+540    28
+536    31
+534    33
+537    34
+539    35
+543    36
+Name: Parch, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="merkmal-ticketpreis">
+<h4>Merkmal Ticketpreis<a class="headerlink" href="#merkmal-ticketpreis" title="Permalink to this headline">¶</a></h4>
+<p>Der Wertebereich der Ausreißer des <strong>Ticketpreis</strong> bei einem Faktor von 3.5 beträgt 113 bis 2630.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature</span> <span class="o">=</span> <span class="s1">&#39;Fare&#39;</span>  
+<span class="n">factor</span> <span class="o">=</span> <span class="mf">3.5</span>
+<span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">feature</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">get_outliers</span><span class="p">(</span><span class="n">ser</span><span class="p">,</span> <span class="n">factor</span><span class="p">)</span> 
+<span class="n">print_outliers</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Q1-Quantil:  7.925
+Q3-Quantil:  31.303124999999998
+lower_bound:  -73.89843749999999
+upper_bound:  113.12656249999998
+Anzahl der Ausreißer:  35
+Ausreißer
+145     113.2750
+319     120.0000
+332     120.0000
+333     120.0000
+378     133.6500
+359     133.6500
+519     134.5000
+268     134.5000
+456     135.6333
+447     135.6333
+38      151.5500
+468     151.5500
+254     153.4625
+66      164.8667
+86      164.8667
+249     211.3375
+446     211.3375
+530     221.7792
+432     227.5250
+532     262.3750
+222     263.0000
+192     263.0000
+172     263.0000
+108     263.0000
+425     512.3292
+534    2630.0000
+535    2630.0000
+536    2630.0000
+537    2630.0000
+538    2630.0000
+539    2630.0000
+540    2630.0000
+541    2630.0000
+542    2630.0000
+543    2630.0000
+Name: Fare, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>Der Wert von 2630 erscheint sehr hoch und unrealistisch. Vermutlich handelt es sich hier um ein Eingabefehler. Der Wert 512 liegt weit über dem nächsten niedrigeren Wert von 263. Der einzelne sehr hohe Betrag von 512 könnte der Preis für eine Luxuskabine sein. Wird der Faktor auf 21 gesetzt, werden nur die unrealistischen Werte als Ausreißer erkannt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature</span> <span class="o">=</span> <span class="s1">&#39;Fare&#39;</span>  
+<span class="n">factor</span> <span class="o">=</span> <span class="mi">21</span>
+<span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">feature</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">get_outliers</span><span class="p">(</span><span class="n">ser</span><span class="p">,</span> <span class="n">factor</span><span class="p">)</span> 
+<span class="n">print_outliers</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Q1-Quantil:  7.925
+Q3-Quantil:  31.303124999999998
+lower_bound:  -483.01562499999994
+upper_bound:  522.24375
+Anzahl der Ausreißer:  10
+Ausreißer
+534    2630.0
+535    2630.0
+536    2630.0
+537    2630.0
+538    2630.0
+539    2630.0
+540    2630.0
+541    2630.0
+542    2630.0
+543    2630.0
+Name: Fare, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="methoden">
+<h3>Methoden<a class="headerlink" href="#methoden" title="Permalink to this headline">¶</a></h3>
 <p>Häufig verwendete Methoden zum Entfernen von Outlier:</p>
 <ul class="simple">
 <li><p>IQR-Methode</p></li>
@@ -606,9 +933,10 @@ Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehep
 </ul>
 <p>Die Isolation Forest Methode und das DBScan Clustering können angewendet werden, wenn die Ausreißererkunng auf mehrdimensionalen Daten durchgeführt werden soll. Im Fall des Titanic Datenset werden die einzelnen Merkmale getrennt betrachtet, daher handelt es sich nicht um multivariate sondern um univariate Daten.</p>
 </div>
+</div>
 <div class="section" id="skalierung">
 <h2>Skalierung<a class="headerlink" href="#skalierung" title="Permalink to this headline">¶</a></h2>
-<p>Die Skalierung ist eine der wichtigsten Transformationen. Die meisten Machine Learning Algorithmen funktionieren nicht gut, wenn sich die Wertebereiche der Merkmale unterscheiden. Das ist bei den numerischen Merkmalen des Titanic Datenset der Fall:</p>
+<p>Die Skalierung ist eine der wichtigsten Transformationen. Die meisten Machine Learning Algorithmen funktionieren nicht gut, wenn sich die Wertebereiche der Merkmale unterscheiden. Das ist bei den numerischen Merkmalen des Titanic Datenset<a class="footnote-reference brackets" href="#footnote1" id="id1">1</a> der Fall:</p>
 <ul class="simple">
 <li><p>Das Alter der Passagiere liegt zwischen 0,67 und 80</p></li>
 <li><p>Die Anzahl der Geschwister oder Ehepartner reicht von 0 bis 8</p></li>
@@ -620,7 +948,7 @@ Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehep
 </ol>
 <div class="section" id="min-max-skalierung">
 <h3>Min-Max-Skalierung<a class="headerlink" href="#min-max-skalierung" title="Permalink to this headline">¶</a></h3>
-<p>Die Min-Max-Skalierung, auch Normalisierung genannt, ist eine Verschiebung der Werte in den Wertebereich von 0 und 1. Hierzu wird zuerst der Minimalwert von allen Werten subtrahiert und anschließend alle Werte durch die Differenz von Maximal- und Minimalwert geteilt.</p>
+<p>Die Min-Max-Skalierung, auch Normalisierung genannt, ist eine Verschiebung der Werte in den Wertebereich von <strong>0 und 1</strong>. Hierzu wird zuerst der Minimalwert von allen Werten subtrahiert und anschließend alle Werte durch die Differenz von Maximal- und Minimalwert geteilt.</p>
 <p>Erzeugen von Beispieldaten, wobei der Minimalwert 10 und der Maximalwert 19 beträgt:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -675,27 +1003,22 @@ Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehep
 </div>
 </div>
 </div>
-<div class="section" id="min-max-skalierung-am-beispiel-titanic">
-<h4>Min-Max Skalierung am Beispiel Titanic<a class="headerlink" href="#min-max-skalierung-am-beispiel-titanic" title="Permalink to this headline">¶</a></h4>
-<p>In der folgenden Abbildung sieht man die Werte des Merkmals “Alter” in einem Violin- und Swarmplot dargestellt. Ein Violinplot ist ähnlich wie ein Boxplot und stellt die Verteilung der Daten dar. Im Vergleich zum Boxplot wird die Verteilung nicht mit den Median-Werten dargestellt, sondern mit einem gespiegelten Kernel-Dichtediagramm. Der Swarmplot zeigt alle Datenpunkte einer Datenmenge. Daten mit dem gleichen Wert, werden nicht überlappt dargestellt sondern so gestapelt, dass jeder Datenpunkt sichtbar ist. Der Wertebereich liegt zwischen 0 und 80.</p>
+<p><strong>Min-Max Skalierung am Beispiel Titanic</strong></p>
+<p>In der folgenden Abbildung sieht man die Werte des Merkmals Alter in einem Violin- und Swarmplot dargestellt. Ein <strong>Violinplot</strong> ist ähnlich wie ein Boxplot und stellt die <strong>Verteilung der Daten</strong> dar. Im Vergleich zum Boxplot wird die Verteilung nicht mit den Quartil-Werten dargestellt, sondern mit einem gespiegelten Kernel-Dichtediagramm. Der <strong>Swarmplot</strong> zeigt <strong>alle Datenpunkte</strong> einer Datenmenge. Daten mit dem gleichen Wert, werden <strong>nicht überlappt dargestellt</strong> sondern so gestapelt, dass jeder Datenpunkt sichtbar ist. Der Wertebereich liegt zwischen 0 und 80.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span> <span class="n">inner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#D0755E&#39;</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">1.8</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="n">inner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#D0755E&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">1.8</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages/seaborn/categorical.py:1296: UserWarning: 7.7% of the points cannot be placed; you may want to decrease the size of the markers or use stripplot.
-  warnings.warn(msg, UserWarning)
-</pre></div>
+<img alt="../_images/transformationNumerical_42_0.png" src="../_images/transformationNumerical_42_0.png" />
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0, 0.5, &#39;&#39;)]
-</pre></div>
 </div>
-<img alt="../_images/transformationNumerical_26_2.png" src="../_images/transformationNumerical_26_2.png" />
-</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Die Plots werden mit Seaborn erstellt. <a class="reference external" href="https://seaborn.pydata.org/">Seaborn</a> ist eine Python Bibliothek, die aufbauend auf Matplotlib, eine Vielzahl von Funktionen zur Visualisierung bereitstellt. Die verwendeten Funktionen sind <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.violinplot.html">violinplot()</a> und <a class="reference external" href="https://seaborn.pydata.org/generated/seaborn.swarmplot.html">swarmplot()</a>.</p>
 </div>
 <p>Scikit-learn bietet einen MinMaxScaler an, mit dem sich die Min-Max-Skalierung einfach auf die Merkmale in einem Pandas Dataframe anwenden lassen. Als Rückgabe erhält man ein numpy-Array mit den skalierten Werten. Die Anwendung:</p>
 <ul class="simple">
@@ -718,20 +1041,11 @@ Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehep
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_scaled</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span> <span class="n">inner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#D0755E&#39;</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_scaled</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">1.8</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages/seaborn/categorical.py:1296: UserWarning: 7.7% of the points cannot be placed; you may want to decrease the size of the markers or use stripplot.
-  warnings.warn(msg, UserWarning)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0, 0.5, &#39;&#39;)]
-</pre></div>
-</div>
-<img alt="../_images/transformationNumerical_30_2.png" src="../_images/transformationNumerical_30_2.png" />
-</div>
+<img alt="../_images/transformationNumerical_47_0.png" src="../_images/transformationNumerical_47_0.png" />
 </div>
 </div>
 </div>
@@ -825,8 +1139,7 @@ Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehep
 </div>
 </div>
 </div>
-<div class="section" id="standardisierung-am-beispiel-titanic">
-<h4>Standardisierung am Beispiel Titanic<a class="headerlink" href="#standardisierung-am-beispiel-titanic" title="Permalink to this headline">¶</a></h4>
+<p><strong>Standardisierung am Beispiel Titanic</strong></p>
 <p>Die StandardScaler-Methode von Scikit-Learn kann auf einen Pandas Dataframe angewendet werden. Als Rückgabe erhält man ein numpy-Array mit den skalierten Werten. Die Anwendung:</p>
 <ul class="simple">
 <li><p>StandardScaler importieren</p></li>
@@ -847,24 +1160,15 @@ Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehep
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_scaled</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span> <span class="n">inner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#D0755E&#39;</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_scaled</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mf">1.8</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages/seaborn/categorical.py:1296: UserWarning: 7.7% of the points cannot be placed; you may want to decrease the size of the markers or use stripplot.
-  warnings.warn(msg, UserWarning)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0, 0.5, &#39;&#39;)]
-</pre></div>
-</div>
-<img alt="../_images/transformationNumerical_49_2.png" src="../_images/transformationNumerical_49_2.png" />
+<img alt="../_images/transformationNumerical_66_0.png" src="../_images/transformationNumerical_66_0.png" />
 </div>
 </div>
 <p>Die Werte des Merkmals “Alter” wurden auf einen Wertebereich von -2,24 bis 3.92 skaliert. Der Mittelwert beträgt 0 und die Standardabweichung 1.</p>
-<p>Das <a class="reference external" href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.preprocessing">Preprocessing Modul</a> der Scikit-learn Bibliothek bietet eine Reihe weiterere Transformationen an. Die Verwendung ist meist sehr ähnlich. Im wesentlichen sind lediglich die drei Schritte “Importieren”, “Objekt erzeugen” und “fit_transform-Methode aufrufen” notwendig um die Preprocessing-Methoden anzuwenden.</p>
-</div>
+<p>Das <a class="reference external" href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.preprocessing">Preprocessing Modul</a> der Scikit-learn Bibliothek bietet eine Reihe weiterere Transformationen an. Die Verwendung ist meist sehr ähnlich. Im Wesentlichen sind lediglich die drei Schritte “Importieren”, “Objekt erzeugen” und “fit_transform-Methode aufrufen” notwendig um die Preprocessing-Methoden anzuwenden.</p>
 </div>
 <div class="section" id="standardisierung-oder-min-max-skalierung">
 <h3>Standardisierung oder Min-Max-Skalierung?<a class="headerlink" href="#standardisierung-oder-min-max-skalierung" title="Permalink to this headline">¶</a></h3>
@@ -877,7 +1181,7 @@ Das Merkmal <strong>SibSp</strong> enthält die Anzahl der Geschwister oder Ehep
 </div>
 <div class="section" id="diskretisierung">
 <h2>Diskretisierung<a class="headerlink" href="#diskretisierung" title="Permalink to this headline">¶</a></h2>
-<p>Die Diskretisierung, auch Binning genannt, transformiert kontinuierliche in diskrete Werte. Hierzu wird ein Set von zusammenhängenden Intervallen definiert, sogenannte Bins (Behälter). Jeder Behälter erhält einen Namen oder eine Regel wie die Elemente dieser Behälter benannt werden. Das kann zum Beispiel der Mittelwert der enthaltenen Elemente sein. Anschließend wird jeder kontinuierliche Wert einem der Behälter zugewiesen und mit der Bezeichnung ersetzt.</p>
+<p>Die Diskretisierung, auch Binning genannt, <strong>transformiert kontinuierliche in diskrete Werte</strong>. Hierzu wird ein Set von zusammenhängenden Intervallen definiert, sogenannte <strong>Bins</strong> (Behälter). Jeder Behälter erhält einen Namen oder eine Regel wie die Elemente dieser Behälter benannt werden. Das kann zum Beispiel der Mittelwert der enthaltenen Elemente sein. Anschließend wird jeder kontinuierliche Wert <strong>einem der Behälter zugewiesen und mit der Bezeichnung ersetzt</strong>.</p>
 <p>Erstellen von Beispieldaten:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -985,15 +1289,15 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 </div>
 <p>Es gibt verschiedene Arten um die Bins zu definieren. Über</p>
 <ol class="simple">
-<li><p>die gleiche Breite: z.B. Werte von 0-10, 10-20, 30-40 usw.</p></li>
-<li><p>die gleiche Anzahl von Elementen: z.B. Quantile</p></li>
-<li><p>ein Clustering: z.B. Durchführen eines kmeans-Clustering</p></li>
+<li><p>die <strong>gleiche Breite</strong>: z.B. Werte von 0-10, 10-20, 30-40 usw.</p></li>
+<li><p>die <strong>gleiche Anzahl</strong> von Elementen: z.B. Quantile</p></li>
+<li><p>ein <strong>Clustering</strong>: z.B. Durchführen eines kmeans-Clustering</p></li>
 </ol>
-<p>Die Scikit-Learn Bibliothek liefert eine Methode namens KBinsDiscretizer, die eine Diskretisierung durchführt. Über den Parameter “strategy” bestimmt man die Art wie die Bins erstellt werden. Mögliche Werte:</p>
+<p>Die Scikit-Learn Bibliothek liefert eine Methode namens <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.KBinsDiscretizer.html">KBinsDiscretizer</a>, die eine Diskretisierung durchführt. Über den Parameter <strong>strategy</strong> bestimmt man die Art wie die Bins erstellt werden. Mögliche Werte:</p>
 <ul class="simple">
-<li><p>“uniform”: 1. Art, gleiche Breite</p></li>
-<li><p>“quantile”: 2. Art, gleiche Anzahl</p></li>
-<li><p>“kmeans”: 3. Art, Clustering</p></li>
+<li><p><strong>uniform</strong>: 1. Art, gleiche Breite</p></li>
+<li><p><strong>quantile</strong>: 2. Art, gleiche Anzahl</p></li>
+<li><p><strong>kmeans</strong>: 3. Art, Clustering</p></li>
 </ul>
 </div>
 <div class="section" id="diskretisierung-am-beispiel-titanic">
@@ -1003,19 +1307,11 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Fare&quot;</span><span class="p">,</span> <span class="n">inner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#68349A&#39;</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Fare&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages/seaborn/categorical.py:1296: UserWarning: 20.2% of the points cannot be placed; you may want to decrease the size of the markers or use stripplot.
-  warnings.warn(msg, UserWarning)
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0, 0.5, &#39;&#39;)]
-</pre></div>
-</div>
-<img alt="../_images/transformationNumerical_69_2.png" src="../_images/transformationNumerical_69_2.png" />
+<img alt="../_images/transformationNumerical_86_0.png" src="../_images/transformationNumerical_86_0.png" />
 </div>
 </div>
 <p>Der Violinplot zeigt, dass die Verteilung der Daten rechtsschief ist.</p>
@@ -1063,24 +1359,24 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
   </thead>
   <tbody>
     <tr>
-      <th>539</th>
-      <td>3.0</td>
+      <th>529</th>
+      <td>0.0</td>
     </tr>
     <tr>
-      <th>540</th>
-      <td>3.0</td>
+      <th>530</th>
+      <td>1.0</td>
     </tr>
     <tr>
-      <th>541</th>
-      <td>3.0</td>
+      <th>531</th>
+      <td>0.0</td>
     </tr>
     <tr>
-      <th>542</th>
-      <td>3.0</td>
+      <th>532</th>
+      <td>2.0</td>
     </tr>
     <tr>
-      <th>543</th>
-      <td>3.0</td>
+      <th>533</th>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
@@ -1094,7 +1390,7 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0., 3.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0., 1., 2., 3.])
 </pre></div>
 </div>
 </div>
@@ -1107,10 +1403,10 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f85c1a516d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f9e01ad2d90&gt;
 </pre></div>
 </div>
-<img alt="../_images/transformationNumerical_78_1.png" src="../_images/transformationNumerical_78_1.png" />
+<img alt="../_images/transformationNumerical_95_1.png" src="../_images/transformationNumerical_95_1.png" />
 </div>
 </div>
 </div>
@@ -1134,10 +1430,10 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f85c1c1ced0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f9e02300ed0&gt;
 </pre></div>
 </div>
-<img alt="../_images/transformationNumerical_81_1.png" src="../_images/transformationNumerical_81_1.png" />
+<img alt="../_images/transformationNumerical_98_1.png" src="../_images/transformationNumerical_98_1.png" />
 </div>
 </div>
 </div>
@@ -1150,81 +1446,9 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 
 <span class="n">X_train_fare_scaled</span> <span class="o">=</span> <span class="n">discretizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">[[</span><span class="s1">&#39;Fare&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="n">df_scaled</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_fare_scaled</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X_train</span><span class="p">[[</span><span class="s1">&#39;Fare&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="n">df_scaled</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Fare</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>539</th>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>540</th>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>541</th>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>542</th>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>543</th>
-      <td>3.0</td>
-    </tr>
-  </tbody>
-</table>
-<p>544 rows × 1 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1233,15 +1457,24 @@ Diskretisierte Werte:  [5, 5, 5, 16, 16, 16, 16, 39.75, 39.75, 39.75, 39.75]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f85c1e7b290&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f9e02627550&gt;
 </pre></div>
 </div>
-<img alt="../_images/transformationNumerical_84_1.png" src="../_images/transformationNumerical_84_1.png" />
+<img alt="../_images/transformationNumerical_101_1.png" src="../_images/transformationNumerical_101_1.png" />
 </div>
 </div>
-<p>Bei der Anwendung einer Diskretisierung ist zu beachten, dass Informationen verloren gehen. Das kann von Vorteil sein, wenn die verlorenen Informationen für den Anwendungsfall nicht relevant sind. Außerdem kann eine Diskretisierung eine vereinfachte Interpretation der Daten ermöglichen. Bewirkt eine Diskretisierung jedoch einen Verlust von relevanten Informationen, wirkt sich das negativ auf das Endergebnis aus.</p>
-<p>Mit Domänenwissen kann zunächst abgeschätzt werden, ob eine Diskretisierung erfolgsversprechend ist. Am Ende muss jedoch immer eine Erprobung stattfinden um sicher gehen zu können, dass eine Diskretisierung die Performance des Algorithmus steigert. Hierzu führt man Experimente mit unterschiedlichen Transformationsmöglichkeiten durch und analysiert das Ergebnis. Mehr dazu im Abschnitt “Feature Engineering”.</p>
-<p>Im nächsten Abschnitt werden Transformationen für kategorische Daten behandelt.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Bei der Anwendung einer Diskretisierung ist zu beachten, dass <strong>Informationen verloren</strong> gehen. Das kann von Vorteil sein, wenn die verlorenen Informationen für den Anwendungsfall <strong>nicht relevant</strong> sind. Außerdem kann eine Diskretisierung eine vereinfachte Interpretation der Daten ermöglichen. Bewirkt eine Diskretisierung jedoch einen <strong>Verlust von relevanten Informationen</strong>, wirkt sich das negativ auf das Endergebnis aus.</p>
+</div>
+<p>Mit Domänenwissen kann zunächst abgeschätzt werden, ob eine Diskretisierung erfolgsversprechend ist. Am Ende muss jedoch immer eine Erprobung stattfinden um sicher gehen zu können, dass eine Diskretisierung die Performance des Algorithmus steigert. Hierzu führt man <strong>Experimente</strong> mit unterschiedlichen <strong>Transformationsmöglichkeiten</strong> durch und <strong>analysiert</strong> das Ergebnis. Mehr dazu im Abschnitt “Optimierung”.</p>
+<p>Im nächsten Abschnitt werden Transformationen für <strong>kategorische Daten</strong> behandelt.</p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="footnote1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Nach Entfernung der Ausreißer</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>

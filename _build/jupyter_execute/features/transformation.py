@@ -1,6 +1,6 @@
 ## Ziele
-* Grundlegende Transformationsmethoden
-* Grundlagen von Scikit Learn für Pipelines
+* Grundlegende Transformationsmethoden kennen
+* Grundlagen von Scikit Learn für Pipelines verstehen
 * Transformationen in Pipelines organisieren
 
 ## Inhalt
@@ -16,4 +16,3 @@ Transformation für kategorische Daten
 * One-Hot Encoding
 
 Am Beispieldatenset Titanic werden die Methoden veranschaulicht. Darauf folgt eine Übung in der Sie selbst die Transformationsmethoden am Beispiel-Datenset Bike Buyers durchführen.
-

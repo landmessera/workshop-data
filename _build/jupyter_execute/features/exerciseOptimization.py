@@ -87,14 +87,14 @@ Erstellen Sie eine Instanz der Klasse [GridSearchCV](https://scikit-learn.org/st
 ````{Dropdown} Lösung Task 4
 
   ```{code-block} python
-    from sklearn.model_selection import GridSearchCV
+  from sklearn.model_selection import GridSearchCV
 
-    param_grid = {
-        'transformers__num__outlier_remover__factor': [1.0, 1.5, 2.0, 3.0],
-        'predictor__n_neighbors': [2,3,4,5,6],
-    }
+  param_grid = {
+      'transformers__num__outlier_remover__factor': [1.0, 1.5, 2.0, 3.0],
+      'predictor__n_neighbors': [2,3,4,5,6],
+  }
 
-    grid_search = GridSearchCV(full_pipeline, param_grid, cv=10)
+  grid_search = GridSearchCV(full_pipeline, param_grid, cv=10)
 
   ```
 ````

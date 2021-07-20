@@ -21,7 +21,7 @@ parts:
     - file: features/transformation
     - file: features/transformationNumerical
     - file: features/transformationCategorical
-    - file: features/pipeline
+    - file: features/transformationPipeline
     - file: features/exerciseTransformation
   - caption: Teil 3 - Optimierung
     chapters:
