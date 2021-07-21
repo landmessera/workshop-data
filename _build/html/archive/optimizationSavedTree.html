@@ -413,7 +413,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7513812154696132
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7624309392265194
 </pre></div>
 </div>
 </div>
@@ -425,7 +425,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7637362637362637
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7747252747252747
 </pre></div>
 </div>
 </div>
@@ -488,7 +488,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7790055248618785
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7458563535911602
 </pre></div>
 </div>
 </div>
@@ -500,7 +500,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7692307692307693
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7637362637362637
 </pre></div>
 </div>
 </div>
@@ -543,21 +543,6 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">Empty</span><span class="g g-Whitespace">                                     </span>Traceback (most recent call last)
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/joblib/parallel.py</span> in <span class="ni">dispatch_one_batch</span><span class="nt">(self, iterator)</span>
-<span class="g g-Whitespace">    </span><span class="mi">796</span>             <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">797</span>                 <span class="n">tasks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ready_batches</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">798</span>             <span class="k">except</span> <span class="n">queue</span><span class="o">.</span><span class="n">Empty</span><span class="p">:</span>
-
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/queue.py</span> in <span class="ni">get</span><span class="nt">(self, block, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span>                 <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_qsize</span><span class="p">():</span>
-<span class="ne">--&gt; </span><span class="mi">167</span>                     <span class="k">raise</span> <span class="n">Empty</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span>             <span class="k">elif</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="ne">Empty</span>: 
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
 <span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="n">bef5df60d9db</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">],</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_train&#39;</span><span class="p">])</span>
@@ -702,88 +687,86 @@
 <span class="g g-Whitespace">   </span><span class="mi">1006</span> 
 
 <span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/joblib/parallel.py</span> in <span class="ni">dispatch_one_batch</span><span class="nt">(self, iterator)</span>
-<span class="g g-Whitespace">    </span><span class="mi">806</span>                 <span class="n">big_batch_size</span> <span class="o">=</span> <span class="n">batch_size</span> <span class="o">*</span> <span class="n">n_jobs</span>
-<span class="g g-Whitespace">    </span><span class="mi">807</span> 
-<span class="ne">--&gt; </span><span class="mi">808</span>                 <span class="n">islice</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="n">iterator</span><span class="p">,</span> <span class="n">big_batch_size</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">809</span>                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">islice</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">810</span>                     <span class="k">return</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">833</span>                 <span class="k">return</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">834</span>             <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">835</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">836</span>                 <span class="k">return</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">837</span> 
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/compose/_column_transformer.py</span> in <span class="ni">&lt;genexpr&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">440</span>                     <span class="n">message_clsname</span><span class="o">=</span><span class="s1">&#39;ColumnTransformer&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">441</span>                     <span class="n">message</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_message</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">transformers</span><span class="p">)))</span>
-<span class="ne">--&gt; </span><span class="mi">442</span>                 <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">443</span>                         <span class="bp">self</span><span class="o">.</span><span class="n">_iter</span><span class="p">(</span><span class="n">fitted</span><span class="o">=</span><span class="n">fitted</span><span class="p">,</span> <span class="n">replace_strings</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">444</span>         <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/joblib/parallel.py</span> in <span class="ni">_dispatch</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">752</span>         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">753</span>             <span class="n">job_idx</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_jobs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">754</span>             <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">cb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">755</span>             <span class="c1"># A job can complete so quickly than its callback is</span>
+<span class="g g-Whitespace">    </span><span class="mi">756</span>             <span class="c1"># called before we get here, causing self._jobs to</span>
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/utils/__init__.py</span> in <span class="ni">_safe_indexing</span><span class="nt">(X, indices, axis)</span>
-<span class="g g-Whitespace">    </span><span class="mi">340</span> 
-<span class="g g-Whitespace">    </span><span class="mi">341</span>     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="s2">&quot;iloc&quot;</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">342</span>         <span class="k">return</span> <span class="n">_pandas_indexing</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">indices_dtype</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">343</span>     <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">344</span>         <span class="k">return</span> <span class="n">_array_indexing</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">indices_dtype</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">apply_async</span><span class="nt">(self, func, callback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>     <span class="k">def</span> <span class="nf">apply_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">208</span>         <span class="sd">&quot;&quot;&quot;Schedule a func to be run&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">209</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">ImmediateResult</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>         <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">211</span>             <span class="n">callback</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/utils/__init__.py</span> in <span class="ni">_pandas_indexing</span><span class="nt">(X, key, key_dtype, axis)</span>
-<span class="g g-Whitespace">    </span><span class="mi">191</span>     <span class="c1"># check whether we should index with loc or iloc</span>
-<span class="g g-Whitespace">    </span><span class="mi">192</span>     <span class="n">indexer</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span> <span class="k">if</span> <span class="n">key_dtype</span> <span class="o">==</span> <span class="s1">&#39;int&#39;</span> <span class="k">else</span> <span class="n">X</span><span class="o">.</span><span class="n">loc</span>
-<span class="ne">--&gt; </span><span class="mi">193</span>     <span class="k">return</span> <span class="n">indexer</span><span class="p">[:,</span> <span class="n">key</span><span class="p">]</span> <span class="k">if</span> <span class="n">axis</span> <span class="k">else</span> <span class="n">indexer</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">194</span> 
-<span class="g g-Whitespace">    </span><span class="mi">195</span> 
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/joblib/_parallel_backends.py</span> in <span class="ni">__init__</span><span class="nt">(self, batch)</span>
+<span class="g g-Whitespace">    </span><span class="mi">588</span>         <span class="c1"># Don&#39;t delay the application, to avoid keeping the input</span>
+<span class="g g-Whitespace">    </span><span class="mi">589</span>         <span class="c1"># arguments in memory</span>
+<span class="ne">--&gt; </span><span class="mi">590</span>         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">batch</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">591</span> 
+<span class="g g-Whitespace">    </span><span class="mi">592</span>     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/indexing.py</span> in <span class="ni">__getitem__</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">    </span><span class="mi">923</span>                 <span class="k">with</span> <span class="n">suppress</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="ne">IndexError</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">924</span>                     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_get_value</span><span class="p">(</span><span class="o">*</span><span class="n">key</span><span class="p">,</span> <span class="n">takeable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_takeable</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">925</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_tuple</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">926</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">927</span>             <span class="c1"># we by definition only have the 0th axis</span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/joblib/parallel.py</span> in <span class="ni">__call__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">256</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span> 
+<span class="g g-Whitespace">    </span><span class="mi">258</span>     <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/indexing.py</span> in <span class="ni">_getitem_tuple</span><span class="nt">(self, tup)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1107</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_multi_take</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1108</span> 
-<span class="ne">-&gt; </span><span class="mi">1109</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_tuple_same_dim</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1110</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1111</span>     <span class="k">def</span> <span class="nf">_get_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/joblib/parallel.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span>         <span class="k">with</span> <span class="n">parallel_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_n_jobs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span>             <span class="k">return</span> <span class="p">[</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">256</span>                     <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span> 
+<span class="g g-Whitespace">    </span><span class="mi">258</span>     <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/indexing.py</span> in <span class="ni">_getitem_tuple_same_dim</span><span class="nt">(self, tup)</span>
-<span class="g g-Whitespace">    </span><span class="mi">804</span>                 <span class="k">continue</span>
-<span class="g g-Whitespace">    </span><span class="mi">805</span> 
-<span class="ne">--&gt; </span><span class="mi">806</span>             <span class="n">retval</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">retval</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">_getitem_axis</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">807</span>             <span class="c1"># We should never have retval.ndim &lt; self.ndim, as that should</span>
-<span class="g g-Whitespace">    </span><span class="mi">808</span>             <span class="c1">#  be handled by the _getitem_lowerdim call above.</span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/utils/fixes.py</span> in <span class="ni">__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span>     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span>         <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">222</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/indexing.py</span> in <span class="ni">_getitem_axis</span><span class="nt">(self, key, axis)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1151</span>                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot index with multidimensional key&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1152</span> 
-<span class="ne">-&gt; </span><span class="mi">1153</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_iterable</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1154</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1155</span>             <span class="c1"># nested tuple slicing</span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/pipeline.py</span> in <span class="ni">_transform_one</span><span class="nt">(transformer, X, y, weight, **fit_params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">731</span> 
+<span class="g g-Whitespace">    </span><span class="mi">732</span> <span class="k">def</span> <span class="nf">_transform_one</span><span class="p">(</span><span class="n">transformer</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">733</span>     <span class="n">res</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">734</span>     <span class="c1"># if we have a weight for this transformer, multiply output</span>
+<span class="g g-Whitespace">    </span><span class="mi">735</span>     <span class="k">if</span> <span class="n">weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/indexing.py</span> in <span class="ni">_getitem_iterable</span><span class="nt">(self, key, axis)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1091</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1092</span>         <span class="c1"># A collection of keys</span>
-<span class="ne">-&gt; </span><span class="mi">1093</span>         <span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_listlike_indexer</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1094</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_reindex_with_indexers</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1095</span>             <span class="p">{</span><span class="n">axis</span><span class="p">:</span> <span class="p">[</span><span class="n">keyarr</span><span class="p">,</span> <span class="n">indexer</span><span class="p">]},</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_dups</span><span class="o">=</span><span class="kc">True</span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/sklearn/pipeline.py</span> in <span class="ni">_transform</span><span class="nt">(self, X)</span>
+<span class="g g-Whitespace">    </span><span class="mi">558</span>         <span class="n">Xt</span> <span class="o">=</span> <span class="n">X</span>
+<span class="g g-Whitespace">    </span><span class="mi">559</span>         <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">transform</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iter</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">560</span>             <span class="n">Xt</span> <span class="o">=</span> <span class="n">transform</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Xt</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">561</span>         <span class="k">return</span> <span class="n">Xt</span>
+<span class="g g-Whitespace">    </span><span class="mi">562</span> 
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/indexing.py</span> in <span class="ni">_get_listlike_indexer</span><span class="nt">(self, key, axis)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1288</span>             <span class="n">Indexer</span> <span class="k">for</span> <span class="n">the</span> <span class="k">return</span> <span class="nb">object</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span> <span class="n">denotes</span> <span class="n">keys</span> <span class="ow">not</span> <span class="n">found</span><span class="o">.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1289</span>         <span class="s2">&quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1290</span><span class="s2">         ax = self.obj._get_axis(axis)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1291</span><span class="s2"> </span>
-<span class="g g-Whitespace">   </span><span class="mi">1292</span><span class="s2">         keyarr = key</span>
+<span class="nn">~/git/books/workshop-data/archive/transformer.py</span> in <span class="ni">transform</span><span class="nt">(self, X, y)</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span>         <span class="n">q3</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>         <span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
+<span class="ne">---&gt; </span><span class="mi">18</span>         <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span>         <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span>         <span class="n">X_</span><span class="p">[((</span><span class="n">X_</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">X_</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">))]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/generic.py</span> in <span class="ni">_get_axis</span><span class="nt">(self, axis)</span>
-<span class="g g-Whitespace">    </span><span class="mi">553</span><span class="s2">     @final</span>
-<span class="g g-Whitespace">    </span><span class="mi">554</span><span class="s2">     def _get_axis(self, axis: Axis) -&gt; Index:</span>
-<span class="ne">--&gt; </span><span class="mi">555</span><span class="s2">         axis_number = self._get_axis_number(axis)</span>
-<span class="g g-Whitespace">    </span><span class="mi">556</span><span class="s2">         assert axis_number in {0, 1}</span>
-<span class="g g-Whitespace">    </span><span class="mi">557</span><span class="s2">         return self.index if axis_number == 0 else self.columns</span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/ops/common.py</span> in <span class="ni">new_method</span><span class="nt">(self, other)</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span>                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span>                     <span class="k">break</span>
+<span class="ne">---&gt; </span><span class="mi">64</span>                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="bp">cls</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span>                     <span class="k">return</span> <span class="bp">NotImplemented</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span> 
 
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/generic.py</span> in <span class="ni">_get_axis_number</span><span class="nt">(cls, axis)</span>
-<span class="g g-Whitespace">    </span><span class="mi">540</span><span class="s2">     @classmethod</span>
-<span class="g g-Whitespace">    </span><span class="mi">541</span><span class="s2">     def _get_axis_number(cls, axis: Axis) -&gt; int:</span>
-<span class="ne">--&gt; </span><span class="mi">542</span><span class="s2">         try:</span>
-<span class="g g-Whitespace">    </span><span class="mi">543</span><span class="s2">             return cls._AXIS_TO_AXIS_NUMBER[axis]</span>
-<span class="g g-Whitespace">    </span><span class="mi">544</span><span class="s2">         except KeyError:</span>
+<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/core/dtypes/generic.py</span> in <span class="ni">_check</span><span class="nt">(cls, inst)</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span>     <span class="nd">@classmethod</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span>     <span class="k">def</span> <span class="nf">_check</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">inst</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">45</span>         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="s2">&quot;_typ&quot;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">comp</span>
+<span class="g g-Whitespace">     </span><span class="mi">46</span> 
+<span class="g g-Whitespace">     </span><span class="mi">47</span>     <span class="n">dct</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;__instancecheck__&quot;</span><span class="p">:</span> <span class="n">_check</span><span class="p">,</span> <span class="s2">&quot;__subclasscheck__&quot;</span><span class="p">:</span> <span class="n">_check</span><span class="p">}</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

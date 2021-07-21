@@ -57,11 +57,13 @@ Scikit-learn stellt eine ganze Reihe von Transformer bereit. Im Abschnitt zur Tr
 
 ### Eigene Transformer erstellen
 
-Wie bereits erwähnt benötigt ein Transformer eine fit()- und transform()-Methode. Außerdem wird eine fit_transform()-Methode benötigt, die beide Methoden kombiniert. Als Beispiel wird die Ausreißererkennung und -entfernung wie sie im Abschnitt zur Transformation von numerischen Daten gezeigt wurde als Transformer implementiert. Man erstellt zunächst eine Klasse die von den Klassen BaseEstimator und TransformerMixin erben. Der BaseEstimator liefert die Möglichkeit die Methoden get_params() und set_params() zu nutzen, die TransformerMixin Klasse erstellt automatisch bei gegebenen fit()- und transform()-Methoden, die fit_transform()-Methode.
+Wie bereits erwähnt benötigt ein Transformer eine fit()- und transform()-Methode. Außerdem wird eine fit_transform()-Methode benötigt, die beide Methoden kombiniert. Als Beispiel wird die Ausreißererkennung und -entfernung wie sie im Abschnitt zur Transformation von numerischen Daten gezeigt wurde als Transformer implementiert. Man erstellt zunächst eine Klasse namens "OutlierRemover" die von den Klassen BaseEstimator und TransformerMixin erben. Der BaseEstimator liefert die Möglichkeit die Methoden get_params() und set_params() zu nutzen, die TransformerMixin Klasse erstellt automatisch bei gegebenen fit()- und transform()-Methoden, die fit_transform()-Methode.
 
 Die fit()-Methode muss im Fall Ausreißererkennung und -entfernung keine Aufgabe erfüllen. Der Inhalt der Methode bleibt leer. Der Rückgabewert entspricht der unveränderten Instanz selbst.
 
 Die transform()-Methode enthält die in Abschnitt "Transformation > Numerische Daten > Ausreißer erkennen" beschriebenen Zeilen Code, um Ausreißer mit der IQR-Methode zu erkennen und mit dem Median-Wert zu ersetzen. Der Faktor wird in der __init__() Methode über den Parameter "factor" übergeben und gesetzt. Der Default-Wert beträgt 1.5.
+
+Die OutlierRemover Klasse wird in einer Datei namens "transformer.py" gespeichert.
 
 import pandas as pd
 import numpy as np
@@ -93,8 +95,6 @@ class OutlierRemover(BaseEstimator, TransformerMixin):
 
 ### Transformer anwenden
 
-from transformer import OutlierRemover
-
 ```{figure} ../images/transformerOutlier.png
 ---
 height: 200px
@@ -108,15 +108,19 @@ Es wird ein Datenframe erstellt und mit Beispieldaten befüllt. Das Merkmal 'Gr�
 X = pd.DataFrame({'Größe':[60,23,999,54],'Gewicht':[30,3,5,25],'Alter':[2,-16,10,4]}, index=[1,2,3,4])
 X
 
-Es wird eine Instanz der Klasse erstellen.
+OutlierRemover Klasse importieren:
+
+from transformer import OutlierRemover
+
+Eine Instanz der Klasse erstellen:
 
 outlier_transformer = OutlierRemover()
 
-Aufrufen der fit()-Methode.
+Die fit()-Methode aufrufen.
 
 outlier_transformer.fit(X)
 
-Aufrufen der transform()-Methode.
+Aufrufen der transform()-Methode und erstellen eines DataFrame:
 
 res = outlier_transformer.transform(X)
 pd.DataFrame(res, columns=X.columns)
@@ -126,11 +130,13 @@ Alternativ kann die fit_transform()-Methode aufgerufen werden.
 res = outlier_transformer.fit_transform(X)
 pd.DataFrame(res, columns=X.columns)
 
-Die Ausreißer wurden erkannt und mit dem NaN-Wert ersetzt. Sie wissen jetzt, wie man Transformer von Scikit Learn anwendet und wie man eigene Transformer erstellt. Im nächsten Schritt wird gezeigt wie diese Transformer in einer Pipeline verwendet werden können.
+Die Ausreißer wurden erkannt und mit dem Median-Wert ersetzt. 
+
+Sie wissen jetzt, wie man Transformer von Scikit Learn anwendet und wie man eigene Transformer erstellt. Im nächsten Schritt wird gezeigt wie diese Transformer in einer Pipeline verwendet werden können.
 
 ### Pipelines erstellen
 
-Die Klasse Pipeline aus Scikit-Learn unterstützen die Organisation von Transformationen. Bei der Instanziierung werden die Transformationsschritte in einer Liste von Tuples übergeben. Ein Tuple enthält den Namen (frei wählbar) und ein Transformer. Das letzte Element der Liste kann ein Tuple sein, dass anstatt eines Transformers einen Estimator enthält.
+Die Klasse Pipeline aus Scikit-Learn unterstützen die **Organisation von Transformationen**. Bei der Instanziierung werden die Transformationsschritte in einer Liste von Tuples übergeben. Ein Tuple enthält den Namen (frei wählbar) und ein Transformer. Das letzte Element der Liste kann ein Tuple sein, dass anstatt eines Transformers einen Estimator enthält.
 
 
 ```{figure} ../images/pipelineGeneral.png
@@ -156,7 +162,7 @@ pipeline_numerical = Pipeline(steps=[
 
 pipeline_numerical.fit_transform(X)
 
-Die Werte der bisherigen Daten waren ausschließlich numerisch. Wie bereits aus den vorigen Kapiteln bekannt ist, sind bestimmte Transformationen für entsprechende Datentypen notwendig. Für dieses Handling kann der ColumnTransformer zum Einsatz kommen. Beim Instanziieren des ColumnTransformers werden dem Parameter "transformers" eine Liste von Tuples (name, transformer, columns) übergeben, wobei der Name frei wählbar ist, 'transformer' ein einzelner Transformer oder eine Pipeline sein kann und 'columns' eine Liste der Merkmale darstellt, die transformiert werden sollen.
+Die Werte der bisherigen Daten waren ausschließlich numerisch. Wie bereits aus den vorigen Kapiteln bekannt, sind bestimmte Transformationen für entsprechende Datentypen notwendig. Für dieses Handling kann der **ColumnTransformer** zum Einsatz kommen. Beim Instanziieren des ColumnTransformers werden dem Parameter "transformers" eine Liste von Tuples (name, transformer, columns) übergeben, wobei der Name frei wählbar ist, 'transformer' ein einzelner Transformer oder eine Pipeline sein kann und 'columns' eine Liste der Merkmale darstellt, die transformiert werden sollen.
 
 Erweitern der Beispieldaten um kategorische Daten:
 
@@ -173,9 +179,6 @@ align: center
 name: fig-transformerOneHot
 ---
 ```
-
-import sklearn
-sklearn.__version__
 
 pipeline_categorical = Pipeline(steps=[
     ('onehot', OneHotEncoder(drop='if_binary'))
@@ -200,7 +203,7 @@ preprocessor = ColumnTransformer(
         )
     ])
 
-
+Aufrufen der fit_transform()-Methode.
 
 res = preprocessor.fit_transform(X)
 pd.DataFrame(res)
@@ -228,7 +231,7 @@ X_train.head()
 
 ### Pipeline erstellen
 
-Erstellen der Pipelines für numerische und kategorische Daten, sowie eine Pipeline namens "transformer_pipeline", um die Zuordnung der Pipelines auf die Merkmale zu definieren. Da in diesem Datenset keine Ausreißer vorhanden sind, die entfernt werden müssen wird der Outlier Remover Transformer in diesem Fall nicht verwendet.
+Erstellen der Pipelines für numerische und kategorische Daten, sowie eine Pipeline namens "transformer_pipeline", um die Zuordnung der Pipelines zu den Merkmalen zu definieren. 
 
 features_numerical = ['Age', 'SibSp', 'Parch', 'Fare']
 features_categorical = ['Pclass', 'Sex', 'Embarked']
@@ -271,7 +274,7 @@ pd.DataFrame(res, columns=features_numerical+list(feature_categorical_onehot))
 
 ### Umgang mit weiteren Datensets
 
-Bisher wurde nur das Trainingsdatenset transformiert. Validierungs- und Testset müssen ebenfalls transformiert werden. Wichtig ist dabei, dass nur transformiert und nicht trainiert wird. Das scheint selbstverständlich, ist jedoch eine häufige Fehlerquelle. Training im Kontext von Machine Learning bedeutet, dass etwas aus Daten gelernt wird. Im Fall der Transformationen findet zum Beispiel ein Training statt, wenn man eine Standardisierung vornimmt. Es wird gelernt auf welchen Bereich die Daten skaliert werden sollen. Das Training darf ausschließlich mit den Trainingsdaten stattfinden. Die Skalierung selbst, also die Transformation der Daten findet auf den Trainings-, Validierungs- und Testdaten statt. 
+Bisher wurde nur das Trainingsdatenset transformiert. Validierungs- und Testset müssen ebenfalls transformiert werden. Wichtig ist dabei, dass **nur transformiert** und **nicht** trainiert wird. Das scheint selbstverständlich, ist jedoch eine häufige Fehlerquelle. Training im Kontext von Machine Learning bedeutet, dass etwas aus Daten gelernt wird. Im Fall der Transformationen findet zum Beispiel ein Training statt, wenn man eine Standardisierung vornimmt. Es wird gelernt auf welchen Bereich die Daten skaliert werden sollen. Das Training darf ausschließlich mit den Trainingsdaten stattfinden. Die Skalierung selbst, also die Transformation der Daten findet auf den Trainings-, Validierungs- und Testdaten statt. 
 
 Wie wendet man jetzt die Pipeline korrekt auf die anderen Datensets an? 
 * Trainingsdatenset: 
@@ -281,7 +284,7 @@ Wie wendet man jetzt die Pipeline korrekt auf die anderen Datensets an?
 * Testdatenset: 
     * transform()-Methode aufrufen
 
-Datensets in Variablen speichern.
+Datensets in Variablen speichern:
 
 X_train = datasets['X_train']
 y_train = datasets['y_train']
@@ -290,26 +293,41 @@ y_val = datasets['y_val']
 X_test = datasets['X_test']
 y_test = datasets['y_test']
 
+Datensets transformieren:
+
 X_train_transformed = transformer_pipeline.fit_transform(X_train)
 X_val_transformed = transformer_pipeline.transform(X_val)
 X_test_transformed = transformer_pipeline.transform(X_test)
 
-X_train.head()
+Neue Spaltenbezeichnungen aufrufen, in der Variable features_categorcial_onehot speichern.
 
 feature_categorical_onehot = transformer_pipeline.transformers_[1][1]['onehot'].get_feature_names(features_categorical)
+
+Aus den transformierten Datensets (numpy-Arrays) Pandas DataFrames erstellen. 
+
 X_train_transformed = pd.DataFrame(X_train_transformed, columns=features_numerical+list(feature_categorical_onehot))
 X_val_transformed = pd.DataFrame(X_val_transformed, columns=features_numerical+list(feature_categorical_onehot))
 X_test_transformed = pd.DataFrame(X_test_transformed, columns=features_numerical+list(feature_categorical_onehot))
 
+Die letzten 20 Zeilen des transformierten Trainingsdatenset ausgeben:
+
 X_train_transformed.tail(-20)
+
+Die ersten 5 Zeilen des transformierten Trainingsdatenset ausgeben.
 
 X_train_transformed.head()
 
+Die ersten 5 Zeilen des transformierten Validierungsdatenset ausgeben.
+
 X_val_transformed.head()
+
+Die ersten 5 Zeilen des transformierten Testdatenset ausgeben.
 
 X_test_transformed.head()
 
 ### Transformierte Daten speichern
+
+Speichern der transformierten Datensets in einem Dictionary.
 
 datasets_transformed = {
     'X_train': X_train_transformed,
@@ -320,21 +338,24 @@ datasets_transformed = {
     'y_test': y_test
 }
 
+Speichern des Dictionary in einer Pickle-Datei.
+
 with open('../output/titanic/datasets_transformed.pkl', 'wb') as handle:
     pickle.dump(datasets_transformed, handle)
 
 ### Pipeline speichern
+
+Speichern der Pipeline in einer Pickle-Datei.
 
 with open('../output/titanic/transformer_pipeline.pkl', 'wb') as handle:
     pickle.dump(transformer_pipeline, handle)
 
 Die erste Pipeline ist erstellt und die Transformationen auf alle Datensets angewendet. Man kann an dieser Stelle die transformierten Datensets für Machine Learning Verfahren verwenden. 
 
+Jetzt sind Sie an der Reihe: Wenden Sie das Vorgehen in der Übung an. 
+
 [^footnote1]: "API design for machine learning software: experiences from the scikit-learn project", L Buitinck, G Louppe, M Blondel, et. al.
 
 [^footnote2]: siehe https://scikit-learn.org/stable/modules/classes.html#module-sklearn.preprocessing
 
 [^footnote3]: siehe https://scikit-learn.org/stable/modules/grid_search.html
-
-
-

@@ -2,6 +2,9 @@
 
 !pip install sklearn
 
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 Packete importieren
 
 import pandas as pd
@@ -9,6 +12,7 @@ import numpy as np
 import sklearn as sklearn
 import pickle
 from sklearn.model_selection import train_test_split
+print('Packete importiert.')
 
 ## Numerische Daten
 
@@ -16,10 +20,7 @@ from sklearn.model_selection import train_test_split
 
 Lesen Sie die gespeicherte Datensets aus der pickle-Datei '../output/bikebuyers/datasets.pkl' aus und geben Sie die ersten fünf Zeilen der Merkmale im Trainingsdatenset (X_train) aus.
 
-f = open('../data/bikebuyers/datasets.pkl', 'rb')
-datasets = pickle.load(f)
-
-datasets['X_train']
+# Hier den Code eingeben.
 
 Geben Sie die ersten fünf Zeilen der Zielgrößen im Trainingsdatenset (y_train) aus.
 
@@ -28,14 +29,14 @@ Geben Sie die ersten fünf Zeilen der Zielgrößen im Trainingsdatenset (y_train
 ````{Dropdown} Lösung Task 1
 
   ```{code-block} python
-    # Erste Code-Zelle
-    with open('../data/bikebuyers/datasets.pkl', 'rb') as handle:
-        datasets = pickle.load(handle)
+  # Erste Code-Zelle
+  with open('../output/bikebuyers/datasets.pkl', 'rb') as handle:      
+    datasets = pickle.load(handle)
         
-    datasets['X_train'].head()
+  datasets['X_train'].head()
     
-    # Zweite Code-Zelle
-    datasets['y_train'].head()
+  # Zweite Code-Zelle
+  datasets['y_train'].head()
   ```
 ````
 
@@ -65,25 +66,25 @@ Schritte zur Lösung:
 ````{Dropdown} Lösung Task 2
 
   ```{code-block} python
-    # Erste Code-Zelle
-    X_ = pd.DataFrame(datasets['X_train'])
-    factor = 1.5
-    q1 = X_.quantile(0.25)
-    q3 = X_.quantile(0.75)
-    iqr = q3 - q1
-    lower_bound = q1 - (factor * iqr)
-    upper_bound = q3 + (factor * iqr)
-    X_[((X_ < lower_bound) | (X_ > upper_bound))] = np.nan
-    X_.isna().sum()
-    
-    # Zweite‚ Code-Zelle
-    X_.fillna(X_.mean(), inplace=True)
+  # Erste Code-Zelle
+  X_ = pd.DataFrame(datasets['X_train'])
+  factor = 1.5
+  q1 = X_.quantile(0.25)
+  q3 = X_.quantile(0.75)
+  iqr = q3 - q1
+  lower_bound = q1 - (factor * iqr)
+  upper_bound = q3 + (factor * iqr)
+  X_[((X_ < lower_bound) | (X_ > upper_bound))] = np.nan
+  X_.isna().sum()
+
+  # Zweite‚ Code-Zelle
+  X_.fillna(X_.mean(), inplace=True)
   ```
 ````
 
 ### Task 3: Outlier Remover Transformer erstellen
 
-Erstellen Sie eine Klasse "OutlierRemoverExtended", welche das Transformer-Interface von Scikit Learn abbildet und von den Klassen BaseEstimator und TranformerMixin ableitet. Bei der Instanziierung der Klasse sollen zwei Parameter gesetzt werden können:
+Erstellen Sie eine Klasse "OutlierRemoverExtended", welche das Transformer-Interface von Scikit Learn abbildet und von den Klassen BaseEstimator und TranformerMixin ableitet. Speichern Sie die Klasse in einer Datei namens "transformer_extended.py" mit Hilfe des [%%writefile](https://ipython.readthedocs.io/en/stable/interactive/magics.html#cellmagic-writefile) Befehls. Bei der Instanziierung der Klasse sollen zwei Parameter gesetzt werden können:
 * factor, Default-Wert 1.5
 * strategy, Default-Wert 'median'
 
@@ -94,34 +95,37 @@ Die fit()-Methode soll zwei numpy-Arrays als Parameter (X und y), keine Funktion
 ````{Dropdown} Lösung Task 3
 
   ```{code-block} python
-  %%writefile transformer.py
-
+  %%writefile transformer_extended.py
+  
+  import pandas as pd
+  import numpy as np
   from sklearn.base import BaseEstimator, TransformerMixin
+  
   class OutlierRemoverExtended(BaseEstimator, TransformerMixin):
-      def __init__(self, factor=1.5, strategy='median'):
-          self.factor = factor
-          self.strategy = strategy
+    def __init__(self, factor=1.5, strategy='median'):
+      self.factor = factor
+      self.strategy = strategy
 
-      def fit(self, X, y=None):
-          return self
+    def fit(self, X, y=None):
+      return self
 
-      def transform(self, X, y=None):
-          X_ = pd.DataFrame(X)
-          q1 = X_.quantile(0.25)
-          q3 = X_.quantile(0.75)
-          iqr = q3 - q1
-          lower_bound = q1 - (self.factor * iqr)
-          upper_bound = q3 + (self.factor * iqr)
-          X_[((X_ < lower_bound) | (X_ > upper_bound))] = np.nan
+    def transform(self, X, y=None):
+      X_ = pd.DataFrame(X)
+      q1 = X_.quantile(0.25)
+      q3 = X_.quantile(0.75)
+      iqr = q3 - q1
+      lower_bound = q1 - (self.factor * iqr)
+      upper_bound = q3 + (self.factor * iqr)
+      X_[((X_ < lower_bound) | (X_ > upper_bound))] = np.nan
 
-          if self.strategy == 'median':
-              X_.fillna(X_.median(), inplace=True)
-          elif self.strategy == 'mean':
-              X_.fillna(X_.mean(), inplace=True)
-          else:
-              raise ValueError('Invalid value for strategy paramter. Valid values are median or mean.')
+      if self.strategy == 'median':
+        X_.fillna(X_.median(), inplace=True)
+      elif self.strategy == 'mean':
+        X_.fillna(X_.mean(), inplace=True)
+      else:
+        raise ValueError('Invalid value for strategy paramter. Valid values are median or mean.')
 
-          return X_.values
+      return X_.values
   ```
 ````
 
@@ -136,9 +140,11 @@ Die fit()-Methode soll zwei numpy-Arrays als Parameter (X und y), keine Funktion
 ````{Dropdown} Lösung Task 4
 
   ```{code-block} python
-    outlier_remover = OutlierRemoverExtended()
-    res = outlier_remover.fit_transform(datasets['X_train'])
-    pd.DataFrame(res)
+  from transformer_extended import OutlierRemoverExtended
+  
+  outlier_remover = OutlierRemoverExtended()
+  res = outlier_remover.fit_transform(datasets['X_train'])
+  pd.DataFrame(res)
   ```
 ````
 
@@ -150,15 +156,18 @@ Erstellen Sie eine Pipeline mit Hilfe der [Pipeline](https://scikit-learn.org/st
 
 Speichern Sie die Pipeline in einer Variable namens pipeline_numerical.
 
+# Hier den Code eingeben
+
 ````{Dropdown} Lösung Task 5
 
   ```{code-block} python
-    from sklearn.pipeline import Pipeline
-    from sklearn.preprocessing import StandardScaler
-    pipeline_numerical = Pipeline(steps=[
-        ('outlier_remover', OutlierRemoverExtended()),
-        ('scaler', StandardScaler())
-    ])
+  from sklearn.pipeline import Pipeline
+  from sklearn.preprocessing import StandardScaler
+  
+  pipeline_numerical = Pipeline(steps=[
+    ('outlier_remover', OutlierRemoverExtended()),
+    ('scaler', StandardScaler())
+  ])
   ```
 ````
 
@@ -176,11 +185,12 @@ Speichern Sie die Pipeline in einer Variable namens pipeline_categorical.
 ````{Dropdown} Lösung Task 6
 
   ```{code-block} python
-    from sklearn.pipeline import Pipeline
-    from sklearn.preprocessing import OneHotEncoder
-    pipeline_categorical = Pipeline(steps=[
-        ('onehot', OneHotEncoder(handle_unknown='ignore'))
-    ])
+  from sklearn.pipeline import Pipeline
+  from sklearn.preprocessing import OneHotEncoder
+  
+  pipeline_categorical = Pipeline(steps=[
+    ('onehot', OneHotEncoder(handle_unknown='ignore'))
+  ])
   ```
 ````
 
@@ -200,32 +210,32 @@ Speichern Sie die Pipeline in einer Variable namens pipeline_categorical.
 ````{Dropdown} Lösung Task 7
 
   ```{code-block} python
-    from sklearn.compose import ColumnTransformer
+  from sklearn.compose import ColumnTransformer
 
-    features_numerical = ['Income', 'Age', 'Cars', 'Children']
-    features_categorical = [
-        'Marital Status', 
-        'Gender', 
-        'Education', 
-        'Occupation', 
-        'Home Owner', 
-        'Commute Distance',
-        'Region'
-    ]
+  features_numerical = ['Income', 'Age', 'Cars', 'Children']
+  features_categorical = [
+    'Marital Status', 
+    'Gender', 
+    'Education', 
+    'Occupation', 
+    'Home Owner', 
+    'Commute Distance',
+    'Region'
+  ]
 
-    transformer_pipeline = ColumnTransformer(
-        transformers = [
-            (
-                'num', 
-                pipeline_numerical,
-                features_numerical
-            ),
-            (
-                'cat', 
-                pipeline_categorical,
-                features_categorical
-            )
-        ])
+  transformer_pipeline = ColumnTransformer(
+    transformers = [
+      (
+        'num', 
+        pipeline_numerical,
+        features_numerical
+      ),
+      (
+        'cat', 
+        pipeline_categorical,
+        features_categorical
+      )
+    ])
   ```
 ````
 
@@ -240,8 +250,8 @@ Speichern Sie die Pipeline in einer Variable namens pipeline_categorical.
 ````{Dropdown} Lösung Task 8
 
   ```{code-block} python
-    res = transformer_pipeline.fit_transform(datasets['X_train'])
-    pd.DataFrame(res)
+  res = transformer_pipeline.fit_transform(datasets['X_train'])
+  pd.DataFrame(res)
   ```
 ````
 
@@ -255,11 +265,11 @@ Speichern Sie die Pipeline in einer Variable namens pipeline_categorical.
 ````{Dropdown} Lösung Task 9
 
   ```{code-block} python
-    feature_categorical_onehot = transformer_pipeline\
-        .transformers_[1][1]['onehot']\
-        .get_feature_names(features_categorical)
-        
-    pd.DataFrame(res, columns=features_numerical+list(feature_categorical_onehot))
+  feature_categorical_onehot = transformer_pipeline\
+    .transformers_[1][1]['onehot']\
+    .get_feature_names(features_categorical)
+
+  pd.DataFrame(res, columns=features_numerical+list(feature_categorical_onehot))
 
   ```
 ````
@@ -281,101 +291,153 @@ Geben Sie die ersten Zeilen des Pandas Dataframe X_train_transformed aus:
 ````{Dropdown} Lösung Task 10
 
   ```{code-block} python
-    # Erste Code-Zelle
-    X_train_transformed = transformer_pipeline.fit_transform(datasets['X_train'])
-    X_val_transformed = transformer_pipeline.transform(datasets['X_val'])
-    X_test_transformed = transformer_pipeline.transform(datasets['X_test'])
-    
-    # Zweite Code-Zelle
-    X_train_transformed = pd.DataFrame(X_train_transformed, columns=features_numerical+list(feature_categorical_onehot))
-    X_val_transformed = pd.DataFrame(X_val_transformed, columns=features_numerical+list(feature_categorical_onehot))
-    X_test_transformed = pd.DataFrame(X_test_transformed, columns=features_numerical+list(feature_categorical_onehot))
-    
-    # Dritte Code-Zelle
-    X_train_transformed.head()
+  # Erste Code-Zelle
+  X_train_transformed = transformer_pipeline.fit_transform(datasets['X_train'])
+  X_val_transformed = transformer_pipeline.transform(datasets['X_val'])
+  X_test_transformed = transformer_pipeline.transform(datasets['X_test'])
+
+  # Zweite Code-Zelle
+  X_train_transformed = pd.DataFrame(X_train_transformed, columns=features_numerical+list(feature_categorical_onehot))
+  X_val_transformed = pd.DataFrame(X_val_transformed, columns=features_numerical+list(feature_categorical_onehot))
+  X_test_transformed = pd.DataFrame(X_test_transformed, columns=features_numerical+list(feature_categorical_onehot))
+
+  # Dritte Code-Zelle
+  X_train_transformed.head()
+  ```
+````
+
+### Task 11: Transformierte Daten speichern
+
+Speichern Sie die transformierten Daten in einem Dictionary unter Verwendung der Keys 
+* X_train
+* y_train
+* X_val
+* y_val
+* X_test
+* y_test  
+
+in einer Variable namens "datasets_tranformed".
+
+# Hier den Code eingeben.
+
+Speichern Sie die transformierten Daten in einer Pickle-Datei unter '../output/bikebuyers/datesets_transformed.pkl'.
+
+# Hier den Code eingeben.
+
+````{Dropdown} Lösung Task 11
+  
+  ```{code-block} python  
+  # Erste Code-Zelle
+  datasets_transformed = {
+      'X_train': X_train_transformed,
+      'y_train': datasets['y_train'],
+      'X_val': X_val_transformed,
+      'y_val': datasets['y_val'],
+      'X_test': X_test_transformed,
+      'y_test': datasets['y_test']
+  }
+  
+  # Zweite Code-Zelle
+  with open('../output/bikebuyers/datesets_transformed.pkl', 'wb') as handle:
+    pickle.dump(datasets_transformed, handle)
 
   ```
 ````
 
-### Task x: Transformierte Daten speichern
-
-### Task 14: Pipeline speichern
+### Task 12: Pipeline speichern
 
 Speichern Sie die Pipeline mit der besten Parametereinstellung in einer Pickle-Datei.
 
 # Hier den Code eingeben.
 
-````{Dropdown} Lösung Task 14
+````{Dropdown} Lösung Task 12
 
   ```{code-block} python
-    with open('../output/bikebuyers/transformer_pipeline.pkl', 'wb') as handle:
-            pickle.dump(transformer_pipeline, handle)
+  with open('../output/bikebuyers/transformer_pipeline.pkl', 'wb') as handle:
+    pickle.dump(transformer_pipeline, handle)
+
   ```
 ````
 
-import pandas as pd
-import numpy as np
-import sklearn as sklearn
-import pickle
+### Lösungen Teil 2: Pipelines erstellen, koordinieren und anwenden
 
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.compose import ColumnTransformer
+# Code Zelle zum testen
 
-# Load data
-with open('../output/bikebuyers/datasets.pkl', 'rb') as handle:
-    datasets = pickle.load(handle)
+````{Dropdown} Lösungen kompakt - Outlier Remover Extended
 
-%%writefile transformer_extended.py
-
-import pandas as pd
-import numpy as np
-from sklearn.base import BaseEstimator, TransformerMixin
-
-# Create custom transformer
-class OutlierRemoverExtended(BaseEstimator, TransformerMixin):
+  ```{code-block} python
+  %%writefile transformer_extended.py
+  
+  import pandas as pd
+  import numpy as np
+  from sklearn.base import BaseEstimator, TransformerMixin
+  
+  class OutlierRemoverExtended(BaseEstimator, TransformerMixin):
     def __init__(self, factor=1.5, strategy='median'):
-        self.factor = factor
-        self.strategy = strategy
+      self.factor = factor
+      self.strategy = strategy
 
     def fit(self, X, y=None):
-        return self
+      return self
 
     def transform(self, X, y=None):
-        X_ = pd.DataFrame(X)
-        q1 = X_.quantile(0.25)
-        q3 = X_.quantile(0.75)
-        iqr = q3 - q1
-        lower_bound = q1 - (self.factor * iqr)
-        upper_bound = q3 + (self.factor * iqr)
-        X_[((X_ < lower_bound) | (X_ > upper_bound))] = np.nan
+      X_ = pd.DataFrame(X)
+      q1 = X_.quantile(0.25)
+      q3 = X_.quantile(0.75)
+      iqr = q3 - q1
+      lower_bound = q1 - (self.factor * iqr)
+      upper_bound = q3 + (self.factor * iqr)
+      X_[((X_ < lower_bound) | (X_ > upper_bound))] = np.nan
 
-        if self.strategy == 'median':
-            X_.fillna(X_.median(), inplace=True)
-        elif self.strategy == 'mean':
-            X_.fillna(X_.mean(), inplace=True)
-        else:
-            raise ValueError('Invalid value for strategy paramter. Valid values are median or mean.')
+      if self.strategy == 'median':
+        X_.fillna(X_.median(), inplace=True)
+      elif self.strategy == 'mean':
+        X_.fillna(X_.mean(), inplace=True)
+      else:
+        raise ValueError('Invalid value for strategy paramter. Valid values are median or mean.')
 
-        return X_.values
+      return X_.values
+  ```
+````
 
-from transformer_extended import OutlierRemoverExtended
+# Code Zelle zum testen
 
-# Numerical Pipeline
-pipeline_numerical = Pipeline(steps=[
+````{Dropdown} Lösungen kompakt - Pipelines
+
+  ```{code-block} python
+  import pandas as pd
+  import numpy as np
+  import sklearn as sklearn
+  import pickle
+  
+  from transformer_extended import OutlierRemoverExtended
+  from sklearn.pipeline import Pipeline
+  from sklearn.preprocessing import StandardScaler
+  from sklearn.preprocessing import OneHotEncoder
+  from sklearn.compose import ColumnTransformer
+  
+  # Datensets einlesen
+  with open('../output/bikebuyers/datasets.pkl', 'rb') as handle:      
+    datasets = pickle.load(handle)
+  
+  # Outlier Remover erstellen
+  outlier_remover = OutlierRemoverExtended()
+  res = outlier_remover.fit_transform(datasets['X_train'])
+  pd.DataFrame(res)
+  
+  # Pipeline für numerische Daten erstellen
+  pipeline_numerical = Pipeline(steps=[
     ('outlier_remover', OutlierRemoverExtended()),
     ('scaler', StandardScaler())
-])
-
-# Categorical Pipeline
-pipeline_categorical = Pipeline(steps=[
+  ])
+  
+  # Pipeline für kategorische Daten erstellen
+  pipeline_categorical = Pipeline(steps=[
     ('onehot', OneHotEncoder(handle_unknown='ignore'))
-])
+  ])
 
-# Column Transformer
-features_numerical = ['Income', 'Age', 'Cars', 'Children']
-features_categorical = [
+  features_numerical = ['Income', 'Age', 'Cars', 'Children']
+  features_categorical = [
     'Marital Status', 
     'Gender', 
     'Education', 
@@ -383,40 +445,55 @@ features_categorical = [
     'Home Owner', 
     'Commute Distance',
     'Region'
-]
+  ]
 
-transformer_pipeline = ColumnTransformer(
+  # Pipelines koordinieren
+  transformer_pipeline = ColumnTransformer(
     transformers = [
-        (
-            'num', 
-            pipeline_numerical,
-            features_numerical
-        ),
-        (
-            'cat', 
-            pipeline_categorical,
-            features_categorical
-        )
+      (
+        'num', 
+        pipeline_numerical,
+        features_numerical
+      ),
+      (
+        'cat', 
+        pipeline_categorical,
+        features_categorical
+      )
     ])
-
-# transform datsets
-X_train_transformed = transformer_pipeline.fit_transform(datasets['X_train'])
-X_val_transformed = transformer_pipeline.transform(datasets['X_val'])
-X_test_transformed = transformer_pipeline.transform(datasets['X_test'])
-
-feature_categorical_onehot = transformer_pipeline\
+  
+  # Transformationen auf alle Datensets anwenden
+  X_train_transformed = transformer_pipeline.fit_transform(datasets['X_train'])
+  X_val_transformed = transformer_pipeline.transform(datasets['X_val'])
+  X_test_transformed = transformer_pipeline.transform(datasets['X_test'])
+  
+  feature_categorical_onehot = transformer_pipeline\
     .transformers_[1][1]['onehot']\
     .get_feature_names(features_categorical)
 
-# Zweite Code-Zelle
-X_train_transformed = pd.DataFrame(X_train_transformed, columns=features_numerical+list(feature_categorical_onehot))
-X_val_transformed = pd.DataFrame(X_val_transformed, columns=features_numerical+list(feature_categorical_onehot))
-X_test_transformed = pd.DataFrame(X_test_transformed, columns=features_numerical+list(feature_categorical_onehot))
-
-print(X_train_transformed.head())
-
-with open('../output/bikebuyers/transformer_pipeline.pkl', 'wb') as handle:
+  X_train_transformed = pd.DataFrame(X_train_transformed, columns=features_numerical+list(feature_categorical_onehot))
+  X_val_transformed = pd.DataFrame(X_val_transformed, columns=features_numerical+list(feature_categorical_onehot))
+  X_test_transformed = pd.DataFrame(X_test_transformed, columns=features_numerical+list(feature_categorical_onehot))
+  
+  # Transformierte Datensets speichern
+  datasets_transformed = {
+      'X_train': X_train_transformed,
+      'y_train': datasets['y_train'],
+      'X_val': X_val_transformed,
+      'y_val': datasets['y_val'],
+      'X_test': X_test_transformed,
+      'y_test': datasets['y_test']
+  }
+  
+  with open('../output/bikebuyers/datesets_transformed.pkl', 'wb') as handle:
+    pickle.dump(datasets_transformed, handle)
+    
+  # Pipeline speichern
+  with open('../output/bikebuyers/transformer_pipeline.pkl', 'wb') as handle:
     pickle.dump(transformer_pipeline, handle)
-
-
-
+  
+  # Ergebnis anzeigen
+  print('Erste 5 Zeilen des transformierten Trainingsdatenset')
+  datasets_transformed['X_train'].head()
+  ```
+````

@@ -368,13 +368,18 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-x-transformierte-daten-speichern">
-     Task x: Transformierte Daten speichern
+    <a class="reference internal nav-link" href="#task-11-transformierte-daten-speichern">
+     Task 11: Transformierte Daten speichern
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#task-14-pipeline-speichern">
-     Task 14: Pipeline speichern
+    <a class="reference internal nav-link" href="#task-12-pipeline-speichern">
+     Task 12: Pipeline speichern
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#losungen-teil-2-pipelines-erstellen-koordinieren-und-anwenden">
+     Lösungen Teil 2: Pipelines erstellen, koordinieren und anwenden
     </a>
    </li>
   </ul>
@@ -401,22 +406,38 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: sklearn in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (0.0)
 Requirement already satisfied: scikit-learn in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from sklearn) (0.24.2)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (2.1.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: scipy&gt;=0.19.1 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.4.1)
 Requirement already satisfied: numpy&gt;=1.13.3 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.18.1)
 Requirement already satisfied: joblib&gt;=0.11 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (0.14.1)
-Requirement already satisfied: scipy&gt;=0.19.1 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (1.4.1)
-Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /Users/alandmesser/anaconda3/envs/workshops/lib/python3.7/site-packages (from scikit-learn-&gt;sklearn) (2.1.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-cell tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>Packete importieren</p>
-<div class="cell docutils container">
+<div class="cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">sklearn</span> <span class="k">as</span> <span class="nn">sklearn</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Packete importiert.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Packete importiert.
 </pre></div>
 </div>
 </div>
@@ -428,25 +449,7 @@ Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /Users/alandmesser/ana
 <p>Lesen Sie die gespeicherte Datensets aus der pickle-Datei ‘../output/bikebuyers/datasets.pkl’ aus und geben Sie die ersten fünf Zeilen der Merkmale im Trainingsdatenset (X_train) aus.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/bikebuyers/datasets.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
-<span class="n">datasets</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-
-<span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="n">ef61b86f729d</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/bikebuyers/datasets.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">datasets</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">]</span>
-
-<span class="nn">~/anaconda3/envs/workshops/lib/python3.7/site-packages/pandas/_libs/internals.pyx</span> in <span class="ni">pandas._libs.internals.BlockManager.__cinit__</span><span class="nt">()</span>
-
-<span class="ne">TypeError</span>: __cinit__() takes at least 2 positional arguments (0 given)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hier den Code eingeben.</span>
 </pre></div>
 </div>
 </div>
@@ -466,14 +469,14 @@ Lösung Task 1<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="c1"># Erste Code-Zelle</span>
-  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../data/bikebuyers/datasets.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
-      <span class="n">datasets</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Erste Code-Zelle</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/bikebuyers/datasets.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>      
+  <span class="n">datasets</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
       
-  <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
   
-  <span class="c1"># Zweite Code-Zelle</span>
-  <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="c1"># Zweite Code-Zelle</span>
+<span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -518,26 +521,26 @@ Lösung Task 2<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="c1"># Erste Code-Zelle</span>
-  <span class="n">X_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">])</span>
-  <span class="n">factor</span> <span class="o">=</span> <span class="mf">1.5</span>
-  <span class="n">q1</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
-  <span class="n">q3</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
-  <span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
-  <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="p">(</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
-  <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">+</span> <span class="p">(</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
-  <span class="n">X_</span><span class="p">[((</span><span class="n">X_</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">X_</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">))]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-  <span class="n">X_</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-  
-  <span class="c1"># Zweite‚ Code-Zelle</span>
-  <span class="n">X_</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Erste Code-Zelle</span>
+<span class="n">X_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">])</span>
+<span class="n">factor</span> <span class="o">=</span> <span class="mf">1.5</span>
+<span class="n">q1</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">q3</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
+<span class="n">lower_bound</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="p">(</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
+<span class="n">upper_bound</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">+</span> <span class="p">(</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
+<span class="n">X_</span><span class="p">[((</span><span class="n">X_</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">X_</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">))]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">X_</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Zweite‚ Code-Zelle</span>
+<span class="n">X_</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details></div>
 <div class="section" id="task-3-outlier-remover-transformer-erstellen">
 <h3>Task 3: Outlier Remover Transformer erstellen<a class="headerlink" href="#task-3-outlier-remover-transformer-erstellen" title="Permalink to this headline">¶</a></h3>
-<p>Erstellen Sie eine Klasse “OutlierRemoverExtended”, welche das Transformer-Interface von Scikit Learn abbildet und von den Klassen BaseEstimator und TranformerMixin ableitet. Bei der Instanziierung der Klasse sollen zwei Parameter gesetzt werden können:</p>
+<p>Erstellen Sie eine Klasse “OutlierRemoverExtended”, welche das Transformer-Interface von Scikit Learn abbildet und von den Klassen BaseEstimator und TranformerMixin ableitet. Speichern Sie die Klasse in einer Datei namens “transformer_extended.py” mit Hilfe des <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#cellmagic-writefile">%%writefile</a> Befehls. Bei der Instanziierung der Klasse sollen zwei Parameter gesetzt werden können:</p>
 <ul class="simple">
 <li><p>factor, Default-Wert 1.5</p></li>
 <li><p>strategy, Default-Wert ‘median’</p></li>
@@ -557,34 +560,37 @@ Lösung Task 3<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">transformer</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">transformer_extended</span><span class="o">.</span><span class="n">py</span>
 
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
+
 <span class="k">class</span> <span class="nc">OutlierRemoverExtended</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">=</span> <span class="n">factor</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">strategy</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">=</span> <span class="n">factor</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">strategy</span>
 
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span>
+  <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="n">X_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="n">q1</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
-        <span class="n">q3</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
-        <span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
-        <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
-        <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
-        <span class="n">X_</span><span class="p">[((</span><span class="n">X_</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">X_</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">))]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+  <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">X_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">q1</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">q3</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+    <span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
+    <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
+    <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
+    <span class="n">X_</span><span class="p">[((</span><span class="n">X_</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">X_</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">))]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;median&#39;</span><span class="p">:</span>
-            <span class="n">X_</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;mean&#39;</span><span class="p">:</span>
-            <span class="n">X_</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid value for strategy paramter. Valid values are median or mean.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;median&#39;</span><span class="p">:</span>
+      <span class="n">X_</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;mean&#39;</span><span class="p">:</span>
+      <span class="n">X_</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid value for strategy paramter. Valid values are median or mean.&#39;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">X_</span><span class="o">.</span><span class="n">values</span>
+    <span class="k">return</span> <span class="n">X_</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
 </div>
 </div>
@@ -610,9 +616,11 @@ Lösung Task 4<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="n">outlier_remover</span> <span class="o">=</span> <span class="n">OutlierRemoverExtended</span><span class="p">()</span>
-  <span class="n">res</span> <span class="o">=</span> <span class="n">outlier_remover</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">])</span>
-  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformer_extended</span> <span class="kn">import</span> <span class="n">OutlierRemoverExtended</span>
+
+<span class="n">outlier_remover</span> <span class="o">=</span> <span class="n">OutlierRemoverExtended</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">outlier_remover</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">])</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -625,6 +633,13 @@ Lösung Task 4<div class="summary-down docutils">
 <li><p><a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html">StandardScaler</a> von Scikit Learn</p></li>
 </ol>
 <p>Speichern Sie die Pipeline in einer Variable namens pipeline_numerical.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hier den Code eingeben</span>
+</pre></div>
+</div>
+</div>
+</div>
 <details class="sphinx-bs dropdown card mb-3">
 <summary class="summary-title card-header">
 Lösung Task 5<div class="summary-down docutils">
@@ -632,12 +647,13 @@ Lösung Task 5<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-  <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-  <span class="n">pipeline_numerical</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
-      <span class="p">(</span><span class="s1">&#39;outlier_remover&#39;</span><span class="p">,</span> <span class="n">OutlierRemoverExtended</span><span class="p">()),</span>
-      <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())</span>
-  <span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">pipeline_numerical</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+  <span class="p">(</span><span class="s1">&#39;outlier_remover&#39;</span><span class="p">,</span> <span class="n">OutlierRemoverExtended</span><span class="p">()),</span>
+  <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())</span>
+<span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -666,11 +682,12 @@ Lösung Task 6<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-  <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
-  <span class="n">pipeline_categorical</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
-      <span class="p">(</span><span class="s1">&#39;onehot&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">))</span>
-  <span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+
+<span class="n">pipeline_categorical</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+  <span class="p">(</span><span class="s1">&#39;onehot&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">))</span>
+<span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -705,32 +722,32 @@ Lösung Task 7<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
 
-  <span class="n">features_numerical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Cars&#39;</span><span class="p">,</span> <span class="s1">&#39;Children&#39;</span><span class="p">]</span>
-  <span class="n">features_categorical</span> <span class="o">=</span> <span class="p">[</span>
-      <span class="s1">&#39;Marital Status&#39;</span><span class="p">,</span> 
-      <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> 
-      <span class="s1">&#39;Education&#39;</span><span class="p">,</span> 
-      <span class="s1">&#39;Occupation&#39;</span><span class="p">,</span> 
-      <span class="s1">&#39;Home Owner&#39;</span><span class="p">,</span> 
-      <span class="s1">&#39;Commute Distance&#39;</span><span class="p">,</span>
-      <span class="s1">&#39;Region&#39;</span>
-  <span class="p">]</span>
+<span class="n">features_numerical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Cars&#39;</span><span class="p">,</span> <span class="s1">&#39;Children&#39;</span><span class="p">]</span>
+<span class="n">features_categorical</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">&#39;Marital Status&#39;</span><span class="p">,</span> 
+  <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> 
+  <span class="s1">&#39;Education&#39;</span><span class="p">,</span> 
+  <span class="s1">&#39;Occupation&#39;</span><span class="p">,</span> 
+  <span class="s1">&#39;Home Owner&#39;</span><span class="p">,</span> 
+  <span class="s1">&#39;Commute Distance&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Region&#39;</span>
+<span class="p">]</span>
 
-  <span class="n">transformer_pipeline</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
-      <span class="n">transformers</span> <span class="o">=</span> <span class="p">[</span>
-          <span class="p">(</span>
-              <span class="s1">&#39;num&#39;</span><span class="p">,</span> 
-              <span class="n">pipeline_numerical</span><span class="p">,</span>
-              <span class="n">features_numerical</span>
-          <span class="p">),</span>
-          <span class="p">(</span>
-              <span class="s1">&#39;cat&#39;</span><span class="p">,</span> 
-              <span class="n">pipeline_categorical</span><span class="p">,</span>
-              <span class="n">features_categorical</span>
-          <span class="p">)</span>
-      <span class="p">])</span>
+<span class="n">transformer_pipeline</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+  <span class="n">transformers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span>
+      <span class="s1">&#39;num&#39;</span><span class="p">,</span> 
+      <span class="n">pipeline_numerical</span><span class="p">,</span>
+      <span class="n">features_numerical</span>
+    <span class="p">),</span>
+    <span class="p">(</span>
+      <span class="s1">&#39;cat&#39;</span><span class="p">,</span> 
+      <span class="n">pipeline_categorical</span><span class="p">,</span>
+      <span class="n">features_categorical</span>
+    <span class="p">)</span>
+  <span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -755,8 +772,8 @@ Lösung Task 8<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="n">res</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">])</span>
-  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">])</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -781,11 +798,11 @@ Lösung Task 9<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="n">feature_categorical_onehot</span> <span class="o">=</span> <span class="n">transformer_pipeline</span>\
-      <span class="o">.</span><span class="n">transformers_</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;onehot&#39;</span><span class="p">]</span>\
-      <span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">features_categorical</span><span class="p">)</span>
-      
-  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">feature_categorical_onehot</span> <span class="o">=</span> <span class="n">transformer_pipeline</span>\
+  <span class="o">.</span><span class="n">transformers_</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;onehot&#39;</span><span class="p">]</span>\
+  <span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">features_categorical</span><span class="p">)</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -823,27 +840,75 @@ Lösung Task 10<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="c1"># Erste Code-Zelle</span>
-  <span class="n">X_train_transformed</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">])</span>
-  <span class="n">X_val_transformed</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_val&#39;</span><span class="p">])</span>
-  <span class="n">X_test_transformed</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_test&#39;</span><span class="p">])</span>
-  
-  <span class="c1"># Zweite Code-Zelle</span>
-  <span class="n">X_train_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
-  <span class="n">X_val_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_val_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
-  <span class="n">X_test_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_test_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
-  
-  <span class="c1"># Dritte Code-Zelle</span>
-  <span class="n">X_train_transformed</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Erste Code-Zelle</span>
+<span class="n">X_train_transformed</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">])</span>
+<span class="n">X_val_transformed</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_val&#39;</span><span class="p">])</span>
+<span class="n">X_test_transformed</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_test&#39;</span><span class="p">])</span>
+
+<span class="c1"># Zweite Code-Zelle</span>
+<span class="n">X_train_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
+<span class="n">X_val_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_val_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
+<span class="n">X_test_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_test_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
+
+<span class="c1"># Dritte Code-Zelle</span>
+<span class="n">X_train_transformed</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </details></div>
-<div class="section" id="task-x-transformierte-daten-speichern">
-<h3>Task x: Transformierte Daten speichern<a class="headerlink" href="#task-x-transformierte-daten-speichern" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="task-11-transformierte-daten-speichern">
+<h3>Task 11: Transformierte Daten speichern<a class="headerlink" href="#task-11-transformierte-daten-speichern" title="Permalink to this headline">¶</a></h3>
+<p>Speichern Sie die transformierten Daten in einem Dictionary unter Verwendung der Keys</p>
+<ul class="simple">
+<li><p>X_train</p></li>
+<li><p>y_train</p></li>
+<li><p>X_val</p></li>
+<li><p>y_val</p></li>
+<li><p>X_test</p></li>
+<li><p>y_test</p></li>
+</ul>
+<p>in einer Variable namens “datasets_tranformed”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hier den Code eingeben.</span>
+</pre></div>
 </div>
-<div class="section" id="task-14-pipeline-speichern">
-<h3>Task 14: Pipeline speichern<a class="headerlink" href="#task-14-pipeline-speichern" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<p>Speichern Sie die transformierten Daten in einer Pickle-Datei unter ‘../output/bikebuyers/datesets_transformed.pkl’.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hier den Code eingeben.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösung Task 11<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Erste Code-Zelle</span>
+<span class="n">datasets_transformed</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;X_train&#39;</span><span class="p">:</span> <span class="n">X_train_transformed</span><span class="p">,</span>
+    <span class="s1">&#39;y_train&#39;</span><span class="p">:</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_train&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;X_val&#39;</span><span class="p">:</span> <span class="n">X_val_transformed</span><span class="p">,</span>
+    <span class="s1">&#39;y_val&#39;</span><span class="p">:</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_val&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;X_test&#39;</span><span class="p">:</span> <span class="n">X_test_transformed</span><span class="p">,</span>
+    <span class="s1">&#39;y_test&#39;</span><span class="p">:</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_test&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># Zweite Code-Zelle</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/bikebuyers/datesets_transformed.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+  <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">datasets_transformed</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+<div class="section" id="task-12-pipeline-speichern">
+<h3>Task 12: Pipeline speichern<a class="headerlink" href="#task-12-pipeline-speichern" title="Permalink to this headline">¶</a></h3>
 <p>Speichern Sie die Pipeline mit der besten Parametereinstellung in einer Pickle-Datei.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -854,196 +919,175 @@ Lösung Task 10<div class="summary-down docutils">
 </div>
 <details class="sphinx-bs dropdown card mb-3">
 <summary class="summary-title card-header">
-Lösung Task 14<div class="summary-down docutils">
+Lösung Task 12<div class="summary-down docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/bikebuyers/transformer_pipeline.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
-          <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">transformer_pipeline</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/bikebuyers/transformer_pipeline.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+  <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">transformer_pipeline</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-</details><div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">sklearn</span> <span class="k">as</span> <span class="nn">sklearn</span>
-<span class="kn">import</span> <span class="nn">pickle</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
-<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
-
-<span class="c1"># Load data</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/bikebuyers/datasets.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
-    <span class="n">datasets</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
+</details></div>
+<div class="section" id="losungen-teil-2-pipelines-erstellen-koordinieren-und-anwenden">
+<h3>Lösungen Teil 2: Pipelines erstellen, koordinieren und anwenden<a class="headerlink" href="#losungen-teil-2-pipelines-erstellen-koordinieren-und-anwenden" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> transformer_extended.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code Zelle zum testen</span>
+</pre></div>
+</div>
+</div>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösungen kompakt - Outlier Remover Extended<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">transformer_extended</span><span class="o">.</span><span class="n">py</span>
 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="kn">import</span> <span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span>
 
-<span class="c1"># Create custom transformer</span>
 <span class="k">class</span> <span class="nc">OutlierRemoverExtended</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">=</span> <span class="n">factor</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">strategy</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">=</span> <span class="n">factor</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">=</span> <span class="n">strategy</span>
 
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span>
+  <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="n">X_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="n">q1</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
-        <span class="n">q3</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
-        <span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
-        <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
-        <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
-        <span class="n">X_</span><span class="p">[((</span><span class="n">X_</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">X_</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">))]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+  <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">X_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">q1</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">q3</span> <span class="o">=</span> <span class="n">X_</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+    <span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
+    <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">q1</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
+    <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
+    <span class="n">X_</span><span class="p">[((</span><span class="n">X_</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">X_</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">))]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;median&#39;</span><span class="p">:</span>
-            <span class="n">X_</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;mean&#39;</span><span class="p">:</span>
-            <span class="n">X_</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid value for strategy paramter. Valid values are median or mean.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;median&#39;</span><span class="p">:</span>
+      <span class="n">X_</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">strategy</span> <span class="o">==</span> <span class="s1">&#39;mean&#39;</span><span class="p">:</span>
+      <span class="n">X_</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X_</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid value for strategy paramter. Valid values are median or mean.&#39;</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">X_</span><span class="o">.</span><span class="n">values</span>
+    <span class="k">return</span> <span class="n">X_</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting transformer_extended.py
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
+</details><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformer_extended</span> <span class="kn">import</span> <span class="n">OutlierRemoverExtended</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Code Zelle zum testen</span>
+</pre></div>
+</div>
+</div>
+</div>
+<details class="sphinx-bs dropdown card mb-3">
+<summary class="summary-title card-header">
+Lösungen kompakt - Pipelines<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sklearn</span> <span class="k">as</span> <span class="nn">sklearn</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
 
-<span class="c1"># Numerical Pipeline</span>
+<span class="kn">from</span> <span class="nn">transformer_extended</span> <span class="kn">import</span> <span class="n">OutlierRemoverExtended</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+
+<span class="c1"># Datensets einlesen</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/bikebuyers/datasets.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>      
+  <span class="n">datasets</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+
+<span class="c1"># Outlier Remover erstellen</span>
+<span class="n">outlier_remover</span> <span class="o">=</span> <span class="n">OutlierRemoverExtended</span><span class="p">()</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">outlier_remover</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">])</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+<span class="c1"># Pipeline für numerische Daten erstellen</span>
 <span class="n">pipeline_numerical</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
-    <span class="p">(</span><span class="s1">&#39;outlier_remover&#39;</span><span class="p">,</span> <span class="n">OutlierRemoverExtended</span><span class="p">()),</span>
-    <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())</span>
+  <span class="p">(</span><span class="s1">&#39;outlier_remover&#39;</span><span class="p">,</span> <span class="n">OutlierRemoverExtended</span><span class="p">()),</span>
+  <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())</span>
 <span class="p">])</span>
 
-<span class="c1"># Categorical Pipeline</span>
+<span class="c1"># Pipeline für kategorische Daten erstellen</span>
 <span class="n">pipeline_categorical</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
-    <span class="p">(</span><span class="s1">&#39;onehot&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">))</span>
+  <span class="p">(</span><span class="s1">&#39;onehot&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">))</span>
 <span class="p">])</span>
 
-<span class="c1"># Column Transformer</span>
 <span class="n">features_numerical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Cars&#39;</span><span class="p">,</span> <span class="s1">&#39;Children&#39;</span><span class="p">]</span>
 <span class="n">features_categorical</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;Marital Status&#39;</span><span class="p">,</span> 
-    <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> 
-    <span class="s1">&#39;Education&#39;</span><span class="p">,</span> 
-    <span class="s1">&#39;Occupation&#39;</span><span class="p">,</span> 
-    <span class="s1">&#39;Home Owner&#39;</span><span class="p">,</span> 
-    <span class="s1">&#39;Commute Distance&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;Region&#39;</span>
+  <span class="s1">&#39;Marital Status&#39;</span><span class="p">,</span> 
+  <span class="s1">&#39;Gender&#39;</span><span class="p">,</span> 
+  <span class="s1">&#39;Education&#39;</span><span class="p">,</span> 
+  <span class="s1">&#39;Occupation&#39;</span><span class="p">,</span> 
+  <span class="s1">&#39;Home Owner&#39;</span><span class="p">,</span> 
+  <span class="s1">&#39;Commute Distance&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;Region&#39;</span>
 <span class="p">]</span>
 
+<span class="c1"># Pipelines koordinieren</span>
 <span class="n">transformer_pipeline</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
-    <span class="n">transformers</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">(</span>
-            <span class="s1">&#39;num&#39;</span><span class="p">,</span> 
-            <span class="n">pipeline_numerical</span><span class="p">,</span>
-            <span class="n">features_numerical</span>
-        <span class="p">),</span>
-        <span class="p">(</span>
-            <span class="s1">&#39;cat&#39;</span><span class="p">,</span> 
-            <span class="n">pipeline_categorical</span><span class="p">,</span>
-            <span class="n">features_categorical</span>
-        <span class="p">)</span>
-    <span class="p">])</span>
+  <span class="n">transformers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span>
+      <span class="s1">&#39;num&#39;</span><span class="p">,</span> 
+      <span class="n">pipeline_numerical</span><span class="p">,</span>
+      <span class="n">features_numerical</span>
+    <span class="p">),</span>
+    <span class="p">(</span>
+      <span class="s1">&#39;cat&#39;</span><span class="p">,</span> 
+      <span class="n">pipeline_categorical</span><span class="p">,</span>
+      <span class="n">features_categorical</span>
+    <span class="p">)</span>
+  <span class="p">])</span>
 
-<span class="c1"># transform datsets</span>
+<span class="c1"># Transformationen auf alle Datensets anwenden</span>
 <span class="n">X_train_transformed</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">])</span>
 <span class="n">X_val_transformed</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_val&#39;</span><span class="p">])</span>
 <span class="n">X_test_transformed</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_test&#39;</span><span class="p">])</span>
 
 <span class="n">feature_categorical_onehot</span> <span class="o">=</span> <span class="n">transformer_pipeline</span>\
-    <span class="o">.</span><span class="n">transformers_</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;onehot&#39;</span><span class="p">]</span>\
-    <span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">features_categorical</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">transformers_</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;onehot&#39;</span><span class="p">]</span>\
+  <span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">features_categorical</span><span class="p">)</span>
 
-<span class="c1"># Zweite Code-Zelle</span>
 <span class="n">X_train_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
 <span class="n">X_val_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_val_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
 <span class="n">X_test_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_test_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">X_train_transformed</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="c1"># Transformierte Datensets speichern</span>
+<span class="n">datasets_transformed</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;X_train&#39;</span><span class="p">:</span> <span class="n">X_train_transformed</span><span class="p">,</span>
+    <span class="s1">&#39;y_train&#39;</span><span class="p">:</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_train&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;X_val&#39;</span><span class="p">:</span> <span class="n">X_val_transformed</span><span class="p">,</span>
+    <span class="s1">&#39;y_val&#39;</span><span class="p">:</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_val&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;X_test&#39;</span><span class="p">:</span> <span class="n">X_test_transformed</span><span class="p">,</span>
+    <span class="s1">&#39;y_test&#39;</span><span class="p">:</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;y_test&#39;</span><span class="p">]</span>
+<span class="p">}</span>
 
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/bikebuyers/datesets_transformed.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+  <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">datasets_transformed</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span>
+  
+<span class="c1"># Pipeline speichern</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/bikebuyers/transformer_pipeline.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
-    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">transformer_pipeline</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span>
+  <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">transformer_pipeline</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span>
+
+<span class="c1"># Ergebnis anzeigen</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Erste 5 Zeilen des transformierten Trainingsdatenset&#39;</span><span class="p">)</span>
+<span class="n">datasets_transformed</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     Income       Age      Cars  Children  Marital Status_Married  \
-0  0.868704 -0.902227 -0.303318 -1.178359                     1.0   
-1 -0.507704 -0.625753 -1.380188 -1.178359                     1.0   
-2  0.524602  1.309566 -0.303318  1.272301                     1.0   
-3 -0.163602 -0.902227 -1.380188 -0.565694                     1.0   
-4  2.589215  2.138988 -0.303318  0.046971                     0.0   
-
-   Marital Status_Single  Gender_Female  Gender_Male  Education_Bachelors  \
-0                    0.0            1.0          0.0                  1.0   
-1                    0.0            1.0          0.0                  0.0   
-2                    0.0            0.0          1.0                  1.0   
-3                    0.0            0.0          1.0                  1.0   
-4                    1.0            1.0          0.0                  1.0   
-
-   Education_Graduate Degree  ...  Home Owner_No  Home Owner_Yes  \
-0                        0.0  ...            0.0             1.0   
-1                        1.0  ...            0.0             1.0   
-2                        0.0  ...            0.0             1.0   
-3                        0.0  ...            0.0             1.0   
-4                        0.0  ...            1.0             0.0   
-
-   Commute Distance_0-1 Miles  Commute Distance_1-2 Miles  \
-0                         0.0                         1.0   
-1                         1.0                         0.0   
-2                         0.0                         1.0   
-3                         1.0                         0.0   
-4                         1.0                         0.0   
-
-   Commute Distance_10+ Miles  Commute Distance_2-5 Miles  \
-0                         0.0                         0.0   
-1                         0.0                         0.0   
-2                         0.0                         0.0   
-3                         0.0                         0.0   
-4                         0.0                         0.0   
-
-   Commute Distance_5-10 Miles  Region_Europe  Region_North America  \
-0                          0.0            0.0                   1.0   
-1                          0.0            1.0                   0.0   
-2                          0.0            0.0                   1.0   
-3                          0.0            0.0                   1.0   
-4                          0.0            0.0                   1.0   
-
-   Region_Pacific  
-0             0.0  
-1             0.0  
-2             0.0  
-3             0.0  
-4             0.0  
-
-[5 rows x 28 columns]
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+</details></div>
 </div>
 </div>
 
