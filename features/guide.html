@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Start : der Wegweiser &#8212; Daten für Machine Learning</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Datensets" href="datasets.html" />
+    <link rel="prev" title="Willkommen beim Onlinekurs" href="../welcome.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/modul2single.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Daten für Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Dieses Buch durchsuchen ..." aria-label="Dieses Buch durchsuchen ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../welcome.html">
+   Willkommen beim Onlinekurs
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Einleitung
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Start : der Wegweiser
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="datasets.html">
+   Datensets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pandas.html">
+   Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 1 - Aufbereitung
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preparation.html">
+   Ziele
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="preparationExplore.html">
+   Überblick verschaffen
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="preparationMissingData.html">
+   Umgang mit fehlenden Daten
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="preparationSplitData.html">
+   Datensets erstellen
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercisePreparation.html">
+   Übung
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 2 - Transformation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformation.html">
+   Ziele
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformationNumerical.html">
+   Numerische Daten
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformationCategorical.html">
+   Kategorische Daten
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformationPipeline.html">
+   Tranformationen koordinieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exerciseTransformation.html">
+   Übung
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 3 - Optimierung
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimization.html">
+   Ziele
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationBaseline.html">
+   Baseline definieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationParameter.html">
+   Parameter optimieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationFeature.html">
+   Merkmale optimieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exerciseOptimization.html">
+   Übung
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Navigation umschalten" aria-controls="site-navigation"
+                title="Navigation umschalten" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Laden Sie diese Seite herunter"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/features/guide.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Quelldatei herunterladen" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="In PDF drucken"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Vollbildmodus"
+        title="Vollbildmodus"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/features/guide.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Starten Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Starten Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Inhalt
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#die-ersten-schritte">
+   Die ersten Schritte
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lesen-der-inhalte-von-teil-1">
+     1. Lesen der Inhalte von Teil 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ubung-durchfuhren-von-teil-1">
+     2. Übung durchführen von Teil 1
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#teilnehmen-am-online-meeting-zu-teil-1">
+     3. Teilnehmen am Online Meeting zu Teil 1
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#zeitplan">
+   Zeitplan
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wie-werden-die-ubungen-durchgefuhrt">
+   Wie werden die Übungen durchgeführt?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#offnen-der-seite-ubung">
+     Öffnen der Seite “Übung”
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#starten-der-entwicklungsumgebung">
+     Starten der Entwicklungsumgebung
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#warten-bis-server-lauft">
+     Warten bis Server läuft
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-schreiben-und-ausfuhren">
+     Code schreiben und ausführen
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#was-tun-wenn-fragen-oder-probleme-aufkommen">
+   Was tun wenn Fragen oder Probleme aufkommen?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#was-der-kurs-nicht-ist">
+   Was der Kurs nicht ist
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unsere-herangehensweise">
+   Unsere Herangehensweise
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="start-der-wegweiser">
+<h1>Start : der Wegweiser<a class="headerlink" href="#start-der-wegweiser" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="die-ersten-schritte">
+<h2>Die ersten Schritte<a class="headerlink" href="#die-ersten-schritte" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="lesen-der-inhalte-von-teil-1">
+<h3>1. Lesen der Inhalte von Teil 1<a class="headerlink" href="#lesen-der-inhalte-von-teil-1" title="Permalink to this headline">¶</a></h3>
+<p>Sie erarbeiten die Inhalte von Teil 1 - Aufbereitung durch Lesen und festigen die Inhalte durch Zwischenfragen.</p>
+<p>Lesen Sie hierzu folgende Seiten</p>
+<ul class="simple">
+<li><p>Ziele</p></li>
+<li><p>Überblick verschaffen</p></li>
+<li><p>Umgang mit fehlenden Daten</p></li>
+<li><p>Datensets erstellen</p></li>
+</ul>
+</div>
+<div class="section" id="ubung-durchfuhren-von-teil-1">
+<h3>2. Übung durchführen von Teil 1<a class="headerlink" href="#ubung-durchfuhren-von-teil-1" title="Permalink to this headline">¶</a></h3>
+<p>Die Übungen werden anhand des Datenset “Bike Buyers” durchgeführt. Lesen Sie zunächst die <strong>Beschreibung des Datensets</strong> im nächsten Kapitel. Öffnen Sie die <strong>Seite “Übung”</strong> unter “Teil 1 - Aufbereitung”</p>
+<p>Für die Übungen wird Ihnen online eine <strong>Entwicklungsumgebung</strong> bereitgestellt. Wie das funktioniert erfahren Sie im Abschnitt “Wie werden die Übungen durchgeführt.</p>
+</div>
+<div class="section" id="teilnehmen-am-online-meeting-zu-teil-1">
+<h3>3. Teilnehmen am Online Meeting zu Teil 1<a class="headerlink" href="#teilnehmen-am-online-meeting-zu-teil-1" title="Permalink to this headline">¶</a></h3>
+<p>Das Online Meeting am 10.08.21 von 10.00 - 11.00 Uhr dient zum Austausch, Beantwortung von Fragen und Lösen von Problemen. Einer der <strong>KI-TrainerInnen</strong> wird anwesend sein und dabei unterstützen.</p>
+<p>Diese 3 Schritte wiederholen sich für alle drei Teile.</p>
+</div>
+</div>
+<div class="section" id="zeitplan">
+<h2>Zeitplan<a class="headerlink" href="#zeitplan" title="Permalink to this headline">¶</a></h2>
+<p>Teil 1<br />
+<strong>03.08.-10.08.21</strong>: Inhalte und Übung im Selbststudium erarbeiten<br />
+<strong>10.08.21</strong>, 10:00 - 11:00 Uhr: Online Meeting</p>
+<p>Teil 2<br />
+<strong>11.08.-17.08.21</strong>: Inhalte und Übung im Selbststudium erarbeiten<br />
+<strong>17.08.21</strong>, 10:00 - 11:00 Uhr: Online Meeting</p>
+<p>Teil 3<br />
+<strong>18.-24.08.21</strong>: Inhalte und Übung im Selbststudium erarbeiten<br />
+<strong>24.08.21</strong>, 10:00 - 11:00 Uhr: Online Meeting</p>
+</div>
+<div class="section" id="wie-werden-die-ubungen-durchgefuhrt">
+<h2>Wie werden die Übungen durchgeführt?<a class="headerlink" href="#wie-werden-die-ubungen-durchgefuhrt" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="offnen-der-seite-ubung">
+<h3>Öffnen der Seite “Übung”<a class="headerlink" href="#offnen-der-seite-ubung" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-left" id="fig-ex-open">
+<a class="reference internal image-reference" href="../_images/exOpen.png"><img alt="../_images/exOpen.png" src="../_images/exOpen.png" style="height: 170px;" /></a>
+</div>
+</div>
+<div class="section" id="starten-der-entwicklungsumgebung">
+<h3>Starten der Entwicklungsumgebung<a class="headerlink" href="#starten-der-entwicklungsumgebung" title="Permalink to this headline">¶</a></h3>
+<p>Starten der Entwicklungsumgebung durch Live-Code-Button</p>
+<div class="figure align-left" id="fig-ex-start-kernel">
+<a class="reference internal image-reference" href="../_images/exStartKernel.png"><img alt="../_images/exStartKernel.png" src="../_images/exStartKernel.png" style="height: 110px;" /></a>
+</div>
+</div>
+<div class="section" id="warten-bis-server-lauft">
+<h3>Warten bis Server läuft<a class="headerlink" href="#warten-bis-server-lauft" title="Permalink to this headline">¶</a></h3>
+<p>Bitte haben Sie Geduld, es kann einige Minuten dauern, bis die Entwicklungsumgebung bereit ist. Solange der Startvorgang dauert wird der Status “building” angezeigt.</p>
+<div class="figure align-left" id="fig-ex-building">
+<a class="reference internal image-reference" href="../_images/exBuilding.png"><img alt="../_images/exBuilding.png" src="../_images/exBuilding.png" style="height: 120px;" /></a>
+</div>
+<p>Die Entwicklungsumgebung ist bereit, wenn im Status “ready” angezeigt wird.</p>
+<div class="figure align-left" id="fig-ex-ready">
+<a class="reference internal image-reference" href="../_images/exReady.png"><img alt="../_images/exReady.png" src="../_images/exReady.png" style="height: 130px;" /></a>
+</div>
+<p>In jeder Code-Zelle wird nun ein “Run”- und “Restart”-Button angezeigt.</p>
+<div class="figure align-left" id="fig-ex-ready-run">
+<a class="reference internal image-reference" href="../_images/exReadyRun.png"><img alt="../_images/exReadyRun.png" src="../_images/exReadyRun.png" style="height: 450px;" /></a>
+</div>
+</div>
+<div class="section" id="code-schreiben-und-ausfuhren">
+<h3>Code schreiben und ausführen<a class="headerlink" href="#code-schreiben-und-ausfuhren" title="Permalink to this headline">¶</a></h3>
+<p>Schreiben Sie nun selbst die erste Zeile Code. Löschen Sie die Zeile “# Geben Sie hier Ihren Code ein” in der Übungsaufgabe “Task 1” und fügen Sie folgenden Befehl ein:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Code-Zelle mit eingefügtem Befehl:</p>
+<div class="figure align-left" id="fig-ex-code">
+<a class="reference internal image-reference" href="../_images/exCode.png"><img alt="../_images/exCode.png" src="../_images/exCode.png" style="height: 150px;" /></a>
+</div>
+<p>Führen Sie die Code-Zelle durch drücken des “Run”-Buttons aus.</p>
+<div class="figure align-left" id="fig-ex-code-run">
+<a class="reference internal image-reference" href="../_images/exCodeRun.png"><img alt="../_images/exCodeRun.png" src="../_images/exCodeRun.png" style="height: 350px;" /></a>
+</div>
+<div class="admonition-wichtig admonition">
+<p class="admonition-title">Wichtig</p>
+<p>Eingaben werden <strong><font color='red'>nicht gespeichert</font></strong>. Bitte beachten Sie folgende Punkte</p>
+<ul class="simple">
+<li><p>Das Browserfenster während der Übung <strong>nicht schließen</strong></p></li>
+<li><p>Die Seite während der Übung <strong>nicht neu laden</strong></p></li>
+<li><p>Führen Sie den “restart”-Button <strong>nicht aus</strong></p></li>
+</ul>
+<p>Sollte doch einmal ein Browserfenster geschlossen oder die Seite neu geladen werden, kopieren Sie die Lösungen der bereits abgeschlossenen Aufgaben, indem Sie</p>
+<ul class="simple">
+<li><p>das Dropdown “Lösung” der jeweiligen Aufgabe öffnen</p></li>
+<li><p>rechts oben im Code-Block den Button “kopieren” drücken</p></li>
+<li><p>in die Code-Zelle für die Aufgabe klicken</p></li>
+<li><p>mit “Strg+V” die kopierten Inhalte einfügen</p></li>
+<li><p>und den “Run”-Button drücken</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="was-tun-wenn-fragen-oder-probleme-aufkommen">
+<h2>Was tun wenn Fragen oder Probleme aufkommen?<a class="headerlink" href="#was-tun-wenn-fragen-oder-probleme-aufkommen" title="Permalink to this headline">¶</a></h2>
+<p>Handelt es sich um <strong>technische Fragen oder Probleme</strong>, wie z.B. Die Entwicklungsumgebung startet nicht oder sie können auf die Inhalte nicht zugreifen, kontaktieren Sie die KI-TrainerInnen gerne direkt über folgende E-Mail-Adresse:</p>
+<blockquote>
+<div><p>ki-trainer&#64;kompetenzzentrum-usability.digital</p>
+</div></blockquote>
+<p>Sollten Sie <strong>Fragen zu theoretischen Inhalten oder den Übungen</strong> haben, notieren Sie sich diese bitte. Im Online-Meeting am Ende des jeweiligen Teils können Sie Ihre Fragen gemeinsam mit den anderen Teilnehmern und KI-TrainerInnen diskutieren.</p>
+</div>
+<div class="section" id="was-der-kurs-nicht-ist">
+<h2>Was der Kurs nicht ist<a class="headerlink" href="#was-der-kurs-nicht-ist" title="Permalink to this headline">¶</a></h2>
+<p>Dieser Online Kurs hat <strong><font color='red'>nicht den Anspruch</font></strong></p>
+<ul>
+<li><p>auf <strong>Performance</strong> optimierte Umsetzungsvorschläge zu liefern</p>
+<blockquote>
+<div><p>sondern Vorschläge für erste <font color='green'>prototypische Umsetzungen</font> zu liefern</p>
+</div></blockquote>
+</li>
+<li><p>spezielle Methoden für <strong>sämtliche Datenarten</strong> wie z.B. Bild- und Textdaten zu besprechen</p>
+<blockquote>
+<div><p>das sind zum Teil <font color='green'>eigenständige Themengebiete</font>  und würden den Rahmen dieses Kurses sprengen</p>
+</div></blockquote>
+</li>
+<li><p><strong>alle möglichen Methoden</strong> zur Datenaufbereitung, - transformation und Optimierung zu vermitteln</p>
+<blockquote>
+<div><p>es geht viel mehr darum die <font color='green'>grundlegende Vorgehensweise</font>  zu vermitteln. Hat man die Grundlagen verstanden können weitere Methoden selbst online recherchiert werden.</p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="unsere-herangehensweise">
+<h2>Unsere Herangehensweise<a class="headerlink" href="#unsere-herangehensweise" title="Permalink to this headline">¶</a></h2>
+<p>Auf Basis unserer Erfahrung, empfehlen wir</p>
+<ul>
+<li><p>die <strong>Grundlagen gut zu verstehen</strong></p>
+<blockquote>
+<div><p>hierzu dient dieser Online-Kurs</p>
+</div></blockquote>
+</li>
+<li><p>darauf aufbauen, praktische Erfahrung sammeln und das <strong>Wissen erweitern</strong></p></li>
+</ul>
+<p>Jetzt wünschen wir <strong>viel Spaß</strong> beim Online-Kurs.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "executablebooks/jupyter-book",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./features"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../welcome.html" title="previous page">Willkommen beim Onlinekurs</a>
+    <a class='right-next' id="next-link" href="datasets.html" title="next page">Datensets</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          Durch Annette Landmesser<br/>
+        
+            &copy; Urheberrechte © 2021.<br/>
+          <div class="extra_footer">
+            <script type="text/x-thebe-config">
+{
+    binderOptions: {
+        repoProvider: "git",
+        repo: "https://ada.mi.hdm-stuttgart.de/gitlab/kitrainer/workshop-data",
+        binderUrl: "https://ada.mi.hdm-stuttgart.de/binder/",
+        ref: "master",
+    }
+}
+</script>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

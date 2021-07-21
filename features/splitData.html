@@ -1,12 +1,14 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Datensets erstellen &#8212; Daten Workshop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Datensets erstellen &#8212; Daten für Machine Learning</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -18,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -33,20 +31,19 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
@@ -55,16 +52,16 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Übung: Aufbereitung" href="exercisePreparation.html" />
+    <link rel="next" title="Übung" href="exercisePreparation.html" />
     <link rel="prev" title="Umgang mit fehlenden Daten" href="missingData.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -73,121 +70,136 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/modul2single.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Daten Workshop</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/modul2single.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Daten für Machine Learning</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Dieses Buch durchsuchen ..." aria-label="Dieses Buch durchsuchen ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Willkommen zum Daten Workshop
+  <a class="reference internal" href="../welcome.html">
+   Willkommen beim Onlinekurs
   </a>
  </li>
 </ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 current active collapsible-parent">
+<p class="caption">
+ <span class="caption-text">
+  Einleitung
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="datasets.html">
+   Datensets
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 1 - Aufbereitung
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
   <a class="reference internal" href="preparation.html">
-   Aufbereitung
+   Ziele
   </a>
-  <ul class="current collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="explore.html">
-     Überblick verschaffen
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="missingData.html">
-     Umgang mit fehlenden Daten
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Datensets erstellen
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="exercisePreparation.html">
-     Übung: Aufbereitung
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1">
+  <a class="reference internal" href="explore.html">
+   Überblick verschaffen
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="missingData.html">
+   Umgang mit fehlenden Daten
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Datensets erstellen
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercisePreparation.html">
+   Übung
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 2 - Transformation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
   <a class="reference internal" href="transformation.html">
-   Transformation
+   Ziele
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="transformationNumerical.html">
-     Numerische Daten
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="transformationCategorical.html">
-     Kategorische Daten
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pipeline.html">
-     Tranformationen koordinieren
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="exerciseTransformation.html">
-     Übung: Tranformation
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
-  <a class="reference internal" href="optimization.html">
-   Optimierung
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformationNumerical.html">
+   Numerische Daten
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="optimizationSaved.html">
-     Baseline erstellen
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="optimizationSaved.html#parameter-optimieren">
-     Parameter optimieren
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="optimizationSaved.html#merkmale-optimieren">
-     Merkmale optimieren
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="optimizationSaved.html#pipeline-speichern">
-     Pipeline speichern
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="exerciseOptimization.html">
-     Übung: Optimization
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformationCategorical.html">
+   Kategorische Daten
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pipeline.html">
+   Tranformationen koordinieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exerciseTransformation.html">
+   Übung
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 3 - Optimierung
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimization.html">
+   Ziele
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationBaseline.html">
+   Baseline definieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationParameter.html">
+   Parameter optimieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationFeature.html">
+   Merkmale optimieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exerciseOptimization.html">
+   Übung
+  </a>
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -210,8 +222,8 @@
             
             <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
                 data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                aria-expanded="true" aria-label="Navigation umschalten" aria-controls="site-navigation"
+                title="Navigation umschalten" data-toggle="tooltip" data-placement="left">
                 <i class="fas fa-bars"></i>
                 <i class="fas fa-arrow-left"></i>
                 <i class="fas fa-arrow-up"></i>
@@ -219,7 +231,7 @@
             
             
 <div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Laden Sie diese Seite herunter"><i
             class="fas fa-download"></i></button>
 
     <div class="dropdown-buttons">
@@ -227,22 +239,22 @@
         
         <!-- Download raw file -->
         <a class="dropdown-buttons" href="../_sources/features/splitData.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                class="btn btn-secondary topbarbtn" title="Quelldatei herunterladen" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="In PDF drucken"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
             <!-- Source interaction buttons -->
 
-
             <!-- Full screen (wrap in <a> to have style consistency -->
-            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                    title="Fullscreen mode"><i
-                        class="fas fa-expand"></i></button></a>
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Vollbildmodus"
+        title="Vollbildmodus"><i
+            class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
 
@@ -251,8 +263,8 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/landmessera/workshop-data/master?urlpath=tree/features/splitData.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/features/splitData.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Starten Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
@@ -260,7 +272,7 @@
         
         
         <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+            onclick="initThebeSBT()" title="Starten Thebe" data-toggle="tooltip" data-placement="left"><i
                 class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
@@ -271,12 +283,11 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i>
-            Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Inhalt
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#trainings-validierungs-und-testdatenset">
    Trainings-, Validierungs- und Testdatenset
@@ -328,8 +339,7 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
         </div>
     </div>
 </div>
@@ -727,7 +737,7 @@ Schauen wir uns noch einmal das Katzenklappen-Beispiel an. Es handelt sich bei d
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fd445951b10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fc19848ae50&gt;
 </pre></div>
 </div>
 <img alt="../_images/splitData_30_1.png" src="../_images/splitData_30_1.png" />
@@ -1029,6 +1039,121 @@ Name: Survived, dtype: float64
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">52</span><span class="p">)</span>
+
+<span class="c1"># Sex</span>
+<span class="n">sex_values</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;female&#39;</span><span class="p">,</span> <span class="s1">&#39;male&#39;</span><span class="p">]</span>
+
+<span class="c1"># Pclass</span>
+<span class="n">pclass_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="c1"># Embarked</span>
+<span class="n">embarked_values</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Q&#39;</span><span class="p">,</span><span class="s1">&#39;S&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">]</span>
+<span class="c1"># Survived</span>
+<span class="n">survived_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">outlier_xtrain_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">0.02</span><span class="p">)</span>
+<span class="n">outlier_xval_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_val&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">0.02</span><span class="p">)</span>
+<span class="n">outlier_xtest_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;X_test&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">0.02</span><span class="p">)</span>
+
+<span class="n">outlier</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;X_train&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">300</span><span class="p">),</span> <span class="n">outlier_xtrain_count</span><span class="p">),</span>
+        <span class="s1">&#39;parch&#39;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">),</span> <span class="n">outlier_xtrain_count</span><span class="p">),</span>
+        <span class="s1">&#39;sibsp&#39;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span> <span class="n">outlier_xtrain_count</span><span class="p">),</span>
+        <span class="s1">&#39;fare&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2630</span><span class="p">]</span><span class="o">*</span><span class="n">outlier_xtrain_count</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;X_val&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">300</span><span class="p">),</span> <span class="n">outlier_xval_count</span><span class="p">),</span>
+        <span class="s1">&#39;parch&#39;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">),</span> <span class="n">outlier_xval_count</span><span class="p">),</span>
+        <span class="s1">&#39;sibsp&#39;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span> <span class="n">outlier_xval_count</span><span class="p">),</span>
+        <span class="s1">&#39;fare&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2630</span><span class="p">]</span><span class="o">*</span><span class="n">outlier_xval_count</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;X_test&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">300</span><span class="p">),</span> <span class="n">outlier_xtest_count</span><span class="p">),</span>
+        <span class="s1">&#39;parch&#39;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">),</span> <span class="n">outlier_xtest_count</span><span class="p">),</span>
+        <span class="s1">&#39;sibsp&#39;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span> <span class="n">outlier_xtest_count</span><span class="p">),</span>
+        <span class="s1">&#39;fare&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2630</span><span class="p">]</span><span class="o">*</span><span class="n">outlier_xtest_count</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">outlier</span><span class="p">[</span><span class="s1">&#39;X_train&#39;</span><span class="p">][</span><span class="s1">&#39;age&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">outlier</span><span class="p">[</span><span class="s1">&#39;X_val&#39;</span><span class="p">][</span><span class="s1">&#39;age&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[234, 206, 292, 265, 261, 247, 252, 204, 217, 220]
+[253, 215, 204]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X_train (534, 7)
+y_train (534,)
+X_val (178, 7)
+y_val (178,)
+X_test (179, 7)
+y_test (179,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">y_train_new</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="s1">&#39;X&#39;</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">age</span><span class="p">,</span> <span class="n">sibsp</span><span class="p">,</span> <span class="n">parch</span><span class="p">,</span> <span class="n">fare</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">outlier</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="n">outlier</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;sibsp&#39;</span><span class="p">],</span> <span class="n">outlier</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;parch&#39;</span><span class="p">],</span> <span class="n">outlier</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;fare&#39;</span><span class="p">]):</span>
+            <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s1">&#39;Sex&#39;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">sex_values</span><span class="p">),</span>
+                    <span class="s1">&#39;Pclass&#39;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">pclass_values</span><span class="p">),</span>
+                    <span class="s1">&#39;Age&#39;</span><span class="p">:</span> <span class="n">age</span><span class="p">,</span>
+                    <span class="s1">&#39;Parch&#39;</span><span class="p">:</span> <span class="n">parch</span><span class="p">,</span>
+                    <span class="s1">&#39;SibSp&#39;</span><span class="p">:</span> <span class="n">sibsp</span><span class="p">,</span>
+                    <span class="s1">&#39;Fare&#39;</span><span class="p">:</span> <span class="n">fare</span><span class="p">,</span>
+                    <span class="s1">&#39;Embarked&#39;</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">embarked_values</span><span class="p">)</span>
+                <span class="p">},</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+            <span class="n">y_train_new</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">survived_values</span><span class="p">))</span>
+
+        <span class="n">y_set</span> <span class="o">=</span> <span class="s1">&#39;y_&#39;</span><span class="o">+</span><span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">datasets</span><span class="p">[</span><span class="n">y_set</span><span class="p">]</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="n">y_set</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_train_new</span><span class="p">))</span>
+        <span class="n">datasets</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X_train (544, 7)
+y_train (544,)
+X_val (181, 7)
+y_val (181,)
+X_test (182, 7)
+y_test (182,)
+</pre></div>
+</div>
+</div>
+</div>
 <p>Das Pickle Modul ermöglicht eine einfache und effiziente Speicherung der Daten. Im Vergleich zu anderen Formaten wie z.B. dem Excel-Format, lassen sich Pickle Formate schneller speichern und auslesen. Das Speichern des Python Dictionary erfolgt über folgende zwei Zeilen Code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1084,7 +1209,7 @@ Name: Survived, dtype: float64
   </thead>
   <tbody>
     <tr>
-      <th>232</th>
+      <th>0</th>
       <td>2</td>
       <td>male</td>
       <td>59.0</td>
@@ -1094,7 +1219,7 @@ Name: Survived, dtype: float64
       <td>S</td>
     </tr>
     <tr>
-      <th>54</th>
+      <th>1</th>
       <td>1</td>
       <td>male</td>
       <td>65.0</td>
@@ -1104,7 +1229,7 @@ Name: Survived, dtype: float64
       <td>C</td>
     </tr>
     <tr>
-      <th>277</th>
+      <th>2</th>
       <td>2</td>
       <td>male</td>
       <td>28.0</td>
@@ -1114,7 +1239,7 @@ Name: Survived, dtype: float64
       <td>S</td>
     </tr>
     <tr>
-      <th>385</th>
+      <th>3</th>
       <td>2</td>
       <td>male</td>
       <td>18.0</td>
@@ -1124,7 +1249,7 @@ Name: Survived, dtype: float64
       <td>S</td>
     </tr>
     <tr>
-      <th>75</th>
+      <th>4</th>
       <td>3</td>
       <td>male</td>
       <td>25.0</td>
@@ -1144,37 +1269,7 @@ Name: Survived, dtype: float64
       <td>...</td>
     </tr>
     <tr>
-      <th>593</th>
-      <td>3</td>
-      <td>female</td>
-      <td>28.0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>7.7500</td>
-      <td>Q</td>
-    </tr>
-    <tr>
-      <th>517</th>
-      <td>3</td>
-      <td>male</td>
-      <td>28.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>24.1500</td>
-      <td>Q</td>
-    </tr>
-    <tr>
-      <th>443</th>
-      <td>2</td>
-      <td>female</td>
-      <td>28.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>13.0000</td>
-      <td>S</td>
-    </tr>
-    <tr>
-      <th>116</th>
+      <th>177</th>
       <td>3</td>
       <td>male</td>
       <td>70.5</td>
@@ -1184,7 +1279,7 @@ Name: Survived, dtype: float64
       <td>Q</td>
     </tr>
     <tr>
-      <th>229</th>
+      <th>178</th>
       <td>3</td>
       <td>female</td>
       <td>28.0</td>
@@ -1193,9 +1288,39 @@ Name: Survived, dtype: float64
       <td>25.4667</td>
       <td>S</td>
     </tr>
+    <tr>
+      <th>179</th>
+      <td>3</td>
+      <td>female</td>
+      <td>246.0</td>
+      <td>42</td>
+      <td>24</td>
+      <td>2630.0000</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>180</th>
+      <td>1</td>
+      <td>female</td>
+      <td>269.0</td>
+      <td>37</td>
+      <td>32</td>
+      <td>2630.0000</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>181</th>
+      <td>1</td>
+      <td>female</td>
+      <td>216.0</td>
+      <td>43</td>
+      <td>36</td>
+      <td>2630.0000</td>
+      <td>C</td>
+    </tr>
   </tbody>
 </table>
-<p>179 rows × 7 columns</p>
+<p>182 rows × 7 columns</p>
 </div></div></div>
 </div>
 <hr class="docutils" />
@@ -1211,10 +1336,10 @@ Name: Survived, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fd445fe8ed0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fc198b9e710&gt;
 </pre></div>
 </div>
-<img alt="../_images/splitData_55_1.png" src="../_images/splitData_55_1.png" />
+<img alt="../_images/splitData_59_1.png" src="../_images/splitData_59_1.png" />
 </div>
 </div>
 <p>Für die Entwicklung von Machine Learning Verfahren sollten 3 Datensets erstellt werden:</p>
@@ -1234,7 +1359,7 @@ Name: Survived, dtype: float64
     {
         requestKernel: true,
         binderOptions: {
-            repo: "landmessera/workshop-data",
+            repo: "executablebooks/jupyter-book",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -1256,7 +1381,7 @@ Name: Survived, dtype: float64
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="missingData.html" title="previous page">Umgang mit fehlenden Daten</a>
-    <a class='right-next' id="next-link" href="exercisePreparation.html" title="next page">Übung: Aufbereitung</a>
+    <a class='right-next' id="next-link" href="exercisePreparation.html" title="next page">Übung</a>
 
         </div>
         
@@ -1266,14 +1391,15 @@ Name: Survived, dtype: float64
     <div class="container">
       <p>
         
-          By Annette Landmesser<br/>
+          Durch Annette Landmesser<br/>
         
-            &copy; Copyright 2021.<br/>
+            &copy; Urheberrechte © 2021.<br/>
           <div class="extra_footer">
             <script type="text/x-thebe-config">
 {
     binderOptions: {
-        repo: "https://github.com/landmessera/workshop-data",
+        repoProvider: "git",
+        repo: "https://ada.mi.hdm-stuttgart.de/gitlab/kitrainer/workshop-data",
         binderUrl: "https://ada.mi.hdm-stuttgart.de/binder/",
         ref: "master",
     }
@@ -1289,11 +1415,9 @@ Name: Survived, dtype: float64
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  
   </body>
 </html>

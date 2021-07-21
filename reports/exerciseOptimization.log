@@ -24,7 +24,6 @@ from sklearn.model_selection import GridSearchCV
 with open('../output/bikebuyers/transformer_pipeline.pkl', 'rb') as handle:
     transformer_pipeline = pickle.load(handle)
 
-
 full_pipeline = Pipeline(steps=[
     ('transformers', transformer_pipeline),
     ('predictor', KNeighborsClassifier(n_neighbors=2))
@@ -50,15 +49,15 @@ with open('../output/bikebuyers/full_pipeline.pkl', 'wb') as handle:
     pickle.dump(best_pipeline, handle)
 ------------------
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mAttributeError[0m                            Traceback (most recent call last)
-[0;32m<ipython-input-12-94675a95ae4c>[0m in [0;36m<module>[0;34m[0m
+[0;31m---------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m     Traceback (most recent call last)
+[0;32m<ipython-input-12-711f53589b73>[0m in [0;36m<module>[0;34m[0m
 [1;32m      4[0m [0;34m[0m[0m
 [1;32m      5[0m [0;32mwith[0m [0mopen[0m[0;34m([0m[0;34m'../output/bikebuyers/transformer_pipeline.pkl'[0m[0;34m,[0m [0;34m'rb'[0m[0;34m)[0m [0;32mas[0m [0mhandle[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 [0;32m----> 6[0;31m     [0mtransformer_pipeline[0m [0;34m=[0m [0mpickle[0m[0;34m.[0m[0mload[0m[0;34m([0m[0mhandle[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m[1;32m      7[0m [0;34m[0m[0m
-[1;32m      8[0m [0;34m[0m[0m
+[1;32m      8[0m full_pipeline = Pipeline(steps=[
 
-[0;31mAttributeError[0m: Can't get attribute 'OutlierRemoverExtended' on <module 'transformer' from '/Users/alandmesser/git/books/workshop-data/features/transformer.py'>
-AttributeError: Can't get attribute 'OutlierRemoverExtended' on <module 'transformer' from '/Users/alandmesser/git/books/workshop-data/features/transformer.py'>
+[0;31mModuleNotFoundError[0m: No module named 'transformer_extended'
+ModuleNotFoundError: No module named 'transformer_extended'
 

@@ -1,12 +1,14 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Tranformationen koordinieren &#8212; Daten Workshop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tranformationen koordinieren &#8212; Daten für Machine Learning</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -18,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -33,20 +31,19 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
@@ -55,16 +52,16 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Übung: Tranformation" href="exerciseTransformation.html" />
+    <link rel="next" title="Übung" href="exerciseTransformation.html" />
     <link rel="prev" title="Kategorische Daten" href="transformationCategorical.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -73,121 +70,146 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  <img src="../_static/modul2single.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Daten Workshop</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/modul2single.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Daten für Machine Learning</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Dieses Buch durchsuchen ..." aria-label="Dieses Buch durchsuchen ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../intro.html">
-   Willkommen zum Daten Workshop
+  <a class="reference internal" href="../welcome.html">
+   Willkommen beim Onlinekurs
   </a>
  </li>
 </ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 collapsible-parent">
+<p class="caption">
+ <span class="caption-text">
+  Einleitung
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="guide.html">
+   Start : der Wegweiser
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="datasets.html">
+   Datensets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pandas.html">
+   Pandas
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 1 - Aufbereitung
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
   <a class="reference internal" href="preparation.html">
-   Aufbereitung
+   Ziele
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="explore.html">
-     Überblick verschaffen
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="missingData.html">
-     Umgang mit fehlenden Daten
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="splitData.html">
-     Datensets erstellen
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="exercisePreparation.html">
-     Übung: Aufbereitung
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 current active collapsible-parent">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preparationExplore.html">
+   Überblick verschaffen
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="preparationMissingData.html">
+   Umgang mit fehlenden Daten
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="preparationSplitData.html">
+   Datensets erstellen
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exercisePreparation.html">
+   Übung
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 2 - Transformation
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
   <a class="reference internal" href="transformation.html">
-   Transformation
+   Ziele
   </a>
-  <ul class="current collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="transformationNumerical.html">
-     Numerische Daten
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="transformationCategorical.html">
-     Kategorische Daten
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Tranformationen koordinieren
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="exerciseTransformation.html">
-     Übung: Tranformation
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
-  <a class="reference internal" href="optimization.html">
-   Optimierung
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformationNumerical.html">
+   Numerische Daten
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="optimizationSaved.html">
-     Baseline erstellen
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="optimizationSaved.html#parameter-optimieren">
-     Parameter optimieren
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="optimizationSaved.html#merkmale-optimieren">
-     Merkmale optimieren
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="optimizationSaved.html#pipeline-speichern">
-     Pipeline speichern
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="exerciseOptimization.html">
-     Übung: Optimization
-    </a>
-   </li>
-  </ul>
-  <i class="fas fa-chevron-down">
-  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="transformationCategorical.html">
+   Kategorische Daten
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Tranformationen koordinieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exerciseTransformation.html">
+   Übung
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Teil 3 - Optimierung
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimization.html">
+   Ziele
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationBaseline.html">
+   Baseline definieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationParameter.html">
+   Parameter optimieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimizationFeature.html">
+   Merkmale optimieren
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="exerciseOptimization.html">
+   Übung
+  </a>
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -210,8 +232,8 @@
             
             <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
                 data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                aria-expanded="true" aria-label="Navigation umschalten" aria-controls="site-navigation"
+                title="Navigation umschalten" data-toggle="tooltip" data-placement="left">
                 <i class="fas fa-bars"></i>
                 <i class="fas fa-arrow-left"></i>
                 <i class="fas fa-arrow-up"></i>
@@ -219,7 +241,7 @@
             
             
 <div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Laden Sie diese Seite herunter"><i
             class="fas fa-download"></i></button>
 
     <div class="dropdown-buttons">
@@ -227,22 +249,22 @@
         
         <!-- Download raw file -->
         <a class="dropdown-buttons" href="../_sources/features/pipeline.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                class="btn btn-secondary topbarbtn" title="Quelldatei herunterladen" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="In PDF drucken"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
             <!-- Source interaction buttons -->
 
-
             <!-- Full screen (wrap in <a> to have style consistency -->
-            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                    title="Fullscreen mode"><i
-                        class="fas fa-expand"></i></button></a>
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Vollbildmodus"
+        title="Vollbildmodus"><i
+            class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
 
@@ -251,8 +273,8 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/landmessera/workshop-data/master?urlpath=tree/features/pipeline.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/features/pipeline.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Starten Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
                     alt="Interact on binder">Binder</button></a>
@@ -260,7 +282,7 @@
         
         
         <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+            onclick="initThebeSBT()" title="Starten Thebe" data-toggle="tooltip" data-placement="left"><i
                 class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
@@ -271,12 +293,11 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i>
-            Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Inhalt
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#crash-kurs-scikit-learn">
    Crash Kurs Scikit Learn
@@ -333,8 +354,7 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
         </div>
     </div>
 </div>
@@ -509,7 +529,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OutlierRemover(factor=1.5)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OutlierRemover()
 </pre></div>
 </div>
 </div>
@@ -658,7 +678,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline_numerical</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
-    <span class="p">(</span><span class="s1">&#39;outlier_remover&#39;</span><span class="p">,</span> <span class="n">OutlierRemover</span><span class="p">()),</span>
+    <span class="p">(</span><span class="s1">&#39;outlier_remover&#39;</span><span class="p">,</span> <span class="n">OutlierRemover</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)),</span>
     <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())</span>
 <span class="p">])</span>
 </pre></div>
@@ -672,10 +692,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.84495318,  1.19715145, -1.        ],
-       [-1.70715031, -1.07113551, -0.33333333],
-       [ 0.43109856, -0.90311425,  1.66666667],
-       [ 0.43109856,  0.77709831, -0.33333333]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.54231486,  1.19715145,  0.20628425],
+       [-0.63189365, -1.07113551, -1.65027399],
+       [ 1.73104966, -0.90311425,  1.03142125],
+       [-0.55684115,  0.77709831,  0.4125685 ]])
 </pre></div>
 </div>
 </div>
@@ -759,8 +779,21 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn</span>
+<span class="n">sklearn</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;0.24.2&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline_categorical</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
-    <span class="p">(</span><span class="s1">&#39;onehot&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">))</span>
+    <span class="p">(</span><span class="s1">&#39;onehot&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="s1">&#39;if_binary&#39;</span><span class="p">))</span>
 <span class="p">])</span>
 </pre></div>
 </div>
@@ -822,16 +855,14 @@
       <th>4</th>
       <th>5</th>
       <th>6</th>
-      <th>7</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.844953</td>
+      <td>-0.542315</td>
       <td>1.197151</td>
-      <td>-1.000000</td>
-      <td>1.0</td>
+      <td>0.206284</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -839,10 +870,9 @@
     </tr>
     <tr>
       <th>1</th>
-      <td>-1.707150</td>
+      <td>-0.631894</td>
       <td>-1.071136</td>
-      <td>-0.333333</td>
-      <td>0.0</td>
+      <td>-1.650274</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -850,10 +880,9 @@
     </tr>
     <tr>
       <th>2</th>
-      <td>0.431099</td>
+      <td>1.731050</td>
       <td>-0.903114</td>
-      <td>1.666667</td>
-      <td>0.0</td>
+      <td>1.031421</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
@@ -861,10 +890,9 @@
     </tr>
     <tr>
       <th>3</th>
-      <td>0.431099</td>
+      <td>-0.556841</td>
       <td>0.777098</td>
-      <td>-0.333333</td>
-      <td>1.0</td>
+      <td>0.412568</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -883,8 +911,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Tierart_Hund&#39;,
- &#39;Tierart_Maus&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Tierart_Maus&#39;,
  &#39;Gemütszustand_glücklich&#39;,
  &#39;Gemütszustand_neutral&#39;,
  &#39;Gemütszustand_traurig&#39;]
@@ -921,7 +948,6 @@
       <th>Größe</th>
       <th>Gewicht</th>
       <th>Alter</th>
-      <th>Tierart_Hund</th>
       <th>Tierart_Maus</th>
       <th>Gemütszustand_glücklich</th>
       <th>Gemütszustand_neutral</th>
@@ -931,10 +957,9 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.844953</td>
+      <td>-0.542315</td>
       <td>1.197151</td>
-      <td>-1.000000</td>
-      <td>1.0</td>
+      <td>0.206284</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -942,10 +967,9 @@
     </tr>
     <tr>
       <th>1</th>
-      <td>-1.707150</td>
+      <td>-0.631894</td>
       <td>-1.071136</td>
-      <td>-0.333333</td>
-      <td>0.0</td>
+      <td>-1.650274</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -953,10 +977,9 @@
     </tr>
     <tr>
       <th>2</th>
-      <td>0.431099</td>
+      <td>1.731050</td>
       <td>-0.903114</td>
-      <td>1.666667</td>
-      <td>0.0</td>
+      <td>1.031421</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
@@ -964,10 +987,9 @@
     </tr>
     <tr>
       <th>3</th>
-      <td>0.431099</td>
+      <td>-0.556841</td>
       <td>0.777098</td>
-      <td>-0.333333</td>
-      <td>1.0</td>
+      <td>0.412568</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -984,7 +1006,7 @@
 <p>Laden der Datensets aus Pickle File</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;datasets.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../output/titanic/datasets.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
     <span class="n">datasets</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1028,7 +1050,7 @@
   </thead>
   <tbody>
     <tr>
-      <th>109</th>
+      <th>0</th>
       <td>3</td>
       <td>female</td>
       <td>28.0</td>
@@ -1038,7 +1060,7 @@
       <td>Q</td>
     </tr>
     <tr>
-      <th>391</th>
+      <th>1</th>
       <td>3</td>
       <td>male</td>
       <td>21.0</td>
@@ -1048,7 +1070,7 @@
       <td>S</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>2</th>
       <td>1</td>
       <td>male</td>
       <td>54.0</td>
@@ -1058,7 +1080,7 @@
       <td>S</td>
     </tr>
     <tr>
-      <th>405</th>
+      <th>3</th>
       <td>2</td>
       <td>male</td>
       <td>34.0</td>
@@ -1068,7 +1090,7 @@
       <td>S</td>
     </tr>
     <tr>
-      <th>291</th>
+      <th>4</th>
       <td>1</td>
       <td>female</td>
       <td>19.0</td>
@@ -1083,11 +1105,20 @@
 </div>
 <div class="section" id="pipeline-erstellen">
 <h3>Pipeline erstellen<a class="headerlink" href="#pipeline-erstellen" title="Permalink to this headline">¶</a></h3>
-<p>Erstellen des Column Transformer unter Verwendung der bereits erstellten Pipelines für numerische und kategorsiche Daten.</p>
+<p>Erstellen der Pipelines für numerische und kategorische Daten, sowie eine Pipeline namens “transformer_pipeline”, um die Zuordnung der Pipelines auf die Merkmale zu definieren. Da in diesem Datenset keine Ausreißer vorhanden sind, die entfernt werden müssen wird der Outlier Remover Transformer in diesem Fall nicht verwendet.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features_numerical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;SibSp&#39;</span><span class="p">,</span> <span class="s1">&#39;Parch&#39;</span><span class="p">,</span> <span class="s1">&#39;Fare&#39;</span><span class="p">]</span>
 <span class="n">features_categorical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">,</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="s1">&#39;Embarked&#39;</span><span class="p">]</span>
+
+<span class="n">pipeline_numerical</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;outlier_remover&#39;</span><span class="p">,</span> <span class="n">OutlierRemover</span><span class="p">(</span><span class="mf">5.0</span><span class="p">))</span>
+    <span class="c1">#(&#39;scaler&#39;, StandardScaler())</span>
+<span class="p">])</span>
+
+<span class="n">pipeline_categorical</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;onehot&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="s1">&#39;if_binary&#39;</span><span class="p">))</span>
+<span class="p">])</span>
 
 <span class="n">transformer_pipeline</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
     <span class="n">transformers</span> <span class="o">=</span> <span class="p">[</span>
@@ -1126,7 +1157,6 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Pclass_1&#39;,
  &#39;Pclass_2&#39;,
  &#39;Pclass_3&#39;,
- &#39;Sex_female&#39;,
  &#39;Sex_male&#39;,
  &#39;Embarked_C&#39;,
  &#39;Embarked_Q&#39;,
@@ -1168,7 +1198,6 @@
       <th>Pclass_1</th>
       <th>Pclass_2</th>
       <th>Pclass_3</th>
-      <th>Sex_female</th>
       <th>Sex_male</th>
       <th>Embarked_C</th>
       <th>Embarked_Q</th>
@@ -1178,13 +1207,12 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>-0.041667</td>
-      <td>1.415251</td>
-      <td>0.0</td>
-      <td>0.617511</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>28.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>24.1500</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1193,14 +1221,13 @@
     </tr>
     <tr>
       <th>1</th>
-      <td>-0.762739</td>
-      <td>-0.552832</td>
+      <td>21.0</td>
       <td>0.0</td>
-      <td>-0.738446</td>
+      <td>0.0</td>
+      <td>7.7958</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1208,12 +1235,11 @@
     </tr>
     <tr>
       <th>2</th>
-      <td>2.636599</td>
-      <td>-0.552832</td>
+      <td>54.0</td>
       <td>0.0</td>
-      <td>2.915204</td>
+      <td>0.0</td>
+      <td>51.8625</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
@@ -1223,13 +1249,12 @@
     </tr>
     <tr>
       <th>3</th>
-      <td>0.576394</td>
-      <td>1.415251</td>
-      <td>0.0</td>
-      <td>0.356338</td>
-      <td>0.0</td>
+      <td>34.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>21.0000</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -1238,14 +1263,13 @@
     </tr>
     <tr>
       <th>4</th>
-      <td>-0.968759</td>
-      <td>1.415251</td>
+      <td>19.0</td>
+      <td>1.0</td>
       <td>0.0</td>
-      <td>-0.346339</td>
+      <td>91.0792</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -1264,86 +1288,80 @@
       <td>...</td>
       <td>...</td>
       <td>...</td>
-      <td>...</td>
     </tr>
     <tr>
-      <th>529</th>
-      <td>0.164353</td>
-      <td>-0.552832</td>
-      <td>0.0</td>
-      <td>-0.350485</td>
+      <th>539</th>
+      <td>28.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>13.0000</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
-      <th>530</th>
-      <td>-0.041667</td>
-      <td>-0.552832</td>
+      <th>540</th>
+      <td>28.0</td>
       <td>0.0</td>
-      <td>-0.346339</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>13.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
-      <th>531</th>
-      <td>1.709507</td>
-      <td>-0.552832</td>
+      <th>541</th>
+      <td>28.0</td>
       <td>0.0</td>
-      <td>0.816499</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>13.0000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
-      <th>532</th>
-      <td>-0.762739</td>
-      <td>3.383333</td>
+      <th>542</th>
+      <td>28.0</td>
       <td>0.0</td>
-      <td>-0.346339</td>
+      <td>0.0</td>
+      <td>13.0000</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
-      <th>533</th>
-      <td>-1.071769</td>
-      <td>-0.552832</td>
+      <th>543</th>
+      <td>28.0</td>
       <td>0.0</td>
-      <td>-0.431324</td>
+      <td>0.0</td>
+      <td>13.0000</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
     </tr>
   </tbody>
 </table>
-<p>534 rows × 12 columns</p>
+<p>544 rows × 11 columns</p>
 </div></div></div>
 </div>
 </div>
@@ -1392,6 +1410,95 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Pclass</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Fare</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3</td>
+      <td>female</td>
+      <td>28.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>24.1500</td>
+      <td>Q</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3</td>
+      <td>male</td>
+      <td>21.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.7958</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>male</td>
+      <td>54.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>51.8625</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>male</td>
+      <td>34.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>21.0000</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>female</td>
+      <td>19.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>91.0792</td>
+      <td>C</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_categorical_onehot</span> <span class="o">=</span> <span class="n">transformer_pipeline</span><span class="o">.</span><span class="n">transformers_</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;onehot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">features_categorical</span><span class="p">)</span>
 <span class="n">X_train_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_train_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
 <span class="n">X_val_transformed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_val_transformed</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">features_numerical</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">feature_categorical_onehot</span><span class="p">))</span>
@@ -1399,6 +1506,204 @@
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train_transformed</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Fare</th>
+      <th>Pclass_1</th>
+      <th>Pclass_2</th>
+      <th>Pclass_3</th>
+      <th>Sex_male</th>
+      <th>Embarked_C</th>
+      <th>Embarked_Q</th>
+      <th>Embarked_S</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>20</th>
+      <td>24.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>49.5042</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>24.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>79.2000</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>36.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>10.5000</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>30.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>12.3500</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>30.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>13.0000</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>539</th>
+      <td>28.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>13.0000</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>540</th>
+      <td>28.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>13.0000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>541</th>
+      <td>28.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>13.0000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>542</th>
+      <td>28.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>13.0000</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>543</th>
+      <td>28.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>13.0000</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>524 rows × 11 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1432,7 +1737,6 @@
       <th>Pclass_1</th>
       <th>Pclass_2</th>
       <th>Pclass_3</th>
-      <th>Sex_female</th>
       <th>Sex_male</th>
       <th>Embarked_C</th>
       <th>Embarked_Q</th>
@@ -1442,13 +1746,12 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>-0.041667</td>
-      <td>1.415251</td>
-      <td>0.0</td>
-      <td>0.617511</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>28.0</td>
       <td>1.0</td>
+      <td>0.0</td>
+      <td>24.1500</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1457,14 +1760,13 @@
     </tr>
     <tr>
       <th>1</th>
-      <td>-0.762739</td>
-      <td>-0.552832</td>
+      <td>21.0</td>
       <td>0.0</td>
-      <td>-0.738446</td>
+      <td>0.0</td>
+      <td>7.7958</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1472,12 +1774,11 @@
     </tr>
     <tr>
       <th>2</th>
-      <td>2.636599</td>
-      <td>-0.552832</td>
+      <td>54.0</td>
       <td>0.0</td>
-      <td>2.915204</td>
+      <td>0.0</td>
+      <td>51.8625</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
@@ -1487,13 +1788,12 @@
     </tr>
     <tr>
       <th>3</th>
-      <td>0.576394</td>
-      <td>1.415251</td>
-      <td>0.0</td>
-      <td>0.356338</td>
-      <td>0.0</td>
+      <td>34.0</td>
       <td>1.0</td>
       <td>0.0</td>
+      <td>21.0000</td>
+      <td>0.0</td>
+      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -1502,14 +1802,13 @@
     </tr>
     <tr>
       <th>4</th>
-      <td>-0.968759</td>
-      <td>1.415251</td>
+      <td>19.0</td>
+      <td>1.0</td>
       <td>0.0</td>
-      <td>-0.346339</td>
+      <td>91.0792</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -1551,7 +1850,6 @@
       <th>Pclass_1</th>
       <th>Pclass_2</th>
       <th>Pclass_3</th>
-      <th>Sex_female</th>
       <th>Sex_male</th>
       <th>Embarked_C</th>
       <th>Embarked_Q</th>
@@ -1561,14 +1859,13 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.988435</td>
-      <td>1.415251</td>
+      <td>38.0</td>
+      <td>1.0</td>
       <td>0.0</td>
-      <td>4.525418</td>
+      <td>71.2833</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -1576,13 +1873,12 @@
     </tr>
     <tr>
       <th>1</th>
-      <td>-0.453708</td>
-      <td>-0.552832</td>
-      <td>0.0</td>
-      <td>-0.651040</td>
+      <td>24.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
+      <td>8.8500</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1591,14 +1887,13 @@
     </tr>
     <tr>
       <th>2</th>
-      <td>-0.041667</td>
-      <td>-0.552832</td>
+      <td>58.0</td>
       <td>0.0</td>
-      <td>-0.186046</td>
+      <td>0.0</td>
+      <td>146.5208</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -1606,13 +1901,12 @@
     </tr>
     <tr>
       <th>3</th>
-      <td>-1.998861</td>
-      <td>3.383333</td>
+      <td>9.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>34.3750</td>
       <td>0.0</td>
-      <td>1.465284</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1621,14 +1915,13 @@
     </tr>
     <tr>
       <th>4</th>
-      <td>0.370374</td>
-      <td>-0.552832</td>
+      <td>32.0</td>
       <td>0.0</td>
-      <td>-0.727734</td>
+      <td>0.0</td>
+      <td>7.9250</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1670,7 +1963,6 @@
       <th>Pclass_1</th>
       <th>Pclass_2</th>
       <th>Pclass_3</th>
-      <th>Sex_female</th>
       <th>Sex_male</th>
       <th>Embarked_C</th>
       <th>Embarked_Q</th>
@@ -1680,13 +1972,12 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>-0.041667</td>
-      <td>-0.552832</td>
+      <td>59.0</td>
       <td>0.0</td>
-      <td>-0.265500</td>
+      <td>0.0</td>
+      <td>13.5000</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -1695,12 +1986,11 @@
     </tr>
     <tr>
       <th>1</th>
-      <td>-0.041667</td>
-      <td>-0.552832</td>
+      <td>65.0</td>
       <td>0.0</td>
-      <td>-0.514236</td>
+      <td>0.0</td>
+      <td>61.9792</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
@@ -1710,13 +2000,12 @@
     </tr>
     <tr>
       <th>2</th>
-      <td>-0.041667</td>
-      <td>-0.552832</td>
+      <td>28.0</td>
       <td>0.0</td>
-      <td>-1.384810</td>
+      <td>0.0</td>
+      <td>0.0000</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -1725,13 +2014,12 @@
     </tr>
     <tr>
       <th>3</th>
-      <td>-1.071769</td>
-      <td>-0.552832</td>
+      <td>18.0</td>
       <td>0.0</td>
-      <td>-0.514236</td>
+      <td>0.0</td>
+      <td>73.5000</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
@@ -1740,14 +2028,13 @@
     </tr>
     <tr>
       <th>4</th>
-      <td>-0.350698</td>
-      <td>-0.552832</td>
+      <td>25.0</td>
       <td>0.0</td>
-      <td>-0.750534</td>
+      <td>0.0</td>
+      <td>7.6500</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.0</td>
       <td>1.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1811,7 +2098,7 @@
     {
         requestKernel: true,
         binderOptions: {
-            repo: "landmessera/workshop-data",
+            repo: "executablebooks/jupyter-book",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -1833,7 +2120,7 @@
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="transformationCategorical.html" title="previous page">Kategorische Daten</a>
-    <a class='right-next' id="next-link" href="exerciseTransformation.html" title="next page">Übung: Tranformation</a>
+    <a class='right-next' id="next-link" href="exerciseTransformation.html" title="next page">Übung</a>
 
         </div>
         
@@ -1843,14 +2130,15 @@
     <div class="container">
       <p>
         
-          By Annette Landmesser<br/>
+          Durch Annette Landmesser<br/>
         
-            &copy; Copyright 2021.<br/>
+            &copy; Urheberrechte © 2021.<br/>
           <div class="extra_footer">
             <script type="text/x-thebe-config">
 {
     binderOptions: {
-        repo: "https://github.com/landmessera/workshop-data",
+        repoProvider: "git",
+        repo: "https://ada.mi.hdm-stuttgart.de/gitlab/kitrainer/workshop-data",
         binderUrl: "https://ada.mi.hdm-stuttgart.de/binder/",
         ref: "master",
     }
@@ -1866,11 +2154,9 @@
 
       </div>
     </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  
   </body>
 </html>
