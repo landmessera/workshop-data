@@ -1,2 +1,9 @@
 # ignore ipynb checkpoint files
 .ipynb_checkpoints
+
+# ignore build files
+_build
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
