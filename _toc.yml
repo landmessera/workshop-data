@@ -7,7 +7,6 @@ parts:
     chapters:
     - file: features/guide
     - file: features/datasets
-    - file: features/pandas
   - caption: Teil 1 - Aufbereitung
     chapters:
     - file: features/preparation
@@ -26,7 +25,7 @@ parts:
   - caption: Teil 3 - Optimierung
     chapters:
     - file: features/optimization
-    - file: features/optimizationBaseline
-    - file: features/optimizationParameter
-    - file: features/optimizationFeature
-    - file: features/exerciseOptimization
+    - file: features/tmp-optimizationBaseline
+    - file: features/tmp-optimizationParameter
+    - file: features/tmp-optimizationFeature
+    - file: features/tmp-exerciseOptimization
