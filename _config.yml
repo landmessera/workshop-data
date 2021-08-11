@@ -34,10 +34,9 @@ html:
   
 sphinx:
   extra_extensions:
-    - sphinx_thebe
-    
-#  config:
-#    html_extra_path: ['data']
+    - sphinx_thebe    
+  config:
+    html_extra_path: ['assets']
 
 parse:
   myst_enable_extensions:

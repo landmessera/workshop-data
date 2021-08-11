@@ -7,6 +7,7 @@ parts:
     chapters:
     - file: features/guide
     - file: features/datasets
+    - file: features/faq
   - caption: Teil 1 - Aufbereitung
     chapters:
     - file: features/preparation
